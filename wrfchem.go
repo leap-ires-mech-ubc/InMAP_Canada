@@ -69,7 +69,7 @@ func NewWRFChem(WRFOut, startDate, endDate string, msgChan chan string) (*WRFChe
 		// Only includes anthropogenic precursors to SOA from
 		// anthropogenic (aSOA) and biogenic (bSOA) sources as
 		// in Ahmadov et al. (2012)
-		// Assume condensable vapor from SOA has molar mass of 70
+		// Assume condensible vapor from SOA has molar mass of 70
 		aVOC: map[string]float64{
 			"hc5": ppmvToUgKg(72), "hc8": ppmvToUgKg(114),
 			"olt": ppmvToUgKg(42), "oli": ppmvToUgKg(68), "tol": ppmvToUgKg(92),

@@ -106,7 +106,7 @@ type Preprocessor interface {
 	// Z0 is surface roughness length [m].
 	Z0() NextData
 
-	// QRain is the mass fraction of rain [mass/mass].
+	//QRain is the mass fraction of rain [mass/mass].
 	QRain() NextData
 	// QCloud is the mass fraction of cloud water in each grid cell [mass/mass].
 	QCloud() NextData
@@ -453,7 +453,7 @@ func marginalPartitioning(gasFunc, particleFunc NextData) (partitioning, gasConc
 	}
 }
 
-// average calculates the arithmatic mean of a
+// average calculates the arithmetic mean of a
 // set of arrays.
 func average(dataFunc NextData) (*sparse.DenseArray, error) {
 	var avgdata *sparse.DenseArray

@@ -146,7 +146,7 @@ func UpwindAdvection() CellManipulator {
 }
 
 // MeanderMixing returns a function that calculates changes in concentrations caused by meanders:
-// adevection that is resolved by the underlying comprehensive chemical
+// advection that is resolved by the underlying comprehensive chemical
 // transport model but is not resolved by InMAP.
 func MeanderMixing() CellManipulator {
 	return func(c *Cell, Δt float64) {

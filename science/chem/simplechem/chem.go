@@ -228,12 +228,13 @@ func (m Mechanism) Units(variable string) (string, error) {
 // It partitions organic matter ("gOrg" and "pOrg"), the
 // nitrogen in nitrate ("gNO and pNO"), and the nitrogen in ammonia ("gNH" and
 // "pNH) between gaseous and particulate phase
-// based on the spatially explicit partioning present in the baseline data.
+// based on the spatially explicit partitioning present in the baseline data.
 // The function arguments represent the array indices of each chemical species.
 func (m Mechanism) Chemistry() inmap.CellManipulator {
 	return func(c *inmap.Cell, Δt float64) {
 		// All SO4 forms particles, so sulfur particle formation is limited by the
-		// SO2 -> SO4 reaction.
+	
+	// SO2 -> SO4 reaction.
 		ΔS := c.Cf[igS] - c.Cf[igS]*math.Exp(-c.SO2oxidation*Δt)
 		c.Cf[ipS] += ΔS
 		c.Cf[igS] -= ΔS
