@@ -27,6 +27,8 @@ import (
 	"github.com/ctessum/atmos/wesely1989"
 
 	"github.com/ctessum/sparse"
+	//TR added 20220422 for aSOA/bSOA partition coefficient estimation. Could also copy to keep internal.
+	"github.com/sajari/regression"
 )
 //TR - update to GEMMACH variables
 // GEM-MACH variables currently used:
@@ -40,7 +42,7 @@ const wrfFormat = "2006-01-02_15_04_05"
 
 // WRFChem is an InMAP preprocessor for WRF-Chem output.
 type WRFChem struct {
-	aVOC, bVOC, aSOA, bSOA, nox, no, no2, pNO, sox, pS, nh3, pNH, totalPM25 map[string]float64
+	aVOC, bVOC, tSOA, aSOA, bSOA, nox, no, no2, pNO, sox, pS, nh3, pNH, totalPM25 map[string]float64
 
 	start, end time.Time
 
@@ -69,28 +71,28 @@ func NewWRFChem(WRFOut, startDate, endDate string, msgChan chan string) (*WRFChe
 		// Only includes anthropogenic precursors to SOA from
 		// anthropogenic (aSOA) and biogenic (bSOA) sources as
 		// in Ahmadov et al. (2012)
-		// Assume condensable vapor from SOA has molar mass of 70
-		//TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
-		//TR - Looks like all variables already in 
+		// Assume condensible vapor from SOA has molar mass of 70
+		// TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
+		// TR - Currently assuming TA3/TA2 are aVOCs
+		//TRNotes - map is like a dict - maps keys to variables. 
 		aVOC: map[string]float64{
-			"hc5": ppmvToUgKg(72), "hc8": ppmvToUgKg(114),
-			"olt": ppmvToUgKg(42), "oli": ppmvToUgKg(68), "tol": ppmvToUgKg(92),
-			"xyl": ppmvToUgKg(106), "csl": ppmvToUgKg(108),
-			"cvasoa1": ppmvToUgKg(70), "cvasoa2": ppmvToUgKg(70),
-			"cvasoa3": ppmvToUgKg(70), "cvasoa4": ppmvToUgKg(70),
+			"TTOL": 1,"TA3": 1,"TA2": 1,
 		},
 		//TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
 		bVOC: map[string]float64{
-			"iso": ppmvToUgKg(68), "api": ppmvToUgKg(136), "sesq": ppmvToUgKg(84.2),
-			"lim": ppmvToUgKg(136), "cvbsoa1": ppmvToUgKg(70), "cvbsoa2": ppmvToUgKg(70),
-			"cvbsoa3": ppmvToUgKg(70), "cvbsoa4": ppmvToUgKg(70),
+			"TISO": 1, "TPIN": 1, "TSES": 1,
 		},
-		// VBS SOA species (anthropogenic only) [μg/kg dry air].
-		aSOA: map[string]float64{"asoa1i": 1, "asoa1j": 1, "asoa2i": 1,
-			"asoa2j": 1, "asoa3i": 1, "asoa3j": 1, "asoa4i": 1, "asoa4j": 1},
+		// For aSOA and bSOA, we will estimate the partition coefficient from a regression vs the aVOC/bVOC species
+		//and the total PM2.5 SOA (TOC1)
+		tSOA: map[string]float64{"TOC1": 1,},
+		//May have to declare? Should pick up that they are arrays of floats. This may not work if all
+		//values are read in one-by-one, rather than as vectors/arrays
+		Kpa,Kpb := Kpest(tSOA,aVOC,bVOC)
+		
+		//aSOA - calculate from TSOA
+		aSOA: map[string]float64{"aSOA":Kpa*aVOC},//Kpest(tSOA,aVOC,bVOC)[0]
 		// VBS SOA species (biogenic only) [μg/kg dry air].
-		bSOA: map[string]float64{"bsoa1i": 1, "bsoa1j": 1, "bsoa2i": 1,
-			"bsoa2j": 1, "bsoa3i": 1, "bsoa3j": 1, "bsoa4i": 1, "bsoa4j": 1},
+		bSOA: map[string]float64{"bSOA":Kpb*bVOC},
 		// NOx is RACM NOx species. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
@@ -113,7 +115,7 @@ func NewWRFChem(WRFOut, startDate, endDate string, msgChan chan string) (*WRFChe
 		// ammonia species [μg/kg dry air].
 		pNH: map[string]float64{"nh4ai": mwN / mwNH4, "nh4aj": mwN / mwNH4},
 		// totalPM25 is total mass of PM2.5  [μg/m3].
-		totalPM25: map[string]float64{"PM2_5_DRY": 1.},
+		totalPM25: map[string]float64{"AF": 1.},
 
 		wrfOut:  WRFOut,
 		msgChan: msgChan,
@@ -152,7 +154,46 @@ func NewWRFChem(WRFOut, startDate, endDate string, msgChan chan string) (*WRFChe
 func ppmvToUgKg(mw float64) float64 {
 	return mw * 1000.0 / MWa
 }
+//TR added for linear regression of aSOA/bSOA
+//This is more like pseudo-code, need to figure out how to get all time 
+//values at each spatial grid cell for the regression
+func Kpest(tSOA,aVOC,bVOC []float64) []float64 {
+	r := new(regression.Regression)
+	r.SetObserved("tSOA")
+	r.SetVar(0, "aVOC")
+	r.SetVar(1, "bVOC")
+	//Everything has to have the same length. 
+	dpts := append(tSOA,aVOC,bVOC)
+	//var dpts []float64
+	//for 
+	r.train(dpts)
+	r.Run()
+	Kpa := r.Coeff(0)
+	Kpb := r.Coeff(1)
+	//SOA1 := Kp1*VOC1
+	//SOA2 
+	return Kpa,Kpb
 
+
+/*
+//The ellipses allows for an arbitrary number of variables (vars)
+
+func linest(obs float64, vars ...float64) float64 {
+	r := new(regression.Regression)
+	ind := 0 
+	for j := range vars {
+        r.SetVar(ind, "Inhabitants")
+		ind += 1
+    }
+	c1 := r.Coeff(0)
+	c2 := r.Coeff(1)
+	return mw * 1000.0 / MWa
+}
+*/
+//Syntax for these methods since I find them a bit confusing. Basically, a method is a function for a struct (or similar)
+//These functions set up w as a "receiver" of type WRFCHEM (*WRFCHEM sets up a pointer to the WRFCHEM struct)that then has the method  "read" or whatever. 
+//So it goes func (receiver *struct) funcname(input inputtype) NextData (which is a function to get the next timestep data from preproc.go) {stuff the function does}. 
+//This format lets you call the function as w.read(varName) etc.
 func (w *WRFChem) read(varName string) NextData {
 	return nextDataNCF(w.wrfOut, wrfFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
