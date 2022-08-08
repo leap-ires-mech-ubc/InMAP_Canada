@@ -28,7 +28,7 @@ import (
 
 	"github.com/ctessum/sparse"
 	//TR added 20220422 for aSOA/bSOA partition coefficient estimation. Could also copy to keep internal.
-	"github.com/sajari/regression"
+	//"github.com/sajari/regression"
 )
 //TR - update to GEMMACH variables
 // GEM-MACH variables currently used:
