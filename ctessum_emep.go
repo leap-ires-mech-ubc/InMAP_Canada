@@ -1,5 +1,8 @@
-package emep
-//Downloaded from https://github.com/ctessum/atmos/blob/master/emep/wetdep.go 20220224
+//package emep
+
+package inmap
+
+// Downloaded from https://github.com/ctessum/atmos/blob/master/emep/wetdep.go 20220224
 // Calculate wet deposition based on formulas at
 // www.emep.int/UniDoc/node12.html. (dead), can find here: https://www.emep.int/publ/reports/2003/emep_report_1_part1_2003.pdf page 63 - 64
 // Inputs are fraction of grid cell covered by clouds (cloudFrac),
