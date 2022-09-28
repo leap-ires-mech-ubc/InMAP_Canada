@@ -9,7 +9,7 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "/workspaces/InMAP_Canada/cmd/inmap/main.go"
-        }
+            "program": "${fileDirname}"
+        } 
     ]
 }

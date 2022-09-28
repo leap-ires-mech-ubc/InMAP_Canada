@@ -52,7 +52,7 @@ func TestWRFChemToInMAP(t *testing.T) {
 	flag.Parse()
 	const tolerance = 1.0e-6
 
-	wrf, err := NewWRFChem("cmd/inmap/testdata/preproc/wrfout_d01_[DATE]", "20050101", "20050103", nil)
+	wrf, err := NewWRFChem("cmd/inmap/testdata/preproc/wrfout_d01_[DATE].nc", "20050101", "20050103", nil)
 	if err != nil {
 		t.Fatal(err)
 	}

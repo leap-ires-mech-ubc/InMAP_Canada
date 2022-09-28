@@ -47,6 +47,7 @@ require (
 	github.com/pelletier/go-toml v1.0.1 // indirect
 	github.com/rs/cors v1.3.0 // indirect
 	github.com/russross/blackfriday v2.0.0+incompatible // indirect
+	github.com/sajari/regression v1.0.1 // indirect
 	github.com/sirupsen/logrus v1.8.1
 	github.com/skratchdot/open-golang v0.0.0-20160302144031-75fb7ed4208c
 	github.com/spf13/cast v1.2.0

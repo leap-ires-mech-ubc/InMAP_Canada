@@ -45,21 +45,23 @@ const (
 	avNum    = 6.02214e23 // molecules per mole
 
 	// Molar masses [grams per mole]
-	mwNOx = 46.0055
-	mwN   = 14.0067 // g/mol, molar mass of nitrogen
-	mwNO3 = 62.00501
-	mwNH3 = 17.03056
-	mwNH4 = 18.03851
-	mwS   = 32.0655 // g/mol, molar mass of sulfur
-	mwSO2 = 64.0644
-	mwSO4 = 96.0632
-	MWa   = 28.97 // g/mol, molar mass of air
+	mwNOx  = 46.0055
+	mwN    = 14.0067 // g/mol, molar mass of nitrogen
+	mwNO3  = 62.00501
+	mwNH3  = 17.03056
+	mwNH4  = 18.03851
+	mwS    = 32.0655 // g/mol, molar mass of sulfur
+	mwSO2  = 64.0644
+	mwSO4  = 96.0632
+	mwOH   = 17.008
+	mwH202 = 34.016
+	MWa    = 28.97 // g/mol, molar mass of air
 
 	// Chemical mass conversions [ratios]
 	NOxToN = mwN / mwNOx
 	NtoNO3 = mwNO3 / mwN
-	SOxToS = mwS / mwSO2 
-	StoSO4 = mwSO4 / mwS 
+	SOxToS = mwS / mwSO2
+	StoSO4 = mwSO4 / mwS
 	NH3ToN = mwN / mwNH3
 	NtoNH4 = mwNH4 / mwN
 )

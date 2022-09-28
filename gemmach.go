@@ -28,7 +28,7 @@ import (
 
 	"github.com/ctessum/sparse"
 	//TR added 20220422 for aSOA/bSOA partition coefficient estimation. Could also copy to keep internal.
-	//"github.com/sajari/regression"
+	"github.com/sajari/regression"
 )
 //TR - update to GEMMACH variables
 // GEM-MACH variables currently used:
@@ -38,31 +38,33 @@ asoa4j,bsoa1i,bsoa1j,bsoa2i,bsoa2j,bsoa3i,bsoa3j,bsoa4i,bsoa4j,no,no2,no3ai,no3a
 so2,sulf,so4ai,so4aj,nh3,nh4ai,nh4aj,PM2_5_DRY,U,V,W,PBLH,PH,PHB,HFX,UST,PBLH,T,
 PB,P,ho,h2o2,LU_INDEX,QRAIN,CLDFRA,QCLOUD,ALT,SWDOWN,GLW */
 
-const wrfFormat = "2006-01-02_15_04_05"
+//const wrfFormat = "2006-01-02_15_04_05"
+//20220907 Changed to GEMMACH time format. Pulled from test netcdf file provided by ECCC
+const gemFormat = "2006-01-02T15:04:05.000000000"
 
-// WRFChem is an InMAP preprocessor for WRF-Chem output.
-type WRFChem struct {
-	aVOC, bVOC, tSOA, aSOA, bSOA, nox, no, no2, pNO, sox, pS, nh3, pNH, totalPM25 map[string]float64
+// GEMMACH is an InMAP preprocessor for GEM-MACH output.
+type GEMMACH struct {
+	aVOC, bVOC, tSOA, aSOA, bSOA, nox, no, no2, pNO, sox, pS, nh3, pNH, totalPM25, HO, H2O2 map[string]float64
 
 	start, end time.Time
 
-	wrfOut string
+	gemOut string
 
 	recordDelta, fileDelta time.Duration
 
 	msgChan chan string
 }
 
-// NewWRFChem initializes a WRF-Chem preprocessor from the given
+// NewGEMMACH initializes a GEM-MACH preprocessor from the given
 // configuration information.
-// WRFOut is the location of WRF-Chem output files.
+// gemOut is the location of GEM-MACH output files.
 // [DATE] should be used as a wild card for the simulation date.
 // startDate and endDate are the dates of the beginning and end of the
 // simulation, respectively, in the format "YYYYMMDD".
 // If msgChan is not nil, status messages will be sent to it.
-func NewWRFChem(WRFOut, startDate, endDate string, msgChan chan string) (*WRFChem, error) {
-	w := WRFChem{
-		// These maps contain the WRF-Chem variables that make
+func NewGEMMACH(gemOut, startDate, endDate string, msgChan chan string) (*GEMMACH, error) {
+	w := GEMMACH{
+		// These maps contain the GEM-MACH variables that make
 		// up the chemical species groups, as well as the
 		// multiplication factors required to convert concentrations
 		// to mass fractions [μg/kg dry air].
@@ -75,75 +77,87 @@ func NewWRFChem(WRFOut, startDate, endDate string, msgChan chan string) (*WRFChe
 		// TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
 		// TR - Currently assuming TA3/TA2 are aVOCs
 		//TRNotes - map is like a dict - maps keys to variables. 
+		//Right now, all we have is TTOL
 		aVOC: map[string]float64{
-			"TTOL": 1,"TA3": 1,"TA2": 1,
+			"TTOL": 1.,
 		},
+		//"TTOL": 1,"TA3": 1,"TA2": 1,
+
 		//TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
 		bVOC: map[string]float64{
-			"TISO": 1, "TPIN": 1, "TSES": 1,
+			"TTOL": 0.5,
 		},
+		//"TISO": 1, "TPIN": 1, "TSES": 1,
+
 		// For aSOA and bSOA, we will estimate the partition coefficient from a regression vs the aVOC/bVOC species
 		//and the total PM2.5 SOA (TOC1)
-		tSOA: map[string]float64{"TOC1": 1,},
+		tSOA: map[string]float64{"TOC1": 1.,},
 		//May have to declare? Should pick up that they are arrays of floats. This may not work if all
 		//values are read in one-by-one, rather than as vectors/arrays
-		Kpa,Kpb := Kpest(tSOA,aVOC,bVOC)
+		//Kpa,Kpb := Kpest(tSOA,aVOC,bVOC)
 		
 		//aSOA - calculate from TSOA
-		aSOA: map[string]float64{"aSOA":Kpa*aVOC},//Kpest(tSOA,aVOC,bVOC)[0]
+		aSOA: map[string]float64{"aSOA":SOAest(tSOA,aVOC,bVOC,true)},//Kpest(tSOA,aVOC,bVOC)[0]
 		// VBS SOA species (biogenic only) [μg/kg dry air].
-		bSOA: map[string]float64{"bSOA":Kpb*bVOC},
+		bSOA: map[string]float64{"bSOA":SOAest(tSOA,aVOC,bVOC,false)},
 		// NOx is RACM NOx species. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
-		nox: map[string]float64{"no": ppmvToUgKg(mwN), "no2": ppmvToUgKg(mwN)},
+		nox: map[string]float64{"TNO": 1., "TNO2": 1.},
 		// pNO is the Nitrogen fraction of MADE particulate
 		// NO species [μg/kg dry air].
-		pNO: map[string]float64{"no3ai": mwN / mwNO3, "no3aj": mwN / mwNO3},
+		pNO: map[string]float64{"TNI1":1., "TNO3": 1.},
 		// SOx is the RACM SOx species. We are only interested in the mass
 		// of Sulfur, rather than the mass of the whole molecule, so
-		// we use the molecular weight of Sulfur.
-		sox: map[string]float64{"so2": ppmvToUgKg(mwS), "sulf": ppmvToUgKg(mwS)},
+		// we use the molecular weight of Sulfur. 
+		//TR/SB - converted from PPB to PPM by dividing by 1000
+		sox: map[string]float64{"S2": ppmvToUgKg(mwS)/1000.0},
 		// pS is the Sulfur fraction of the MADE particulate
 		// Sulfur species [μg/kg dry air].
-		pS: map[string]float64{"so4ai": mwS / mwSO4, "so4aj": mwS / mwSO4},
+		pS: map[string]float64{"TSU1": 1.},
 		// NH3 is ammonia. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
-		nh3: map[string]float64{"nh3": ppmvToUgKg(mwN)},
+		nh3: map[string]float64{"TNH3": 1.},
 		// pNH is the Nitrogen fraction of the MADE particulate
-		// ammonia species [μg/kg dry air].
-		pNH: map[string]float64{"nh4ai": mwN / mwNH4, "nh4aj": mwN / mwNH4},
+		// ammonia species [μg/m³].
+		pNH: map[string]float64{"TAM1": 1.},
 		// totalPM25 is total mass of PM2.5  [μg/m3].
 		totalPM25: map[string]float64{"AF": 1.},
+		// Hydroxy radical is concentratoon of the hydroxy radical.
+		//Convert from ug/kg to ppmV for consistency
+		HO: map[string]float64{"TOH": UgKgToppmv(mwOH)},
+		//hydrogen peroxide is concentratoon of H202.
+		//Convert from ug/kg to ppmV for consistency
+		H2O2: map[string]float64{"TH22": UgKgToppmv(mwH2O2)},
 
-		wrfOut:  WRFOut,
+		gemOut:  gemOut,
 		msgChan: msgChan,
 	}
 
 	var err error
 	w.start, err = time.Parse(inDateFormat, startDate)
 	if err != nil {
-		return nil, fmt.Errorf("inmap: WRF-Chem preprocessor start time: %v", err)
+		return nil, fmt.Errorf("inmap: GEM-MACH preprocessor start time: %v", err)
 	}
 	w.end, err = time.Parse(inDateFormat, endDate)
 	if err != nil {
-		return nil, fmt.Errorf("inmap: WRF-Chem preprocessor end time: %v", err)
+		return nil, fmt.Errorf("inmap: GEM-MACH preprocessor end time: %v", err)
 	}
 
 	if !w.end.After(w.start) {
 		if err != nil {
-			return nil, fmt.Errorf("inmap: WRF-Chem preprocessor end time %v is not after start time %v", w.end, w.start)
+			return nil, fmt.Errorf("inmap: GEM-MACH preprocessor end time %v is not after start time %v", w.end, w.start)
 		}
 	}
 
 	w.recordDelta, err = time.ParseDuration("1h")
 	if err != nil {
-		return nil, fmt.Errorf("inmap: WRF-Chem preprocessor recordDelta: %v", err)
+		return nil, fmt.Errorf("inmap: GEM-MACH preprocessor recordDelta: %v", err)
 	}
 	w.fileDelta, err = time.ParseDuration("24h")
 	if err != nil {
-		return nil, fmt.Errorf("inmap: WRF-Chem preprocessor fileDelta: %v", err)
+		return nil, fmt.Errorf("inmap: GEM-MACH preprocessor fileDelta: %v", err)
 	}
 	return &w, nil
 }
@@ -154,10 +168,14 @@ func NewWRFChem(WRFOut, startDate, endDate string, msgChan chan string) (*WRFChe
 func ppmvToUgKg(mw float64) float64 {
 	return mw * 1000.0 / MWa
 }
+func UgKgToppmv(mw float64) float64 {
+	return mw *  MWa/1000.0
+}
 //TR added for linear regression of aSOA/bSOA
 //This is more like pseudo-code, need to figure out how to get all time 
 //values at each spatial grid cell for the regression
-func Kpest(tSOA,aVOC,bVOC []float64) []float64 {
+//Need to add a for loop to go through each of the arrays in time
+func SOAest(tSOA,aVOC,bVOC []float64,return_aSOA bool) []float64 {
 	r := new(regression.Regression)
 	r.SetObserved("tSOA")
 	r.SetVar(0, "aVOC")
@@ -170,9 +188,14 @@ func Kpest(tSOA,aVOC,bVOC []float64) []float64 {
 	r.Run()
 	Kpa := r.Coeff(0)
 	Kpb := r.Coeff(1)
-	//SOA1 := Kp1*VOC1
-	//SOA2 
-	return Kpa,Kpb
+	if return_aSOA == true {
+		SOA := Kpa*aVOC
+	} else {
+		SOA := Kpb*bVOC
+	}
+	//aSOA := Kpa*aVOC
+	//bSOA := Kpb*bVOC 
+	return SOA
 
 
 /*
@@ -191,66 +214,71 @@ func linest(obs float64, vars ...float64) float64 {
 }
 */
 //Syntax for these methods since I find them a bit confusing. Basically, a method is a function for a struct (or similar)
-//These functions set up w as a "receiver" of type WRFCHEM (*WRFCHEM sets up a pointer to the WRFCHEM struct)that then has the method  "read" or whatever. 
+//These functions set up w as a "receiver" of type GEMMACH (*GEMMACH sets up a pointer to the GEMMACH struct)that then has the method  "read" or whatever. 
 //So it goes func (receiver *struct) funcname(input inputtype) NextData (which is a function to get the next timestep data from preproc.go) {stuff the function does}. 
 //This format lets you call the function as w.read(varName) etc.
-func (w *WRFChem) read(varName string) NextData {
-	return nextDataNCF(w.wrfOut, wrfFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+func (w *GEMMACH) read(varName string) NextData {
+	return nextDataNCF(w.gemOut, GEMFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
-func (w *WRFChem) readGroupAlt(varGroup map[string]float64) NextData {
-	return nextDataGroupAltNCF(w.wrfOut, wrfFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+func (w *GEMMACH) readGroupAlt(varGroup map[string]float64) NextData {
+	return nextDataGroupAltNCF(w.gemOut, GEMFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
-func (w *WRFChem) readGroup(varGroup map[string]float64) NextData {
-	return nextDataGroupNCF(w.wrfOut, wrfFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+func (w *GEMMACH) readGroup(varGroup map[string]float64) NextData {
+	return nextDataGroupNCF(w.gemOut, GEMFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
+//For these three functions - changed from ALT to AF as GEMMACH
+//outputs do not contain ALT, but do contain AF
 // Nx helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the West-East direction.
-func (w *WRFChem) Nx() (int, error) {
-	f, ff, err := ncfFromTemplate(w.wrfOut, wrfFormat, w.start)
+func (w *GEMMACH) Nx() (int, error) {
+	f, ff, err := ncfFromTemplate(w.gemOut, GEMFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("nx: %v", err)
 	}
 	defer f.Close()
-	return ff.Header.Lengths("ALT")[3], nil
+	return ff.Header.Lengths("AF")[3], nil
 }
 
 // Ny helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the South-North direction.
-func (w *WRFChem) Ny() (int, error) {
-	f, ff, err := ncfFromTemplate(w.wrfOut, wrfFormat, w.start)
+func (w *GEMMACH) Ny() (int, error) {
+	f, ff, err := ncfFromTemplate(w.gemOut, GEMFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("ny: %v", err)
 	}
 	defer f.Close()
-	return ff.Header.Lengths("ALT")[2], nil
+	return ff.Header.Lengths("AF")[2], nil
 }
 
 // Nz helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the below-above direction.
-func (w *WRFChem) Nz() (int, error) {
-	f, ff, err := ncfFromTemplate(w.wrfOut, wrfFormat, w.start)
+func (w *GEMMACH) Nz() (int, error) {
+	f, ff, err := ncfFromTemplate(w.gemOut, GEMFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("nz: %v", err)
 	}
 	defer f.Close()
-	return ff.Header.Lengths("ALT")[1], nil
+	return ff.Header.Lengths("AF")[1], nil
 }
 
 // PBLH helps fulfill the Preprocessor interface by returning
 // planetary boundary layer height [m].
-func (w *WRFChem) PBLH() NextData { return w.read("PBLH") }
+func (w *GEMMACH) PBLH() NextData { return w.read("H") }
 
 // Height helps fulfill the Preprocessor interface by returning
 // layer heights above ground level calculated based on geopotential height.
 // For more information, refer to
 // http://www.openwfm.org/wiki/How_to_interpret_WRF_variables.
-func (w *WRFChem) Height() NextData {
-	// ph is perturbation geopotential height [m2/s].
+//TRSB - Used geopotential height directly for height, converted from decametres
+func (w *GEMMACH) Height() NextData { return 10.0*w.read("GZ") }
+/*TRSB 
+func (w *GEMMACH) Height() NextData {
+	// ph is perturbation geopotential height [m/s2].
 	phFunc := w.read("PH")
-	// phb is baseline geopotential height [m2/s].
+	// phb is baseline geopotential height [m/s2].
 	phbFunc := w.read("PHB")
 	return func() (*sparse.DenseArray, error) {
 		ph, err := phFunc()
@@ -278,68 +306,92 @@ func geopotentialToHeight(ph, phb *sparse.DenseArray) *sparse.DenseArray {
 	}
 	return layerHeights
 }
-
+*/
 // ALT helps fulfill the Preprocessor interface by returning
 // inverse air density [m3/kg].
-func (w *WRFChem) ALT() NextData { return w.read("ALT") }
+func (w *GEMMACH) ALT() NextData { return 1.0/w.read("RHO") }
 
 // U helps fulfill the Preprocessor interface by returning
 // West-East wind speed [m/s].
-func (w *WRFChem) U() NextData { return w.read("U") }
+func (w *GEMMACH) U() NextData { return w.read("UU")*463.0/900.0 }
 
 // V helps fulfill the Preprocessor interface by returning
 // South-North wind speed [m/s].
-func (w *WRFChem) V() NextData { return w.read("V") }
+func (w *GEMMACH) V() NextData { return w.read("VV")*463.0/900.0 }
 
 // W helps fulfill the Preprocessor interface by returning
 // below-above wind speed [m/s].
-func (w *WRFChem) W() NextData { return w.read("W") }
+func (w *GEMMACH) W() NextData { 
+	 WW := w.read("WW") 
+	 Height := w.Height()
+	 P := w.P()
+	 return convert_vertspeed(WW,Height,P)
+	}
+
+//Convert vertical windspeed from Pa/s to m/s
+func convert_vertspeed (WW,GZ,P *sparse.DenseArray) *sparse.DenseArray {
+	vertspeeds := sparse.ZerosDense(WW.Shape...)
+	for k := 0; k < WW.Shape[0]; k++ {
+		for j := 0; j < WW.Shape[1]; j++ {
+			for i := 0; i < WW.Shape[2]; i++ {
+				slope := (GZ.Get(k+1, j, i) - GZ.Get(k, j, i))/
+					(P.Get(k+1, j, i) - P.Get(k, j, i))  
+				WWprime := 	WW.Get(k, j, i)*slope
+				vertspeeds.Set(WWprime, k, j, i)
+			}
+		}
+	}
+	return vertspeeds
+}
 
 // AVOC helps fulfill the Preprocessor interface.
-func (w *WRFChem) AVOC() NextData { return w.readGroupAlt(w.aVOC) }
+func (w *GEMMACH) AVOC() NextData { return w.readGroupAlt(w.aVOC) }
 
 // BVOC helps fulfill the Preprocessor interface.
-func (w *WRFChem) BVOC() NextData { return w.readGroupAlt(w.bVOC) }
+func (w *GEMMACH) BVOC() NextData { return w.readGroupAlt(w.bVOC) }
 
 // NOx helps fulfill the Preprocessor interface.
-func (w *WRFChem) NOx() NextData { return w.readGroupAlt(w.nox) }
+func (w *GEMMACH) NOx() NextData { return w.readGroupAlt(w.nox) }
 
 // SOx helps fulfill the Preprocessor interface.
-func (w *WRFChem) SOx() NextData { return w.readGroupAlt(w.sox) }
+func (w *GEMMACH) SOx() NextData { return w.readGroupAlt(w.sox) }
 
 // NH3 helps fulfill the Preprocessor interface.
-func (w *WRFChem) NH3() NextData { return w.readGroupAlt(w.nh3) }
+func (w *GEMMACH) NH3() NextData { return w.readGroupAlt(w.nh3) }
 
 // ASOA helps fulfill the Preprocessor interface.
-func (w *WRFChem) ASOA() NextData { return w.readGroupAlt(w.aSOA) }
+func (w *GEMMACH) ASOA() NextData { return w.readGroupAlt(w.aSOA) }
 
 // BSOA helps fulfill the Preprocessor interface.
-func (w *WRFChem) BSOA() NextData { return w.readGroupAlt(w.bSOA) }
+func (w *GEMMACH) BSOA() NextData { return w.readGroupAlt(w.bSOA) }
 
 // PNO helps fulfill the Preprocessor interface.
-func (w *WRFChem) PNO() NextData { return w.readGroupAlt(w.pNO) }
+func (w *GEMMACH) PNO() NextData { return w.readGroupAlt(w.pNO) }
 
 // PS helps fulfill the Preprocessor interface.
-func (w *WRFChem) PS() NextData { return w.readGroupAlt(w.pS) }
+func (w *GEMMACH) PS() NextData { return w.readGroupAlt(w.pS) }
 
 // PNH helps fulfill the Preprocessor interface.
-func (w *WRFChem) PNH() NextData { return w.readGroupAlt(w.pNH) }
+//TRSB - muted as value already in ug/kg
+func (w *GEMMACH) PNH() NextData { return w.readGroup(w.pNH) }
 
 // TotalPM25 helps fulfill the Preprocessor interface.
-func (w *WRFChem) TotalPM25() NextData { return w.readGroup(w.totalPM25) }
+func (w *GEMMACH) TotalPM25() NextData { return w.readGroup(w.totalPM25) }
 
 // SurfaceHeatFlux helps fulfill the Preprocessor interface
 // by returning heat flux at the surface [W/m2].
-func (w *WRFChem) SurfaceHeatFlux() NextData { return w.read("HFX") }
+//FC5 is the aggregate heat flux
+func (w *GEMMACH) SurfaceHeatFlux() NextData { return w.read("FC5") }
 
 // UStar helps fulfill the Preprocessor interface
 // by returning friction velocity [m/s].
-func (w *WRFChem) UStar() NextData { return w.read("UST") }
+func (w *GEMMACH) UStar() NextData { return w.read("UE") }
 
 // T helps fulfill the Preprocessor interface by
 // returning temperature [K].
-func (w *WRFChem) T() NextData {
-	thetaFunc := w.read("T") // perturbation potential temperature [K]
+func (w *GEMMACH) T() NextData { return 273.15+w.read("TT") }
+/*
+thetaFunc := w.read("T") // perturbation potential temperature [K]
 	pFunc := w.P()           // Pressure [Pa]
 	return wrfTemperatureConvert(thetaFunc, pFunc)
 }
@@ -376,10 +428,13 @@ func thetaPerturbToTemperature(thetaPerturb, p float64) float64 {
 	// Ambient temperature, K
 	return θ * pressureCorrection
 }
-
+*/
 // P helps fulfill the Preprocessor interface
-// by returning pressure [Pa].
-func (w *WRFChem) P() NextData {
+// by returning pressure [Pa] as pressure level converted
+// from atmosphere to Pa
+func (w *GEMMACH) P() NextData { return 133125.0*w.read("level1") }
+/*
+func (w *GEMMACH) P() NextData {
 	pbFunc := w.read("PB") // baseline pressure [Pa]
 	pFunc := w.read("P")   // perturbation pressure [Pa]
 	return wrfPressureConvert(pFunc, pbFunc)
@@ -400,19 +455,19 @@ func wrfPressureConvert(pFunc, pbFunc NextData) NextData {
 		return P, nil
 	}
 }
-
+*/
 // HO helps fulfill the Preprocessor interface
 // by returning hydroxyl radical concentration [ppmv].
-func (w *WRFChem) HO() NextData { return w.read("ho") }
+func (w *GEMMACH) HO() NextData { return w.readGroup(w.HO) }
 
 // H2O2 helps fulfill the Preprocessor interface
 // by returning hydrogen peroxide concentration [ppmv].
-func (w *WRFChem) H2O2() NextData { return w.read("h2o2") }
+func (w *GEMMACH) H2O2() NextData { return w.readGroup(w.H2O2) }
 
 // SeinfeldLandUse helps fulfill the Preprocessor interface
 // by returning land use categories as
 // specified in github.com/ctessum/atmos/seinfeld.
-func (w *WRFChem) SeinfeldLandUse() NextData {
+func (w *GEMMACH) SeinfeldLandUse() NextData {
 	luFunc := w.read("LU_INDEX") // USGS land use index
 	return wrfSeinfeldLandUse(luFunc)
 }
@@ -469,7 +524,7 @@ var USGSseinfeld = []seinfeld.LandUseCategory{
 // WeselyLandUse helps fulfill the Preprocessor interface
 // by returning land use categories as
 // specified in github.com/ctessum/atmos/wesely1989.
-func (w *WRFChem) WeselyLandUse() NextData {
+func (w *GEMMACH) WeselyLandUse() NextData {
 	luFunc := w.read("LU_INDEX") // USGS land use index
 	return wrfWeselyLandUse(luFunc)
 }
@@ -525,7 +580,7 @@ var USGSwesely = []wesely1989.LandUseCategory{
 
 // Z0 helps fulfill the Preprocessor interface by
 // returning roughness length.
-func (w *WRFChem) Z0() NextData {
+func (w *GEMMACH) Z0() NextData {
 	LUIndexFunc := w.read("LU_INDEX") //USGS land use index
 	return wrfZ0(LUIndexFunc)
 }
@@ -555,21 +610,21 @@ var USGSz0 = []float64{.50, .1, .06, .1, 0.095, .20, .11,
 // QRain helps fulfill the Preprocessor interface by
 // returning rain mass fraction.
 //TR -Sahil to do
-func (w *WRFChem) QRain() NextData { return w.read("QRAIN") }
+func (w *GEMMACH) QRain() NextData { return w.read("QRAIN") }
 
 // CloudFrac helps fulfill the Preprocessor interface
 // by returning the fraction of each grid cell filled
 // with clouds [volume/volume].
-func (w *WRFChem) CloudFrac() NextData { return w.read("CLDFRA") }
+func (w *GEMMACH) CloudFrac() NextData { return w.read("FN") }
 
 // QCloud helps fulfill the Preprocessor interface by returning
 // the mass fraction of cloud water in each grid cell [mass/mass].
-func (w *WRFChem) QCloud() NextData { return w.read("QCLOUD") }
+func (w *GEMMACH) QCloud() NextData { return w.read("QC") }
 
 // RadiationDown helps fulfill the Preprocessor interface by returning
 // total downwelling radiation at ground level [W/m2].
-func (w *WRFChem) RadiationDown() NextData {
-	swDownFunc := w.read("SWDOWN") // downwelling short wave radiation at ground level [W/m2]
+func (w *GEMMACH) RadiationDown() NextData { return w.read("FB") }
+/*	swDownFunc := w.read("SWDOWN") // downwelling short wave radiation at ground level [W/m2]
 	glwFunc := w.read("GLW")       // downwelling long wave radiation at ground level [W/m2]
 	return wrfRadiationDown(swDownFunc, glwFunc)
 }
@@ -589,11 +644,11 @@ func wrfRadiationDown(swDownFunc, glwFunc NextData) NextData {
 		return rad, nil
 	}
 }
-
+*/
 // SWDown helps fulfill the Preprocessor interface by returning
 // downwelling short wave radiation at ground level [W/m2].
-func (w *WRFChem) SWDown() NextData { return w.read("SWDOWN") }
+func (w *GEMMACH) SWDown() NextData { return w.read("FI") }
 
 // GLW helps fulfill the Preprocessor interface by returning
-// downwelling long wave radiation at ground level [W/m2].
-func (w *WRFChem) GLW() NextData { return w.read("GLW") }
+// downwelling long wave radiation at                                                                                                                 ground level [W/m2].
+func (w *GEMMACH) GLW() NextData { return w.RadiationDown() - w.SWDown()}
