@@ -20,7 +20,7 @@ package inmap
 
 import (
 	"fmt"
-	"math"
+	//"math"
 	"time"
 
 	"github.com/ctessum/atmos/seinfeld"
@@ -28,8 +28,9 @@ import (
 
 	"github.com/ctessum/sparse"
 	//TR added 20220422 for aSOA/bSOA partition coefficient estimation. Could also copy to keep internal.
-	"github.com/sajari/regression"
+	//"github.com/sajari/regression"
 )
+
 //TR - update to GEMMACH variables
 // GEM-MACH variables currently used:
 /* hc5,hc8,olt,oli,tol,xyl,csl,cvasoa1,cvasoa2,cvasoa3,cvasoa4,iso,api,sesq,lim,
@@ -44,7 +45,7 @@ const gemFormat = "2006-01-02T15:04:05.000000000"
 
 // GEMMACH is an InMAP preprocessor for GEM-MACH output.
 type GEMMACH struct {
-	aVOC, bVOC, tSOA, aSOA, bSOA, nox, no, no2, pNO, sox, pS, nh3, pNH, totalPM25, HO, H2O2 map[string]float64
+	aVOC, bVOC, tSOA, aSOA, bSOA, nox, no, no2, pNO, sox, pS, nh3, pNH, totalPM25, ho, h2o2 map[string]float64
 
 	start, end time.Time
 
@@ -76,7 +77,7 @@ func NewGEMMACH(gemOut, startDate, endDate string, msgChan chan string) (*GEMMAC
 		// Assume condensible vapor from SOA has molar mass of 70
 		// TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
 		// TR - Currently assuming TA3/TA2 are aVOCs
-		//TRNotes - map is like a dict - maps keys to variables. 
+		//TRNotes - map is like a dict - maps keys to variables.
 		//Right now, all we have is TTOL
 		aVOC: map[string]float64{
 			"TTOL": 1.,
@@ -91,27 +92,29 @@ func NewGEMMACH(gemOut, startDate, endDate string, msgChan chan string) (*GEMMAC
 
 		// For aSOA and bSOA, we will estimate the partition coefficient from a regression vs the aVOC/bVOC species
 		//and the total PM2.5 SOA (TOC1)
-		tSOA: map[string]float64{"TOC1": 1.,},
+		tSOA: map[string]float64{"TOC1": 1.},
 		//May have to declare? Should pick up that they are arrays of floats. This may not work if all
 		//values are read in one-by-one, rather than as vectors/arrays
 		//Kpa,Kpb := Kpest(tSOA,aVOC,bVOC)
-		
+
 		//aSOA - calculate from TSOA
-		aSOA: map[string]float64{"aSOA":SOAest(tSOA,aVOC,bVOC,true)},//Kpest(tSOA,aVOC,bVOC)[0]
+		//aSOA: map[string]float64{"aSOA": SOAest(tSOA, aVOC, bVOC, true)}, //Kpest(tSOA,aVOC,bVOC)[0]
+		aSOA: map[string]float64{"TOC1": 0.5},
 		// VBS SOA species (biogenic only) [μg/kg dry air].
-		bSOA: map[string]float64{"bSOA":SOAest(tSOA,aVOC,bVOC,false)},
+		//bSOA: map[string]float64{"bSOA": SOAest(tSOA, aVOC, bVOC, false)},
+		bSOA: map[string]float64{"TOC1": 0.5},
 		// NOx is RACM NOx species. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
 		nox: map[string]float64{"TNO": 1., "TNO2": 1.},
 		// pNO is the Nitrogen fraction of MADE particulate
 		// NO species [μg/kg dry air].
-		pNO: map[string]float64{"TNI1":1., "TNO3": 1.},
+		pNO: map[string]float64{"TNI1": 1., "TNO3": 1.},
 		// SOx is the RACM SOx species. We are only interested in the mass
 		// of Sulfur, rather than the mass of the whole molecule, so
-		// we use the molecular weight of Sulfur. 
+		// we use the molecular weight of Sulfur.
 		//TR/SB - converted from PPB to PPM by dividing by 1000
-		sox: map[string]float64{"S2": ppmvToUgKg(mwS)/1000.0},
+		sox: map[string]float64{"S2": ppmvToUgKg(mwS) / 1000.0},
 		// pS is the Sulfur fraction of the MADE particulate
 		// Sulfur species [μg/kg dry air].
 		pS: map[string]float64{"TSU1": 1.},
@@ -126,10 +129,10 @@ func NewGEMMACH(gemOut, startDate, endDate string, msgChan chan string) (*GEMMAC
 		totalPM25: map[string]float64{"AF": 1.},
 		// Hydroxy radical is concentratoon of the hydroxy radical.
 		//Convert from ug/kg to ppmV for consistency
-		HO: map[string]float64{"TOH": UgKgToppmv(mwOH)},
+		ho: map[string]float64{"TOH": UgKgToppmv(mwOH)},
 		//hydrogen peroxide is concentratoon of H202.
 		//Convert from ug/kg to ppmV for consistency
-		H2O2: map[string]float64{"TH22": UgKgToppmv(mwH2O2)},
+		h2o2: map[string]float64{"TH22": UgKgToppmv(mwH2O2)},
 
 		gemOut:  gemOut,
 		msgChan: msgChan,
@@ -165,45 +168,51 @@ func NewGEMMACH(gemOut, startDate, endDate string, msgChan chan string) (*GEMMAC
 // ppmvToUgKg returns a multiplier to convert a concentration in
 // ppmv dry air to a mass fraction [micrograms per kilogram dry air]
 // for a chemical species with the given molecular weight in g/mol.
-func ppmvToUgKg(mw float64) float64 {
-	return mw * 1000.0 / MWa
-}
+//func ppmvToUgKg(mw float64) float64 {
+//return mw * 1000.0 / MWa
+//}
 func UgKgToppmv(mw float64) float64 {
-	return mw *  MWa/1000.0
+	return mw * MWa / 1000.0
 }
+
 //TR added for linear regression of aSOA/bSOA
-//This is more like pseudo-code, need to figure out how to get all time 
+//This is more like pseudo-code, need to figure out how to get all time
 //values at each spatial grid cell for the regression
 //Need to add a for loop to go through each of the arrays in time
-func SOAest(tSOA,aVOC,bVOC []float64,return_aSOA bool) []float64 {
+/*
+func SOAest(tSOA []float64, aVOC, bVOC float64, return_aSOA bool) []float64 {
+	//var mat [][]float64
 	r := new(regression.Regression)
 	r.SetObserved("tSOA")
 	r.SetVar(0, "aVOC")
 	r.SetVar(1, "bVOC")
-	//Everything has to have the same length. 
-	dpts := append(tSOA,aVOC,bVOC)
+	//Everything has to have the same length.
+	//dpts := append(tSOA, aVOC, bVOC)
+	veclen := len(tSOA)
+	mat := [veclen][3]float64{tSOA, aVOC, bVOC}
+	dpts := regression.MakeDataPoints(mat, 0)
 	//var dpts []float64
-	//for 
-	r.train(dpts)
+	//for
+	r.Train(dpts)
 	r.Run()
 	Kpa := r.Coeff(0)
 	Kpb := r.Coeff(1)
 	if return_aSOA == true {
-		SOA := Kpa*aVOC
+		SOA := Kpa * aVOC
 	} else {
-		SOA := Kpb*bVOC
+		SOA := Kpb * bVOC
 	}
 	//aSOA := Kpa*aVOC
-	//bSOA := Kpb*bVOC 
+	//bSOA := Kpb*bVOC
 	return SOA
-
-
+}
+*/
 /*
 //The ellipses allows for an arbitrary number of variables (vars)
 
 func linest(obs float64, vars ...float64) float64 {
 	r := new(regression.Regression)
-	ind := 0 
+	ind := 0
 	for j := range vars {
         r.SetVar(ind, "Inhabitants")
 		ind += 1
@@ -214,19 +223,20 @@ func linest(obs float64, vars ...float64) float64 {
 }
 */
 //Syntax for these methods since I find them a bit confusing. Basically, a method is a function for a struct (or similar)
-//These functions set up w as a "receiver" of type GEMMACH (*GEMMACH sets up a pointer to the GEMMACH struct)that then has the method  "read" or whatever. 
-//So it goes func (receiver *struct) funcname(input inputtype) NextData (which is a function to get the next timestep data from preproc.go) {stuff the function does}. 
+//These functions set up w as a "receiver" of type GEMMACH (*GEMMACH sets up a pointer to the GEMMACH struct)that then has the method  "read" or whatever.
+//So it goes func (receiver *struct) funcname(input inputtype) NextData (which is a function to get the next timestep data from preproc.go) {stuff the function does}.
 //This format lets you call the function as w.read(varName) etc.
+
 func (w *GEMMACH) read(varName string) NextData {
-	return nextDataNCF(w.gemOut, GEMFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+	return nextDataNCF(w.gemOut, wrfFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
 func (w *GEMMACH) readGroupAlt(varGroup map[string]float64) NextData {
-	return nextDataGroupAltNCF(w.gemOut, GEMFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+	return nextDataGroupAltNCF(w.gemOut, gemFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
 func (w *GEMMACH) readGroup(varGroup map[string]float64) NextData {
-	return nextDataGroupNCF(w.gemOut, GEMFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+	return nextDataGroupNCF(w.gemOut, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
 //For these three functions - changed from ALT to AF as GEMMACH
@@ -234,7 +244,7 @@ func (w *GEMMACH) readGroup(varGroup map[string]float64) NextData {
 // Nx helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the West-East direction.
 func (w *GEMMACH) Nx() (int, error) {
-	f, ff, err := ncfFromTemplate(w.gemOut, GEMFormat, w.start)
+	f, ff, err := ncfFromTemplate(w.gemOut, gemFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("nx: %v", err)
 	}
@@ -245,7 +255,7 @@ func (w *GEMMACH) Nx() (int, error) {
 // Ny helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the South-North direction.
 func (w *GEMMACH) Ny() (int, error) {
-	f, ff, err := ncfFromTemplate(w.gemOut, GEMFormat, w.start)
+	f, ff, err := ncfFromTemplate(w.gemOut, gemFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("ny: %v", err)
 	}
@@ -256,7 +266,7 @@ func (w *GEMMACH) Ny() (int, error) {
 // Nz helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the below-above direction.
 func (w *GEMMACH) Nz() (int, error) {
-	f, ff, err := ncfFromTemplate(w.gemOut, GEMFormat, w.start)
+	f, ff, err := ncfFromTemplate(w.gemOut, gemFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("nz: %v", err)
 	}
@@ -273,8 +283,11 @@ func (w *GEMMACH) PBLH() NextData { return w.read("H") }
 // For more information, refer to
 // http://www.openwfm.org/wiki/How_to_interpret_WRF_variables.
 //TRSB - Used geopotential height directly for height, converted from decametres
-func (w *GEMMACH) Height() NextData { return 10.0*w.read("GZ") }
-/*TRSB 
+func (w *GEMMACH) Height() NextData { return w.read("GZ") }
+
+//func (w *GEMMACH) Height() NextData { return w.read("GZ") *10.0 }
+
+/*TRSB
 func (w *GEMMACH) Height() NextData {
 	// ph is perturbation geopotential height [m/s2].
 	phFunc := w.read("PH")
@@ -309,39 +322,109 @@ func geopotentialToHeight(ph, phb *sparse.DenseArray) *sparse.DenseArray {
 */
 // ALT helps fulfill the Preprocessor interface by returning
 // inverse air density [m3/kg].
-func (w *GEMMACH) ALT() NextData { return 1.0/w.read("RHO") }
+func (w *GEMMACH) ALT() NextData {
+	rhoFunc := w.read("RHO") // Density of air kg m-2
+	return func() (*sparse.DenseArray, error) {
+		rho, err := rhoFunc()
+		if err != nil {
+			return nil, err
+		}
+		alt := sparse.ZerosDense(rho.Shape...)
+		for i, rhoV := range rho.Elements {
+			// molec HO / cm3 * m3 / kg air * kg air/molec. air* cm3/m3 * ppm
+			alt.Elements[i] = 1 / rhoV
+		}
+		//mult := sparse.ZerosDense(rho.Shape...)
+		//alt := mult / rho
+		return alt, nil
+	}
+}
 
 // U helps fulfill the Preprocessor interface by returning
+//Converting from knots to m/s
 // West-East wind speed [m/s].
-func (w *GEMMACH) U() NextData { return w.read("UU")*463.0/900.0 }
+func (w *GEMMACH) U() NextData {
+	uufunc := w.read("UU")
+	return func() (*sparse.DenseArray, error) {
+		UU, err := uufunc()
+		if err != nil {
+			return nil, err
+		}
+		//UU = UU.Scale(463.0 / 900.0)
+		return UU.ScaleCopy(463.0 / 900.0), nil
+	}
+}
 
 // V helps fulfill the Preprocessor interface by returning
 // South-North wind speed [m/s].
-func (w *GEMMACH) V() NextData { return w.read("VV")*463.0/900.0 }
+//func (w *GEMMACH) V() NextData { return w.read("VV") * 463.0 / 900.0 }
+func (w *GEMMACH) V() NextData {
+	vvfunc := w.read("VV")
+	return func() (*sparse.DenseArray, error) {
+		VV, err := vvfunc()
+		if err != nil {
+			return nil, err
+		}
+		//UU = UU.Scale(463.0 / 900.0)
+		return VV.ScaleCopy(463.0 / 900.0), nil
+	}
+}
 
 // W helps fulfill the Preprocessor interface by returning
 // below-above wind speed [m/s].
-func (w *GEMMACH) W() NextData { 
-	 WW := w.read("WW") 
-	 Height := w.Height()
-	 P := w.P()
-	 return convert_vertspeed(WW,Height,P)
-	}
-
+/*
+func (w *GEMMACH) W() NextData {
+	WW := w.read("WW")
+	Height := w.Height()
+	P := w.P()
+	return convert_vertspeed(WW, Height, P)
+}
 //Convert vertical windspeed from Pa/s to m/s
-func convert_vertspeed (WW,GZ,P *sparse.DenseArray) *sparse.DenseArray {
+func convert_vertspeed(WW, GZ, P *sparse.DenseArray) *sparse.DenseArray {
 	vertspeeds := sparse.ZerosDense(WW.Shape...)
 	for k := 0; k < WW.Shape[0]; k++ {
 		for j := 0; j < WW.Shape[1]; j++ {
 			for i := 0; i < WW.Shape[2]; i++ {
-				slope := (GZ.Get(k+1, j, i) - GZ.Get(k, j, i))/
-					(P.Get(k+1, j, i) - P.Get(k, j, i))  
-				WWprime := 	WW.Get(k, j, i)*slope
+				slope := (GZ.Get(k+1, j, i) - GZ.Get(k, j, i)) /
+					(P.Get(k+1, j, i) - P.Get(k, j, i))
+				WWprime := WW.Get(k, j, i) * slope
 				vertspeeds.Set(WWprime, k, j, i)
 			}
 		}
 	}
 	return vertspeeds
+}
+*/
+func (w *GEMMACH) W() NextData {
+	wwFunc := w.read("WW") // windspeed  in pa/s
+	gzFunc := w.Height()   //Geopotential height (m)
+	ppFunc := w.P()
+	return func() (*sparse.DenseArray, error) {
+		WW, err := wwFunc()
+		if err != nil {
+			return nil, err
+		}
+		GZ, err := gzFunc()
+		if err != nil {
+			return nil, err
+		}
+		PP, err := ppFunc()
+		if err != nil {
+			return nil, err
+		}
+		out := sparse.ZerosDense(WW.Shape...)
+		for k := 0; k < WW.Shape[0]; k++ {
+			for j := 0; j < WW.Shape[1]; j++ {
+				for i := 0; i < WW.Shape[2]; i++ {
+					slope := (GZ.Get(k+1, j, i) - GZ.Get(k, j, i)) /
+						(PP.Get(k+1, j, i) - PP.Get(k, j, i))
+					WWprime := WW.Get(k, j, i) * slope
+					out.Set(WWprime, k, j, i)
+				}
+			}
+		}
+		return out, nil
+	}
 }
 
 // AVOC helps fulfill the Preprocessor interface.
@@ -372,7 +455,7 @@ func (w *GEMMACH) PNO() NextData { return w.readGroupAlt(w.pNO) }
 func (w *GEMMACH) PS() NextData { return w.readGroupAlt(w.pS) }
 
 // PNH helps fulfill the Preprocessor interface.
-//TRSB - muted as value already in ug/kg
+//TRSB - changed to "read group" not "read group alt" as value already in ug/kg
 func (w *GEMMACH) PNH() NextData { return w.readGroup(w.pNH) }
 
 // TotalPM25 helps fulfill the Preprocessor interface.
@@ -389,7 +472,26 @@ func (w *GEMMACH) UStar() NextData { return w.read("UE") }
 
 // T helps fulfill the Preprocessor interface by
 // returning temperature [K].
-func (w *GEMMACH) T() NextData { return 273.15+w.read("TT") }
+//func (w *GEMMACH) T() NextData { return 273.15 + w.read("TT") }
+
+func (w *GEMMACH) T() NextData {
+	TTFunc := w.read("TT") // Density of air kg m-2
+	return func() (*sparse.DenseArray, error) {
+		TT, err := TTFunc()
+		if err != nil {
+			return nil, err
+		}
+		//alt := sparse.ZerosDense(TT.Shape...)
+		for i, TTV := range TT.Elements {
+			// molec HO / cm3 * m3 / kg air * kg air/molec. air* cm3/m3 * ppm
+			TT.Elements[i] = TTV + 273.15
+		}
+		//mult := sparse.ZerosDense(rho.Shape...)
+		//alt := mult / rho
+		return TT, nil
+	}
+}
+
 /*
 thetaFunc := w.read("T") // perturbation potential temperature [K]
 	pFunc := w.P()           // Pressure [Pa]
@@ -432,7 +534,19 @@ func thetaPerturbToTemperature(thetaPerturb, p float64) float64 {
 // P helps fulfill the Preprocessor interface
 // by returning pressure [Pa] as pressure level converted
 // from atmosphere to Pa
-func (w *GEMMACH) P() NextData { return 133125.0*w.read("level1") }
+//func (w *GEMMACH) P() NextData { return 133125.0 * w.read("level1") }
+func (w *GEMMACH) P() NextData {
+	ppfunc := w.read("level1")
+	return func() (*sparse.DenseArray, error) {
+		PP, err := ppfunc()
+		if err != nil {
+			return nil, err
+		}
+		//UU = UU.Scale(463.0 / 900.0)
+		return PP.ScaleCopy(133125.0), nil
+	}
+}
+
 /*
 func (w *GEMMACH) P() NextData {
 	pbFunc := w.read("PB") // baseline pressure [Pa]
@@ -458,21 +572,21 @@ func wrfPressureConvert(pFunc, pbFunc NextData) NextData {
 */
 // HO helps fulfill the Preprocessor interface
 // by returning hydroxyl radical concentration [ppmv].
-func (w *GEMMACH) HO() NextData { return w.readGroup(w.HO) }
+func (w *GEMMACH) HO() NextData { return w.readGroup(w.ho) }
 
 // H2O2 helps fulfill the Preprocessor interface
 // by returning hydrogen peroxide concentration [ppmv].
-func (w *GEMMACH) H2O2() NextData { return w.readGroup(w.H2O2) }
+func (w *GEMMACH) H2O2() NextData { return w.readGroup(w.h2o2) }
 
 // SeinfeldLandUse helps fulfill the Preprocessor interface
 // by returning land use categories as
 // specified in github.com/ctessum/atmos/seinfeld.
 func (w *GEMMACH) SeinfeldLandUse() NextData {
 	luFunc := w.read("LU_INDEX") // USGS land use index
-	return wrfSeinfeldLandUse(luFunc)
+	return GEMSeinfeldLandUse(luFunc)
 }
 
-func wrfSeinfeldLandUse(luFunc NextData) NextData {
+func GEMSeinfeldLandUse(luFunc NextData) NextData {
 	return func() (*sparse.DenseArray, error) {
 		lu, err := luFunc() // USGS land use index
 		if err != nil {
@@ -481,55 +595,55 @@ func wrfSeinfeldLandUse(luFunc NextData) NextData {
 		o := sparse.ZerosDense(lu.Shape...)
 		for j := 0; j < lu.Shape[0]; j++ {
 			for i := 0; i < lu.Shape[1]; i++ {
-				o.Set(float64(USGSseinfeld[f2i(lu.Get(j, i))]), j, i)
+				o.Set(float64(GEMseinfeld[f2i(lu.Get(j, i))]), j, i)
 			}
 		}
 		return o, nil
 	}
 }
 
-// USGSseinfeld lookup table to go from USGS land classes to land classes for
+// ***Need to convery vegetation fraction to land use code - take whatever land use is max and call it VF_INDEX.***
+// GEMseinfeld lookup table to go from GEM land classes to land classes for
 // particle dry deposition.
 //TR - commented land use is WRF land use definition, left hand side is INMAP definition.
-var USGSseinfeld = []seinfeld.LandUseCategory{
-	seinfeld.Desert,    //'Urban and Built-Up Land'
-	seinfeld.Grass,     //'Dryland Cropland and Pasture'
-	seinfeld.Grass,     //'Irrigated Cropland and Pasture'
-	seinfeld.Grass,     //'Mixed Dryland/Irrigated Cropland and Pasture'
-	seinfeld.Grass,     //'Cropland/Grassland Mosaic'
-	seinfeld.Grass,     //'Cropland/Woodland Mosaic'
-	seinfeld.Grass,     //'Grassland'
-	seinfeld.Shrubs,    //'Shrubland'
-	seinfeld.Shrubs,    //'Mixed Shrubland/Grassland'
-	seinfeld.Grass,     //'Savanna'
-	seinfeld.Deciduous, //'Deciduous Broadleaf Forest'
-	seinfeld.Evergreen, //'Deciduous Needleleaf Forest'
-	seinfeld.Deciduous, //'Evergreen Broadleaf Forest'
-	seinfeld.Evergreen, //'Evergreen Needleleaf Forest'
-	seinfeld.Deciduous, //'Mixed Forest'
-	seinfeld.Desert,    //'Water Bodies'
-	seinfeld.Grass,     //'Herbaceous Wetland'
-	seinfeld.Deciduous, //'Wooded Wetland'
-	seinfeld.Desert,    //'Barren or Sparsely Vegetated'
-	seinfeld.Shrubs,    //'Herbaceous Tundra'
-	seinfeld.Deciduous, //'Wooded Tundra'
-	seinfeld.Shrubs,    //'Mixed Tundra'
-	seinfeld.Desert,    //'Bare Ground Tundra'
-	seinfeld.Desert,    //'Snow or Ice'
-	seinfeld.Desert,    //'Playa'
-	seinfeld.Desert,    //'Lava'
-	seinfeld.Desert,    //'White Sand'
+var GEMseinfeld = []seinfeld.LandUseCategory{
+	seinfeld.Shrubs,    // Mixed shrubs VF01
+	seinfeld.Deciduous, //'Mixed Forest' Mixed wood forest VF02
+	seinfeld.Desert,    //'Barren or Sparsely Vegetated' desert VF03
+	seinfeld.Deciduous, //'Wooded Wetland' Swamp VF04
+	seinfeld.Desert,    //'Barren or Sparsely Vegetated' Tundra VF05
+	seinfeld.Desert,    //'Urban and Built-Up Land' Urban VF06
+	seinfeld.Grass,     //'Irrigated Cropland and Pasture' Irrigated crops VF07
+	seinfeld.Grass,     // Cotton VF08
+	seinfeld.Grass,     // Maize VF09
+	seinfeld.Grass,     // Sugar VF10
+	seinfeld.Grass,     // Rice VF11
+	seinfeld.Grass,     // Crops VF12
+	seinfeld.Grass,     // Long Grass VF13
+	seinfeld.Shrubs,    // 'Mixed Shrubland/Grassland' Short grass and forbs VF14
+	seinfeld.Shrubs,    // Thorn shrubs VF15
+	seinfeld.Shrubs,    // Deciduous shrubs VF16
+	seinfeld.Shrubs,    // evergreen broadleaf shrubs VF17
+	seinfeld.Deciduous, // drought deciduous trees VF18
+	seinfeld.Deciduous, // Tropical broadleaf trees VF19
+	seinfeld.Deciduous, // deciduous broadleaf trees VF20
+	seinfeld.Evergreen, // deciduous needle-leaf trees VF21
+	seinfeld.Deciduous, // Evergreen broadleaf trees VF22
+	seinfeld.Evergreen, // Evergreen needle-leaf trees VF23
+	seinfeld.Desert,    // Inland lake VF24
+	seinfeld.Desert,    // Ice VF25
+	seinfeld.Desert,    // Water VF26
 }
 
 // WeselyLandUse helps fulfill the Preprocessor interface
 // by returning land use categories as
 // specified in github.com/ctessum/atmos/wesely1989.
 func (w *GEMMACH) WeselyLandUse() NextData {
-	luFunc := w.read("LU_INDEX") // USGS land use index
-	return wrfWeselyLandUse(luFunc)
+	luFunc := w.read("VF_INDEX") // USGS land use index
+	return GEMWeselyLandUse(luFunc)
 }
 
-func wrfWeselyLandUse(luFunc NextData) NextData {
+func GEMWeselyLandUse(luFunc NextData) NextData {
 	return func() (*sparse.DenseArray, error) {
 		lu, err := luFunc() // USGS land use index
 		if err != nil {
@@ -538,54 +652,53 @@ func wrfWeselyLandUse(luFunc NextData) NextData {
 		o := sparse.ZerosDense(lu.Shape...)
 		for j := 0; j < lu.Shape[0]; j++ {
 			for i := 0; i < lu.Shape[1]; i++ {
-				o.Set(float64(USGSwesely[f2i(lu.Get(j, i))]), j, i)
+				o.Set(float64(GEMVFwesely[f2i(lu.Get(j, i))]), j, i)
 			}
 		}
 		return o, nil
 	}
 }
 
-// USGSwesely lookup table to go from USGS land classes to land classes for
+// GEMVFwesely lookup table to go from GEM vegetation fraction to land classes for
 // gas dry deposition.
 //TR - need to convert from GEMMACH wesely to INMAP wesely
-var USGSwesely = []wesely1989.LandUseCategory{
-	wesely1989.Urban,        //'Urban and Built-Up Land'
-	wesely1989.RangeAg,      //'Dryland Cropland and Pasture'
-	wesely1989.RangeAg,      //'Irrigated Cropland and Pasture'
-	wesely1989.RangeAg,      //'Mixed Dryland/Irrigated Cropland and Pasture'
-	wesely1989.RangeAg,      //'Cropland/Grassland Mosaic'
-	wesely1989.Agricultural, //'Cropland/Woodland Mosaic'
-	wesely1989.Range,        //'Grassland'
-	wesely1989.RockyShrubs,  //'Shrubland'
-	wesely1989.RangeAg,      //'Mixed Shrubland/Grassland'
-	wesely1989.Range,        //'Savanna'
-	wesely1989.Deciduous,    //'Deciduous Broadleaf Forest'
-	wesely1989.Coniferous,   //'Deciduous Needleleaf Forest'
-	wesely1989.Deciduous,    //'Evergreen Broadleaf Forest'
-	wesely1989.Coniferous,   //'Evergreen Needleleaf Forest'
-	wesely1989.MixedForest,  //'Mixed Forest'
-	wesely1989.Water,        //'Water Bodies'
-	wesely1989.Wetland,      //'Herbaceous Wetland'
-	wesely1989.Wetland,      //'Wooded Wetland'
-	wesely1989.Barren,       //'Barren or Sparsely Vegetated'
-	wesely1989.RockyShrubs,  //'Herbaceous Tundra'
-	wesely1989.MixedForest,  //'Wooded Tundra'
-	wesely1989.RockyShrubs,  //'Mixed Tundra'
-	wesely1989.Barren,       //'Bare Ground Tundra'
-	wesely1989.Barren,       //'Snow or Ice'
-	wesely1989.Barren,       //'Playa'
-	wesely1989.Barren,       //'Lava'
-	wesely1989.Barren,       //'White Sand'
+var GEMVFwesely = []wesely1989.LandUseCategory{
+	wesely1989.RangeAg,     //'Mixed Shrubland/Grassland' mixed_shrubs
+	wesely1989.MixedForest, //'Mixed Forest' mixed wood forest VF02
+	wesely1989.Barren,      //'White Sand' Desert VF03
+	wesely1989.Wetland,     //'Wooded Wetland' Swamp VF04
+	wesely1989.RockyShrubs, //'Mixed Tundra' Tundra VF05
+	wesely1989.Urban,       //'Urban and Built-Up Land' Urban VF06
+	wesely1989.RangeAg,     //'Irrigated Cropland and Pasture' irrigated crops VF07
+	wesely1989.RangeAg,     //'Irrigated Cropland and Pasture' Cotton VF08
+	wesely1989.RangeAg,     //'Dryland Cropland and Pasture' Maize VF09
+	wesely1989.RangeAg,     //'Irrigated Cropland and Pasture' Sugar VF10
+	wesely1989.RangeAg,     //'Irrigated Cropland and Pasture' Rice VF11
+	wesely1989.RangeAg,     //'Cropland/Grassland Mosaic' Crops VF12
+	wesely1989.Range,       //'Grassland' Long grass VF13
+	wesely1989.RangeAg,     //'Mixed Shrubland/Grassland' short grass/forbs VF14
+	wesely1989.RockyShrubs, //'Shrubland' Thorn shrubs VF15
+	wesely1989.RockyShrubs, //'Shrubland' Deciduous shrubs VF16
+	wesely1989.RockyShrubs, //'Shrubland'  Evergreen broadleaf shrubs VF 17
+	wesely1989.Deciduous,   //'Deciduous Broadleaf Forest' drought deciduous trees VF18
+	wesely1989.Deciduous,   //'Evergreen Broadleaf Forest' Tropical broadleaf trees VF19
+	wesely1989.Deciduous,   //'Deciduous Broadleaf Forest' deciduous broadleaf tree VF20
+	wesely1989.Coniferous,  //'Deciduous Needleleaf Forest' deciduous needleleaf trees VF21
+	wesely1989.Deciduous,   //'Evergreen Broadleaf Forest' Evergreen broadleaf trees VF22
+	wesely1989.Coniferous,  //'Evergreen Needleleaf Forest' evergreen needleleaf trees VF23
+	wesely1989.Water,       //'Water Bodies' inland lake VF24
+	wesely1989.Barren,      //'Snow or Ice' ice VF25
+	wesely1989.Water,       //'Water Bodies' water VF26
 }
 
 // Z0 helps fulfill the Preprocessor interface by
 // returning roughness length.
 func (w *GEMMACH) Z0() NextData {
-	LUIndexFunc := w.read("LU_INDEX") //USGS land use index
-	return wrfZ0(LUIndexFunc)
+	LUIndexFunc := w.read("VF_INDEX") //GEM VF land use index
+	return GEMZ0(LUIndexFunc)
 }
 
-func wrfZ0(LUIndexFunc NextData) NextData {
+func GEMZ0(LUIndexFunc NextData) NextData {
 	return func() (*sparse.DenseArray, error) {
 		luIndex, err := LUIndexFunc()
 		if err != nil {
@@ -593,24 +706,78 @@ func wrfZ0(LUIndexFunc NextData) NextData {
 		}
 		zo := sparse.ZerosDense(luIndex.Shape...)
 		for i, lu := range luIndex.Elements {
-			zo.Elements[i] = USGSz0[f2i(lu)] // roughness length [m]
+			zo.Elements[i] = GEMz0[f2i(lu)] // roughness length [m]
 		}
 		return zo, nil
 	}
 }
 
-// USGSz0 holds Roughness lengths for USGS land classes ([m]), from WRF file
-// VEGPARM.TBL.
+// GEMz0 holds Roughness lengths for GEM land classes ([m]), from WRF file
 // TR - find GEMMACH roughness length definitions.
-// Only for urban - why? What lookup table is used? 
-var USGSz0 = []float64{.50, .1, .06, .1, 0.095, .20, .11,
-	.03, .035, .15, .50, .50, .50, .50, .35, 0.0001, .20, .40,
-	.01, .10, .30, .15, .075, 0.001, .01, .15, .01}
+var GEMz0 = []float64{0.001, 0.0003, 0.001, 1.5, 3.5, 1,
+	2.0, 3.0, .80, .05, .15, .15, .02, .08, 0.08, .08, .35,
+	.25, 0.1, .08, 1.35, .01, .05, .05, 1.5, .05}
 
 // QRain helps fulfill the Preprocessor interface by
 // returning rain mass fraction.
 //TR -Sahil to do
-func (w *GEMMACH) QRain() NextData { return w.read("QRAIN") }
+//func (w *GEMMACH) QRain() NextData { return w.read("QRAIN") }
+// QRain helps fulfill the Preprocessor interface by returning
+// rain mass fraction based on the GEM precipitation rate [kg m-2 s-1]
+// and the assumption (from the EMEP model wet deposition algorithm)
+// that raindrops are falling at 5 m/s.
+func (w *GEMMACH) QRain() NextData {
+	//PFLCUFunc := w.read("PR")/8760.0     // Quantity of precipitation (m/hr)
+	//PFLLSanFunc := w.read("PC")/8760.0 // Implicit accumulated precipitation (m/hr)
+	PrecipFunc := w.read("RT") // Total precipitation rate (m/s)
+	altFunc := w.ALT()         // 1/density
+	//PFLLSanFunc := w.read("VDR")       // Deposition velocity (m/s) - not possible to find
+	return func() (*sparse.DenseArray, error) {
+		/*
+			pflcu, err := PFLCUFunc()
+			if err != nil {
+				return nil, err
+			}
+			pfllSan, err := PFLLSanFunc()
+			if err != nil {
+				return nil, err
+			}
+			}
+		*/
+
+		precipgem, err := PrecipFunc()
+		if err != nil {
+			return nil, err
+		}
+		alt, err := altFunc()
+		if err != nil {
+			return nil, err
+		}
+		//}
+		const Vdr = 5.0 // droplet velocity [m/s] EMEP wet dep algorithm assumption
+		qRain := sparse.ZerosDense(alt.Shape...)
+		// pflcu and pfllSan are staggered but qRain is not, so
+		// we average the rain flux values (pflcu and pfllSan) at the
+		// bottom and top of each grid cell.
+		for k := 0; k < qRain.Shape[0]; k++ {
+			for j := 0; j < qRain.Shape[1]; j++ {
+				for i := 0; i < qRain.Shape[2]; i++ {
+					// From EMEP algorithm: P = QRAIN * Vdr * ρgas => QRAIN = P / Vdr / ρgas
+					// [kg m-2 s-1] / [m s-1] * [m3 kg-1]
+					if k == 0 {
+						//q := (pflcu.Get(k, j, i) + pfllSan.Get(k, j, i)) / Vdr
+						q := (precipgem.Get(k, j, i)) / Vdr
+						qRain.Set(q, k, j, i)
+					} else {
+						q := 0.0
+						qRain.Set(q, k, j, i)
+					}
+				}
+			}
+		}
+		return qRain, nil
+	}
+}
 
 // CloudFrac helps fulfill the Preprocessor interface
 // by returning the fraction of each grid cell filled
@@ -624,6 +791,7 @@ func (w *GEMMACH) QCloud() NextData { return w.read("QC") }
 // RadiationDown helps fulfill the Preprocessor interface by returning
 // total downwelling radiation at ground level [W/m2].
 func (w *GEMMACH) RadiationDown() NextData { return w.read("FB") }
+
 /*	swDownFunc := w.read("SWDOWN") // downwelling short wave radiation at ground level [W/m2]
 	glwFunc := w.read("GLW")       // downwelling long wave radiation at ground level [W/m2]
 	return wrfRadiationDown(swDownFunc, glwFunc)
@@ -651,4 +819,26 @@ func (w *GEMMACH) SWDown() NextData { return w.read("FI") }
 
 // GLW helps fulfill the Preprocessor interface by returning
 // downwelling long wave radiation at                                                                                                                 ground level [W/m2].
-func (w *GEMMACH) GLW() NextData { return w.RadiationDown() - w.SWDown()}
+//func (w *GEMMACH) GLW() NextData { return w.RadiationDown() - w.SWDown() }
+func (w *GEMMACH) GLW() NextData {
+	rdFunc := w.RadiationDown() // Density of air kg m-2
+	swFunc := w.SWDown()
+	return func() (*sparse.DenseArray, error) {
+		RD, err := rdFunc()
+		if err != nil {
+			return nil, err
+		}
+		SW, err := swFunc()
+		if err != nil {
+			return nil, err
+		}
+		glw := sparse.ZerosDense(SW.Shape...)
+		for i := range glw.Elements {
+			// molec HO / cm3 * m3 / kg air * kg air/molec. air* cm3/m3 * ppm
+			glw.Elements[i] = RD.Elements[i] + SW.Elements[i]
+		}
+		//mult := sparse.ZerosDense(rho.Shape...)
+		//alt := mult / rho
+		return glw, nil
+	}
+}

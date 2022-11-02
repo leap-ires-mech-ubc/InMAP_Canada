@@ -54,7 +54,7 @@ const (
 	mwSO2  = 64.0644
 	mwSO4  = 96.0632
 	mwOH   = 17.008
-	mwH202 = 34.016
+	mwH2O2 = 34.016
 	MWa    = 28.97 // g/mol, molar mass of air
 
 	// Chemical mass conversions [ratios]
