@@ -168,7 +168,14 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 	var pblh, layerHeights, windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg *sparse.DenseArray
 
 	errChan := make(chan error)
-
+	//TR 2022-11-17. Trying to see if I can call the function directly, not in the "error channel"
+	//xx, yy := average(p.P())
+	//windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg, err := calcWindSpeed(p.U(), p.V(), p.W())
+	//print(windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg, err)
+	//print(xx, yy)
+	//var yy error
+	//windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg, yy = calcWindSpeed(p.U(), p.V(), p.W())
+	//print(yy)
 	go func() {
 		var err error
 		pblh, err = average(p.PBLH())
@@ -186,7 +193,7 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 		windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg, err = calcWindSpeed(p.U(), p.V(), p.W())
 		errChan <- err
 	}()
-
+	//TR - this will go through the three functions (above) to calculate the requisite values
 	for i := 0; i < 3; i++ {
 		err := <-errChan
 		if err != nil {
@@ -278,7 +285,7 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 			p.Z0(), p.SeinfeldLandUse(), p.WeselyLandUse(), p.QCloud(), p.RadiationDown(), p.QRain())
 		errChan <- err
 	}()
-
+	//So this looks like it is running through the previous 12 functions that were put into "errchan"
 	for i := 0; i < 12; i++ {
 		err := <-errChan
 		if err != nil {
@@ -564,6 +571,7 @@ func calcWindSpeed(uFunc, vFunc, wFunc NextData) (speed, speedInverse, speedMinu
 	var n int
 	firstData := true
 	var dims []int
+	var s float64
 	for {
 		u, err := uFunc()
 		if err != nil {
@@ -604,14 +612,21 @@ func calcWindSpeed(uFunc, vFunc, wFunc NextData) (speed, speedInverse, speedMinu
 		for k := 0; k < dims[0]; k++ {
 			for j := 0; j < dims[1]; j++ {
 				for i := 0; i < dims[2]; i++ {
-					ucenter := (math.Abs(u.Get(k, j, i)) +
-						math.Abs(u.Get(k, j, i+1))) / 2.
-					vcenter := (math.Abs(v.Get(k, j, i)) +
-						math.Abs(v.Get(k, j+1, i))) / 2.
-					wcenter := (math.Abs(w.Get(k, j, i)) +
-						math.Abs(w.Get(k+1, j, i))) / 2.
-					s := math.Pow(math.Pow(ucenter, 2.)+
-						math.Pow(vcenter, 2.)+math.Pow(wcenter, 2.), 0.5)
+					//TR 20221121 - GEMMACH variables are not on staggered xy grid. So, no need to find the centers etc.
+					//Check if the first dimension is the same for all of them - staggered grid one will be off.
+					if (u.Shape[1] == v.Shape[1]) && (u.Shape[1] == w.Shape[1]) {
+						s = math.Pow(math.Pow(u.Get(k, j, i), 2.)+
+							math.Pow(v.Get(k, j, i), 2.)+math.Pow(w.Get(k, j, i), 2.), 0.5)
+					} else {
+						ucenter := (math.Abs(u.Get(k, j, i)) +
+							math.Abs(u.Get(k, j, i+1))) / 2.
+						vcenter := (math.Abs(v.Get(k, j, i)) +
+							math.Abs(v.Get(k, j+1, i))) / 2.
+						wcenter := (math.Abs(w.Get(k, j, i)) +
+							math.Abs(w.Get(k+1, j, i))) / 2.
+						s = math.Pow(math.Pow(ucenter, 2.)+
+							math.Pow(vcenter, 2.)+math.Pow(wcenter, 2.), 0.5)
+					}
 					speed.AddVal(s, k, j, i)
 					speedInverse.AddVal(1./s, k, j, i)
 					speedMinusThird.AddVal(math.Pow(s, -1./3.), k, j, i)
@@ -1059,6 +1074,8 @@ func readNCFNoHour(pol string, ff *cdf.File, _ int) (*sparse.DenseArray, error) 
 		return nil, fmt.Errorf("inmap: preprocessor read netcdf: variable %v not in file", pol)
 	} else if dims[0] == 0 {
 		dims = dims[1:4] // TODO: This doesn't seem like a good solution here.
+	} else if len(dims) == 4 {
+		dims = dims[1:4] // TR22-11-17. Added as the original code was giving time dim for files with 1 time.
 	}
 	r := ff.Reader(pol, nil, nil)
 	buf := r.Zero(-1)
