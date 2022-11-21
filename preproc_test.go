@@ -48,6 +48,40 @@ func regenGoldenFile(data *CTMData, filePath string) error {
 	return data.Write(f)
 }
 
+func TestGEMMACHToInMAP(t *testing.T) {
+	flag.Parse()
+	const tolerance = 1.0e-6
+	//filename = gemmach_2019010100_000.ncss
+	gem, err := NewGEMMACH("cmd/inmap/testdata/preproc/gemmach/gemmachtest_[DATE].nc", "20190101", "20190102", true, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	newData, err := Preprocess(gem, -18.36, 23.11, 8.55, 9.648)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	goldenFileName := "cmd/inmap/testdata/preproc/inmapData_WRFChem_golden.ncf"
+
+	if regenGoldenFiles {
+		err := regenGoldenFile(newData, goldenFileName)
+		if err != nil {
+			t.Errorf("regenerating golden file: %v", err)
+		}
+	}
+
+	cfg := VarGridConfig{}
+	f2, err := os.Open(goldenFileName)
+	if err != nil {
+		t.Fatalf("opening golden file: %v", err)
+	}
+	goldenData, err := cfg.LoadCTMData(f2)
+	if err != nil {
+		t.Fatalf("reading golden file: %v", err)
+	}
+	compareCTMData(goldenData, newData, tolerance, t)
+}
+
 func TestWRFChemToInMAP(t *testing.T) {
 	flag.Parse()
 	const tolerance = 1.0e-6
