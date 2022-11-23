@@ -169,13 +169,16 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 
 	errChan := make(chan error)
 	//TR 2022-11-17. Trying to see if I can call the function directly, not in the "error channel"
-	//xx, yy := average(p.P())
-	//windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg, err := calcWindSpeed(p.U(), p.V(), p.W())
-	//print(windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg, err)
-	//print(xx, yy)
-	//var yy error
-	//windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg, yy = calcWindSpeed(p.U(), p.V(), p.W())
-	//print(yy)
+	//xx, yy, zz, err := soaPartitioning(p.BVOC(), p.AVOC(), p.BSOA(), p.PNH())
+	//tSOA, err := average(p.BSOA())
+	//print(err)
+	//xx, yy, aaSOA, err := soaPartitioning(p.AVOC(), p.BVOC(), p.ASOA(), p.BSOA())
+	//xx, yy, bbSOA, err := soaPartitioning(p.BVOC(), p.AVOC(), p.BSOA(), p.ASOA())
+	//aaSOA.AddDense(bbSOA)
+	//zz := tSOA == aaSOA
+	//print(xx, yy, zz, err)
+	xx, yy := average(p.QRain())
+	print(xx, yy)
 	go func() {
 		var err error
 		pblh, err = average(p.PBLH())
@@ -223,13 +226,16 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 
 	go func() {
 		var err error
-		// calculate gas/particle partitioning
-		aOrgPartitioning, aVOC, aSOA, err = marginalPartitioning(p.AVOC(), p.ASOA())
+		// calculate gas/particle partitioning for anthropogenic
+		//particleFunc := p.ASOA()
+		//part, err := particleFunc()
+		aOrgPartitioning, aVOC, aSOA, err = soaPartitioning(p.AVOC(), p.BVOC(), p.ASOA(), p.ASOA())
 		errChan <- err
 	}()
 	go func() {
 		var err error
-		bOrgPartitioning, bVOC, bSOA, err = marginalPartitioning(p.BVOC(), p.BSOA())
+		bOrgPartitioning, bVOC, bSOA, err = soaPartitioning(p.BVOC(), p.AVOC(), p.BSOA(), p.BSOA())
+		//bOrgPartitioning, bVOC, bSOA, err = marginalPartitioning(p.BVOC(), p.BSOA())
 		errChan <- err
 	}()
 	go func() {
@@ -407,6 +413,106 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 	return data, nil
 }
 
+// Allocate total SOA between anthropogenic and biogenic portions through linear regression of tSOA vs aVOC and bVOC
+// The regression coefficients are the the partition coefficients, then f (marginal partitioning) = 1-1/(1+k)
+// and calculate the appropriate particle concentration. Eqns from http://faculty.cas.usf.edu/mbrannick/regression/Part3/Reg2.html
+func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partitioning, gasConc, particleConc *sparse.DenseArray, err error) {
+	//X1 = gas 1, X2 = gas2, y = particle
+	var gas, gas2, particle, sumX1sq, sumX2sq, sumX1X2, sumX1Y, sumX2Y *sparse.DenseArray
+	firstData := true
+	const partfactor = 1000
+	//tSOAswitch := false
+	var n int
+	if firstData == true {
+		//testerr := fmt.Errorf("tSOA")
+		testdata, err := testFunc()
+		//testerr := err.Error()
+		//Check if we can use the default method - no error message from the particleFunc
+		if err == nil {
+			partitioning, gasConc, particleConc, err = marginalPartitioning(gasFunc, particleFunc)
+			if err != nil {
+				return nil, nil, nil, err
+			} else {
+				return partitioning, gasConc, particleConc, err
+			}
+		} else if err.Error() == "tSOA" {
+			gas = sparse.ZerosDense(testdata.Shape...)
+			gas2 = sparse.ZerosDense(testdata.Shape...)
+			particle = sparse.ZerosDense(testdata.Shape...)
+			sumX1sq = sparse.ZerosDense(testdata.Shape...)
+			sumX2sq = sparse.ZerosDense(testdata.Shape...)
+			sumX1X2 = sparse.ZerosDense(testdata.Shape...)
+			sumX1Y = sparse.ZerosDense(testdata.Shape...)
+			sumX2Y = sparse.ZerosDense(testdata.Shape...)
+			firstData = false
+		}
+		//return partitioning, gasConc, particleConc, err
+	}
+	for {
+		gasdata, err := gasFunc()
+		if err != nil {
+			if err == io.EOF {
+				N := float64(n)
+				gasConc = sparse.ZerosDense(particle.Shape...)
+				particleConc = sparse.ZerosDense(particle.Shape...)
+				partitioning = sparse.ZerosDense(particle.Shape...)
+				for i := range particle.Elements {
+					//Calculate the total sum of squares = sum of squares - correction for the mean
+					x1TSS := sumX1sq.Elements[i] - math.Pow(gas.Elements[i], 2)/N
+					x2TSS := sumX2sq.Elements[i] - math.Pow(gas2.Elements[i], 2)/N
+					//Cross products
+					x1y := sumX1Y.Elements[i] - (gas.Elements[i]*particle.Elements[i]*partfactor)/N
+					x2y := sumX2Y.Elements[i] - (gas2.Elements[i]*particle.Elements[i]*partfactor)/N
+					x1x2 := sumX1X2.Elements[i] - (gas.Elements[i]*gas2.Elements[i])/N
+					//Regression coefficient - this is the partition coefficient Kp!
+					Kp := ((x2TSS * x1y) - (x1x2 * x2y)) /
+						((x1TSS * x2TSS) - math.Pow(x1x2, 2))
+					Kp2 := ((x1TSS * x2y) - (x1x2 * x1y)) /
+						((x1TSS * x2TSS) - math.Pow(x1x2, 2))
+					//Calculate the average [VOC] in each cell, either anthro or bio -genic depending
+					gasConc.Elements[i] = gas.Elements[i] / N
+					//Then, the output particle concentration - either aSOA or bSOA - is Kp*[gas]
+					//We will apply a correction here to enfore tSOA = aSOA +bSOA
+					paverage := particle.Elements[i] / N
+					p1naive := Kp * gasConc.Elements[i]
+					p2naive := Kp2 * gas2.Elements[i] / N
+					p1corr := (paverage-p1naive-p2naive)*p1naive/(p1naive+p2naive) + p1naive
+					//p2corr := (paverage-p1naive-p2naive)*p2naive/(p1naive+p2naive) + p2naive
+					//print(p2corr + p1corr)
+					//Particle concentration is the corrected value
+					particleConc.Elements[i] = p1corr / partfactor
+					//Finally, we calculate the marginal partitioning coefficient as f = 1-1/(1+Kp). No correction.
+					partitioning.Elements[i] = 1 - 1/(1+Kp)
+				}
+
+				return partitioning, gasConc, particleConc, nil
+			}
+			return nil, nil, nil, err
+		}
+		gas2data, err := gasFunc2()
+		if err != nil {
+			return nil, nil, nil, err
+		}
+		particledata, err := particleFunc()
+		if (err != nil) && (err.Error() != "tSOA") {
+			return nil, nil, nil, err
+		}
+		gas.AddDense(gasdata)
+		gas2.AddDense(gas2data)
+		particle.AddDense(particledata)
+		//X1 = gas 1, X2 = gas2, y = particle
+		//sumX1sq, sumX2sq, sumX1X2, sumX1y, sumX2Y
+		for i := range particledata.Elements {
+			sumX1sq.Elements[i] += math.Pow(gasdata.Elements[i], 2.)
+			sumX2sq.Elements[i] += math.Pow(gas2data.Elements[i], 2.)
+			sumX1X2.Elements[i] += gasdata.Elements[i] * gas2data.Elements[i]
+			sumX1Y.Elements[i] += gasdata.Elements[i] * particledata.Elements[i] * partfactor
+			sumX2Y.Elements[i] += gas2data.Elements[i] * particledata.Elements[i] * partfactor
+		}
+		n++
+	}
+}
+
 // marginalPartitioning calculates marginal partitioning over a period
 // of time between gas and particle
 // phase of a chemical compound or group of compounds as defined by the
@@ -485,6 +591,47 @@ func average(dataFunc NextData) (*sparse.DenseArray, error) {
 	}
 }
 
+// TR20221121 - allocateSOA will allocate the particle concentration as
+// either anthropogenic or biogenic when given the total SOA, aVOC and bVOC
+// functions as inputs. if aSOA/bSOA given instead, the function returns those values.
+/*
+func allocateSOA(pFunc, aVOCFunc, bVOCFunc NextData) (pOut *sparse.DenseArray, err error) {
+	var avgdata *sparse.DenseArray
+	firstData := true
+	tSOAswitch := false
+	calcKp := True
+	var n int
+	for {
+		pdata, err := pFunc()
+		if err != nil {
+			if (err == io.EOF) && (tSOAswitch == false) {
+				return pdata, err
+			} else if err == fmt.Errorf("tSOA") {
+				tSOAswitch = true
+			}
+			return nil, err
+		}
+		//Just return aSOA or bSOA from function if already allocated
+		if tSOAswitch == false {
+			return pdata, err
+		}
+		aVOC, err := aVOCFunc() // mass frac
+		if err != nil {
+			if err == io.EOF {
+				return arrayAverage(avgdata, n), nil
+			}
+			return nil, err
+		}
+		if firstData {
+			pOut = sparse.ZerosDense(pdata.Shape...) // units = 1/s
+			firstData = false
+		}
+		avgdata.AddDense(pdata)
+		n++
+	}
+
+}
+*/
 // layerThckness calculates layer thickness. The given heights are
 // assumed to be on a vertically staggered grid; the returned
 // thicknesses are on an unstaggered grid.
