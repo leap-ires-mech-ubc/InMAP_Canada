@@ -85,13 +85,14 @@ func NewGEMMACH(gemOut, startDate, endDate string, noChemHour bool, msgChan chan
 		//TRNotes - map is like a dict - maps keys to variables.
 		//Right now, all we have is TTOL
 		aVOC: map[string]float64{
-			"TTOL": 1.,
+			"TA2": 0.05, "TA3": 0.05, "TTOL": 1, "TALD": 1, "TARO": 1, "TC38": 1, "TCRE": 1,
+			"TDIA": 1, "TETH": 1, "THCH": 1, "TMGL": 1,
 		},
 		//"TTOL": 1,"TA3": 1,"TA2": 1,
 
 		//TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
 		bVOC: map[string]float64{
-			"TTOL": 0.5,
+			"TA2": 0.95, "TA3": 0.95, "TAM1": 1, "TH22": 1, "TISO": 1,
 		},
 		//"TISO": 1, "TPIN": 1, "TSES": 1,
 
@@ -104,10 +105,10 @@ func NewGEMMACH(gemOut, startDate, endDate string, noChemHour bool, msgChan chan
 
 		//aSOA - calculate from TSOA
 		//aSOA: map[string]float64{"aSOA": SOAest(tSOA, aVOC, bVOC, true)}, //Kpest(tSOA,aVOC,bVOC)[0]
-		aSOA: map[string]float64{"TOC1": 0.5},
+		aSOA: map[string]float64{"TOC1": 1.},
 		// VBS SOA species (biogenic only) [μg/kg dry air].
 		//bSOA: map[string]float64{"bSOA": SOAest(tSOA, aVOC, bVOC, false)},
-		bSOA: map[string]float64{"TOC1": 0.5},
+		bSOA: map[string]float64{"TOC1": 1.},
 		// NOx is RACM NOx species. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
@@ -425,11 +426,11 @@ func (w *GEMMACH) ALT() NextData {
 		if err != nil {
 			return nil, err
 		}
-		PNO, err := pnhFunc()
+		PNH, err := pnhFunc()
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNO.Shape...)
+		out := sparse.ZerosDense(PNH.Shape...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
@@ -616,10 +617,34 @@ func (w *GEMMACH) SOx() NextData { return w.flipreadGroupAlt(w.sox) }
 func (w *GEMMACH) NH3() NextData { return w.flipreadGroupAlt(w.nh3) }
 
 // ASOA helps fulfill the Preprocessor interface.
-func (w *GEMMACH) ASOA() NextData { return w.flipreadGroupAlt(w.aSOA) }
+// We are going to make it return an error to indicate that it needs
+// to be allocated - e.g. that this value is tSOA
+func (w *GEMMACH) ASOA() NextData {
+	asoaFunc := w.flipreadGroupAlt(w.aSOA)
+	return func() (*sparse.DenseArray, error) {
+		TSOA, err := asoaFunc()
+		if err != nil {
+			return nil, err
+		}
+		//The error message tells the preproc function that this is
+		err = fmt.Errorf("tSOA")
+		return TSOA, err
+	}
+}
 
 // BSOA helps fulfill the Preprocessor interface.
-func (w *GEMMACH) BSOA() NextData { return w.flipreadGroupAlt(w.bSOA) }
+//func (w *GEMMACH) BSOA() NextData { return w.flipreadGroupAlt(w.bSOA) }
+func (w *GEMMACH) BSOA() NextData {
+	bsoaFunc := w.flipreadGroupAlt(w.bSOA)
+	return func() (*sparse.DenseArray, error) {
+		TSOA, err := bsoaFunc()
+		if err != nil {
+			return nil, err
+		}
+		err = fmt.Errorf("tSOA")
+		return TSOA, err
+	}
+}
 
 // PNO helps fulfill the Preprocessor interface.
 func (w *GEMMACH) PNO() NextData { return w.flipreadGroupAlt(w.pNO) }
