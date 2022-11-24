@@ -177,8 +177,10 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 	//aaSOA.AddDense(bbSOA)
 	//zz := tSOA == aaSOA
 	//print(xx, yy, zz, err)
-	xx, yy := average(p.QRain())
-	print(xx, yy)
+	llayerHeights, err := average(p.Height())
+	DDz := layerThickness(llayerHeights)
+	xx, yy, zz, err := wetDeposition(DDz, p.QRain(), p.CloudFrac(), p.ALT())
+	print(xx, yy, zz, err)
 	go func() {
 		var err error
 		pblh, err = average(p.PBLH())
@@ -420,7 +422,7 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 	//X1 = gas 1, X2 = gas2, y = particle
 	var gas, gas2, particle, sumX1sq, sumX2sq, sumX1X2, sumX1Y, sumX2Y *sparse.DenseArray
 	firstData := true
-	const partfactor = 1000
+	const partfactor = 1
 	//tSOAswitch := false
 	var n int
 	if firstData == true {
@@ -591,47 +593,6 @@ func average(dataFunc NextData) (*sparse.DenseArray, error) {
 	}
 }
 
-// TR20221121 - allocateSOA will allocate the particle concentration as
-// either anthropogenic or biogenic when given the total SOA, aVOC and bVOC
-// functions as inputs. if aSOA/bSOA given instead, the function returns those values.
-/*
-func allocateSOA(pFunc, aVOCFunc, bVOCFunc NextData) (pOut *sparse.DenseArray, err error) {
-	var avgdata *sparse.DenseArray
-	firstData := true
-	tSOAswitch := false
-	calcKp := True
-	var n int
-	for {
-		pdata, err := pFunc()
-		if err != nil {
-			if (err == io.EOF) && (tSOAswitch == false) {
-				return pdata, err
-			} else if err == fmt.Errorf("tSOA") {
-				tSOAswitch = true
-			}
-			return nil, err
-		}
-		//Just return aSOA or bSOA from function if already allocated
-		if tSOAswitch == false {
-			return pdata, err
-		}
-		aVOC, err := aVOCFunc() // mass frac
-		if err != nil {
-			if err == io.EOF {
-				return arrayAverage(avgdata, n), nil
-			}
-			return nil, err
-		}
-		if firstData {
-			pOut = sparse.ZerosDense(pdata.Shape...) // units = 1/s
-			firstData = false
-		}
-		avgdata.AddDense(pdata)
-		n++
-	}
-
-}
-*/
 // layerThckness calculates layer thickness. The given heights are
 // assumed to be on a vertically staggered grid; the returned
 // thicknesses are on an unstaggered grid.
@@ -1221,8 +1182,11 @@ func readNCFNoHour(pol string, ff *cdf.File, _ int) (*sparse.DenseArray, error) 
 		return nil, fmt.Errorf("inmap: preprocessor read netcdf: variable %v not in file", pol)
 	} else if dims[0] == 0 {
 		dims = dims[1:4] // TODO: This doesn't seem like a good solution here.
-	} else if len(dims) == 4 {
-		dims = dims[1:4] // TR22-11-17. Added as the original code was giving time dim for files with 1 time.
+		//} else if len(dims) == 4 {
+		//	dims = dims[1:4] // TR22-11-17. Added as the original code was giving time dim for files with 1 time.
+	} else if dims[0] == 1 {
+		maxdim := len(dims)
+		dims = dims[1:maxdim] // TR22-11-23. Added as the original code was giving time dim for files with 1 time.
 	}
 	r := ff.Reader(pol, nil, nil)
 	buf := r.Zero(-1)
