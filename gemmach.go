@@ -351,27 +351,26 @@ func (w *GEMMACH) PBLH() NextData { return w.read("H") }
 // Height helps fulfill the Preprocessor interface by returning
 // layer heights above ground level calculated based on geopotential height.
 //TRSB - Used geopotential height directly for height, converted from decametres
-//func (w *GEMMACH) Height() NextData { return w.read("GZ") }
-//TR 20221118 - GZ is "half" layers - mapped onto chosen ("level1") levels/
+// Needs to be on staggered grid (level 4) for further processing
 func (w *GEMMACH) Height() NextData {
 	hhFunc := w.flipread("GZ") // Geopotential height
-	pnhFunc := w.PNH()
+	uuFunc := w.flipread("UU") // Windspeed, imported for shape (level 4)
 	return func() (*sparse.DenseArray, error) {
 		HH, err := hhFunc()
 		if err != nil {
 			return nil, err
 		}
 		//Bring PNO in for the shape (on level1)
-		PNH, err := pnhFunc()
+		UU, err := uuFunc()
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNH.Shape...)
+		out := sparse.ZerosDense(UU.Shape...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
-					//Grab the appropriate value (2k+1) and convert to m
-					HHconv := HH.Get(2*k+1, j, i) * 10
+					//Grab the appropriate value (staggered - so 2k)
+					HHconv := HH.Get(2*k, j, i) * 10
 					out.Set(HHconv, k, j, i)
 				}
 			}
@@ -953,29 +952,16 @@ var GEMz0 = []float64{0.001, 0.0003, 0.001, 1.5, 3.5, 1,
 // returning rain mass fraction.
 //TR -Sahil to do
 //func (w *GEMMACH) QRain() NextData { return w.read("QRAIN") }
+
 // QRain helps fulfill the Preprocessor interface by returning
-// rain mass fraction based on the GEM precipitation rate [kg m-2 s-1]
+// rain mass fraction based on the GEM precipitation rate [m s-1]
 // and the assumption (from the EMEP model wet deposition algorithm)
 // that raindrops are falling at 5 m/s.
 func (w *GEMMACH) QRain() NextData {
-	//PFLCUFunc := w.read("PR")/8760.0     // Quantity of precipitation (m/hr)
-	//PFLLSanFunc := w.read("PC")/8760.0 // Implicit accumulated precipitation (m/hr)
 	PrecipFunc := w.read("RT") // Total precipitation rate (m/s)
 	altFunc := w.ALT()         // 1/density
-	//PFLLSanFunc := w.read("VDR")       // Deposition velocity (m/s) - not possible to find
+	cloudFunc := w.CloudFrac() //Fraction of cloud in each grid unit.
 	return func() (*sparse.DenseArray, error) {
-		/*
-			pflcu, err := PFLCUFunc()
-			if err != nil {
-				return nil, err
-			}
-			pfllSan, err := PFLLSanFunc()
-			if err != nil {
-				return nil, err
-			}
-			}
-		*/
-
 		precipgem, err := PrecipFunc()
 		if err != nil {
 			return nil, err
@@ -984,28 +970,37 @@ func (w *GEMMACH) QRain() NextData {
 		if err != nil {
 			return nil, err
 		}
-		//}
+		cloud, err := cloudFunc()
+		if err != nil {
+			return nil, err
+		}
 		const Vdr = 5.0 // droplet velocity [m/s] EMEP wet dep algorithm assumption
 		qRain := sparse.ZerosDense(alt.Shape...)
-		// pflcu and pfllSan are staggered but qRain is not, so
-		// we average the rain flux values (pflcu and pfllSan) at the
-		// bottom and top of each grid cell.
-		for k := 0; k < qRain.Shape[0]; k++ {
-			for j := 0; j < qRain.Shape[1]; j++ {
-				for i := 0; i < qRain.Shape[2]; i++ {
-					// From EMEP algorithm: P = QRAIN * Vdr * ρgas => QRAIN = P / Vdr / ρgas
-					// [kg m-2 s-1] / [m s-1] * [m3 kg-1]
-					if k == 0 {
-						//q := (pflcu.Get(k, j, i) + pfllSan.Get(k, j, i)) / Vdr
-						q := (precipgem.Get(k, j, i)) / Vdr
-						qRain.Set(q, k, j, i)
-					} else {
-						q := 0.0
-						qRain.Set(q, k, j, i)
+		// Need to define a 3D precipitation variable.
+		for j := 0; j < qRain.Shape[1]; j++ {
+			for i := 0; i < qRain.Shape[2]; i++ {
+				// Allocate rainfall in every grid cell with rainfall from the surface to
+				// the highest cloud, or the top of the column if no clouds present.
+				maxk := float64(qRain.Shape[0]) + 1.
+				for k := 0; k < qRain.Shape[0]; k++ {
+					if cloud.Get(k, j, i) != 0 {
+						maxk = float64(k)
 					}
 				}
+				for k := 0; k < qRain.Shape[0]; k++ {
+					//Allocate evenly to all cells lower than maxk (since maxk is +1, don't do it)
+					precip3D := 0.
+					if float64(k) < maxk {
+						precip3D = precipgem.Get(j, i) / maxk
+					} // From EMEP algorithm: P = QRAIN * Vdr * ρgas => QRAIN = P / Vdr / ρgas
+					// [kg m-2 s-1] / [m s-1] * [m3 kg-1]
+					q := precip3D / Vdr * alt.Get(k, j, i)
+					qRain.Set(q, k, j, i)
+				}
+
 			}
 		}
+
 		return qRain, nil
 	}
 }
