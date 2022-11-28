@@ -20,11 +20,18 @@ package inmap
 
 import (
 	"fmt"
+	"math"
+	"os"
+	"strconv"
+
 	//"math"
 	"time"
 
 	"github.com/ctessum/atmos/seinfeld"
 	"github.com/ctessum/atmos/wesely1989"
+	"github.com/ctessum/cdf"
+	"github.com/ctessum/geom"
+	"github.com/ctessum/geom/index/rtree"
 
 	"github.com/ctessum/sparse"
 	//TR added 20220422 for aSOA/bSOA partition coefficient estimation. Could also copy to keep internal.
@@ -36,7 +43,7 @@ import (
 /* hc5,hc8,olt,oli,tol,xyl,csl,cvasoa1,cvasoa2,cvasoa3,cvasoa4,iso,api,sesq,lim,
 cvbsoa1,cvbsoa2,cvbsoa3,cvbsoa4,asoa1i,asoa1j,asoa2i,asoa2j,asoa3i,asoa3j,asoa4i,
 asoa4j,bsoa1i,bsoa1j,bsoa2i,bsoa2j,bsoa3i,bsoa3j,bsoa4i,bsoa4j,no,no2,no3ai,no3aj,
-so2,sulf,so4ai,so4aj,nh3,nh4ai,nh4aj,PM2_5_DRY,U,V,W,PBLH,PH,PHB,HFX,UST,PBLH,T,
+so2,sulf,so4ai,so4aj,nh3,nh4ai,nh4aj,PM2_5_DRY,U,V,W,PBLH,PH,PHB,HFX,UST,T,
 PB,P,ho,h2o2,LU_INDEX,QRAIN,CLDFRA,QCLOUD,ALT,SWDOWN,GLW */
 
 //const wrfFormat = "2006-01-02_15_04_05"
@@ -59,6 +66,18 @@ type GEMMACH struct {
 	recordDelta, fileDelta time.Duration
 
 	msgChan chan string
+
+	//SB 20221127
+	//start Copy-Adapt-VF-v0: copied variables needed for vegetation fraction file processing from geoschem.go
+	landUse *sparse.DenseArray
+
+	nz int
+
+	dx, dy float64
+
+	xCenters, yCenters []float64
+	//end Copy-Adapt-VF-v0
+
 }
 
 // NewGEMMACH initializes a GEM-MACH preprocessor from the given
@@ -68,7 +87,13 @@ type GEMMACH struct {
 // startDate and endDate are the dates of the beginning and end of the
 // simulation, respectively, in the format "YYYYMMDD".
 // If msgChan is not nil, status messages will be sent to it.
-func NewGEMMACH(gemOut, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
+//func NewGEMMACH(gemOut, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
+
+//SB 20221127:
+//start Copy-Adapt-VF-v0
+//func NewGEOSChem(GEOSA1, GEOSA3Cld, GEOSA3Dyn, GEOSI3, GEOSA3MstE, GEOSApBp, GEOSChemOut, OlsonLandMap, startDate, endDate string, dash bool, chemRecordStr, chemFileStr string, noChemHour bool, msgChan chan string) (*GEOSChem, error) {
+func NewGEMMACH(gemOut, Gem_geophy, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
+	//end Copy-Adapt-VF-v0
 	w := GEMMACH{
 		// These maps contain the GEM-MACH variables that make
 		// up the chemical species groups, as well as the
@@ -169,6 +194,94 @@ func NewGEMMACH(gemOut, startDate, endDate string, noChemHour bool, msgChan chan
 	if err != nil {
 		return nil, fmt.Errorf("inmap: GEM-MACH preprocessor fileDelta: %v", err)
 	}
+
+	//SB 20221127:
+	//start Copy-Adapt-VF-v0
+	file, err := os.Open(Gem_geophy)
+	if err != nil {
+		return nil, err
+	}
+	//commenting below defer file.Close() since will keep uncommented the last defer file.close in the following copy-adapt-VF-v0
+	//if does not work, simply uncomment all the commented sections here
+	//defer file.Close()
+	cfile, err := cdf.Open(file)
+	if err != nil {
+		return nil, fmt.Errorf("inmap: Gem_geophy land use file: %v", err)
+	}
+
+	//commenting below lines to try a single os.Open, cdf.Open, and defer file.Close() in the following sections of copy-adapt-VF-v0
+	//if does not work, simply uncomment all the commented sections here
+	//file, err := os.Open(Gem_geophy)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//defer file.Close()
+	//cfile, err := cdf.Open(file)
+	//if err != nil {
+	//	return nil, fmt.Errorf("inmap: Gem_geophy land use file: %v", err)
+	//}
+	w.dx, err = cfile.DX()
+	if err != nil {
+		return nil, err
+	}
+
+	//file, err := os.Open(Gem_geophy)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//defer file.Close()
+	//cfile, err := cdf.Open(file)
+	//if err != nil {
+	//	return nil, fmt.Errorf("inmap: Gem_geophy land use file: %v", err)
+	//}
+	w.dy, err = cfile.DY()
+	if err != nil {
+		return nil, err
+	}
+
+	//file, err := os.Open(Gem_geophy)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//defer file.Close()
+	//cfile, err := cdf.Open(file)
+	//if err != nil {
+	//	return nil, fmt.Errorf("inmap: Gem_geophy land use file: %v", err)
+	//}
+	w.xCenters, err = cfile.XCenters()
+	if err != nil {
+		return nil, err
+	}
+
+	//file, err := os.Open(Gem_geophy)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//defer file.Close()
+	//cfile, err := cdf.Open(file)
+	//if err != nil {
+	//	return nil, fmt.Errorf("inmap: Gem_geophy land use file: %v", err)
+	//}
+	w.yCenters, err = cfile.YCenters()
+	if err != nil {
+		return nil, err
+	}
+
+	//file, err := os.Open(Gem_geophy)
+	//if err != nil {
+	//	return nil, err
+	//}
+	//defer file.Close()
+	//cfile, err := cdf.Open(file)
+	//if err != nil {
+	//	return nil, fmt.Errorf("inmap: Gem_geophy land use file: %v", err)
+	//}
+	w.landUse, err = w.largestLandUse(cfile)
+	if err != nil {
+		return nil, err
+	}
+	//end Copy-Adapt-VF-v0
+
 	return &w, nil
 }
 
@@ -229,11 +342,15 @@ func linest(obs float64, vars ...float64) float64 {
 	return mw * 1000.0 / MWa
 }
 */
-//Syntax for these methods since I find them a bit confusing. Basically, a method is a function for a struct (or similar)
+//TR: Syntax for these methods since I find them a bit confusing. Basically, a method is a function for a struct (or similar)
 //These functions set up w as a "receiver" of type GEMMACH (*GEMMACH sets up a pointer to the GEMMACH struct)that then has the method  "read" or whatever.
 //So it goes func (receiver *struct) funcname(input inputtype) NextData (which is a function to get the next timestep data from preproc.go) {stuff the function does}.
 //This format lets you call the function as w.read(varName) etc.
 //Added "noChemHour" - this tells it that there is not an hour and will read-in netCDF files without a time dimension
+
+//SB 20221126: lat and lon stepping through non-uniformly; might be an issue
+//not looking into time currently as reading one time at a time: using NOCHEM bool
+//level conversions could use a and b parameters defining the levels; check with TR
 
 //TR221118 - We need to flip the gemmach variables as they are read, since they have level 0 = top, and inMAP is level 0 = surface
 //Flip is a variable which calls a function that will invert the Z axis of a densearray
@@ -807,6 +924,213 @@ func (w *GEMMACH) HO() NextData { return w.flipreadGroup(w.ho) }
 // H2O2 helps fulfill the Preprocessor interface
 // by returning hydrogen peroxide concentration [ppmv].
 func (w *GEMMACH) H2O2() NextData { return w.flipreadGroup(w.h2o2) }
+
+//SB 20221127
+//Start Copy-Adapt-VF-v0
+//creating functions to take in values needed for running landuse dimensions from Gem_geophy
+// XCenters returns the x-coordinates of the grid points.
+
+//SB 20221127: Copy-Adapt-VF-v0
+//gem_geophy holds information about VF on the domain.
+//could bring in each VF using this
+type gem_geophy struct {
+	data   *rtree.Rtree
+	dx, dy float64
+	xo, yo float64
+	nx, ny int
+}
+
+//SB 20221127: category int being used to store known VF in each cell
+// adding vf as a measure of vf fraction in each cell
+type gemGridCell struct {
+	geom.Polygon
+	vf       float64
+	category int
+}
+
+func XCenters(file *cdf.File) ([]float64, error) {
+	//something using the interface Reader
+	return file.Reader("rLON_var"), nil
+}
+
+// YCenters returns the y-coordinates of the grid points.
+func YCenters(file *cdf.File) ([]float64, error) {
+	//something using the interface Reader
+	return file.Reader("rLAT_var"), nil
+}
+
+// DX returns the longitude grid spacing.
+func DX(file *cdf.File) (float64, error) {
+	return file.Header.GetAttribute("", "delta_rlon").(float64), nil
+}
+
+// DY returns the latitude grid spacing.
+func DY(file *cdf.File) (float64, error) {
+	return file.Header.GetAttribute("", "delta_rlat").(float64), nil
+}
+
+//func (w *GEMMACH) largestLandUse(Gem_geophy *cdf.File) (*sparse.DenseArray, error) {
+//	return Gem_geophy.chemAttribute("VF"), nil
+//}
+
+// SB 20221127:
+// readGem_geophy reads data from an Gem_geophy file:
+// It may be downlaodable from:
+// https://hpfx.collab.science.gc.ca/~smco810/Deliveries/collab/rcm/D001/
+// Gem_geophy also needed input variables rLAT_var rLON_var and delta_rlat delta_rlon
+// created those variables in r and python and inserted in netcdf file
+// The file must be converted from netcdf version 4 to version 3 before
+// use by this function.
+// This can be done using the command:
+// nccopy -k classic Gem_geophy.nc Gem_geophy1.nc
+// name change is necessary to ensure code works
+// added a new input var i of type int to mark vegetation type from nc file
+func readGem_geophy(file *cdf.File, i string) (*gem_geophy, error) {
+
+	//taking in global attributes from gem_geophy
+	dxStr := file.Header.GetAttribute("", "delta_rlon").(string)
+	dyStr := file.Header.GetAttribute("", "delta_rlat").(string)
+	dx, err := strconv.ParseFloat(dxStr, 64)
+	if err != nil {
+		return nil, fmt.Errorf("inmap: parsing gem_geophy dx: %v", err)
+	}
+	dy, err := strconv.ParseFloat(dyStr, 64)
+	if err != nil {
+		return nil, fmt.Errorf("inmap: parsing gem_geophy dy: %v", err)
+	}
+
+	//originally olson land map was running here
+	//it was taking in an integer representation of largest land use in very refined grid cell
+	//INMAP uses coarser grids that do not exactly align with the underlying input grid
+	//so needs to calculate the largest land use fraction in the new grid
+	//code below only takes in the integer representations and stores them in the original grid
+	dims := file.Header.Lengths("VF" + fmt.Sprintf("%v", i))
+	ny := dims[1]
+	nx := dims[2]
+
+	r := file.Reader("VF"+fmt.Sprintf("%v", i), nil, nil)
+
+	buf := r.Zero(-1).([]float64)
+	o := &gem_geophy{
+		data: rtree.NewTree(25, 50),
+		xo:   -39.45,
+		yo:   -31.77,
+		dx:   dx,
+		dy:   dy,
+		nx:   nx,
+		ny:   ny,
+	}
+
+	if _, err := r.Read(buf); err != nil {
+		return nil, fmt.Errorf("inmap: reading Gem_geophy: %v", err)
+	}
+
+	for iy := 0; iy < o.ny; iy++ {
+		for ix := 0; ix < o.nx; ix++ {
+			x0 := o.xo + o.dx*float64(ix)
+			x1 := o.xo + o.dx*float64(ix+1)
+			y0 := o.yo + o.dy*float64(iy)
+			y1 := o.yo + o.dy*float64(iy+1)
+			v, _ := strconv.Atoi(i)
+			c := gemGridCell{
+				Polygon: geom.Polygon{{
+					{X: x0, Y: y0},
+					{X: x1, Y: y0},
+					{X: x1, Y: y1},
+					{X: x0, Y: y1},
+				}},
+				category: int(v),
+				vf:       float64(buf[iy*nx+ix]),
+			}
+			o.data.Insert(c)
+		}
+	}
+	return o, nil
+}
+
+// fractions returns the fraction of land use types within the given polygon.
+func (o *gem_geophy) fractions(p geom.Polygon) map[int]float64 {
+	out := make(map[int]float64)
+	for _, cI := range o.data.SearchIntersect(p.Bounds()) {
+		c := cI.(gemGridCell)
+		isect := p.Intersection(c)
+		if isect != nil {
+			out[c.category] += isect.Area()
+		}
+	}
+	a := p.Area()
+	for cat := range out {
+		out[cat] /= a
+	}
+	return out
+}
+
+// largestLandUse returns the land use index with the largest area
+// in each grid cell when given a gem_geophy file.
+func (w *GEMMACH) largestLandUse(file *cdf.File) (*sparse.DenseArray, error) {
+
+	var VFs [26]string
+	var o [26]gem_geophy
+	var p gem_geophy
+	var err error
+	for i := 0; i < 26; i++ {
+		if i < 9 {
+			VFs[i] = "0" + fmt.Sprintf("%v", i+1)
+		} else {
+			VFs[i] = fmt.Sprintf("%v", i+1)
+		}
+		p, err = readGem_geophy(file, VFs[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	//new grid being created and fractions of VF being calculated here
+	out := sparse.ZerosDense(len(w.yCenters), len(w.xCenters))
+	for j, y := range w.yCenters {
+		dy := w.dy
+		if j == 0 {
+			dy = ((w.yCenters[j+1] - y) - w.dy/2) * 2
+		}
+		if j == len(w.yCenters)-1 {
+			dy = ((y - w.yCenters[j-1]) - w.dy/2) * 2
+		}
+		for i, x := range w.xCenters {
+			dx := w.dx
+			if i == 0 {
+				dx = ((w.xCenters[i+1] - x) - w.dx/2) * 2
+			}
+			if i == len(w.xCenters)-1 {
+				dx = ((x - w.xCenters[i-1]) - w.dx/2) * 2
+			}
+			x0 := x - dx/2
+			x1 := x + dx/2
+			y0 := y - dy/2
+			y1 := y + dy/2
+			p := geom.Polygon{{
+				{X: x0, Y: y0},
+				{X: x1, Y: y0},
+				{X: x1, Y: y1},
+				{X: x0, Y: y1},
+				{X: x0, Y: y0},
+			}}
+			fractions := o.fractions(p)
+			if len(fractions) == 0 {
+				return nil, fmt.Errorf("no land use information available for polygon %+v", p)
+			}
+			maxCat := math.MinInt32
+			maxVal := math.Inf(-1)
+			for c, v := range fractions {
+				if v > maxVal {
+					maxVal = v
+					maxCat = c
+				}
+			}
+			out.Set(float64(maxCat), j, i)
+		}
+	}
+	return out, nil
+}
 
 // SeinfeldLandUse helps fulfill the Preprocessor interface
 // by returning land use categories as
