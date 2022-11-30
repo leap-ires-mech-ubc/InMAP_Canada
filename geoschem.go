@@ -1161,6 +1161,7 @@ type olsonGridCell struct {
 // nccopy -k classic Olson_2001_Land_Map.025x025.generic.nc Olson_2001_Land_Map.025x025.generic.nc
 func readOlsonLandMap(file *cdf.File) (*olsonLandMap, error) {
 	dxStr := file.Header.GetAttribute("", "delta_lon").(string)
+	//print(dxStr)
 	dyStr := file.Header.GetAttribute("", "delta_lat").(string)
 	dx, err := strconv.ParseFloat(dxStr, 64)
 	if err != nil {

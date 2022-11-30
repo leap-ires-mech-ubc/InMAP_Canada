@@ -165,7 +165,8 @@ type Preprocessor interface {
 // lower-left corner of the domain, and dx and dy are the x and y edge
 // lengths of the grid cells, respectively.
 
-//SB 20221126: have to convert to rectangular grids since preprocess uses constant dx and dy?
+//SB 20221126: have to ensure rectangular grids since preprocess uses constant dx and dy: confirmed using testdata.go
+//indeed we do have rectangular grids (rlat rlon)
 func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB: 2022-11-26; function returning a pointer receiver: fascinating!
 	var pblh, layerHeights, windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg *sparse.DenseArray
 
@@ -179,10 +180,17 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 	//aaSOA.AddDense(bbSOA)
 	//zz := tSOA == aaSOA
 	//print(xx, yy, zz, err)
-	llayerHeights, err := average(p.Height())
-	DDz := layerThickness(llayerHeights)
-	xx, yy, zz, err := wetDeposition(DDz, p.QRain(), p.CloudFrac(), p.ALT())
-	print(xx, yy, zz, err)
+
+	aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
+		aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr := stabilityMixingChemistry(layerHeights, p.PBLH(),
+		p.UStar(), p.ALT(), p.T(), p.P(), p.SurfaceHeatFlux(), p.HO(), p.H2O2(),
+		p.Z0(), p.SeinfeldLandUse(), p.WeselyLandUse(), p.QCloud(), p.RadiationDown(), p.QRain())
+
+	print(aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
+		aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr)
+
+	//xx, yy := average(p.Z0())
+	//print(xx, yy)
 
 	//SB: 2022-11-26 below goroutines are designed to run in parallel; speed up code and stop if find any errors in any of them
 	go func() {
@@ -313,8 +321,8 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 	data.xo = xo
 	data.yo = yo
 	data.dx = dx //SB 20221126: checked vargrid.go and confirmed that the x y grid needs to be rectangular since this number represents size of average grid cell
-	// could get around issue by using average function; but then input and output would be on different grids; definitely problematic
-	//could use regrid
+	// realized that rot lat lon implies that grid is rectangular (rlat rlon are different - likely projections - in comparison to lat and lon)
+	// looks like we are picking up dx dy in configuration file
 	data.dy = dy
 	data.ny = Dz.Shape[1]
 	data.nx = Dz.Shape[2]
@@ -1190,11 +1198,11 @@ func readNCFNoHour(pol string, ff *cdf.File, _ int) (*sparse.DenseArray, error) 
 	dims := ff.Header.Lengths(pol)
 	if len(dims) == 0 {
 		return nil, fmt.Errorf("inmap: preprocessor read netcdf: variable %v not in file", pol)
-	} else if dims[0] == 0 {
-		dims = dims[1:4] // TODO: This doesn't seem like a good solution here.
+		//} else if dims[0] == 0 {
+		// dims = dims[1:3] // TODO: This doesn't seem like a good solution here.
 		//} else if len(dims) == 4 {
 		//	dims = dims[1:4] // TR22-11-17. Added as the original code was giving time dim for files with 1 time.
-	} else if dims[0] == 1 {
+	} else if dims[0] == 1 || dims[0] == 0 {
 		maxdim := len(dims)
 		dims = dims[1:maxdim] // TR22-11-23. Added as the original code was giving time dim for files with 1 time.
 	}
