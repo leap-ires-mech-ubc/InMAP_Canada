@@ -164,7 +164,10 @@ type Preprocessor interface {
 // preprocessor. x0 and y0 are the left and y coordinates of the
 // lower-left corner of the domain, and dx and dy are the x and y edge
 // lengths of the grid cells, respectively.
-func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
+
+//SB 20221126: have to ensure rectangular grids since preprocess uses constant dx and dy: confirmed using testdata.go
+//indeed we do have rectangular grids (rlat rlon)
+func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB: 2022-11-26; function returning a pointer receiver: fascinating!
 	var pblh, layerHeights, windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg *sparse.DenseArray
 
 	errChan := make(chan error)
@@ -177,10 +180,19 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 	//aaSOA.AddDense(bbSOA)
 	//zz := tSOA == aaSOA
 	//print(xx, yy, zz, err)
-	llayerHeights, err := average(p.Height())
-	DDz := layerThickness(llayerHeights)
-	xx, yy, zz, err := wetDeposition(DDz, p.QRain(), p.CloudFrac(), p.ALT())
-	print(xx, yy, zz, err)
+
+	aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
+		aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr := stabilityMixingChemistry(layerHeights, p.PBLH(),
+		p.UStar(), p.ALT(), p.T(), p.P(), p.SurfaceHeatFlux(), p.HO(), p.H2O2(),
+		p.Z0(), p.SeinfeldLandUse(), p.WeselyLandUse(), p.QCloud(), p.RadiationDown(), p.QRain())
+
+	print(aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
+		aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr)
+
+	//xx, yy := average(p.Z0())
+	//print(xx, yy)
+
+	//SB: 2022-11-26 below goroutines are designed to run in parallel; speed up code and stop if find any errors in any of them
 	go func() {
 		var err error
 		pblh, err = average(p.PBLH())
@@ -199,6 +211,7 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 		errChan <- err
 	}()
 	//TR - this will go through the three functions (above) to calculate the requisite values
+	//SB: 2022-11-26; loop checks the channel values errChan for errors in any of the functions above and stops code here because cannot run the following if there are errors
 	for i := 0; i < 3; i++ {
 		err := <-errChan
 		if err != nil {
@@ -216,12 +229,14 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 	go func() {
 		var err error
 		// calculate deviation from average wind speed.
-		// Only calculate horizontal deviations.
+		// Only calculate horizontal W-E deviations.
 		uDeviation, err = windDeviation(uAvg, p.U())
 		errChan <- err
 	}()
 	go func() {
 		var err error
+		// calculate deviation from average wind speed.
+		// Only calculate horizontal S-N deviations.
 		vDeviation, err = windDeviation(vAvg, p.V())
 		errChan <- err
 	}()
@@ -294,6 +309,7 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 		errChan <- err
 	}()
 	//So this looks like it is running through the previous 12 functions that were put into "errchan"
+	//SB 2022-11-26: loop to check none of the previous 12 functions failed because if they did cannot run the following on them and better to exit
 	for i := 0; i < 12; i++ {
 		err := <-errChan
 		if err != nil {
@@ -304,7 +320,9 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) {
 	data := new(CTMData)
 	data.xo = xo
 	data.yo = yo
-	data.dx = dx
+	data.dx = dx //SB 20221126: checked vargrid.go and confirmed that the x y grid needs to be rectangular since this number represents size of average grid cell
+	// realized that rot lat lon implies that grid is rectangular (rlat rlon are different - likely projections - in comparison to lat and lon)
+	// looks like we are picking up dx dy in configuration file
 	data.dy = dy
 	data.ny = Dz.Shape[1]
 	data.nx = Dz.Shape[2]
@@ -1180,11 +1198,11 @@ func readNCFNoHour(pol string, ff *cdf.File, _ int) (*sparse.DenseArray, error) 
 	dims := ff.Header.Lengths(pol)
 	if len(dims) == 0 {
 		return nil, fmt.Errorf("inmap: preprocessor read netcdf: variable %v not in file", pol)
-	} else if dims[0] == 0 {
-		dims = dims[1:4] // TODO: This doesn't seem like a good solution here.
+		//} else if dims[0] == 0 {
+		// dims = dims[1:3] // TODO: This doesn't seem like a good solution here.
 		//} else if len(dims) == 4 {
 		//	dims = dims[1:4] // TR22-11-17. Added as the original code was giving time dim for files with 1 time.
-	} else if dims[0] == 1 {
+	} else if dims[0] == 1 || dims[0] == 0 {
 		maxdim := len(dims)
 		dims = dims[1:maxdim] // TR22-11-23. Added as the original code was giving time dim for files with 1 time.
 	}
