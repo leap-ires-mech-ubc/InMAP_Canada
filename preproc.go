@@ -178,8 +178,12 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 	//xx, yy, aaSOA, err := soaPartitioning(p.AVOC(), p.BVOC(), p.ASOA(), p.BSOA())
 	//xx, yy, bbSOA, err := soaPartitioning(p.BVOC(), p.AVOC(), p.BSOA(), p.ASOA())
 	//aaSOA.AddDense(bbSOA)
-	//zz := tSOA == aaSOA
+	//xx,yy := p.SeinfeldLandUse()
 	//print(xx, yy, zz, err)
+
+	layerHeights, err := average(p.Height())
+	print(err)
+	//Dz := layerThickness(layerHeights)
 
 	aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
 		aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr := stabilityMixingChemistry(layerHeights, p.PBLH(),

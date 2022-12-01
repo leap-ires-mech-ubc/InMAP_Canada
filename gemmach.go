@@ -65,7 +65,7 @@ type GEMMACH struct {
 
 	start, end time.Time
 
-	gemOut string
+	gemOut, gem_rdps string
 
 	//gem_geophy string
 
@@ -98,7 +98,7 @@ type GEMMACH struct {
 //SB 20221127:
 //start Copy-Adapt-VF-v0
 //func NewGEOSChem(GEOSA1, GEOSA3Cld, GEOSA3Dyn, GEOSI3, GEOSA3MstE, GEOSApBp, GEOSChemOut, OlsonLandMap, startDate, endDate string, dash bool, chemRecordStr, chemFileStr string, noChemHour bool, msgChan chan string) (*GEOSChem, error) {
-func NewGEMMACH(gemOut, Gem_geophy, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
+func NewGEMMACH(gemOut, Gem_geophy, gem_rdps, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
 	//end Copy-Adapt-VF-v0
 	w := GEMMACH{
 		// These maps contain the GEM-MACH variables that make
@@ -172,6 +172,7 @@ func NewGEMMACH(gemOut, Gem_geophy, startDate, endDate string, noChemHour bool, 
 		h2o2: map[string]float64{"TH22": UgKgToppmv(mwH2O2)},
 
 		gemOut:     gemOut,
+		gem_rdps:   gem_rdps,
 		msgChan:    msgChan,
 		noChemHour: noChemHour,
 	}
@@ -437,6 +438,13 @@ func (w *GEMMACH) readGroup(varGroup map[string]float64) NextData {
 		return nextDataGroupNCF(w.gemOut, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan)
 	}
 	return nextDataGroupNCF(w.gemOut, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+}
+
+func (w *GEMMACH) rdpsread(varName string) NextData {
+	if w.noChemHour {
+		return nextDataNCF(w.gem_rdps, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan)
+	}
+	return nextDataNCF(w.gem_rdps, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
 //For these three functions - changed from ALT to AF as GEMMACH
@@ -1148,21 +1156,27 @@ func (w *GEMMACH) readGem_geophy(file *cdf.File, i string) (*gem_geophy, error) 
 }
 
 // fractions returns the fraction of land use types within the given polygon.
+//o is the landuse data - gets put into 'c' to go through the 26 VF types. p is the geometry we are putting it on.
 func fractions(p geom.Polygon, o []gem_geophy) map[int]float64 {
 	out := make(map[int]float64)
 	for i := 0; i < 26; i++ {
 		for _, cI := range o[i].data.SearchIntersect(p.Bounds()) {
 			c := cI.(gemGridCell)
 			isect := p.Intersection(c)
-			if isect != nil {
-				out[c.category] += isect.Area()
+			//print(c.Area())
+			if isect != nil { // Add the area of the intersection between the VF grid and the INMAP grid for the given VF type
+				//out[c.category] += isect.Area()
+				out[c.category] += isect.Area() * c.vf //TR20221130 - function wasn't accounting for actual veg frac, needed to multiply.
 			}
 		}
-		a := p.Area()
-		for cat := range out {
-			out[cat] /= a
-		}
 	}
+	//TR20221130 - moved this out of the above for loop - we want to divide the area of each fraction by the total area.
+	a := p.Area()
+
+	for cat := range out {
+		out[cat] /= a //Divide the area for each category by the total polygon area
+	}
+
 	return out
 }
 
@@ -1251,7 +1265,7 @@ func (w *GEMMACH) SeinfeldLandUse() NextData {
 }
 
 func (w *GEMMACH) GEMSeinfeldLandUse(landUse *sparse.DenseArray) NextData {
-	pnhFunc := w.PNH()
+	pblhFunc := w.PBLH()
 	//SB: no need to use flip because no Z component
 	//fnFunc := w.flipread(landuse)
 	return func() (*sparse.DenseArray, error) {
@@ -1261,19 +1275,18 @@ func (w *GEMMACH) GEMSeinfeldLandUse(landUse *sparse.DenseArray) NextData {
 		// 	return nil, err
 		// }
 		//We will set the shape equal to the U component of windspeed
-		PNH, err := pnhFunc()
+		PBLH, err := pblhFunc()
 		if err != nil {
 			return nil, err
 		}
-		o := sparse.ZerosDense(PNH.Shape...)
+		o := sparse.ZerosDense(PBLH.Shape...)
 		//o := sparse.ZerosDense(snowFrac.Shape...)
-		for j := 0; j < PNH.Shape[1]; j++ {
-			for i := 0; i < PNH.Shape[2]; i++ {
-				// snowV := PNH.Get(j, i)
-				// if snowV > 0.5 { // We assume that snow and desert have similar deposition properties.
-				// 	o.Set(float64(seinfeld.Desert), j, i)
-				// }
-				o.Set(float64(GEMseinfeld[f2i(landUse.Get(j, i))]), j, i)
+		for j := 0; j < o.Shape[0]; j++ {
+			for i := 0; i < o.Shape[1]; i++ {
+				//Convert GEM landuse to Seinfeld. Need to subtract 1 as index[0] = VF1
+				oval := GEMseinfeld[f2i(landUse.Get(j, i))-1]
+				//print(float64(oval))
+				o.Set(float64(oval), j, i)
 			}
 		}
 		return o, nil
@@ -1345,24 +1358,22 @@ func (w *GEMMACH) WeselyLandUse() NextData {
 // }
 
 func (w *GEMMACH) GEMweselyLandUse(landUse *sparse.DenseArray) NextData {
-	pnhFunc := w.PNH()
+	pblhFunc := w.PBLH() //TR20221130 changed to PBLH as it is a 2D variable
 	return func() (*sparse.DenseArray, error) {
 		// snowFrac, err := snowFunc() // Fraction land covered by snow
 		// if err != nil {
 		// 	return nil, err
 		// }
-		PNH, err := pnhFunc()
+		PBLH, err := pblhFunc()
 		if err != nil {
 			return nil, err
 		}
-		o := sparse.ZerosDense(PNH.Shape...)
-		for j := 0; j < PNH.Shape[0]; j++ {
-			for i := 0; i < PNH.Shape[1]; i++ {
-				//snowV := PNH.Get(j, i)
-				// if snowV > 0.5 { // We assume that snow and Barren have similar deposition properties.
-				// 	o.Set(float64(wesely1989.Barren), j, i)
-				// }
-				o.Set(float64(GEMwesely[f2i(landUse.Get(j, i))]), j, i)
+		o := sparse.ZerosDense(PBLH.Shape...)
+		for j := 0; j < o.Shape[0]; j++ {
+			for i := 0; i < o.Shape[1]; i++ {
+				//TR 20221130 - Needed to subtract 1 from the landuse value and changed to 2D variable.
+				oval := GEMwesely[f2i(landUse.Get(j, i))-1]
+				o.Set(float64(oval), j, i)
 			}
 		}
 		return o, nil
@@ -1545,7 +1556,7 @@ func (w *GEMMACH) CloudFrac() NextData {
 
 // QCloud helps fulfill the Preprocessor interface by returning
 // the mass fraction of cloud water in each grid cell [mass/mass].
-func (w *GEMMACH) QCloud() NextData { return w.read("QC") }
+func (w *GEMMACH) QCloud() NextData { return w.rdpsread("QC") }
 
 // RadiationDown helps fulfill the Preprocessor interface by returning
 // total downwelling radiation at ground level [W/m2].

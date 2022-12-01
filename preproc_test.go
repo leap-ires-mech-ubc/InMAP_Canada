@@ -52,7 +52,10 @@ func TestGEMMACHToInMAP(t *testing.T) {
 	flag.Parse()
 	const tolerance = 1.0e-6
 	//filename = gemmach_2019010100_000.ncss
-	gem, err := NewGEMMACH("cmd/inmap/testdata/preproc/gemmach/gemmachtest_[DATE].nc", "cmd/inmap/testdata/preproc/gemmach/gemmachtest_gem_geophy.nc", "20190101", "20190102", true, nil)
+	gem, err := NewGEMMACH("cmd/inmap/testdata/preproc/gemmach/gemmachtest_[DATE].nc",
+		"cmd/inmap/testdata/preproc/gemmach/gemmachtest_gem_geophy.nc",
+		"cmd/inmap/testdata/preproc/gemmach/rdps/rdpsqctest_[DATE].nc",
+		"20190101", "20190102", true, nil)
 	if err != nil {
 		t.Fatal(err)
 	}
