@@ -181,17 +181,17 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 	//xx,yy := p.SeinfeldLandUse()
 	//print(xx, yy, zz, err)
 
-	layerHeights, err := average(p.Height())
-	print(err)
-	//Dz := layerThickness(layerHeights)
+	// layerHeights, err := average(p.Height())
+	// print(err)
+	// //Dz := layerThickness(layerHeights)
 
-	aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
-		aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr := stabilityMixingChemistry(layerHeights, p.PBLH(),
-		p.UStar(), p.ALT(), p.T(), p.P(), p.SurfaceHeatFlux(), p.HO(), p.H2O2(),
-		p.Z0(), p.SeinfeldLandUse(), p.WeselyLandUse(), p.QCloud(), p.RadiationDown(), p.QRain())
+	// aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
+	// 	aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr := stabilityMixingChemistry(layerHeights, p.PBLH(),
+	// 	p.UStar(), p.ALT(), p.T(), p.P(), p.SurfaceHeatFlux(), p.HO(), p.H2O2(),
+	// 	p.Z0(), p.SeinfeldLandUse(), p.WeselyLandUse(), p.QCloud(), p.RadiationDown(), p.QRain())
 
-	print(aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
-		aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr)
+	// print(aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
+	// 	aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr)
 
 	//xx, yy := average(p.Z0())
 	//print(xx, yy)

@@ -146,7 +146,7 @@ func NewGEMMACH(gemOut, Gem_geophy, gem_rdps, startDate, endDate string, noChemH
 		nox: map[string]float64{"TNO": 1., "TNO2": 1.},
 		// pNO is the Nitrogen fraction of MADE particulate
 		// NO species [μg/kg dry air].
-		pNO: map[string]float64{"TNI1": 1., "TNO3": 1.},
+		pNO: map[string]float64{"TNI1": 1., "TNO3": 1., "THN3": 1.},
 		// SOx is the RACM SOx species. We are only interested in the mass
 		// of Sulfur, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Sulfur.
@@ -509,7 +509,11 @@ func (w *GEMMACH) Height() NextData {
 				for i := 0; i < out.Shape[2]; i++ {
 					//Grab the appropriate value (staggered - so 2k)
 					HHconv := HH.Get(2*k, j, i) * 10
+					if HHconv < 0 {
+						HHconv = 1e-10
+					}
 					out.Set(HHconv, k, j, i)
+
 				}
 			}
 		}
@@ -1436,9 +1440,9 @@ func (w *GEMMACH) Z0() NextData {
 }
 
 func (w *GEMMACH) GEMZ0(landUse *sparse.DenseArray) NextData {
-	pnhFunc := w.PNH()
+	pblhFunc := w.PBLH()
 	return func() (*sparse.DenseArray, error) {
-		PNH, err := pnhFunc()
+		PBLH, err := pblhFunc()
 		if err != nil {
 			return nil, err
 		}
@@ -1446,9 +1450,12 @@ func (w *GEMMACH) GEMZ0(landUse *sparse.DenseArray) NextData {
 		// if err != nil {
 		// 	return nil, err
 		// }
-		zo := sparse.ZerosDense(PNH.Shape...)
-		for i, lu := range PNH.Elements {
-			zo.Elements[i] = GEMz0[f2i(lu)] // roughness length [m]
+		zo := sparse.ZerosDense(PBLH.Shape...)
+		for i, lu := range landUse.Elements {
+			zo.Elements[i] = GEMz0[f2i(lu)-1] // roughness length [m]
+			//oval := GEMwesely[f2i(landUse.Get(j, i))-1]
+			//	o.Set(float64(oval), j, i)
+
 		}
 		return zo, nil
 	}
