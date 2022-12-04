@@ -713,12 +713,12 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 					partitioning.Elements[i] += math.Min(math.Max(particlechange/totalchange, 0), 1)
 					if n == 0 {
 						//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
-						particledata.Elements[i] = partitioning.Elements[i] * (gasdata.Elements[i] + particledata.Elements[i])
+						particledata.Elements[i] = partitioning.Elements[i] * (gasdata.Elements[i] + gas2data.Elements[i] + particledata.Elements[i])
 						//gasConc.Elements[i] = gas.Elements[i]
 					} else {
 						//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
-						particledata.Elements[i] = partitioning.Elements[i] * (oldgas.Elements[i] + oldparticle.Elements[i])
-						gasdata.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldparticle.Elements[i])
+						particledata.Elements[i] = partitioning.Elements[i] * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
+						gasdata.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
 					}
 					//log.Fatalf("no solution: %v", err)
 					continue
@@ -730,12 +730,12 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 				//for i := range particle.Elements {
 				if n == 0 {
 					//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
-					particledata.Elements[i] = partitioning.Elements[i] * (gasdata.Elements[i] + particledata.Elements[i])
+					particledata.Elements[i] = partitioning.Elements[i] * (gasdata.Elements[i] + gas2data.Elements[i] + particledata.Elements[i])
 					//gasConc.Elements[i] = gas.Elements[i]
 				} else {
 					//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
-					particledata.Elements[i] = partitioning.Elements[i] * (oldgas.Elements[i] + oldparticle.Elements[i])
-					gasdata.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldparticle.Elements[i])
+					particledata.Elements[i] = partitioning.Elements[i] * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
+					gasdata.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
 				}
 
 			}
