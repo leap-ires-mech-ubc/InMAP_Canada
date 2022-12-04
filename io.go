@@ -979,6 +979,8 @@ func (d *InMAP) getUnits(varName string, m Mechanism) string {
 		return "deaths/grid cell"
 	}
 	// Everything else
+	// SB 20221201: need to use this to fix this: it's a syntax issue
+	//https://medium.com/golangspec/sync-rwmutex-ca6c6c3208a0
 	t := reflect.TypeOf(*(*d.cells)[0].Cell)
 	ftype, ok := t.FieldByName(varName)
 	if ok {
