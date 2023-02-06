@@ -553,12 +553,12 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 
 func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partitioning, gasConc, particleConc *sparse.DenseArray, err error) {
 	//X1 = gas 1, X2 = gas2, y = particle
-	var gas, gas2, particle, oldgas, oldgas2, oldparticle *sparse.DenseArray
+	var gas, gas2, particle, oldgas, oldgas2, oldergas, oldergas2, oldparticle, particletemp, oldallparticle, olderallparticle *sparse.DenseArray
 	//var sumY, sumX1, sumX2, sumX1Y, sumX2Y, sumYsq *sparse.DenseArray
 	//var avgsumY, avgsumX1, avgsumX2, avgsumX1Y, avgsumX2Y, avgsumYsq *sparse.DenseArray
-	var sumY, sumX1, sumX2, sumX1Y, sumX2Y, sumYsq float64
+	//var sumY, sumX1, sumX2, sumX1Y, sumX2Y, sumYsq []float64
 	firstData := true
-	const partfactor = 1
+	//const partfactor = 1
 	//tSOAswitch := false
 	var n int
 	//TR is calculating all the combinations of variables needed for linear regression below
@@ -570,57 +570,7 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 		//for the system of equations Y = a + b1*X1 + b2*X2
 		if err != nil {
 			if err == io.EOF {
-				//N := float64(n)
-				//gasConc = sparse.ZerosDense(gasdata.Shape...)
-				//particleConc = sparse.ZerosDense(gasdata.Shape...)
-				//partitioning = sparse.ZerosDense(gasdata.Shape...)
-
-				//use array average to calculate the matrix elements once
-				//will call them in the loop one at a time using .Get
-				// avgsumY = arrayAverage(sumY, n)
-				// avgsumX1 = arrayAverage(sumX1, n)
-				// avgsumX2 = arrayAverage(sumX2, n)
-				// avgsumYsq = arrayAverage(sumYsq, n)
-				// avgsumX1Y = arrayAverage(sumX1Y, n)
-				// avgsumX2Y = arrayAverage(sumY, n)
-
-				//calculate intercept and marginal partitioning at each location
-				//use them to calculate
-
-				//for j := 0; j < gasdata.Shape[1]; j++ {
-				//	for i := 0; i < gasdata.Shape[2]; i++ {
-				//		for k := 0; k < gasdata.Shape[0]; k++ {
-
-				// for i := range particle.Elements {
-				// 	if i == 0 {
-				// 		partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
-				// 		particleConc.Elements[i] = Kp[0] * (gas.Elements[i])
-				// 		gasConc.Elements[i] = gas.Elements[i]
-				// 	} else {
-				// 		partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
-				// 		particleConc.Elements[i] = partitioning.Elements[i] * (gasConc.Elements[i-1] + particleConc.Elements[i-1])
-				// 		gasConc.Elements[i] = (1 - partitioning.Elements[i]) * (gasConc.Elements[i-1] + particleConc.Elements[i-1])
-				// 	}
-				// 	//Calculate the average [VOC] in each cell, either anthro or bio -genic depending
-				// 	//gasConc.Elements[i] = gas.Elements[i] / N
-
-				// 	//Then, the output particle concentration - either aSOA or bSOA - is Kp*[gas]
-				// 	//We will apply a correction here to enfore tSOA = aSOA +bSOA
-				// 	//paverage := particle.Elements[i]/N
-				// 	//p1naive := Kp[0] * gas.Elements[i] / N
-				// 	//p2naive := Kp2 * gas2.Elements[i] / N
-				// 	//p1corr := (paverage-p1naive-p2naive)*p1naive/(p1naive+p2naive) + p1naive
-				// 	//p2corr := (paverage-p1naive-p2naive)*p2naive/(p1naive+p2naive) + p2naive
-				// 	//print(p2corr + p1corr)
-				// 	//Particle concentration is the corrected value
-				// }
-				//particleConc.Elements[i] = p1corr / partfactor
-				//Finally, we calculate the marginal partitioning coefficient as f = 1-1/(1+Kp). No correction.
-				//partitioning.Elements[i] = 1 - 1/(1+Kp)
-				//}
-
-				//}
-				//}
+				particle.AddDense(oldparticle)
 				return arrayAverage(partitioning, n), arrayAverage(gas, n), arrayAverage(particle, n), nil
 			}
 			return nil, nil, nil, err
@@ -629,7 +579,7 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 		if err != nil {
 			return nil, nil, nil, err
 		}
-		particledata, err := particleFunc()
+		allparticledata, err := particleFunc()
 		if (err != nil) && (err.Error() != "tSOA") {
 			return nil, nil, nil, err
 		}
@@ -652,8 +602,13 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 				particle = sparse.ZerosDense(testdata.Shape...)
 				oldgas = sparse.ZerosDense(testdata.Shape...)
 				oldgas2 = sparse.ZerosDense(testdata.Shape...)
+				oldergas = sparse.ZerosDense(testdata.Shape...)
+				oldergas2 = sparse.ZerosDense(testdata.Shape...)
 				oldparticle = sparse.ZerosDense(testdata.Shape...)
+				particletemp = sparse.ZerosDense(testdata.Shape...)
 				partitioning = sparse.ZerosDense(testdata.Shape...)
+				oldallparticle = sparse.ZerosDense(testdata.Shape...)
+				olderallparticle = sparse.ZerosDense(testdata.Shape...)
 				// sumX1 = sparse.ZerosDense(testdata.Shape...)
 				// sumX2 = sparse.ZerosDense(testdata.Shape...)
 				// sumYsq = sparse.ZerosDense(testdata.Shape...)
@@ -666,83 +621,98 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 		}
 		gas.AddDense(gasdata)
 		gas2.AddDense(gas2data)
-		particle.AddDense(particledata)
+		particle.AddDense(oldparticle)
 		//X1 = gas 1, X2 = gas2, y = particle
 		//sumX1sq, sumX2sq, sumX1X2, sumX1y, sumX2Y
-		for i, particleval := range particledata.Elements {
-			particlechange := particleval - oldparticle.Elements[i]
+		for i, particleval := range allparticledata.Elements {
+			particlechangenow := particleval - oldallparticle.Elements[i]
+			particlechangethen := oldallparticle.Elements[i] - olderallparticle.Elements[i]
 			//totalchange := particlechange + (gasdata.Elements[i] - oldgas.Elements[i]) + (gas2data.Elements[i]-oldgas.Elements[i])
-			gaschange := (gasdata.Elements[i] - oldgas.Elements[i])
-			gas2change := (gas2data.Elements[i] - oldgas2.Elements[i])
-			totalchange := particlechange + gas2change + gaschange
+			gaschangenow := (gasdata.Elements[i] - oldgas.Elements[i])
+			gaschangethen := (oldgas.Elements[i] - oldergas.Elements[i])
+			gas2changenow := (gas2data.Elements[i] - oldgas2.Elements[i])
+			gas2changethen := (oldgas2.Elements[i] - oldergas2.Elements[i])
+			//totalgaschange := gaschangenow + gas2changenow
+			totalchange := particlechangenow + gas2changenow + gaschangenow
 			// Calculate the marginal partitioning coefficient, which is the
 			// change in particle concentration divided by the change in overall
 			// concentration. Force the coefficient to be between zero and
 			// one.
-			particlechange = totalchange * math.Min(math.Max(particlechange/totalchange, 0), 1)
-			if !math.IsNaN(particlechange) {
-				//partitioning.Elements[i] += part
-				// sumYsq.Elements[i] += math.Pow(particlechange, 2.)
-				// sumX1.Elements[i] += math.Pow(gaschange, 1.)
-				// sumX2.Elements[i] += math.Pow(gas2change, 1.)
-				// sumY.Elements[i] += math.Pow(particlechange*partfactor, 1.)
-				// sumX1Y.Elements[i] += gaschange * particlechange * partfactor
-				// sumX2Y.Elements[i] += gas2change * particlechange * partfactor
-				sumYsq += math.Pow(particlechange, 2.)
-				sumX1 += math.Pow(gaschange, 1.)
-				sumX2 += math.Pow(gas2change, 1.)
-				sumY += math.Pow(particlechange*partfactor, 1.)
-				sumX1Y += gaschange * particlechange * partfactor
-				sumX2Y += gas2change * particlechange * partfactor
+			//particlechangenow = totalchange * math.Min(math.Max(particlechangenow/totalchange, 0), 1)
+			//if gaschangenow != 0 {
+			//partitioning.Elements[i] += part
+			// sumYsq.Elements[i] += math.Pow(particlechange, 2.)
+			// sumX1.Elements[i] += math.Pow(gaschange, 1.)
+			// sumX2.Elements[i] += math.Pow(gas2change, 1.)
+			// sumY.Elements[i] += math.Pow(particlechange*partfactor, 1.)
+			// sumX1Y.Elements[i] += gaschange * particlechange * partfactor
+			// sumX2Y.Elements[i] += gas2change * particlechange * partfactor
+			//sumYsq[i] += math.Pow(particlechange, 2.)
+			//sumX1[i] += math.Pow(gaschange, 1.)
+			//sumX2[i] += math.Pow(gas2change, 1.)
+			//sumY[i] += math.Pow(particlechange*partfactor, 1.)
+			//sumX1Y[i] += gaschange * particlechange * partfactor
+			//sumX2Y[i] += gas2change * particlechange * partfactor
 
-				//linear regression matrix A in the structure Ax = b
-				//setting up a two by two system in line with marginal partitioning
-				A := mat.NewDense(2, 2, []float64{
-					sumX1, sumX2,
-					sumX1Y, sumX2Y})
-				// avgsumX1.Get(k, j, i), avgsumX2.Get(k, j, i),
-				// avgsumX1Y.Get(k, j, i), avgsumX2Y.Get(k, j, i)})
+			//linear regression matrix A in the structure Ax = b
+			//setting up a two by two system in line with marginal partitioning
+			//A := mat.NewDense(2, 2, []float64{
+			//	sumX1[i], sumX2[i],
+			//	sumX1Y[i], sumX2Y[i]})
+			// avgsumX1.Get(k, j, i), avgsumX2.Get(k, j, i),
+			// avgsumX1Y.Get(k, j, i), avgsumX2Y.Get(k, j, i)})
 
-				b := mat.NewVecDense(2, []float64{
-					//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
-					sumY, sumYsq})
+			A := mat.NewDense(2, 2, []float64{
+				gaschangenow, gas2changenow,
+				gaschangethen, gas2changethen})
 
-				var x mat.VecDense
-				err = x.SolveVec(A, b)
-				if err != nil {
-					partitioning.Elements[i] += math.Min(math.Max(particlechange/totalchange, 0), 1)
-					if n == 0 {
-						//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
-						particledata.Elements[i] = partitioning.Elements[i] * (gasdata.Elements[i] + gas2data.Elements[i] + particledata.Elements[i])
-						//gasConc.Elements[i] = gas.Elements[i]
+			//b := mat.NewVecDense(2, []float64{
+			//	//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
+			//	sumY[i], sumYsq[i]})
+			b := mat.NewVecDense(2, []float64{
+				//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
+				particlechangenow, particlechangethen})
+
+			var x mat.VecDense
+			err = x.SolveVec(A, b)
+			if err != nil {
+				if gaschangenow == 0 {
+					partitioning.Elements[i] = 0
+					//particle.Elements[i] = oldparticle.Elements[i]
+				} else {
+					if gas2changenow == 0 || totalchange == 0 {
+						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1)
+						particletemp.Elements[i] = particle.Elements[i] + particlechangenow
 					} else {
-						//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
-						particledata.Elements[i] = partitioning.Elements[i] * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
-						gasdata.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
+						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/totalchange, 0), 1)
+						particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
 					}
 					//log.Fatalf("no solution: %v", err)
-					continue
 				}
-
-				//Regression coefficients - these are the partition coefficient Kp!
-				partitioning.Elements[i] += x.AtVec(0) / (1 + x.AtVec(0))
-
-				//for i := range particle.Elements {
-				if n == 0 {
-					//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
-					particledata.Elements[i] = partitioning.Elements[i] * (gasdata.Elements[i] + gas2data.Elements[i] + particledata.Elements[i])
-					//gasConc.Elements[i] = gas.Elements[i]
-				} else {
-					//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
-					particledata.Elements[i] = partitioning.Elements[i] * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
-					gasdata.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
-				}
-
+				continue
 			}
+
+			//Regression coefficients - these are the partition coefficient Kp!
+			partitioning.Elements[i] += math.Min(math.Max(x.AtVec(0)/(1+x.AtVec(0)), 0), 1)
+
+			//for i := range particle.Elements {
+			if partitioning.Elements[i] != 0|1 {
+				//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
+				//particle.Elements[i] = oldparticle.Elements[i]
+				//gasConc.Elements[i] = gas.Elements[i]
+				//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
+				particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+				//gas.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
+			}
+			//}
 		}
+		oldergas = oldgas.Copy()
 		oldgas = gasdata.Copy()
+		oldergas2 = oldgas2.Copy()
 		oldgas2 = gas2data.Copy()
-		oldparticle = particledata.Copy()
+		oldparticle = particletemp.Copy()
+		olderallparticle = oldallparticle.Copy()
+		oldallparticle = allparticledata.Copy()
 		n++
 	}
 }
