@@ -561,7 +561,7 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 	//const partfactor = 1
 	//tSOAswitch := false
 	var n int
-	//TR is calculating all the combinations of variables needed for linear regression below
+	//TR was calculating all the combinations of variables needed for linear regression below
 	//adding the new combinations needed including sumY sumX1 sumX2
 	for {
 		gasdata, err := gasFunc()
@@ -571,6 +571,8 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 		if err != nil {
 			if err == io.EOF {
 				particle.AddDense(oldparticle)
+				gas.AddDense(oldgas)
+				gas2.AddDense(oldgas2)
 				return arrayAverage(partitioning, n), arrayAverage(gas, n), arrayAverage(particle, n), nil
 			}
 			return nil, nil, nil, err
@@ -606,6 +608,7 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 				oldergas2 = sparse.ZerosDense(testdata.Shape...)
 				oldparticle = sparse.ZerosDense(testdata.Shape...)
 				particletemp = sparse.ZerosDense(testdata.Shape...)
+				//particlecalctemp = sparse.ZerosDense(testdata.Shape...)
 				partitioning = sparse.ZerosDense(testdata.Shape...)
 				oldallparticle = sparse.ZerosDense(testdata.Shape...)
 				olderallparticle = sparse.ZerosDense(testdata.Shape...)
@@ -619,8 +622,8 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 			}
 			//return partitioning, gasConc, particleConc, err
 		}
-		gas.AddDense(gasdata)
-		gas2.AddDense(gas2data)
+		gas.AddDense(oldgas)
+		gas2.AddDense(oldgas2)
 		particle.AddDense(oldparticle)
 		//X1 = gas 1, X2 = gas2, y = particle
 		//sumX1sq, sumX2sq, sumX1X2, sumX1y, sumX2Y
@@ -633,7 +636,10 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 			gas2changenow := (gas2data.Elements[i] - oldgas2.Elements[i])
 			gas2changethen := (oldgas2.Elements[i] - oldergas2.Elements[i])
 			//totalgaschange := gaschangenow + gas2changenow
-			totalchange := particlechangenow + gas2changenow + gaschangenow
+			totalchangenowreac := particlechangenow - gas2changenow + gaschangenow
+			//totalchangethenreac := particlechangethen - gas2changethen + gaschangethen
+			totalchangenowadv := particlechangenow + gas2changenow + gaschangenow
+			//totalchangethenadv := particlechangethen + gas2changethen + gaschangethen
 			// Calculate the marginal partitioning coefficient, which is the
 			// change in particle concentration divided by the change in overall
 			// concentration. Force the coefficient to be between zero and
@@ -662,49 +668,188 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 			// avgsumX1.Get(k, j, i), avgsumX2.Get(k, j, i),
 			// avgsumX1Y.Get(k, j, i), avgsumX2Y.Get(k, j, i)})
 
-			A := mat.NewDense(2, 2, []float64{
-				gaschangenow, gas2changenow,
-				gaschangethen, gas2changethen})
+			//no change in gas phase species of interest
+			if gaschangenow == 0 {
+				partitioning.Elements[i] += 0
+				//particletemp.Elements[i] = particle.Elements[i]
+				particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i], particleval), 0)
+			} else {
+				//no change in the gas phase species 2
+				//all particle change due to or in association with gas phase species 1
+				if gas2changenow == 0 {
+					particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]+particlechangenow, particleval), 0)
+					partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+					particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+					//gasdata.Elements[i] = math.Max(math.Min(particletemp.Elements[i]*(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))/(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)), gasdata.Elements[i]), 0)
 
-			//b := mat.NewVecDense(2, []float64{
-			//	//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
-			//	sumY[i], sumYsq[i]})
-			b := mat.NewVecDense(2, []float64{
-				//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
-				particlechangenow, particlechangethen})
-
-			var x mat.VecDense
-			err = x.SolveVec(A, b)
-			if err != nil {
-				if gaschangenow == 0 {
-					partitioning.Elements[i] = 0
-					//particle.Elements[i] = oldparticle.Elements[i]
+					// if particleval+gasdata.Elements[i] == 0 {
+					// 	//nothing changes; K also does not change, calculate K using then values
+					// 	if gaschangenow+particlechangenow == 0 {
+					// 		partitioning.Elements[i] += 0
+					// 		particletemp.Elements[i] = particle.Elements[i]
+					// 	} else {
+					// 		partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1), 0)
+					// 		particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1))/(1-(math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1)))*gasdata.Elements[i], particleval), 0)
+					// 	}
+					// } else {
+					// 	//can use the fundamental representation of the change in the ratio
+					// 	partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max(particlechangenow/(particleval+gasdata.Elements[i])-particleval*(gaschangenow+particlechangenow)/(math.Pow(particleval+gasdata.Elements[i], 2)), -1), 1), 0)
+					// 	particletemp.Elements[i] = math.Max(math.Min(((partitioning.Elements[i]+math.Min(math.Max(particlechangenow/(particleval+gasdata.Elements[i])-particleval*(gaschangenow+particlechangenow)/(math.Pow(particleval+gasdata.Elements[i], 2)), -1), 1))/(1-(partitioning.Elements[i]+math.Min(math.Max(particlechangenow/(particleval+gasdata.Elements[i])-particleval*(gaschangenow+particlechangenow)/(math.Pow(particleval+gasdata.Elements[i], 2)), -1), 1))))*gasdata.Elements[i], particleval), 0)
+					// }
 				} else {
-					if gas2changenow == 0 || totalchange == 0 {
-						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1)
-						particletemp.Elements[i] = particle.Elements[i] + particlechangenow
+					//both gas and gas2 are changing so particle change cannot be allocated to one alone
+					//all-advective or all-reactive cell
+					if gaschangenow*gas2changenow > 0 {
+						//cannot use matrix solution
+						if gaschangenow*gas2changethen == gas2changenow*gaschangethen {
+							//current time step shows no total change in advection
+							//all reactive cell
+							if totalchangenowadv == 0 {
+								//then particlechangenow's contribution corresponding to gas 1 is -gaschangenow
+								particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]-gaschangenow, particleval), 0)
+								//partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+								//particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+
+								if particletemp.Elements[i]+gasdata.Elements[i] == 0 {
+									//nothing changes; K also does not change
+									partitioning.Elements[i] += 0
+								} else {
+									//can use the fundamental representation of the change in the ratio
+									partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+									particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+									//partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max(-gaschangenow/(particletemp.Elements[i]+gasdata.Elements[i]), -1), 1), 0)
+									//particletemp.Elements[i] = math.Max(((partitioning.Elements[i]+math.Min(math.Max(-gaschangenow/(particleval+gasdata.Elements[i]), -1), 1))/(1-(partitioning.Elements[i]+math.Min(math.Max(-gaschangenow/(particleval+gasdata.Elements[i]), -1), 1))))*gasdata.Elements[i], 0)
+								}
+							} else {
+								//if totalchangethenadv == 0 {
+								//	partitioning.Elements[i] += 0
+								//	particletemp.Elements[i] = particle.Elements[i]
+								//} else {
+								//	partitioning.Elements[i] = math.Max(partitioning.Elements[i] + math.Min(math.Max(particlechangenow/(gaschangenow + gas2changenow + particlechangenow) - particlechangethen/(gaschangethen + gas2changethen + particlechangethen),-1),1), 0)
+								//	particletemp.Elements[i] = math.Max(particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i],0)
+
+								particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]+particlechangenow/(gaschangenow+gas2changenow)*gaschangenow, particleval), 0)
+								//partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max((particlechangenow/(gaschangenow+gas2changenow)*gaschangenow)/(particletemp.Elements[i]+gasdata.Elements[i])-particletemp.Elements[i]*((particlechangenow/(gaschangenow+gas2changenow)*gaschangenow)+gaschangenow)/(math.Pow(particletemp.Elements[i]+gasdata.Elements[i], 2)), -1), 1), 0)
+								partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+								particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+								//partitioning.Elements[i] = math.Max(partitioning.Elements[i] + math.Min(math.Max(particlechangenow/(gaschangenow + gas2changenow + particlechangenow),0),1), 0)
+								//particletemp.Elements[i] = math.Max(particle.Elements[i] + ((math.Min(math.Max(particlechangenow/(gaschangenow + gas2changenow + particlechangenow),0),1))/(1-(math.Min(math.Max(particlechangenow/(gaschangenow + gas2changenow + particlechangenow),0),1))))*gas.Elements[i],0)
+
+							}
+						} else {
+							//matrix solution exists
+							A := mat.NewDense(2, 2, []float64{
+								gaschangenow, gas2changenow,
+								gaschangethen, gas2changethen})
+
+							b := mat.NewVecDense(2, []float64{
+								//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
+								particlechangenow, particlechangethen})
+
+							var x mat.VecDense
+							err = x.SolveVec(A, b)
+
+							if err == nil {
+								//Regression coefficients - these are the partition coefficient Kp!
+								particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]+x.AtVec(0)*gaschangenow, particleval), 0)
+								partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+								particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+								//partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max(x.AtVec(0)*gaschangenow/(particletemp.Elements[i]+gasdata.Elements[i])-particletemp.Elements[i]*(x.AtVec(0)*gaschangenow+gaschangenow)/(math.Pow(particletemp.Elements[i]+gasdata.Elements[i], 2)), -1), 1), 0)
+								//for i := range particle.Elements {
+								//if partitioning.Elements[i] != 1 {
+								//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
+								//particle.Elements[i] = oldparticle.Elements[i]
+								//gasConc.Elements[i] = gas.Elements[i]
+								//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
+								//particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+								//gas.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
+							} else {
+								particletemp.Elements[i] = 0.5 * (particleval)
+								if (0.5*(particleval) + gasdata.Elements[i]) == 0 {
+									partitioning.Elements[i] += 0
+								} else {
+									partitioning.Elements[i] += math.Min(math.Max(0.5*(particleval)/(0.5*(particleval)+gaschangenow), 0), 1)
+									//particletemp.Elements[i] = particle.Elements[i]
+								}
+							}
+						}
 					} else {
-						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/totalchange, 0), 1)
-						particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+						if gaschangenow*gas2changenow < 0 {
+							//cannot use matrix solution
+							if gaschangenow*gas2changethen == gas2changenow*gaschangethen {
+								//current time step shows no total change in advection
+								//all reactive cell
+								if totalchangenowreac == 0 {
+									//then particlechangenow's contribution corresponding to gas 1 is -gaschangenow
+									particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]-gaschangenow, particleval), 0)
+									if particletemp.Elements[i]+gasdata.Elements[i] == 0 {
+										//nothing changes; K also does not change
+										partitioning.Elements[i] += 0
+										//particletemp.Elements[i] = 0.5 * particleval
+										//particletemp.Elements[i] = particle.Elements[i]
+									} else {
+										//can use the fundamental representation of the change in the ratio
+										partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+										particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+										//partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max(-gaschangenow/(particletemp.Elements[i]+gasdata.Elements[i]), -1), 1), 0)
+										//particletemp.Elements[i] = math.Max(particle.Elements[i]+((partitioning.Elements[i]+math.Min(math.Max(-gaschangenow/(particleval+gasdata.Elements[i]), -1), 1))/(1-(partitioning.Elements[i]+math.Min(math.Max(-gaschangenow/(particleval+gasdata.Elements[i]), -1), 1))))*gasdata.Elements[i], 0)
+									}
+								} else {
+									// if gaschangenow == gas2changenow {
+									// 	particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]+particlechangenow, particleval), 0)
+									// 	partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+									// 	particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+									// 	//partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max(particlechangenow/(particletemp.Elements[i]+gasdata.Elements[i])-particletemp.Elements[i]*(particlechangenow+gaschangenow)/(math.Pow(particletemp.Elements[i]+gasdata.Elements[i], 2)), -1), 1), 0)
+									// } else {
+									particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]+particlechangenow/(gaschangenow-gas2changenow)*gaschangenow, particleval), 0)
+									partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+									particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+									//partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max((particlechangenow/(gaschangenow-gas2changenow)*gaschangenow)/(particletemp.Elements[i]+gaschangenow)-particletemp.Elements[i]*((particlechangenow/(gaschangenow-gas2changenow)*gaschangenow)+gaschangenow)/(math.Pow(particleval+gasdata.Elements[i], 2)), -1), 1), 0)
+									//}
+									//partitioning.Elements[i] = math.Max(partitioning.Elements[i] + math.Min(math.Max(particlechangenow/(gaschangenow - gas2changenow + particlechangenow),0),1), 0)
+								}
+							} else {
+								//matrix solution exists
+								A := mat.NewDense(2, 2, []float64{
+									gaschangenow, gas2changenow,
+									gaschangethen, gas2changethen})
+
+								b := mat.NewVecDense(2, []float64{
+									//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
+									particlechangenow, particlechangethen})
+
+								var x mat.VecDense
+								err = x.SolveVec(A, b)
+
+								if err == nil {
+									//Regression coefficients - these are the partition coefficient Kp!
+									particletemp.Elements[i] = math.Max(math.Min(particle.Elements[i]+x.AtVec(0)*gaschangenow, particleval), 0)
+									partitioning.Elements[i] = math.Max(partitioning.Elements[i]+math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1), 0)
+									particletemp.Elements[i] = math.Max(math.Min((math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1))/(1-(math.Min(math.Max(particletemp.Elements[i]/(particletemp.Elements[i]+gasdata.Elements[i]), 0), 1)))*gasdata.Elements[i], particleval), 0)
+									//partitioning.Elements[i] = math.Max(2*partitioning.Elements[i]+math.Min(math.Max(x.AtVec(0)*gaschangenow/(particletemp.Elements[i]+gasdata.Elements[i])-particletemp.Elements[i]*(x.AtVec(0)*gaschangenow+gaschangenow)/(math.Pow(particletemp.Elements[i]+gasdata.Elements[i], 2)), -1), 1), 0)
+									//for i := range particle.Elements {
+									//if partitioning.Elements[i] != 1 {
+									//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
+									//particle.Elements[i] = oldparticle.Elements[i]
+									//gasConc.Elements[i] = gas.Elements[i]
+									//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
+									//particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+									//gas.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
+								} else {
+									particletemp.Elements[i] = 0.5 * (particleval)
+									if (0.5*(particleval) + gasdata.Elements[i]) == 0 {
+										partitioning.Elements[i] += 0
+									} else {
+										partitioning.Elements[i] += math.Min(math.Max(0.5*(particleval)/(0.5*(particleval)+gaschangenow), 0), 1)
+										//particletemp.Elements[i] = particle.Elements[i]
+									}
+								}
+							}
+						}
 					}
-					//log.Fatalf("no solution: %v", err)
+					//continue
 				}
-				continue
 			}
-
-			//Regression coefficients - these are the partition coefficient Kp!
-			partitioning.Elements[i] += math.Min(math.Max(x.AtVec(0)/(1+x.AtVec(0)), 0), 1)
-
-			//for i := range particle.Elements {
-			if partitioning.Elements[i] != 0|1 {
-				//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
-				//particle.Elements[i] = oldparticle.Elements[i]
-				//gasConc.Elements[i] = gas.Elements[i]
-				//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
-				particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
-				//gas.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
-			}
-			//}
 		}
 		oldergas = oldgas.Copy()
 		oldgas = gasdata.Copy()
@@ -716,6 +861,172 @@ func soaPartitioning(gasFunc, gasFunc2, particleFunc, testFunc NextData) (partit
 		n++
 	}
 }
+
+// 	}
+
+// 					partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow+gas2changenow+particlechangenow), 0), 1)
+// 					particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 					} else {
+// 						//all advective cell
+// 						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow+gas2changenow+particlechangenow), 0), 1)
+// 						particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 					}
+// 			} else {
+// 				//matrix solution exists
+
+// 				}
+// 	}
+// 	}
+// }
+
+// //advective species
+// if -gaschangenow + particlechangenow == 0 {
+// 	partitioning.Elements[i] += 0.5
+// 	particletemp.Elements[i] = particle.Elements[i] + particlechangenow
+// 	} else {
+// 		partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1)
+// 		particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 		}
+
+// //partially-advective or partially-reactive cell
+// if gaschangenow*gas2changenow < 0 {
+
+// 	//cannot use matrix solution
+// 	if gaschangenow*gas2changethen == gas2changenow*gaschangethen {
+
+// 		//current time step shows no total change in advection
+// 		//all reactive cell
+// 		if gaschangenow == gas2changenow {
+// 						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(-gaschangenow-gas2changenow+particlechangenow), 0), 1)
+// 						particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 					} else {
+// 						//all advective cell
+// 						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow-gas2changenow+particlechangenow), 0), 1)
+// 						particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 			}
+// 		} else {//matrix solution exists
+// 				A := mat.NewDense(2, 2, []float64{
+// 				-gaschangenow, -gas2changenow,
+// 				-gaschangethen, -gas2changethen})
+
+// 				b := mat.NewVecDense(2, []float64{
+// 					//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
+// 					particlechangenow, particlechangethen})
+
+// 				var x mat.VecDense
+// 				err = x.SolveVec(A, b)
+
+// 				if err != nil {
+// 					//Regression coefficients - these are the partition coefficient Kp!
+// 					partitioning.Elements[i] += math.Min(math.Max(x.AtVec(0)/(1+x.AtVec(0)), 0), 1)
+
+// 					//for i := range particle.Elements {
+// 					if partitioning.Elements[i] != 0|1 {
+// 					//partitioning.Elements[i] = Kp[0] / (1 + Kp[0])
+// 					//particle.Elements[i] = oldparticle.Elements[i]
+// 					//gasConc.Elements[i] = gas.Elements[i]
+// 					//partitioning.Elements[i] = partitioning.Elements[i] / (1 + partitioning.Elements[i])
+// 					particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 					//gas.Elements[i] = (1 - partitioning.Elements[i]) * (oldgas.Elements[i] + oldgas2.Elements[i] + oldparticle.Elements[i])
+// 					}
+// 				} else {
+
+// 				}
+// 			}
+// 		}
+
+// A := mat.NewDense(2, 2, []float64{
+// 	-gaschangenow, -gas2changenow,
+// 	-gaschangethen, -gas2changethen})
+
+// //b := mat.NewVecDense(2, []float64{
+// //	//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
+// //	sumY[i], sumYsq[i]})
+// b := mat.NewVecDense(2, []float64{
+// 	//sumY.Get(k, j, i), sumYsq.Get(k, j, i)})
+// 	particlechangenow, particlechangethen})
+
+// var x mat.VecDense
+// err = x.SolveVec(A, b)
+// //what to do if matrix solution not working? Use only current time step
+// if err != nil {
+// 	if gaschangenow == 0 {
+// 		partitioning.Elements[i] = 0
+// 		particletemp.Elements[i] = particle.Elements[i]
+// 	} else {
+// 	//cannot model cell as a reactive cell only advective cell
+// 	if gaschangenow*particlechangenow > 0 {
+// 		if totalchangenowadv == 0 && totalchangethenadv == 0 {
+// 			partitioning.Elements[i] = 0
+// 			particletemp.Elements[i] = particle.Elements[i]
+// 		} else {
+// 			if totalchangenowadv == 0 {
+// 				if totalchangethenadv == 0
+// 			}
+// 		}
+// 	}
+// 	}
+// }
+
+// 			partitioning.Elements[i] = 0
+// 			particletemp.Elements[i] = particle.Elements[i]
+// 		} else {
+
+// 		}
+
+// 		if !math.IsNaN(part) {
+// 			partitioning.Elements[i] += part
+// 		}
+
+// 		particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 	} else {
+// 		if gas2changenow == 0 && gaschangenow+particlechangenow == 0 {
+// 			partitioning.Elements[i] = 1
+// 			particletemp.Elements[i] = particle.Elements[i] + particlechangenow
+// 		} else {
+// 			if gas2changenow == 0 {
+// 				partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(-gaschangenow+particlechangenow), 0), 1)
+// 				particletemp.Elements[i] = particle.Elements[i] + particlechangenow
+// 			} else {
+// 				if totalchange ==0 && totalchangethen == 0 {
+// 					partitioning.Elements[i] = 0
+// 					particletemp.Elements[i] = particle.Elements[i]
+// 				} else {
+// 				if totalchange == 0 {
+// 					partitioning.Elements[i] += math.Min(math.Max(particlechangethen/(-gaschangethen+particlechangethen), 0), 1)
+// 					particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 			} else {
+// 					if particlechangenow > totalchange   {
+// 						partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1)
+// 						particletemp.Elements[i] = particle.Elements[i] + particlechangenow
+// 					}	else {
+// 							partitioning.Elements[i] += math.Min(math.Max(particlechangenow/totalchange, 0), 1)
+// 							particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 						}
+// 				}
+// 						//log.Fatalf("no solution: %v", err)
+// 			}
+// 					continue
+// 		}
+// 	}
+
+// 		if totalchange == 0 {
+// 				partitioning.Elements[i] = 1
+// 				particletemp.Elements[i] = particle.Elements[i] + particlechangenow*gaschangenow/(gaschangenow + gas2changenow)
+// 		} else {
+// 			if particlechangenow > totalchange   {
+// 				partitioning.Elements[i] += math.Min(math.Max(particlechangenow/(gaschangenow+particlechangenow), 0), 1)
+// 				particletemp.Elements[i] = particle.Elements[i] + particlechangenow
+// 			}	else {
+// 			partitioning.Elements[i] += math.Min(math.Max(particlechangenow/totalchange, 0), 1)
+// 			particletemp.Elements[i] = particle.Elements[i] + (partitioning.Elements[i]/(1-partitioning.Elements[i]))*gas.Elements[i]
+// 		}
+// 	}
+// 		//log.Fatalf("no solution: %v", err)
+// 	}
+// 	continue
+// }
+//}
 
 // marginalPartitioning calculates marginal partitioning over a period
 // of time between gas and particle

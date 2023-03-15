@@ -13,7 +13,14 @@
 	// "forwardPorts": [],
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	// "postCreateCommand": "apt-get update && apt-get install -y curl",
+	// Good references for how we solved dlv issue we faced where it became incompartible because it is not in our container
+	// https://github.com/golang/vscode-go/issues/1716
+	// https://github.com/go-delve/delve/issues/1974
+	// https://go.dev/doc/go-get-install-deprecation
+
+	"postCreateCommand":
+
+	"go install -v github.com/cweill/gotests/gotests@v1.6.0 && go install -v github.com/fatih/gomodifytags@v1.16.0 && go install -v github.com/josharian/impl@v1.1.0 && go install -v github.com/haya14busa/goplay/cmd/goplay@v1.0.0 && go install -v github.com/go-delve/delve/cmd/dlv@v1.8.3 && go install -v honnef.co/go/tools/cmd/staticcheck@v0.2.2 && go install -v golang.org/x/tools/gopls@latest && go install -v github.com/ramya-rao-a/go-outline@v0.0.0-20210608161538-9736a4bde949"   
 
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
 	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],

@@ -21,6 +21,16 @@
             "request": "launch",
             "mode": "auto",
             "program": "${fileDirname}"
-        } 
-    ]
+        }
+    // ],
+
+    // "dlvFlags": [
+    //     "--check-go-version=false"
+    // ]
+
+//     "go.delveConfig": [
+//         {
+//         "debugAdapter": "legacy"
+//  }
+]
 }
