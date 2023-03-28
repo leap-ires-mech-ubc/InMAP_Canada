@@ -61,11 +61,11 @@ const (
 type GEMMACH struct {
 	aVOC, bVOC, tSOA, aSOA, bSOA, nox, no, no2, pNO, sox, pS, nh3, pNH, totalPM25, ho, h2o2 map[string]float64
 
-	noChemHour bool
+	gemnoChemHour bool
 
 	start, end time.Time
 
-	gemOut, gem_rdps string
+	gem_out, gem_rdps string
 
 	//gem_geophy string
 
@@ -88,17 +88,17 @@ type GEMMACH struct {
 
 // NewGEMMACH initializes a GEM-MACH preprocessor from the given
 // configuration information.
-// gemOut is the location of GEM-MACH output files.
+// gem_out is the location of GEM-MACH output files.
 // [DATE] should be used as a wild card for the simulation date.
 // startDate and endDate are the dates of the beginning and end of the
 // simulation, respectively, in the format "YYYYMMDD".
 // If msgChan is not nil, status messages will be sent to it.
-//func NewGEMMACH(gemOut, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
+//func NewGEMMACH(gem_out, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
 
 //SB 20221127:
 //start Copy-Adapt-VF-v0
 //func NewGEOSChem(GEOSA1, GEOSA3Cld, GEOSA3Dyn, GEOSI3, GEOSA3MstE, GEOSApBp, GEOSChemOut, OlsonLandMap, startDate, endDate string, dash bool, chemRecordStr, chemFileStr string, noChemHour bool, msgChan chan string) (*GEOSChem, error) {
-func NewGEMMACH(gemOut, Gem_geophy, gem_rdps, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error) {
+func NewGEMMACH(gem_out, gem_geophy, gem_rdps, startDate, endDate string, gemnoChemHour bool, msgChan chan string) (*GEMMACH, error) {
 	//end Copy-Adapt-VF-v0
 	w := GEMMACH{
 		// These maps contain the GEM-MACH variables that make
@@ -171,10 +171,10 @@ func NewGEMMACH(gemOut, Gem_geophy, gem_rdps, startDate, endDate string, noChemH
 		//Convert from ug/kg to ppmV for consistency
 		h2o2: map[string]float64{"TH22": UgKgToppmv(mwH2O2)},
 
-		gemOut:     gemOut,
-		gem_rdps:   gem_rdps,
-		msgChan:    msgChan,
-		noChemHour: noChemHour,
+		gem_out:       gem_out,
+		gem_rdps:      gem_rdps,
+		msgChan:       msgChan,
+		gemnoChemHour: gemnoChemHour,
 	}
 
 	var err error
@@ -204,7 +204,7 @@ func NewGEMMACH(gemOut, Gem_geophy, gem_rdps, startDate, endDate string, noChemH
 
 	//SB 20221127:
 	//start Copy-Adapt-VF-v0
-	file, err := os.Open(Gem_geophy)
+	file, err := os.Open(gem_geophy)
 	if err != nil {
 		return nil, err
 	}
@@ -213,7 +213,7 @@ func NewGEMMACH(gemOut, Gem_geophy, gem_rdps, startDate, endDate string, noChemH
 	//defer file.Close()
 	cfile, err := cdf.Open(file)
 	if err != nil {
-		return nil, fmt.Errorf("inmap: Gem_geophy land use file: %v", err)
+		return nil, fmt.Errorf("inmap: gem_geophy land use file: %v", err)
 	}
 
 	//commenting below lines to try a single os.Open, cdf.Open, and defer file.Close() in the following sections of copy-adapt-VF-v0
@@ -395,53 +395,53 @@ var flip = func() func(NextData) NextData {
 //This function will read the data with the Z axis inverted
 //Trying to call the nextDataNCF function outside the return statement did not work - found this work-around in geoschem's preprocessor
 func (w *GEMMACH) flipread(varName string) NextData {
-	if w.noChemHour {
+	if w.gemnoChemHour {
 		flipfunc := flip()
-		return flipfunc(nextDataNCF(w.gemOut, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
+		return flipfunc(nextDataNCF(w.gem_out, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
 	} else {
 		flipfunc := flip()
-		return flipfunc(nextDataNCF(w.gemOut, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
+		return flipfunc(nextDataNCF(w.gem_out, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
 	}
 }
 
 //This function will read a group of data using the "alt" method with the Z axis inverted
 func (w *GEMMACH) flipreadGroupAlt(varGroup map[string]float64) NextData {
-	if w.noChemHour {
+	if w.gemnoChemHour {
 		flipfunc := flip()
-		return flipfunc(nextDataGroupAltNCF(w.gemOut, gemFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
+		return flipfunc(nextDataGroupAltNCF(w.gem_out, gemFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
 	} else {
 		flipfunc := flip()
-		return flipfunc(nextDataGroupAltNCF(w.gemOut, gemFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
+		return flipfunc(nextDataGroupAltNCF(w.gem_out, gemFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
 	}
 }
 
 //This function reads a group of data with the Z axis inverted
 func (w *GEMMACH) flipreadGroup(varGroup map[string]float64) NextData {
-	if w.noChemHour {
+	if w.gemnoChemHour {
 		flipfunc := flip()
-		return flipfunc(nextDataGroupNCF(w.gemOut, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
+		return flipfunc(nextDataGroupNCF(w.gem_out, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
 	} else {
 		flipfunc := flip()
-		return flipfunc(nextDataGroupNCF(w.gemOut, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
+		return flipfunc(nextDataGroupNCF(w.gem_out, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
 	}
 }
 
 func (w *GEMMACH) read(varName string) NextData {
-	if w.noChemHour {
-		return nextDataNCF(w.gemOut, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan)
+	if w.gemnoChemHour {
+		return nextDataNCF(w.gem_out, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan)
 	}
-	return nextDataNCF(w.gemOut, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+	return nextDataNCF(w.gem_out, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
 func (w *GEMMACH) readGroup(varGroup map[string]float64) NextData {
-	if w.noChemHour {
-		return nextDataGroupNCF(w.gemOut, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan)
+	if w.gemnoChemHour {
+		return nextDataGroupNCF(w.gem_out, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan)
 	}
-	return nextDataGroupNCF(w.gemOut, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
+	return nextDataGroupNCF(w.gem_out, gemFormat, varGroup, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
 }
 
 func (w *GEMMACH) rdpsread(varName string) NextData {
-	if w.noChemHour {
+	if w.gemnoChemHour {
 		return nextDataNCF(w.gem_rdps, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan)
 	}
 	return nextDataNCF(w.gem_rdps, gemFormat, varName, w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan)
@@ -452,7 +452,7 @@ func (w *GEMMACH) rdpsread(varName string) NextData {
 // Nx helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the West-East direction.
 func (w *GEMMACH) Nx() (int, error) {
-	f, ff, err := ncfFromTemplate(w.gemOut, gemFormat, w.start)
+	f, ff, err := ncfFromTemplate(w.gem_out, gemFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("nx: %v", err)
 	}
@@ -463,7 +463,7 @@ func (w *GEMMACH) Nx() (int, error) {
 // Ny helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the South-North direction.
 func (w *GEMMACH) Ny() (int, error) {
-	f, ff, err := ncfFromTemplate(w.gemOut, gemFormat, w.start)
+	f, ff, err := ncfFromTemplate(w.gem_out, gemFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("ny: %v", err)
 	}
@@ -474,7 +474,7 @@ func (w *GEMMACH) Ny() (int, error) {
 // Nz helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the below-above direction.
 func (w *GEMMACH) Nz() (int, error) {
-	f, ff, err := ncfFromTemplate(w.gemOut, gemFormat, w.start)
+	f, ff, err := ncfFromTemplate(w.gem_out, gemFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("nz: %v", err)
 	}
@@ -713,19 +713,19 @@ func (w *GEMMACH) W() NextData {
 		if err != nil {
 			return nil, err
 		}
-		//WW is on level 1 so we can leave it as-is
-		out := sparse.ZerosDense(WW.Shape...)
-		for k := 0; k < WW.Shape[0]; k++ {
-			for j := 0; j < WW.Shape[1]; j++ {
-				for i := 0; i < WW.Shape[2]; i++ {
+		//WW is on level 1 so we need to convert it to a staggered grid for InMap compatability.
+		out := sparse.ZerosDense(GZ.Shape...)
+		for k := 0; k < out.Shape[0]; k++ {
+			for j := 0; j < out.Shape[1]; j++ {
+				for i := 0; i < out.Shape[2]; i++ {
 					//Calculate the slope of the height/pressure curve
 					//For the topmost cell, we will just use the slope from below
-					if k == WW.Shape[0]-1 {
+					if k >= out.Shape[0]-2 {
 						//print(GZ.Get(k, j, i), GZ.Get(k-1, j, i))
-						slope := (GZ.Get(k, j, i) - GZ.Get(k-1, j, i)) /
-							(PP.Get(k, j, i) - PP.Get(k-1, j, i))
+						//slope := (GZ.Get(k, j, i) - GZ.Get(k-1, j, i)) /
+						//	(PP.Get(k, j, i) - PP.Get(k-1, j, i))
 						//Convert as pa/s * m/pa = m/s
-						WWprime := WW.Get(k, j, i) * slope
+						WWprime := out.Get(k-1, j, i)
 						out.Set(WWprime, k, j, i)
 						continue
 					}
@@ -1094,7 +1094,7 @@ func yCenters(file *cdf.File) ([]float64, error) {
 // nccopy -k classic Gem_geophy.nc Gem_geophy1.nc
 // name change is necessary to ensure code works
 // added a new input var i of type int to mark vegetation type from nc file
-func (w *GEMMACH) readGem_geophy(file *cdf.File, i string) (*gem_geophy, error) {
+func (w *GEMMACH) readgem_geophy(file *cdf.File, i string) (*gem_geophy, error) {
 
 	//taking in global attributes from gem_geophy
 	dx := float64(file.Header.GetAttribute("", "delta_rlon").([]float32)[0])
@@ -1198,7 +1198,7 @@ func (w *GEMMACH) largestLandUse(file *cdf.File) (*sparse.DenseArray, error) {
 		} else {
 			VFs[i] = fmt.Sprintf("%v", i+1)
 		}
-		p, err := w.readGem_geophy(file, VFs[i])
+		p, err := w.readgem_geophy(file, VFs[i])
 		if err != nil {
 			return nil, err
 		}

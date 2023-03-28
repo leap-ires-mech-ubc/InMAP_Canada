@@ -237,6 +237,9 @@ file and saves the result for use in future InMAP simulations.`,
 				os.ExpandEnv(cfg.GetString("Preproc.GEOSChem.GEOSApBp")),
 				maybeDownload(ctx, os.ExpandEnv(cfg.GetString("Preproc.GEOSChem.GEOSChem")), outChan),
 				maybeDownload(ctx, os.ExpandEnv(cfg.GetString("Preproc.GEOSChem.OlsonLandMap")), outChan),
+				maybeDownload(ctx, os.ExpandEnv(cfg.GetString("Preproc.GEMMACH.gem_out")), outChan),
+				maybeDownload(ctx, os.ExpandEnv(cfg.GetString("Preproc.GEMMACH.gem_geophy")), outChan),
+				maybeDownload(ctx, os.ExpandEnv(cfg.GetString("Preproc.GEMMACH.gem_rdps")), outChan),
 				maybeDownload(ctx, os.ExpandEnv(cfg.GetString("InMAPData")), outChan),
 				cfg.GetFloat64("Preproc.CtmGridXo"),
 				cfg.GetFloat64("Preproc.CtmGridYo"),
@@ -246,6 +249,7 @@ file and saves the result for use in future InMAP simulations.`,
 				cfg.GetString("Preproc.GEOSChem.ChemRecordInterval"),
 				cfg.GetString("Preproc.GEOSChem.ChemFileInterval"),
 				cfg.GetBool("Preproc.GEOSChem.NoChemHourIndex"),
+				cfg.GetBool("Preproc.GEMMACH.gemnoChemHour"),
 			)
 		},
 		DisableAutoGenTag: true,
@@ -918,7 +922,7 @@ loading the data.`,
 		},
 		{
 			name: "Preproc.CTMType",
-			usage: `Preproc.CTMType specifies what type of chemical transport model we are going to be reading data from. Valid options are "GEOS-Chem" and "WRF-Chem".
+			usage: `Preproc.CTMType specifies what type of chemical transport model we are going to be reading data from. Valid options are "GEOS-Chem", "WRF-Chem" and "GEMMACH".
 `,
 			defaultVal: "WRF-Chem",
 			flagsets:   []*pflag.FlagSet{cfg.preprocCmd.Flags()},
@@ -1011,6 +1015,34 @@ loading the data.`,
 		{
 			name: "Preproc.GEOSChem.Dash",
 			usage: `Preproc.GEOSChem.Dash indicates whether GEOS-Chem chemical variable names should be assumed to be in the form 'IJ-AVG-S__xxx' vs. the form 'IJ_AVG_S__xxx'.
+`,
+			defaultVal: false,
+			flagsets:   []*pflag.FlagSet{cfg.preprocCmd.Flags()},
+		},
+		{
+			name: "Preproc.GEMMACH.gem_out",
+			usage: `Preproc.GEMMACH.gem_out is the location of GEMMACH output files. [DATE] should be used as a wild card for the simulation date.
+`,
+			defaultVal: "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/gemmachtest_[DATE].nc",
+			flagsets:   []*pflag.FlagSet{cfg.preprocCmd.Flags()},
+		},
+		{
+			name: "Preproc.GEMMACH.gem_geophy",
+			usage: `Preproc.GEMMACH.gem_geophy is the location of GEMMACH landuse data. No date is necessary, these values are constant.
+`,
+			defaultVal: "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/gemmachtest_gem_geophy.nc",
+			flagsets:   []*pflag.FlagSet{cfg.preprocCmd.Flags()},
+		},
+		{
+			name: "Preproc.GEMMACH.gem_rdps",
+			usage: `Preproc.GEMMACH.gem_rdps is the location of some GEM meteorological data. [DATE] should be used as a wild card for the simulation date.
+`,
+			defaultVal: "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/rdps/rdpsqctest_[DATE].nc",
+			flagsets:   []*pflag.FlagSet{cfg.preprocCmd.Flags()},
+		},
+		{
+			name: "Preproc.GEMMACH.gemnoChemHour",
+			usage: `If Preproc.GEMMACH.gemnoChemHour is true, the GEMMACH output files will be assumed to contain a single hour per file.
 `,
 			defaultVal: false,
 			flagsets:   []*pflag.FlagSet{cfg.preprocCmd.Flags()},

@@ -747,7 +747,9 @@ func TestGetGeometry(t *testing.T) {
 }
 
 func TestReadWriteCTMData(t *testing.T) {
-	cfg, ctmdata := CreateTestCTMData()
+	//TR&SB - added switch to load CTM data rather than generating it.
+	load_ctmdata := false
+	cfg, ctmdata := CreateTestCTMData(load_ctmdata)
 
 	f, err := os.Create(TestCTMDataFile)
 	if err != nil {
@@ -877,7 +879,9 @@ func different(a, b, tolerance float64) bool {
 }
 
 func TestLoadPopulationCOARDS(t *testing.T) {
-	cfg, _ := CreateTestCTMData()
+	//TR&SB - added switch to load CTM data rather than generating it.
+	load_ctmdata := false
+	cfg, _ := CreateTestCTMData(load_ctmdata)
 	cfg.CensusFile = "cmd/inmap/testdata/havana_ppp_2020.ncf"
 	cfg.CensusPopColumns = cfg.CensusPopColumns[0:1]
 	sr, err := proj.Parse(cfg.GridProj)

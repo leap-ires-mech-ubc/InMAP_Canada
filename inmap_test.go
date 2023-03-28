@@ -45,7 +45,7 @@ func TestConverge(t *testing.T) {
 		PM25: E,
 		VOC:  E,
 		NH3:  E,
-		Geom: geom.Point{X: -3999, Y: -3999.},
+		Geom: geom.Point{X: -39.44722, Y: -31.77}, //geom.Point{X: -3999, Y: -3999.},
 	}) // ground level emissions
 
 	var m simplechem.Mechanism

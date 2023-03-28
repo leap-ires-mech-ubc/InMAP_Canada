@@ -1187,7 +1187,7 @@ func windDeviation(uAvg *sparse.DenseArray, uFunc NextData) (*sparse.DenseArray,
 }
 
 // calcWindSpeed calculates RMS wind speed as well as average speeds in each
-// direction.
+// direction. stagger(inFunc NextData, staggerDim int) stagger(wAvg, 1 )
 func calcWindSpeed(uFunc, vFunc, wFunc NextData) (speed, speedInverse, speedMinusThird, speedMinusOnePointFour, uAvg, vAvg, wAvg *sparse.DenseArray, err error) {
 	var n int
 	firstData := true
