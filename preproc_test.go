@@ -52,9 +52,12 @@ func TestGEMMACHToInMAP(t *testing.T) {
 	flag.Parse()
 	const tolerance = 1.0e-6
 	//filename = gemmach_2019010100_000.ncss
-	gem, err := NewGEMMACH("cmd/inmap/testdata/preproc/gemmach/gemmachtest_[DATE].nc",
-		"cmd/inmap/testdata/preproc/gemmach/gemmachtest_gem_geophy.nc",
-		"cmd/inmap/testdata/preproc/gemmach/rdps/rdpsqctest_[DATE].nc",
+	// cmd/inmap/testdata/preproc/gemmach/gemmachtest_[DATE].nc",
+	// 	"cmd/inmap/testdata/preproc/gemmach/gemmachtest_gem_geophy.nc",
+	// 	"cmd/inmap/testdata/preproc/gemmach/rdps/rdpsqctest_[DATE].nc",
+	gem, err := NewGEMMACH("cmd/inmap/testdata/preproc/gemmach/processed/gemmach_[DATE].nc",
+		"cmd/inmap/testdata/preproc/gemmach/processed/gem_geophy_full.nc",
+		"cmd/inmap/testdata/preproc/gemmach/processed/rdps/rdpsqctest_[DATE].nc",
 		"20190101", "20190102", true, nil)
 	if err != nil {
 		t.Fatal(err)
@@ -64,7 +67,10 @@ func TestGEMMACHToInMAP(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	goldenFileName := "cmd/inmap/testdata/preproc/inmapData_WRFChem_golden.ncf"
+	//outputdata,err =
+
+	goldenFileName := "cmd/inmap/testdata/preproc/inmapData_GEMMACH_jan1.nc"
+	regenGoldenFiles := true
 
 	if regenGoldenFiles {
 		err := regenGoldenFile(newData, goldenFileName)

@@ -1,0 +1,60 @@
+<PAMDataset>
+  <Subdataset name="LayerHeights">
+    <PAMDataset>
+      <PAMRasterBand band="1">
+        <Histograms>
+          <HistItem>
+            <HistMin>1.000000013351432e-10</HistMin>
+            <HistMax>1.000000013351432e-10</HistMax>
+            <BucketCount>16</BucketCount>
+            <IncludeOutOfRange>0</IncludeOutOfRange>
+            <Approximate>0</Approximate>
+            <HistCounts>16|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0</HistCounts>
+          </HistItem>
+        </Histograms>
+        <Metadata>
+          <MDI key="STATISTICS_MAXIMUM">1.0000000133514e-10</MDI>
+          <MDI key="STATISTICS_MEAN">1.0000000133514e-10</MDI>
+          <MDI key="STATISTICS_MINIMUM">1.0000000133514e-10</MDI>
+          <MDI key="STATISTICS_STDDEV">0</MDI>
+        </Metadata>
+      </PAMRasterBand>
+      <PAMRasterBand band="2">
+        <Histograms>
+          <HistItem>
+            <HistMin>21.87333422899246</HistMin>
+            <HistMax>21.89754551649094</HistMax>
+            <BucketCount>16</BucketCount>
+            <IncludeOutOfRange>0</IncludeOutOfRange>
+            <Approximate>0</Approximate>
+            <HistCounts>2|0|4|0|3|0|2|0|0|2|0|1|0|1|0|1</HistCounts>
+          </HistItem>
+        </Histograms>
+        <Metadata>
+          <MDI key="STATISTICS_MAXIMUM">21.8968334198</MDI>
+          <MDI key="STATISTICS_MEAN">21.882591366768</MDI>
+          <MDI key="STATISTICS_MINIMUM">21.874046325684</MDI>
+          <MDI key="STATISTICS_STDDEV">0.0065988284550266</MDI>
+        </Metadata>
+      </PAMRasterBand>
+      <PAMRasterBand band="3">
+        <Histograms>
+          <HistItem>
+            <HistMin>65.56831097602844</HistMin>
+            <HistMax>65.63402819633484</HistMax>
+            <BucketCount>16</BucketCount>
+            <IncludeOutOfRange>0</IncludeOutOfRange>
+            <Approximate>0</Approximate>
+            <HistCounts>2|1|4|1|0|0|1|0|1|2|0|0|0|2|1|1</HistCounts>
+          </HistItem>
+        </Histograms>
+        <Metadata>
+          <MDI key="STATISTICS_MAXIMUM">65.632095336914</MDI>
+          <MDI key="STATISTICS_MEAN">65.595676898956</MDI>
+          <MDI key="STATISTICS_MINIMUM">65.570243835449</MDI>
+          <MDI key="STATISTICS_STDDEV">0.02153778818854</MDI>
+        </Metadata>
+      </PAMRasterBand>
+    </PAMDataset>
+  </Subdataset>
+</PAMDataset>

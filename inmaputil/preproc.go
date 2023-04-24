@@ -87,7 +87,7 @@ import (
 // dash indicates whether GEOS-Chem variable names are in the form 'IJ-AVG-S__xxx'
 // as opposed to 'IJ_AVG_S_xxx'.
 func Preproc(StartDate, EndDate, CTMType, WRFOut, GEOSA1, GEOSA3Cld, GEOSA3Dyn, GEOSI3, GEOSA3MstE, GEOSApBp,
-	GEOSChem, OlsonLandMap, InMAPData string, CtmGridXo, CtmGridYo, CtmGridDx, CtmGridDy float64, dash bool, recordDeltaStr, fileDeltaStr string, noChemHour bool) error {
+	GEOSChem, OlsonLandMap, gem_out, gem_geophy, gem_rdps, InMAPData string, CtmGridXo, CtmGridYo, CtmGridDx, CtmGridDy float64, dash bool, recordDeltaStr, fileDeltaStr string, noChemHour, gemnoChemHour bool) error {
 	msgChan := make(chan string)
 	go func() {
 		for {
@@ -96,6 +96,28 @@ func Preproc(StartDate, EndDate, CTMType, WRFOut, GEOSA1, GEOSA3Cld, GEOSA3Dyn, 
 	}()
 	var ctm inmap.Preprocessor
 	switch CTMType {
+	//func NewGEMMACH(gem_out, Gem_geophy, gem_rdps, startDate, endDate string, noChemHour bool, msgChan chan string) (*GEMMACH, error)
+	case "GEMMACH":
+		vars := []string{StartDate, EndDate, CTMType, gem_out, gem_geophy, gem_rdps}
+		varNames := []string{"StartDate", "EndDate", "CTMType", "gem_out", "gem_geophy", "gem_rdps"}
+		for i, v := range vars {
+			if v == "" {
+				return fmt.Errorf("inmap preprocessor: configuration variable %s is not specified", varNames[i])
+			}
+		}
+		var err error
+		ctm, err = inmap.NewGEMMACH(
+			gem_out,
+			gem_geophy,
+			gem_rdps,
+			StartDate,
+			EndDate,
+			gemnoChemHour,
+			msgChan,
+		)
+		if err != nil {
+			return err
+		}
 	case "GEOS-Chem":
 		vars := []string{StartDate, EndDate, CTMType, GEOSA1, GEOSA3Cld, GEOSA3Dyn, GEOSI3, GEOSA3MstE, GEOSChem, OlsonLandMap, recordDeltaStr, fileDeltaStr}
 		varNames := []string{"StartDate", "EndDate", "CTMType", "GEOSA1", "GEOSA3Cld", "GEOSA3Dyn", "GEOSI3", "GEOSA3MstE", "GEOSChem", "OlsonLandMap", "recordDeltaStr", "fileDeltaStr"}
