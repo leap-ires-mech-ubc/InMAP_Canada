@@ -69,7 +69,7 @@ func TestGEMMACHToInMAP(t *testing.T) {
 
 	//outputdata,err =
 
-	goldenFileName := "cmd/inmap/testdata/preproc/inmapData_GEMMACH_jan1.ncf"
+	goldenFileName := "cmd/inmap/testdata/preproc/inmapData_GEMMACH_jan1.nc"
 	regenGoldenFiles := true
 
 	if regenGoldenFiles {

@@ -196,7 +196,6 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 	// 	aNOxDryDep, aNH3DryDep, aVOCDryDep, aKxxyy, aerr)
 
 	//xx, yy := average(p.Z0())
-	//print(xx, yy)
 
 	//SB: 2022-11-26 below goroutines are designed to run in parallel; speed up code and stop if find any errors in any of them
 	go func() {
@@ -224,6 +223,12 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 			return nil, err
 		}
 	}
+
+	// uuDeviation, err := windDeviation(uAvg, p.U())
+	// uuDeviation, err = windDeviation(vAvg, p.V())
+	// print(uuDeviation, err)
+	// aaOrgPartitioning, aaVOC, aaSOA, err := soaPartitioning(p.AVOC(), p.BVOC(), p.ASOA(), p.ASOA())
+	// print(aaOrgPartitioning, aaVOC, aaSOA, err)
 
 	Dz := layerThickness(layerHeights)
 
