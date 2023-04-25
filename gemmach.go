@@ -800,6 +800,9 @@ func (w *GEMMACH) PNH() NextData { return w.flipreadGroup(w.pNH) }
 // TotalPM25 helps fulfill the Preprocessor interface.
 func (w *GEMMACH) TotalPM25() NextData { return w.flipreadGroup(w.totalPM25) }
 
+// Pressure read helps fulfil the Preprocessor interface
+func (w *GEMMACH) pread() NextData { return w.read("level1") }
+
 // SurfaceHeatFlux helps fulfill the Preprocessor interface
 // by returning heat flux at the surface [W/m2].
 //FC5 is the aggregate heat flux
@@ -889,7 +892,7 @@ func thetaPerturbToTemperature(thetaPerturb, p float64) float64 {
 // by returning pressure [Pa] as pressure level converted
 // from atmosphere to Pa. Here we convert our pressure index to a 3D variable
 func (w *GEMMACH) P() NextData {
-	ppfunc := w.read("level1")
+	ppfunc := w.pread()
 	pnhFunc := w.PNH() // windspeed  in pa/s
 	return func() (*sparse.DenseArray, error) {
 		PP, err := ppfunc()

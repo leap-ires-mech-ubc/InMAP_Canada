@@ -53,7 +53,7 @@ func TestPreprocGEMMACH(t *testing.T) {
 	// check whether the output is correct elsewhere.
 	cfg.Set("config", "../cmd/inmap/configExampleGEMMACH.toml")
 	cfg.Root.SetArgs([]string{"preproc"})
-	defer os.Remove("../cmd/inmap/testdata/preproc/inmapData_GEMMACH.ncf")
+	defer os.Remove("../cmd/inmap/testdata/preproc/inmapData_GEMMACH_golden.ncf")
 	if err := cfg.Root.Execute(); err != nil {
 		t.Fatal(err)
 	}
