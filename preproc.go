@@ -167,8 +167,8 @@ type Preprocessor interface {
 // lower-left corner of the domain, and dx and dy are the x and y edge
 // lengths of the grid cells, respectively.
 
-//SB 20221126: have to ensure rectangular grids since preprocess uses constant dx and dy: confirmed using testdata.go
-//indeed we do have rectangular grids (rlat rlon)
+// SB 20221126: have to ensure rectangular grids since preprocess uses constant dx and dy: confirmed using testdata.go
+// indeed we do have rectangular grids (rlat rlon)
 func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB: 2022-11-26; function returning a pointer receiver: fascinating!
 	var pblh, layerHeights, windSpeed, windSpeedInverse, windSpeedMinusThird, windSpeedMinusOnePointFour, uAvg, vAvg, wAvg *sparse.DenseArray
 
