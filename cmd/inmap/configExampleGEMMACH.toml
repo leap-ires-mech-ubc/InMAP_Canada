@@ -1,6 +1,6 @@
-InMAPData= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmapData_GEMMACH.ncf"
+InMAPData= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmapData_GEMMACH.nc"
 
-OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/xxx.shp"
+OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmaptest_gemmach.shp"
 
 EmissionUnits= "tons/year"
 
@@ -14,23 +14,15 @@ GridProj= "+proj=lcc"
 
 [Preproc]
 CTMType= "GEMMACH"
-
-StartDate= "20130102"
-EndDate= "20130104"
-CtmGridXo= -2004000.0
-CtmGridYo= -540000.0
+StartDate= "20190101"
+EndDate= "20190102"
+CtmGridXo= -2760000.0
+CtmGridYo= -1332000.0
 CtmGridDx= 12000.0
 CtmGridDy= 12000.0
 
 [Preproc.GEMMACH]
-//GEOSA1= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A1.2x25.nc"
-GEOSA3Cld= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A3cld.2x25.nc"
-GEOSA3Dyn= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A3dyn.2x25.nc"
-GEOSI3= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].I3.2x25.nc"
-GEOSA3MstE= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A3mstE.2x25.nc"
-GEOSChem= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gc_output.[DATE].nc"
-OlsonLandMap= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/geoschem-new/Olson_2001_Land_Map.025x025.generic.nc"
-Dash= true
-ChemRecordInterval= "3h"
-ChemFileInterval= "3h"
+gem_out= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/[DATE]_gemmach.nc"
+gem_geophy= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/GEOPHY_VF/gem_geophy_1.nc"
+gem_rdps= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/[DATE]_rdpsqc.nc"
 gemnoChemHourIndex= true
