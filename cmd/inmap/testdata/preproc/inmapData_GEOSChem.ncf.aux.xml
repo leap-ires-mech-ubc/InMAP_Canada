@@ -1,0 +1,60 @@
+<PAMDataset>
+  <Subdataset name="M2d">
+    <PAMDataset>
+      <PAMRasterBand band="1">
+        <Histograms>
+          <HistItem>
+            <HistMin>-1.007111222861568e-05</HistMin>
+            <HistMax>9.064001005754108e-05</HistMax>
+            <BucketCount>4</BucketCount>
+            <IncludeOutOfRange>0</IncludeOutOfRange>
+            <Approximate>0</Approximate>
+            <HistCounts>3|0|0|1</HistCounts>
+          </HistItem>
+        </Histograms>
+        <Metadata>
+          <MDI key="STATISTICS_MAXIMUM">8.0568897828925e-05</MDI>
+          <MDI key="STATISTICS_MEAN">2.0142224457231e-05</MDI>
+          <MDI key="STATISTICS_MINIMUM">0</MDI>
+          <MDI key="STATISTICS_STDDEV">3.4887356137381e-05</MDI>
+        </Metadata>
+      </PAMRasterBand>
+      <PAMRasterBand band="2">
+        <Histograms>
+          <HistItem>
+            <HistMin>-5.198991402721731e-06</HistMin>
+            <HistMax>4.679092262449558e-05</HistMax>
+            <BucketCount>4</BucketCount>
+            <IncludeOutOfRange>0</IncludeOutOfRange>
+            <Approximate>0</Approximate>
+            <HistCounts>3|0|0|1</HistCounts>
+          </HistItem>
+        </Histograms>
+        <Metadata>
+          <MDI key="STATISTICS_MAXIMUM">4.1591931221774e-05</MDI>
+          <MDI key="STATISTICS_MEAN">1.0397982805443e-05</MDI>
+          <MDI key="STATISTICS_MINIMUM">0</MDI>
+          <MDI key="STATISTICS_STDDEV">1.8009834515256e-05</MDI>
+        </Metadata>
+      </PAMRasterBand>
+      <PAMRasterBand band="3">
+        <Histograms>
+          <HistItem>
+            <HistMin>0</HistMin>
+            <HistMax>0</HistMax>
+            <BucketCount>4</BucketCount>
+            <IncludeOutOfRange>0</IncludeOutOfRange>
+            <Approximate>0</Approximate>
+            <HistCounts>4|0|0|0</HistCounts>
+          </HistItem>
+        </Histograms>
+        <Metadata>
+          <MDI key="STATISTICS_MAXIMUM">0</MDI>
+          <MDI key="STATISTICS_MEAN">0</MDI>
+          <MDI key="STATISTICS_MINIMUM">0</MDI>
+          <MDI key="STATISTICS_STDDEV">0</MDI>
+        </Metadata>
+      </PAMRasterBand>
+    </PAMDataset>
+  </Subdataset>
+</PAMDataset>

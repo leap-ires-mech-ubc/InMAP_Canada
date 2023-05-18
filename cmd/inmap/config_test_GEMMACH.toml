@@ -1,0 +1,28 @@
+InMAPData= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmapData_GEMMACH.nc"
+
+OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmaptest_gemmach.shp"
+
+EmissionUnits= "tons/year"
+
+[OutputVariables]
+WindSpeed= "WindSpeed"
+
+
+[VarGrid]
+GridProj= "+proj=lcc"
+
+
+[Preproc]
+CTMType= "GEMMACH"
+StartDate= "20190101"
+EndDate= "20190102"
+CtmGridXo= -2760000.0
+CtmGridYo= -1332000.0
+CtmGridDx= 12000.0
+CtmGridDy= 12000.0
+
+[Preproc.GEMMACH]
+gem_out= "/home/tfmrodge/scratch/GEMMACH_data/data/test/[DATE]_gemmach_test.nc"
+gem_geophy= "/home/tfmrodge/scratch/GEMMACH_data/data/test/gem_geophy_test.nc"
+gem_rdps= "/home/tfmrodge/scratch/GEMMACH_data/data/test/[DATE]_rdpsqc_test.nc"
+gemnoChemHourIndex= true

@@ -1,0 +1,14 @@
+<PAMDataset>
+  <Subdataset name="PBLDEPTH__PBL-M">
+    <PAMDataset>
+      <PAMRasterBand band="1">
+        <Metadata>
+          <MDI key="STATISTICS_MAXIMUM">392.76309204102</MDI>
+          <MDI key="STATISTICS_MEAN">282.63663482666</MDI>
+          <MDI key="STATISTICS_MINIMUM">220.69859313965</MDI>
+          <MDI key="STATISTICS_STDDEV">66.807024981985</MDI>
+        </Metadata>
+      </PAMRasterBand>
+    </PAMDataset>
+  </Subdataset>
+</PAMDataset>
