@@ -1001,25 +1001,29 @@ type gemGridCell struct {
 // 	attr := ff.Header.GetAttribute("", a)
 // 	return float64(attr.([]float32)[0]), nil
 // }
-
+//func (w *GEMMACH) HO() NextData { return w.flipreadGroup(w.ho) }
 // DX returns the longitude grid spacing.
 func DX(file *cdf.File) (float64, error) {
-	return float64(file.Header.GetAttribute("", "delta_rlon").([]float32)[0]), nil
+	//return float64(file.Header.GetAttribute("", "delta_rlon").([]float32)[0]), nil
+	return float64(file.Header.GetAttribute("", "delta_rlat").([]float64)[0]), nil
 	//return w.chemAttribute("delta_rlon")
 }
 
 // DY returns the latitude grid spacing.
 func DY(file *cdf.File) (float64, error) {
-	return float64(file.Header.GetAttribute("", "delta_rlat").([]float32)[0]), nil
+	//return float64(file.Header.GetAttribute("", "delta_rlat").([]float32)[0]), nil
+	return float64(file.Header.GetAttribute("", "delta_rlon").([]float64)[0]), nil
 	//return w.chemAttribute("delta_rlat")
 }
 
 func xCenters(file *cdf.File) ([]float64, error) {
 	//something using the interface Reader
-	var v = "rLON_var"
+	//var v = "rLON_var" "x_var"
+	var v = "rlat"
 	dims := file.Header.Lengths(v)
 	// //ny := dims[0]
-	nx := dims[1]
+	//nx := dims[1]
+	nx := dims[0]
 	data, err := readNCFNoHour(v, file, 0)
 	if err != nil {
 		// If variable not in file, try all lowercase.
@@ -1051,11 +1055,12 @@ func xCenters(file *cdf.File) ([]float64, error) {
 // yCenters returns the y-coordinates of the grid points.
 func yCenters(file *cdf.File) ([]float64, error) {
 	//something using the interface Reader
-	var v = "rLAT_var"
+	//var v = "rLAT_var"
+	var v = "rlon"
 	dims := file.Header.Lengths(v)
 	ny := dims[0]
-	nx := dims[1]
-	yCenter := make([]float64, ny)
+	//nx := dims[1]
+	//yCenter := make([]float64, ny)
 	data, err := readNCFNoHour(v, file, 0)
 	if err != nil {
 		// If variable not in file, try all lowercase.
@@ -1064,12 +1069,20 @@ func yCenters(file *cdf.File) ([]float64, error) {
 			return nil, err
 		}
 	}
-	for iy := 0; iy < ny; iy++ {
-		for ix := 0; ix < nx; ix++ {
-			yCenter[iy] = data.Elements[iy*nx]
-		}
-	}
-	return yCenter[:ny], nil
+	return data.Elements[:ny], nil
+	// if err != nil {
+	// 	// If variable not in file, try all lowercase.
+	// 	data, err = readNCFNoHour(strings.ToLower(v), file, 0)
+	// 	if err != nil {
+	// 		return nil, err
+	// 	}
+	// }
+	// for iy := 0; iy < ny; iy++ {
+	// 	for ix := 0; ix < nx; ix++ {
+	// 		yCenter[iy] = data.Elements[iy*nx]
+	// 	}
+	// }
+	// return yCenter[:ny], nil
 	// for iy := 0; iy < ny; iy++ {
 	// 	yCenter[iy] = float64(data.Elements[iy])
 	// }
@@ -1097,9 +1110,9 @@ func yCenters(file *cdf.File) ([]float64, error) {
 func (w *GEMMACH) readgem_geophy(file *cdf.File, i string) (*gem_geophy, error) {
 
 	//taking in global attributes from gem_geophy
-	dx := float64(file.Header.GetAttribute("", "delta_rlon").([]float32)[0])
+	dx := float64(file.Header.GetAttribute("", "delta_rlon").([]float64)[0])
 	//dxStr := file.Header.GetAttribute("", "delta_rlon").(string)
-	dy := float64(file.Header.GetAttribute("", "delta_rlat").([]float32)[0])
+	dy := float64(file.Header.GetAttribute("", "delta_rlat").([]float64)[0])
 	//dyStr := file.Header.GetAttribute("", "delta_rlat").(string)
 	//dx, err := strconv.ParseFloat(dxStr, 64)
 	// if err != nil {
