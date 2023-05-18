@@ -1,0 +1,7 @@
+
+Lmod is automatically replacing "intel/2020.1.217" with "go/1.18.3".
+
+
+Inactive Modules:
+  1) libfabric/1.10.1     2) openmpi     3) ucx/1.8.0
+

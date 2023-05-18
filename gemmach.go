@@ -1005,13 +1005,14 @@ type gemGridCell struct {
 // DX returns the longitude grid spacing.
 func DX(file *cdf.File) (float64, error) {
 	//return float64(file.Header.GetAttribute("", "delta_rlon").([]float32)[0]), nil
-	return float64(file.Header.GetAttribute("", "delta_x").([]float32)[0]), nil
+	//return float64(file.Header.GetAttribute("", "delta_x").([]float32)[0]), nil
+	return float64(file.Header.GetAttribute("", "delta_x").([]float64)[0]), nil
 	//return w.chemAttribute("delta_rlon")
 }
 
 // DY returns the latitude grid spacing.
 func DY(file *cdf.File) (float64, error) {
-	return float64(file.Header.GetAttribute("", "delta_y").([]float32)[0]), nil
+	return float64(file.Header.GetAttribute("", "delta_y").([]float64)[0]), nil
 	//return w.chemAttribute("delta_rlat")
 }
 
@@ -1058,7 +1059,7 @@ func yCenters(file *cdf.File) ([]float64, error) {
 	dims := file.Header.Lengths(v)
 	ny := dims[0]
 	//nx := dims[1]
-	yCenter := make([]float64, ny)
+	//yCenter := make([]float64, ny)
 	data, err := readNCFNoHour(v, file, 0)
 	if err != nil {
 		// If variable not in file, try all lowercase.
