@@ -887,9 +887,9 @@ func thetaPerturbToTemperature(thetaPerturb, p float64) float64 {
 */
 // P helps fulfill the Preprocessor interface
 // by returning pressure [Pa] as pressure level converted
-// from atmosphere to Pa. Here we convert our pressure index to a 3D variable
+// Here we convert our pressure index to a 3D variable
 func (w *GEMMACH) P() NextData {
-	ppfunc := w.read("level1")
+	ppfunc := w.read("pressure")
 	pnhFunc := w.PNH() // windspeed  in pa/s
 	return func() (*sparse.DenseArray, error) {
 		PP, err := ppfunc()

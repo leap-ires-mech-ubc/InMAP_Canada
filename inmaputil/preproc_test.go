@@ -51,7 +51,7 @@ func TestPreprocGEMMACH(t *testing.T) {
 	cfg := InitializeConfig()
 	// Here we only test whether the program runs. We
 	// check whether the output is correct elsewhere.
-	cfg.Set("config", "../cmd/inmap/configExampleGEMMACH.toml")
+	cfg.Set("config", "../cmd/inmap/config_test_GEMMACH.toml")
 	cfg.Root.SetArgs([]string{"preproc"})
 	defer os.Remove("../cmd/inmap/testdata/preproc/inmapData_GEMMACH.ncf")
 	if err := cfg.Root.Execute(); err != nil {
