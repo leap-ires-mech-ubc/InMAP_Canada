@@ -16,10 +16,10 @@ GridProj= "+proj=lcc"
 CTMType= "GEMMACH"
 StartDate= "20190101"
 EndDate= "20190102"
-CtmGridXo= -2760000.0
-CtmGridYo= -1332000.0
-CtmGridDx= 12000.0
-CtmGridDy= 12000.0
+CtmGridXo= -39.44722
+CtmGridYo= -31.77
+CtmGridDx= 0.09
+CtmGridDy= 0.09
 
 [Preproc.GEMMACH]
 gem_out= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/[DATE]_gemmach.nc"

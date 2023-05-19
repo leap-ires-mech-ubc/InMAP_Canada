@@ -183,8 +183,8 @@ func Preprocess(p Preprocessor, xo, yo, dx, dy float64) (*CTMData, error) { //SB
 	//xx,yy := p.SeinfeldLandUse()
 	//print(xx, yy, zz, err)
 
-	pp, err := average(p.P())
-	print(pp, err)
+	//pp, err := average(p.P())
+	//print(pp, err)
 	// //Dz := layerThickness(layerHeights)
 
 	// aSclass, aS1, aKzz, aM2u, aM2d, aSO2oxidation, aparticleDryDep, aSO2DryDep,
@@ -1427,7 +1427,6 @@ func stabilityMixingChemistry(LayerHeights *sparse.DenseArray, pblhFunc, ustarFu
 					// Calculate boundary layer average temperature (K)
 					To := 0.
 					for k := 0; k < LayerHeights.Shape[0]; k++ {
-						//TR - added max statement so that some temperature is returned if pblTop = 0
 						if k == int(max(float64(pblTop), 1)) {
 							To /= float64(k)
 							break

@@ -16,13 +16,16 @@ GridProj= "+proj=lcc"
 CTMType= "GEMMACH"
 StartDate= "20190101"
 EndDate= "20190102"
-CtmGridXo= -2760000.0
-CtmGridYo= -1332000.0
-CtmGridDx= 12000.0
-CtmGridDy= 12000.0
+CtmGridXo= -39.44722
+CtmGridYo= -31.77
+CtmGridDx= 13.05
+CtmGridDy= 16.382
 
 [Preproc.GEMMACH]
-gem_out= "/home/tfmrodge/scratch/GEMMACH_data/data/test/[DATE]_gemmach_test.nc"
-gem_geophy= "/home/tfmrodge/scratch/GEMMACH_data/data/test/gem_geophy_test.nc"
-gem_rdps= "/home/tfmrodge/scratch/GEMMACH_data/data/test/[DATE]_rdpsqc_test.nc"
-gemnoChemHourIndex= true
+gem_out= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/[DATE]_gemmach_test.nc"
+gem_geophy= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/gem_geophy_test.nc"
+gem_rdps= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/rdps/[DATE]_rdpsqc_test.nc"
+#gem_out= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/[DATE]_gemmach_test.nc"
+#gem_geophy= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/gem_geophy_test.nc"
+#gem_rdps= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/rdps/[DATE]_rdpsqc_test.nc"
+gemnoChemHour= true
