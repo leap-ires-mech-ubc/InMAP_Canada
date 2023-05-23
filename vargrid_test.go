@@ -748,7 +748,7 @@ func TestGetGeometry(t *testing.T) {
 
 func TestReadWriteCTMData(t *testing.T) {
 	//TR&SB - added switch to load CTM data rather than generating it.
-	load_ctmdata := false
+	load_ctmdata := true
 	cfg, ctmdata := CreateTestCTMData(load_ctmdata)
 
 	f, err := os.Create(TestCTMDataFile)

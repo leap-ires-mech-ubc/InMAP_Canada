@@ -5,5 +5,5 @@
 #SBATCH --mem-per-cpu=1024
 #SBATCH --ntasks=1
 #SBATCH --job-name='test_preproc'
-./inmap preproc --config=cmd/inmap/configExampleGEMMACH.toml
+./inmap preproc --config=cmd/inmap/config_test_GEMMACH.toml
 #./inmap preproc --config=cmd/inmap/config_test_geos.toml
