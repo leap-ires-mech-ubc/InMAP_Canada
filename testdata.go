@@ -48,13 +48,28 @@ var WriteTestPopShapefile = func() {
 
 	// write out test population data.
 	popData := []pop{
+		// {
+		// 	Polygon: []geom.Path{{
+		// 		geom.Point{X: -3999, Y: -3999},
+		// 		geom.Point{X: -3899, Y: -3999},
+		// 		geom.Point{X: -3899, Y: -3899},
+		// 		geom.Point{X: -3999, Y: -3899},
+		// 		geom.Point{X: -3999, Y: -3999},
+		// 	}},
+		// 	TotalPop:   100000., // enough to split grid cell the smallest level
+		// 	WhiteNoLat: 50000.,
+		// 	Black:      20000.,
+		// 	Asian:      8000.,
+		// 	Native:     2000.,
+		// 	Latino:     20000.,
+		// },
 		{
 			Polygon: []geom.Path{{
-				geom.Point{X: -3999, Y: -3999},
-				geom.Point{X: -3899, Y: -3999},
-				geom.Point{X: -3899, Y: -3899},
-				geom.Point{X: -3999, Y: -3899},
-				geom.Point{X: -3999, Y: -3999},
+				geom.Point{X: -31.815, Y: -39.4932},
+				geom.Point{X: -18.765, Y: -39.4932},
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -31.815, Y: -23.1112},
+				geom.Point{X: -31.815, Y: -39.4932},
 			}},
 			TotalPop:   100000., // enough to split grid cell the smallest level
 			WhiteNoLat: 50000.,
@@ -65,18 +80,231 @@ var WriteTestPopShapefile = func() {
 		},
 		{
 			Polygon: []geom.Path{{
-				geom.Point{X: -3499, Y: -3001},
-				geom.Point{X: -3501, Y: -3001},
-				geom.Point{X: -3501, Y: -2999},
-				geom.Point{X: -3499, Y: -2999},
-				geom.Point{X: -3499, Y: -3001},
+				geom.Point{X: -31.815, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -31.815, Y: -6.72923},
+				geom.Point{X: -31.815, Y: -23.1112},
 			}},
-			TotalPop:   0., // set to zero to ensure grid cell does not split
-			WhiteNoLat: 0.,
-			Black:      0.,
-			Asian:      0.,
-			Native:     0.,
-			Latino:     10000.,
+			TotalPop:   100000., // enough to split grid cell the smallest level
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -31.815, Y: -6.72923},
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -31.815, Y: 9.65277},
+				geom.Point{X: -31.815, Y: -6.72923},
+			}},
+			TotalPop:   100000., // enough to split grid cell the smallest level
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -31.815, Y: 9.65277},
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -18.765, Y: 26.03477},
+				geom.Point{X: -31.815, Y: 26.03477},
+				geom.Point{X: -31.815, Y: 9.65277},
+			}},
+			TotalPop:   100000., // enough to split grid cell the smallest level
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		//Row 2
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -18.765, Y: -39.4932},
+				geom.Point{X: -5.715, Y: -39.4932},
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -39.4932},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -18.765, Y: -23.1112},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -18.765, Y: -6.72923},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: -5.715, Y: 26.03477},
+				geom.Point{X: -18.765, Y: 26.03477},
+				geom.Point{X: -18.765, Y: 9.65277},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		//Row 3
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: -39.4932},
+				geom.Point{X: 7.335, Y: -39.4932},
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -39.4932},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: -5.715, Y: -23.1112},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: -5.715, Y: -6.72923},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: 7.335, Y: 26.03477},
+				geom.Point{X: -5.715, Y: 26.03477},
+				geom.Point{X: -5.715, Y: 9.65277},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		//Row 4
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: -39.4932},
+				geom.Point{X: 20.385, Y: -39.4932},
+				geom.Point{X: 20.385, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -39.4932},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: 20.385, Y: -23.1112},
+				geom.Point{X: 20.385, Y: -6.72923},
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: 7.335, Y: -23.1112},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: 20.385, Y: -6.72923},
+				geom.Point{X: 20.385, Y: 9.65277},
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: 7.335, Y: -6.72923},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: 20.385, Y: 9.65277},
+				geom.Point{X: 20.385, Y: 26.03477},
+				geom.Point{X: 7.335, Y: 26.03477},
+				geom.Point{X: 7.335, Y: 9.65277},
+			}},
+			TotalPop:   0., // Make sure not to split
+			WhiteNoLat: 50000.,
+			Black:      20000.,
+			Asian:      8000.,
+			Native:     2000.,
+			Latino:     20000.,
 		},
 	}
 	e, err := shp.NewEncoder(TestPopulationShapefile, pop{})
@@ -111,11 +339,11 @@ func WriteTestMortalityShapefile() {
 	mortData := []mortRates{
 		{
 			Polygon: []geom.Path{{
-				geom.Point{X: -3999, Y: -3999},
-				geom.Point{X: -3998, Y: -3999},
-				geom.Point{X: -3998, Y: -3998},
-				geom.Point{X: -3999, Y: -3998},
-				geom.Point{X: -3999, Y: -3999},
+				geom.Point{X: -31.815, Y: -39.4932},
+				geom.Point{X: -18.765, Y: -39.4932},
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -31.815, Y: -23.1112},
+				geom.Point{X: -31.815, Y: -39.4932},
 			}},
 			AllCause:   800.,
 			WhNoLMort:  700.,
@@ -126,11 +354,11 @@ func WriteTestMortalityShapefile() {
 		},
 		{
 			Polygon: []geom.Path{{
-				geom.Point{X: -3999, Y: -3900},
-				geom.Point{X: -3998, Y: -3900},
-				geom.Point{X: -3998, Y: -3899},
-				geom.Point{X: -3999, Y: -3899},
-				geom.Point{X: -3999, Y: -3900},
+				geom.Point{X: -31.815, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -31.815, Y: -6.72923},
+				geom.Point{X: -31.815, Y: -23.1112},
 			}},
 			AllCause:   800.,
 			WhNoLMort:  700.,
@@ -141,11 +369,42 @@ func WriteTestMortalityShapefile() {
 		},
 		{
 			Polygon: []geom.Path{{
-				geom.Point{X: -3999, Y: -3899},
-				geom.Point{X: -3998, Y: -3899},
-				geom.Point{X: -3998, Y: -3898},
-				geom.Point{X: -3999, Y: -3898},
-				geom.Point{X: -3999, Y: -3899},
+				geom.Point{X: -31.815, Y: -6.72923},
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -31.815, Y: 9.65277},
+				geom.Point{X: -31.815, Y: -6.72923},
+			}},
+			AllCause:   800.,
+			WhNoLMort:  700.,
+			BlackMort:  600.,
+			AsianMort:  500.,
+			NativeMort: 300.,
+			LatinoMort: 400.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -31.815, Y: 9.65277},
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -18.765, Y: 26.03477},
+				geom.Point{X: -31.815, Y: 26.03477},
+				geom.Point{X: -31.815, Y: 9.65277},
+			}},
+			AllCause:   800.,
+			WhNoLMort:  700.,
+			BlackMort:  600.,
+			AsianMort:  500.,
+			NativeMort: 300.,
+			LatinoMort: 400.,
+		},
+		//Row 2
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -18.765, Y: -39.4932},
+				geom.Point{X: -5.715, Y: -39.4932},
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -18.765, Y: -39.4932},
 			}},
 			AllCause:   1000.,
 			WhNoLMort:  1000.,
@@ -156,18 +415,170 @@ func WriteTestMortalityShapefile() {
 		},
 		{
 			Polygon: []geom.Path{{
-				geom.Point{X: -3499, Y: -3001},
-				geom.Point{X: -3501, Y: -3001},
-				geom.Point{X: -3501, Y: -2999},
-				geom.Point{X: -3499, Y: -2999},
-				geom.Point{X: -3499, Y: -3001},
+				geom.Point{X: -18.765, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -18.765, Y: -23.1112},
+			}},
+			AllCause:   1000.,
+			WhNoLMort:  1000.,
+			BlackMort:  1000.,
+			AsianMort:  1000.,
+			NativeMort: 1000.,
+			LatinoMort: 1000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -18.765, Y: -6.72923},
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -18.765, Y: -6.72923},
+			}},
+			AllCause:   1000.,
+			WhNoLMort:  1000.,
+			BlackMort:  1000.,
+			AsianMort:  1000.,
+			NativeMort: 1000.,
+			LatinoMort: 1000.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -18.765, Y: 9.65277},
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: -5.715, Y: 26.03477},
+				geom.Point{X: -18.765, Y: 26.03477},
+				geom.Point{X: -18.765, Y: 9.65277},
+			}},
+			AllCause:   1000.,
+			WhNoLMort:  1000.,
+			BlackMort:  1000.,
+			AsianMort:  1000.,
+			NativeMort: 1000.,
+			LatinoMort: 1000.,
+		},
+		//Row 3
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: -39.4932},
+				geom.Point{X: 7.335, Y: -39.4932},
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: -5.715, Y: -39.4932},
 			}},
 			AllCause:   0.,
 			WhNoLMort:  0.,
 			BlackMort:  0.,
 			AsianMort:  0.,
 			NativeMort: 0.,
-			LatinoMort: 800.,
+			LatinoMort: 0.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: -5.715, Y: -23.1112},
+			}},
+			AllCause:   0.,
+			WhNoLMort:  0.,
+			BlackMort:  0.,
+			AsianMort:  0.,
+			NativeMort: 0.,
+			LatinoMort: 0.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: -6.72923},
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: -5.715, Y: -6.72923},
+			}},
+			AllCause:   0.,
+			WhNoLMort:  0.,
+			BlackMort:  0.,
+			AsianMort:  0.,
+			NativeMort: 0.,
+			LatinoMort: 0.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: -5.715, Y: 9.65277},
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: 7.335, Y: 26.03477},
+				geom.Point{X: -5.715, Y: 26.03477},
+				geom.Point{X: -5.715, Y: 9.65277},
+			}},
+			AllCause:   0.,
+			WhNoLMort:  0.,
+			BlackMort:  0.,
+			AsianMort:  0.,
+			NativeMort: 0.,
+			LatinoMort: 0.,
+		},
+		//Row 4
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: -39.4932},
+				geom.Point{X: 20.385, Y: -39.4932},
+				geom.Point{X: 20.385, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: 7.335, Y: -39.4932},
+			}},
+			AllCause:   0.,
+			WhNoLMort:  0.,
+			BlackMort:  0.,
+			AsianMort:  0.,
+			NativeMort: 0.,
+			LatinoMort: 0.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: -23.1112},
+				geom.Point{X: 20.385, Y: -23.1112},
+				geom.Point{X: 20.385, Y: -6.72923},
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: 7.335, Y: -23.1112},
+			}},
+			AllCause:   0.,
+			WhNoLMort:  0.,
+			BlackMort:  0.,
+			AsianMort:  0.,
+			NativeMort: 0.,
+			LatinoMort: 0.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: -6.72923},
+				geom.Point{X: 20.385, Y: -6.72923},
+				geom.Point{X: 20.385, Y: 9.65277},
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: 7.335, Y: -6.72923},
+			}},
+			AllCause:   0.,
+			WhNoLMort:  0.,
+			BlackMort:  0.,
+			AsianMort:  0.,
+			NativeMort: 0.,
+			LatinoMort: 0.,
+		},
+		{
+			Polygon: []geom.Path{{
+				geom.Point{X: 7.335, Y: 9.65277},
+				geom.Point{X: 20.385, Y: 9.65277},
+				geom.Point{X: 20.385, Y: 26.03477},
+				geom.Point{X: 7.335, Y: 26.03477},
+				geom.Point{X: 7.335, Y: 9.65277},
+			}},
+			AllCause:   0.,
+			WhNoLMort:  0.,
+			BlackMort:  0.,
+			AsianMort:  0.,
+			NativeMort: 0.,
+			LatinoMort: 0.,
 		},
 	}
 	e, err := shp.NewEncoder(TestMortalityShapefile, mortRates{})
@@ -193,14 +604,15 @@ func WriteTestMortalityShapefile() {
 // CreateTestCTMData creates example CTMData for testing. -39.44722, -31.77, 0.09, 0.09
 func CreateTestCTMData(load_ctmdata bool) (VarGridConfig, *CTMData) {
 	cfg := VarGridConfig{
-		VariableGridXo:      -39.44722, //-4000,
-		VariableGridYo:      -31.77,    //-4000,
-		VariableGridDx:      0.09,      //4000,
-		VariableGridDy:      0.09,      //4000,
-		Xnests:              []int{2, 2, 2},
-		Ynests:              []int{2, 2, 2},
-		HiResLayers:         1,
-		GridProj:            "+proj=lcc +lat_1=33.000000 +lat_2=45.000000 +lat_0=40.000000 +lon_0=-97.000000 +x_0=0 +y_0=0 +a=6370997.000000 +b=6370997.000000 +to_meter=1",
+		VariableGridXo: -39.44722, //-4000,
+		VariableGridYo: -31.77,    //-4000,
+		VariableGridDx: 13.05,     //4000,
+		VariableGridDy: 16.382,    //4000,
+		Xnests:         []int{2, 2, 2},
+		Ynests:         []int{2, 2, 2},
+		HiResLayers:    1,
+		//GridProj:            "+proj=lcc +lat_1=33.000000 +lat_2=45.000000 +lat_0=40.000000 +lon_0=-97.000000 +x_0=0 +y_0=0 +a=6370997.000000 +b=6370997.000000 +to_meter=1", "+proj=ob_tran +o_proj=longlat +o_lon_p=87.597031302933 +o_lat_p=31.7583124544932 +lon_0=180 +a=6370997 +units=degrees +no_defs",
+		GridProj:            "+proj=longlat",
 		PopDensityThreshold: 0.001,
 		PopThreshold:        25000,
 		PopConcThreshold:    1.0e-7,
@@ -529,7 +941,7 @@ func CreateTestCTMData(load_ctmdata bool) (VarGridConfig, *CTMData) {
 		ctmdata["Kxxyy"].Data.Elements = []float64{0.7575604915618896, 0.9150991439819336, 0.6208891272544861, 0.7524882555007935, 2.3101816177368164, 1.8487164974212646, 2.6796627044677734, 2.2049927711486816, 2.469972610473633, 2.1148242950439453, 2.815176010131836, 2.5295193195343018, 2.37355637550354, 2.24664306640625, 2.6517460346221924, 2.2723093032836914, 2.303529977798462, 2.2230441570281982, 2.2358744144439697, 2.3116273880004883, 2.6886508464813232, 2.6277735233306885, 2.5014443397521973, 2.3839523792266846, 2.8126206398010254, 2.812807083129883, 2.7501752376556396, 2.688507318496704, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}
 		ctmdata["WindSpeed"].Data.Elements = []float64{2.163347005844116, 2.7272017002105713, 1.8843491077423096, 2.5613532066345215, 2.466365337371826, 2.60990047454834, 1.908056616783142, 2.216294288635254, 2.3336946964263916, 2.297699451446533, 1.7950994968414307, 1.906171202659607, 2.100137948989868, 2.093118190765381, 1.8263593912124634, 1.8500407934188843, 2.0755155086517334, 2.1254751682281494, 1.959427833557129, 1.9774097204208374, 1.9850538969039917, 1.9250260591506958, 2.095578193664551, 2.096379041671753, 1.9812132120132446, 2.021040916442871, 2.520017623901367, 2.5633764266967773, 3.3489553928375244, 3.2535643577575684, 3.8730413913726807, 3.8324387073516846, 5.816560745239258, 5.697556972503662, 5.885941028594971, 5.655944347381592, 7.861310005187988, 7.990108966827393, 7.697640419006348, 7.758955955505371}
 		ctmdata["gS"].Data.Elements = []float64{0.2634888291358948, 0.21905501186847687, 0.9337737560272217, 0.41840294003486633, 0.25802916288375854, 0.2025141716003418, 0.7405915856361389, 0.35498514771461487, 0.25728145241737366, 0.19435034692287445, 0.6016327142715454, 0.31845349073410034, 0.25473979115486145, 0.19254085421562195, 0.4821411371231079, 0.29016828536987305, 0.22725290060043335, 0.17923219501972198, 0.3476753532886505, 0.22313575446605682, 0.16836073994636536, 0.13953252136707306, 0.21109969913959503, 0.13692250847816467, 0.1287701427936554, 0.09053260833024979, 0.09876422584056854, 0.06713377684354782, 0.0660431832075119, 0.05449407547712326, 0.04652734845876694, 0.04346112906932831, 0.0412360355257988, 0.04184114560484886, 0.03807821124792099, 0.03864813223481178, 0.043244291096925735, 0.04363596439361572, 0.04144774749875069, 0.0420348159968853}
-		ctmdata["gNH"].Data.Elements = []float64{1.1363224983215332, 0.8005860447883606, 2.091249942779541, 0.9906166195869446, 0.8556591868400574, 0.5696154832839966, 1.5564550161361694, 0.7306267023086548, 0.6650115251541138, 0.42707446217536926, 1.1549714803695679, 0.5827423334121704, 0.5340535044670105, 0.3396942615509033, 0.8416059613227844, 0.47406280040740967, 0.3696293234825134, 0.23472052812576294, 0.5016713738441467, 0.30318233370780945, 0.1975899189710617, 0.1367780864238739, 0.1922084391117096, 0.11465863883495331, 0.1045338436961174, 0.039635926485061646, 0.043673817068338394, 0.018766969442367554, 0.0036989825312048197, 0.0001889436534838751, 6.824755018897122e-06, 7.628781233028764e-14, 7.307202802911417e-14, 7.267786632930706e-14, 7.291474417520441e-14, 7.28625195118085e-14, 6.935424456955275e-14, 6.901303936960798e-14, 6.925577190723675e-14, 6.922344235370595e-14}
+		ctmdata["gNH"].Data.Elements = []float64{1.1363224983215332, 0.8005860447883606, 2.091249942779541, 0.9906166195869446, 7.3356591868400574, 0.5696154832839966, 1.5564550161361694, 0.7306267023086548, 0.6650115251541138, 0.42707446217536926, 1.1549714803695679, 0.5827423334121704, 0.5340535044670105, 0.3396942615509033, 0.8416059613227844, 0.47406280040740967, 0.3696293234825134, 0.23472052812576294, 0.5016713738441467, 0.30318233370780945, 0.1975899189710617, 0.1367780864238739, 0.1922084391117096, 0.11465863883495331, 0.1045338436961174, 0.039635926485061646, 0.043673817068338394, 0.018766969442367554, 0.0036989825312048197, 0.0001889436534838751, 6.824755018897122e-06, 7.628781233028764e-14, 7.307202802911417e-14, 7.267786632930706e-14, 7.291474417520441e-14, 7.28625195118085e-14, 6.935424456955275e-14, 6.901303936960798e-14, 6.925577190723675e-14, 6.922344235370595e-14}
 		ctmdata["aOrgPartitioning"].Data.Elements = []float64{0.00594042195007205, 0.005416125059127808, 0.0030360654927790165, 0.0018056770786643028, 0.0058972700498998165, 0.004511366598308086, 0.010038474574685097, 0.0014150284696370363, 0.007893022149801254, 0.003134393598884344, 0.01587115414440632, 0.001612423686310649, 0.0270244088023901, 0.006842840928584337, 0.02319810353219509, 0.009840000420808792, 0.029563654214143753, 0.02937074564397335, 0.0035459278151392937, 0.0065204850398004055, 0.005085194483399391, 0.005293807480484247, 0.004529155790805817, 0.011838467791676521, 0.016023138538002968, 0.030372390523552895, 0.00795662496238947, 0.01085809338837862, 0.028785619884729385, 0.007128694094717503, 0.010830596089363098, 0.020842688158154488, 0.007270642556250095, 0.007605940569192171, 0.007371330633759499, 0.011374425143003464, 0.022471880540251732, 0.02131063863635063, 0.03438222035765648, 0.05923999845981598}
 		ctmdata["TotalPM25"].Data.Elements = []float64{4.907700538635254, 4.25741720199585, 10.347429275512695, 5.3623223304748535, 4.673975944519043, 3.944087505340576, 8.390427589416504, 4.814750671386719, 4.526025772094727, 3.746352434158325, 7.087573051452637, 4.509608745574951, 4.385721206665039, 3.634274482727051, 6.099825382232666, 4.28328275680542, 4.027258396148682, 3.39872670173645, 5.009143352508545, 3.7652153968811035, 3.3942463397979736, 2.9605259895324707, 3.7908523082733154, 2.9806408882141113, 2.9653866291046143, 2.4340357780456543, 2.572143793106079, 2.189840316772461, 2.291722297668457, 1.9475696086883545, 1.9517537355422974, 1.7944254875183105, 1.5315279960632324, 1.4643031358718872, 1.4228588342666626, 1.4233944416046143, 1.0344351530075073, 1.0030040740966797, 0.9847849607467651, 0.9959700703620911}
 		ctmdata["aVOC"].Data.Elements = []float64{38.87417221069336, 37.30889892578125, 90.528076171875, 69.00169372558594, 35.89360046386719, 32.94846725463867, 72.40897369384766, 53.24059295654297, 33.76029968261719, 29.89646339416504, 58.896583557128906, 44.11149215698242, 31.78070640563965, 27.97871208190918, 47.88663864135742, 37.819522857666016, 27.568506240844727, 24.56879234313965, 35.51859664916992, 29.220561981201172, 20.18500328063965, 18.46787452697754, 22.517818450927734, 18.731372833251953, 15.217564582824707, 12.044897079467773, 12.207158088684082, 9.69643783569336, 10.008086204528809, 7.978878498077393, 7.933547496795654, 6.906917095184326, 5.5251054763793945, 5.28988790512085, 4.948215484619141, 4.9634857177734375, 3.6040360927581787, 3.56182861328125, 3.346196413040161, 3.473365068435669}
@@ -564,7 +976,7 @@ func CreateTestCTMData(load_ctmdata bool) (VarGridConfig, *CTMData) {
 		}
 		nlayers = 10
 	} else {
-		loadFileName := "cmd/inmap/testdata/preproc/inmapData_GEMMACH_golden.ncf"
+		loadFileName := "cmd/inmap/testdata/preproc/inmapData_GEMMACH_golden.nc"
 		f2, err := os.Open(loadFileName)
 		if err != nil {
 			print(err)

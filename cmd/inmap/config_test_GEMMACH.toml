@@ -9,7 +9,8 @@ WindSpeed= "WindSpeed"
 
 
 [VarGrid]
-GridProj= "+proj=lcc"
+#GridProj= "+proj=ob_tran +o_proj=longlat +o_lon_p=87.597031302933 +o_lat_p=31.7583124544932 +lon_0=180 +a=6370997 +units=degrees +no_defs"
+GridProj= "+proj=longlat"
 
 
 [Preproc]

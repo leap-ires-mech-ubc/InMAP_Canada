@@ -915,7 +915,7 @@ func (w *GEMMACH) P() NextData {
 			}
 		}
 
-		return out.ScaleCopy(101325.0), nil
+		return out.ScaleCopy(100.0), nil
 	}
 }
 
@@ -1019,7 +1019,7 @@ func DY(file *cdf.File) (float64, error) {
 func xCenters(file *cdf.File) ([]float64, error) {
 	//something using the interface Reader
 	//var v = "rLON_var" "x_var"
-	var v = "rlat"
+	var v = "rlon"
 	dims := file.Header.Lengths(v)
 	// //ny := dims[0]
 	//nx := dims[1]
@@ -1056,7 +1056,7 @@ func xCenters(file *cdf.File) ([]float64, error) {
 func yCenters(file *cdf.File) ([]float64, error) {
 	//something using the interface Reader
 	//var v = "rLAT_var"
-	var v = "rlon"
+	var v = "rlat"
 	dims := file.Header.Lengths(v)
 	ny := dims[0]
 	//nx := dims[1]
@@ -1151,10 +1151,29 @@ func (w *GEMMACH) readgem_geophy(file *cdf.File, i string) (*gem_geophy, error) 
 
 	for iy := 0; iy < o.ny; iy++ {
 		for ix := 0; ix < o.nx; ix++ {
-			x0 := o.xo + o.dx*float64(ix)
-			x1 := o.xo + o.dx*float64(ix+1)
-			y0 := o.yo + o.dy*float64(iy)
-			y1 := o.yo + o.dy*float64(iy+1)
+			//dy := w.dy
+			if iy == 0 {
+				dy = ((w.yCenters[iy+1] - w.yCenters[iy]) - w.dy/2) * 2
+			}
+			if iy == len(w.yCenters)-1 {
+				dy = ((w.yCenters[iy] - w.yCenters[iy-1]) - w.dy/2) * 2
+			}
+			//for i, x := range w.xCenters {
+			//dx := w.dx
+			if ix == 0 {
+				dx = ((w.xCenters[ix+1] - w.xCenters[ix]) - w.dx/2) * 2
+			}
+			if ix == len(w.xCenters)-1 {
+				dx = ((w.xCenters[ix] - w.xCenters[ix-1]) - w.dx/2) * 2
+			}
+			x0 := w.xCenters[ix] - dx/2
+			x1 := w.xCenters[ix] + dx/2
+			y0 := w.yCenters[iy] - dy/2
+			y1 := w.yCenters[iy] + dy/2
+			//x0 := o.xo + o.dx*float64(ix)
+			//x1 := o.xo + o.dx*float64(ix+1)
+			//y0 := o.yo + o.dy*float64(iy)
+			//y1 := o.yo + o.dy*float64(iy+1)
 			v, _ := strconv.Atoi(i)
 			c := gemGridCell{
 				Polygon: geom.Polygon{{

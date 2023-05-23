@@ -1,4 +1,4 @@
-InMAPData= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmapData_GEMMACH.nc"
+InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
 
 OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmaptest_gemmach.shp"
 
@@ -22,7 +22,7 @@ CtmGridDx= 0.09
 CtmGridDy= 0.09
 
 [Preproc.GEMMACH]
-gem_out= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/[DATE]_gemmach.nc"
-gem_geophy= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/GEOPHY_VF/gem_geophy_1.nc"
-gem_rdps= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/[DATE]_rdpsqc.nc"
-gemnoChemHourIndex= true
+gem_out= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/processed/[DATE]_gemmach.nc"
+gem_geophy= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/processed/gem_geophy.nc"
+gem_rdps= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/processed/rdps/[DATE]_rdpsqc.nc"
+gemnoChemHour= true
