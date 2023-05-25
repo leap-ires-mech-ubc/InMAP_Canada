@@ -738,6 +738,8 @@ func (o *Outputter) Output(sr *proj.SR) DomainManipulator {
 				sr.Long0/math.Pi*180)
 		case "longlat":
 			wkt = `GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137,298.257223563]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]]`
+		//case "rotated_pole":
+		//	wkt = `GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137,298.257223563]],PRIMEM["Greenwich",0],UNIT["Degree",0.017453292519943295]]`
 		default:
 			return fmt.Errorf("only `lcc` and `longlat` projections are supported, not %s", sr.Name)
 		}

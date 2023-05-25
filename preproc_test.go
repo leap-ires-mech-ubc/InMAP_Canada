@@ -62,7 +62,11 @@ func TestGEMMACHToInMAP(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	newData, err := Preprocess(gem, -39.44722, -31.77, 13.05, 16.382)
+	CtmGridXo := -4184312.05377675
+	CtmGridYo := -2029822.82977676
+	CtmGridDx := 1860494.917
+	CtmGridDy := 1672945.027
+	newData, err := Preprocess(gem, CtmGridXo, CtmGridYo, CtmGridDx, CtmGridDy)
 	if err != nil {
 		t.Fatal(err)
 	}

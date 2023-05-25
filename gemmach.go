@@ -1005,21 +1005,21 @@ type gemGridCell struct {
 // DX returns the longitude grid spacing.
 func DX(file *cdf.File) (float64, error) {
 	//return float64(file.Header.GetAttribute("", "delta_rlon").([]float32)[0]), nil
-	return float64(file.Header.GetAttribute("", "delta_rlat").([]float64)[0]), nil
+	return float64(file.Header.GetAttribute("", "delta_x").([]float64)[0]), nil
 	//return w.chemAttribute("delta_rlon")
 }
 
 // DY returns the latitude grid spacing.
 func DY(file *cdf.File) (float64, error) {
 	//return float64(file.Header.GetAttribute("", "delta_rlat").([]float32)[0]), nil
-	return float64(file.Header.GetAttribute("", "delta_rlon").([]float64)[0]), nil
+	return float64(file.Header.GetAttribute("", "delta_y").([]float64)[0]), nil
 	//return w.chemAttribute("delta_rlat")
 }
 
 func xCenters(file *cdf.File) ([]float64, error) {
 	//something using the interface Reader
 	//var v = "rLON_var" "x_var"
-	var v = "rlon"
+	var v = "x"
 	dims := file.Header.Lengths(v)
 	// //ny := dims[0]
 	//nx := dims[1]
@@ -1056,7 +1056,7 @@ func xCenters(file *cdf.File) ([]float64, error) {
 func yCenters(file *cdf.File) ([]float64, error) {
 	//something using the interface Reader
 	//var v = "rLAT_var"
-	var v = "rlat"
+	var v = "y"
 	dims := file.Header.Lengths(v)
 	ny := dims[0]
 	//nx := dims[1]
@@ -1110,9 +1110,9 @@ func yCenters(file *cdf.File) ([]float64, error) {
 func (w *GEMMACH) readgem_geophy(file *cdf.File, i string) (*gem_geophy, error) {
 
 	//taking in global attributes from gem_geophy
-	dx := float64(file.Header.GetAttribute("", "delta_rlon").([]float64)[0])
+	dx := float64(file.Header.GetAttribute("", "delta_x").([]float64)[0])
 	//dxStr := file.Header.GetAttribute("", "delta_rlon").(string)
-	dy := float64(file.Header.GetAttribute("", "delta_rlat").([]float64)[0])
+	dy := float64(file.Header.GetAttribute("", "delta_y").([]float64)[0])
 	//dyStr := file.Header.GetAttribute("", "delta_rlat").(string)
 	//dx, err := strconv.ParseFloat(dxStr, 64)
 	// if err != nil {
