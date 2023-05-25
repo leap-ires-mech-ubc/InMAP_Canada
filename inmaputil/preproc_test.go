@@ -71,6 +71,18 @@ func TestGEMMACHinmapGrid(t *testing.T) {
 	}
 }
 
+func TestGEMMACHinmap(t *testing.T) {
+	cfg := InitializeConfig()
+	// Here we only test whether the program runs. We
+	// check whether the output is correct elsewhere.
+	cfg.Set("config", "../cmd/inmap/config_test_GEMMACH.toml")
+	cfg.Root.SetArgs([]string{"run", "steady"})
+	//defer os.Remove("../cmd/inmap/testdata/inmapVarGrid.gob")
+	if err := cfg.Root.Execute(); err != nil {
+		t.Fatal(err)
+	}
+}
+
 func TestPreprocCombine(t *testing.T) {
 	cfg := InitializeConfig()
 	// Here we only test whether the program runs. We

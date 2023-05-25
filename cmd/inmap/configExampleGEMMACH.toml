@@ -1,7 +1,7 @@
 InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
 #InMAPData= "/home/tfmrodge/projects/def-agiang01/tfmrodge/inmap_canada/InMAP_Canada/cmd/inmap/testdata/preproc/inmapData_GEMMACH_fullday.nc"
 
-OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmaptest_gemmach.shp"
+OutputFile= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapGEMMACH_output.shp"
 
 EmissionUnits= "tons/year"
 
