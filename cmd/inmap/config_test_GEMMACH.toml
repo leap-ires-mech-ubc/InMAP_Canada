@@ -29,16 +29,16 @@ PopGridColumn= "TOT_POP2A_"
 
 # MortalityRateFile is the path to the shapefile containing baseline
 # mortality rate data.
-MortalityRateFile= "/workspaces/InMAP_Canada/cmd/inmap/testdata/gemmach_poptest_2016/poptest2016_lcc.shp"
+#MortalityRateFile= "/workspaces/InMAP_Canada/cmd/inmap/testdata/gemmach_poptest_2016/poptest2016_lcc.shp"
+MortalityRateFile= "/workspaces/InMAP_Canada/cmd/inmap/testdata/testMortalityRate.shp"
 
 # MortalityRateColumns maps the names of each input population group to the name
 # of the field in MortalityRateFile that contains its respective baseline
 # mortality rate, in units of deaths per year per 100,000 people. Only mortality
 # rates used in output variable expressions need to be included here.
 [VarGrid.MortalityRateColumns]
-allcause= "TOT_POP2A_"
-whnolmort = "allcause"
-
+#allcause= "TOT_POP2A_"
+AllCause = "TOT_POP2A_"
 
 [Preproc]
 CTMType= "GEMMACH"
