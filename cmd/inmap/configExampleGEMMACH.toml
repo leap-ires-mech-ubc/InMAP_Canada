@@ -23,13 +23,12 @@ HiResLayers= 1
 PopDensityThreshold= 55000000.0
 PopThreshold= 100000.0
 PopConcThreshold= 0.000000001
-CensusFile= "~/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/CanadaPopulation10km2016_lcc.shp"
+CensusFile= "~/scratch/GEMMACH_data/data/Inmap_outputs/PopData/CanadaPopulation10km2016_lcc.shp"
 CensusPopColumns= ["TOT_POP2A"]
 PopGridColumn= "TOT_POP2A"
 
 # MortalityRateFile is the path to the shapefile containing baseline
 # mortality rate data.
-#MortalityRateFile= "/workspaces/InMAP_Canada/cmd/inmap/testdata/gemmach_poptest_2016/poptest2016_lcc.shp"
 MortalityRateFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/testMortalityRate.shp"
 
 # MortalityRateColumns maps the names of each input population group to the name
