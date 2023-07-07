@@ -1,0 +1,78 @@
+#InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
+InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017.nc"
+VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_coarse.mpack.gz"
+
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/GEMMACH_BASEGM_2015_017_coarseInmapOuts.shp"
+
+EmissionUnits= "kg/year"
+EmissionsShapefiles = [
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/testemiss_gemmach.shp",
+]
+
+[OutputVariables]
+TotalPM25 = "PrimaryPM25 + pNH4 + pSO4 + pNO3 + SOA"
+TotalPopD = "(exp(log(1.078)/10 * TotalPM25) - 1) * TotalPop * AllCause / 100000"
+TotalPop = "TotalPop"
+AllCause = "AllCause"
+PrimPM25 = "PrimaryPM25"
+PSO4 = "pSO4"
+PNO3 = "pNO3"
+PNH4 = "pNH4"
+SOA = "SOA"
+SOx = "SOx"
+NH3 = "NH3"
+NOx = "NOx"
+BasePM25 = "BaselineTotalPM25"
+
+[VarGrid]
+GridProj= "+proj=lcc +lat_0=40 +lon_0=-96 +lat_1=50 +lat_2=70 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +to_meter=1"
+#GridProj= "+proj=longlat +units=degrees"
+#Xnests= [744,2,2,2,2,2,2,2]
+#Ynests= [669,2,2,2,2,2,2,2]
+Xnests= [372,2,2,2,2,2,2,2]
+Ynests= [334,2,2,2,2,2,2,2]
+VariableGridXo= -4184312.05377675
+VariableGridYo= -2029822.82977676
+#VariableGridDx= 10002.6608465054
+#VariableGridDy= 10002.6608465054
+VariableGridDx= 20005.321692
+VariableGridDy= 20035.26977
+HiResLayers= 1
+PopDensityThreshold= 55000000.0
+PopThreshold= 100000.0
+PopConcThreshold= 0.000000001
+CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA.shp"
+CensusPopColumns= ["TotalPop"]
+PopGridColumn= "TotalPop"
+#CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/CanadaPopulation10km2016_lcc.shp"
+#CensusPopColumns= ["TOT_POP2A"]
+#PopGridColumn= "TOT_POP2A"
+
+# MortalityRateFile is the path to the shapefile containing baseline
+# mortality rate data.
+MortalityRateFile= "/home/tfmrodge/projects/def-agiang01/tfmrodge/InMAP_Canada/cmd/inmap/testdata/testMortalityRate.shp"
+
+# MortalityRateColumns maps the names of each input population group to the name
+# of the field in MortalityRateFile that contains its respective baseline
+# mortality rate, in units of deaths per year per 100,000 people. Only mortality
+# rates used in output variable expressions need to be included here.
+[VarGrid.MortalityRateColumns]
+#allcause= "TOT_POP2A"
+#AllCause="TOT_POP2A"
+AllCause = "TotalPop"
+
+
+[Preproc]
+CTMType= "GEMMACH"
+StartDate= "20190201"
+EndDate= "20190301"
+CtmGridXo= -4184312.05377675
+CtmGridYo= -2029822.82977676
+CtmGridDx= 10002.6608465054
+CtmGridDy= 10002.6608465054
+
+[Preproc.GEMMACH]
+gem_out= "/home/tfmrodge//scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/[DATE]_gemmach.nc"
+gem_geophy= "/home/tfmrodge//scratch/GEMMACH_data/data/nc3/GEOPHY_VF/gem_geophy.nc"
+gem_rdps= "/home/tfmrodge//scratch/GEMMACH_data/data/nc3/RDPS_QC/[DATE]_rdpsqc.nc"
+gemnoChemHour= true

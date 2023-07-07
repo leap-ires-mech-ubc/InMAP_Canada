@@ -1,9 +1,9 @@
 #!/bin/bash
-#SBATCH --time=4:0:0
+#SBATCH --time=71:59:0
 #SBATCH --account=def-agiang01
-#SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=32
-#SBATCH --mem-per-cpu=8G
-#SBATCH --job-name='run_vargrid'
-./inmap grid --config=cmd/inmap/configExampleGEMMACH.toml
+#SBATCH --ntasks-per-node=40
+#SBATCH --nodes=1
+#SBATCH --mem-per-cpu=18G
+#SBATCH --job-name='run_vargrid_NoMay'
+./inmap grid --config=cmd/inmap/configGEMMACH_FineGrid.toml
 #./inmap preproc --config=cmd/inmap/config_test_geos.toml

@@ -55,6 +55,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/tealeg/xlsx v1.0.3
 	github.com/testcontainers/testcontainers-go v0.11.1
+	github.com/vmihailenco/msgpack/v5 v5.3.5 // indirect
 	gocloud.dev v0.23.0
 	golang.org/x/build v0.0.0-20190226180436-80ca8d25ddd4
 	golang.org/x/crypto v0.0.0-20210616213533-5ff15b29337e
