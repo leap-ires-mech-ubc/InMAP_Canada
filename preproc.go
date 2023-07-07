@@ -1642,11 +1642,15 @@ func nextDataNCF(fileTemplate string, dateFormat string, varName string, start, 
 		}
 		f, ff, err := ncfFromTemplate(fileTemplate, dateFormat, date)
 		if err != nil {
+			fileName := strings.Replace(fileTemplate, "[DATE]", date.Format(dateFormat), -1)
+			msgChan <- fmt.Sprintf("Failed to read %d records of %s from %s", i, varName, fileName)
 			return nil, err
 		}
 		defer f.Close()
 		data, err := readFunc(varName, ff, i)
 		if err != nil {
+			fileName := strings.Replace(fileTemplate, "[DATE]", date.Format(dateFormat), -1)
+			msgChan <- fmt.Sprintf("Failed to read %d records of %s from %s", i, varName, fileName)
 			return nil, err
 		}
 		i++

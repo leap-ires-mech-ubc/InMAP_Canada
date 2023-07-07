@@ -1,0 +1,4 @@
+2023/07/04 16:16:32 Reading input data...
+2023/07/04 16:22:31 Loading population and mortality rate data
+2023/07/04 16:22:46 Creating grid
+/var/spool/slurmd/job38417321/slurm_script: line 8: 56076 Killed                  ./inmap grid --config=cmd/inmap/configGEMMACH_NoMay.toml

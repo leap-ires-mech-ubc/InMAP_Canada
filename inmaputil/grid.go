@@ -73,7 +73,8 @@ func Grid(InMAPData, VariableGridData string, VarGrid *inmap.VarGridConfig) erro
 		InitFuncs: []inmap.DomainManipulator{
 			VarGrid.RegularGrid(ctmData, pop, popIndices, mr, mortIndices, nil, m),
 			VarGrid.MutateGrid(mutator, ctmData, pop, mr, nil, m, msgLog),
-			inmap.Save(w),
+			inmap.SaveBig(w, true),
+			//inmap.Save(w),
 		},
 	}
 	if err := d.Init(); err != nil {

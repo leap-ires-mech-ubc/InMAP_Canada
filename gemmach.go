@@ -123,7 +123,7 @@ func NewGEMMACH(gem_out, gem_geophy, gem_rdps, startDate, endDate string, gemnoC
 
 		//TR - Need to adapt to GEMMACH aVOC variables - to be confirmed by ECCC
 		bVOC: map[string]float64{
-			"TA2": 0.95, "TA3": 0.95, "TAM1": 1, "TH22": 1, "TISO": 1,
+			"TA2": 0.95, "TA3": 0.95, "TH22": 1, "TISO": 1,
 		},
 		//"TISO": 1, "TPIN": 1, "TSES": 1,
 

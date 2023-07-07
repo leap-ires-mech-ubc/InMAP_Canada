@@ -243,6 +243,7 @@ func Run(CobraCommand *cobra.Command, LogFile string, OutputFile string, OutputA
 				return fmt.Errorf("problem opening file to load VariableGridData: %v", err)
 			}
 			initFuncs = []inmap.DomainManipulator{
+				//inmap.Load(r, VarGrid, nil, m),
 				inmap.Load(r, VarGrid, nil, m),
 				aepSetEmis,
 				inmap.SetTimestepCFL(),

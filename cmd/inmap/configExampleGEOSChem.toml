@@ -2,7 +2,10 @@ InMAPData= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmapData_GEOSChem.ncf"
 
 OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/xxx.shp"
 
-EmissionUnits= "tons/year"
+EmissionUnits= "kg/year"
+EmissionsShapefiles = [
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/testemiss_gemmach.shp",
+]
 
 [OutputVariables]
 WindSpeed= "WindSpeed"

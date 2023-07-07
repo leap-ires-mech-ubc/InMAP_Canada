@@ -100,6 +100,7 @@ func writeOutputOptions() {
 	d := &inmap.InMAP{
 		InitFuncs: []inmap.DomainManipulator{
 			inmap.Load(r, &cfg.VarGrid, inmap.NewEmissions(), m),
+			//inmap.Load(r, &cfg.VarGrid, inmap.NewEmissions(), m),
 		},
 	}
 	if err = d.Init(); err != nil {

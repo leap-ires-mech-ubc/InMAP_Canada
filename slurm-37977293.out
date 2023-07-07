@@ -1,0 +1,76 @@
+2023/06/09 12:38:21 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_00_00_00_gemmach.nc
+2023/06/09 12:38:21 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_01_00_00_gemmach.nc
+2023/06/09 12:38:21 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_02_00_00_gemmach.nc
+2023/06/09 12:38:21 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_03_00_00_gemmach.nc
+2023/06/09 12:38:21 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_04_00_00_gemmach.nc
+2023/06/09 12:38:22 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_05_00_00_gemmach.nc
+2023/06/09 12:38:22 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_06_00_00_gemmach.nc
+2023/06/09 12:38:22 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_07_00_00_gemmach.nc
+2023/06/09 12:38:22 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_08_00_00_gemmach.nc
+2023/06/09 12:38:22 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_09_00_00_gemmach.nc
+2023/06/09 12:38:22 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_10_00_00_gemmach.nc
+2023/06/09 12:38:22 Read 1 records of H from /home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/2019-02-17_11_00_00_gemmach.nc
+Error: inmap: preprocessor read netcdf variable H: EOF
+Usage:
+  inmap preproc [flags]
+  inmap preproc [command]
+
+Available Commands:
+  combine     Combine preprocessed CTM output from nested grids
+
+Flags:
+      --InMAPData string                             InMAPData is the path to location of baseline meteorology and pollutant data. The path can include environment variables.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/testInMAPInputData.ncf")
+      --Preproc.CTMType string                       Preproc.CTMType specifies what type of chemical transport model we are going to be reading data from. Valid options are "GEOS-Chem", "WRF-Chem" and "GEMMACH".
+                                                      (default "WRF-Chem")
+      --Preproc.CtmGridDx float                      Preproc.CtmGridDx is the grid cell length in x direction [m] (default 1000)
+      --Preproc.CtmGridDy float                      Preproc.CtmGridDy is the grid cell length in y direction [m] (default 1000)
+      --Preproc.CtmGridXo float                      Preproc.CtmGridXo is the lower left of Chemical Transport Model (CTM) grid, x
+                                                     
+      --Preproc.CtmGridYo float                      Preproc.CtmGridYo is the lower left of grid, y
+      --Preproc.EndDate string                       Preproc.EndDate is the date of the end of the simulation. Format = "YYYYMMDD".
+                                                      (default "No Default")
+      --Preproc.GEMMACH.gem_geophy string            Preproc.GEMMACH.gem_geophy is the location of GEMMACH landuse data. No date is necessary, these values are constant.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/gemmachtest_gem_geophy.nc")
+      --Preproc.GEMMACH.gem_out string               Preproc.GEMMACH.gem_out is the location of GEMMACH output files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/gemmachtest_[DATE].nc")
+      --Preproc.GEMMACH.gem_rdps string              Preproc.GEMMACH.gem_rdps is the location of some GEM meteorological data. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gemmach/rdps/rdpsqctest_[DATE].nc")
+      --Preproc.GEMMACH.gemnoChemHour                If Preproc.GEMMACH.gemnoChemHour is true, the GEMMACH output files will be assumed to contain a single hour per file.
+                                                     
+      --Preproc.GEOSChem.ChemFileInterval string     Preproc.GEOSChem.ChemFileInterval specifies the time duration represented by each GEOS-Chem output file. E.g. "3h" for 3 hours.
+                                                      (default "3h")
+      --Preproc.GEOSChem.ChemRecordInterval string   Preproc.GEOSChem.ChemRecordInterval specifies the time duration represented by each GEOS-Chem output record. E.g. "3h" for 3 hours.
+                                                      (default "3h")
+      --Preproc.GEOSChem.Dash                        Preproc.GEOSChem.Dash indicates whether GEOS-Chem chemical variable names should be assumed to be in the form 'IJ-AVG-S__xxx' vs. the form 'IJ_AVG_S__xxx'.
+                                                     
+      --Preproc.GEOSChem.GEOSA1 string               Preproc.GEOSChem.GEOSA1 is the location of the GEOS 1-hour time average files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A1.2x25.nc")
+      --Preproc.GEOSChem.GEOSA3Cld string            Preproc.GEOSChem.GEOSA3Cld is the location of the GEOS 3-hour average cloud parameter files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A3cld.2x25.nc")
+      --Preproc.GEOSChem.GEOSA3Dyn string            Preproc.GEOSChem.GEOSA3Dyn is the location of the GEOS 3-hour average dynamical parameter files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A3dyn.2x25.nc")
+      --Preproc.GEOSChem.GEOSA3MstE string           Preproc.GEOSChem.GEOSA3MstE is the location of the GEOS 3-hour average moist parameters on level edges files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].A3mstE.2x25.nc")
+      --Preproc.GEOSChem.GEOSApBp string             Preproc.GEOSChem.GEOSApBp is the location of the constant GEOS pressure level variable file. It is optional; if it is not specified the Ap and Bp information will be extracted from the GEOSChem files.
+                                                     
+      --Preproc.GEOSChem.GEOSChem string             Preproc.GEOSChem.GEOSChem is the location of GEOS-Chem output files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/gc_output.[DATE].nc")
+      --Preproc.GEOSChem.GEOSI3 string               Preproc.GEOSChem.GEOSI3 is the location of the GEOS 3-hour instantaneous parameter files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/GEOSFP.[DATE].I3.2x25.nc")
+      --Preproc.GEOSChem.NoChemHourIndex             If Preproc.GEOSChem.NoChemHourIndex is true, the GEOS-Chem output files will be assumed to not contain a time dimension.
+                                                     
+      --Preproc.GEOSChem.OlsonLandMap string         Preproc.GEOSChem.OlsonLandMap is the location of the GEOS-Chem Olson land use map file, which is described here: http://wiki.seas.harvard.edu/geos-chem/index.php/Olson_land_map.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/geoschem-new/Olson_2001_Land_Map.025x025.generic.nc")
+      --Preproc.StartDate string                     Preproc.StartDate is the date of the beginning of the simulation. Format = "YYYYMMDD".
+                                                      (default "No Default")
+      --Preproc.WRFChem.WRFOut string                Preproc.WRFChem.WRFOut is the location of WRF-Chem output files. [DATE] should be used as a wild card for the simulation date.
+                                                      (default "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/wrfout_d01_[DATE]")
+  -h, --help                                         help for preproc
+
+Global Flags:
+      --config string   config specifies the configuration file location.
+
+Use "inmap preproc [command] --help" for more information about a command.
+
+inmap: preprocessor read netcdf variable H: EOF
