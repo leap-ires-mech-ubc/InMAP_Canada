@@ -2,11 +2,12 @@
 InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017.nc"
 VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_fine.mpack.gz"
 
-OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmaptest_gemmach.shp"
 
-EmissionUnits= "kg/year"
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/GEMMACH_BASEGM_2015_017_fineInmapOuts.shp"
+
+EmissionUnits= "ug/s"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/testemiss_gemmach.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_SumCat_wgs84.shp",
 ]
 
 [OutputVariables]
