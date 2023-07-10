@@ -1,3 +1,6 @@
 2023/07/06 22:06:54 Reading input data...
 2023/07/06 22:12:49 Loading population and mortality rate data
 2023/07/06 22:13:32 Creating grid
+2023/07/07 16:44:51 Adding grid cells...
+2023/07/07 16:47:45 Added 300 grid cells; there are now 41810124 cells total
+2023/07/07 17:35:59 Grid successfully created at /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_fine.mpack.gz

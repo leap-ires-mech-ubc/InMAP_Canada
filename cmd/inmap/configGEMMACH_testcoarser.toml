@@ -4,9 +4,9 @@ VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargr
 
 OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/GEMMACH_BASEGM_2015_017_coarseInmapOuts.shp"
 
-EmissionUnits= "kg/year"
+EmissionUnits= "ug/s"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/testemiss_gemmach.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_SumCat_wgs84.shp",
 ]
 
 [OutputVariables]
