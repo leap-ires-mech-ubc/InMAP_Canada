@@ -2,12 +2,12 @@
 InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017.nc"
 VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_fine.mpack.gz"
 
-
 OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/GEMMACH_BASEGM_2015_017_fineInmapOuts.shp"
 
-EmissionUnits= "ug/s"
+EmissionUnits = "kg/year"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_SumCat_wgs84.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/NPRI/NPRI_ground_211.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/NPRI/NPRI_stack_211.shp"
 ]
 
 [OutputVariables]
@@ -24,6 +24,14 @@ SOx = "SOx"
 NH3 = "NH3"
 NOx = "NOx"
 BasePM25 = "BaselineTotalPM25"
+BaseVOC = "BaselineVOC"
+BaseSOA = "BaselineSOA"
+BaseNH3 = "BaselineNH3"
+BasePNH4 = "BaselinePNH4"
+BaseSOx = "BaselineSOx"
+BasePSO4 = "BaselinePSO4"
+BaseNOx = "BaselineNOx"
+BasePNO3 = "BaselinePNO3"
 
 [VarGrid]
 GridProj= "+proj=lcc +lat_0=40 +lon_0=-96 +lat_1=50 +lat_2=70 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +to_meter=1"

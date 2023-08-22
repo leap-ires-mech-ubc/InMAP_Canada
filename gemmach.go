@@ -143,10 +143,13 @@ func NewGEMMACH(gem_out, gem_geophy, gem_rdps, startDate, endDate string, gemnoC
 		// NOx is RACM NOx species. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
-		nox: map[string]float64{"TNO": 1., "TNO2": 1.},
+		nox: map[string]float64{"TNO": mwN/mwNO,
+							    "TNO2": mwN/mwNOx},
 		// pNO is the Nitrogen fraction of MADE particulate
 		// NO species [μg/kg dry air].
-		pNO: map[string]float64{"TNI1": 1., "TNO3": 1., "THN3": 1.},
+		pNO: map[string]float64{"TNI1": mwN/mwNO3,
+								"TNO3": mwN/mwNO3,
+								"THN3": mwN/mwHN3},
 		// SOx is the RACM SOx species. We are only interested in the mass
 		// of Sulfur, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Sulfur.
@@ -154,14 +157,14 @@ func NewGEMMACH(gem_out, gem_geophy, gem_rdps, startDate, endDate string, gemnoC
 		sox: map[string]float64{"S2": ppmvToUgKg(mwS) / 1000.0},
 		// pS is the Sulfur fraction of the MADE particulate
 		// Sulfur species [μg/kg dry air].
-		pS: map[string]float64{"TSU1": 1.},
+		pS: map[string]float64{"TSU1": mwS/mwSO4},
 		// NH3 is ammonia. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
-		nh3: map[string]float64{"TNH3": 1.},
+		nh3: map[string]float64{"TNH3": mwN/mwNH3},
 		// pNH is the Nitrogen fraction of the MADE particulate
-		// ammonia species [μg/m³].
-		pNH: map[string]float64{"TAM1": 1.},
+		// ammonia species [μg/kg].
+		pNH: map[string]float64{"TAM1": mwN/mwNH4},
 		// totalPM25 is total mass of PM2.5  [μg/m3].
 		totalPM25: map[string]float64{"AF": 1.},
 		// Hydroxy radical is concentratoon of the hydroxy radical.
@@ -595,7 +598,7 @@ func (w *GEMMACH) ALT() NextData {
 
 /*
 func (w *GEMMACH) ALT() NextData {
-	rhoFunc := w.flipread("RHO") // Density of air kg m-2
+	rhoFunc := w.flipread("RHO") // Density of air kg m-3
 	return func() (*sparse.DenseArray, error) {
 		rho, err := rhoFunc()
 		if err != nil {
@@ -795,7 +798,8 @@ func (w *GEMMACH) PS() NextData { return w.flipreadGroupAlt(w.pS) }
 
 // PNH helps fulfill the Preprocessor interface.
 //TRSB - changed to "read group" not "read group alt" as value already in ug/kg
-func (w *GEMMACH) PNH() NextData { return w.flipreadGroup(w.pNH) }
+//20230811 TR - changed back to ALT as we want it in ug/m3, which is what readgroupalt does.
+func (w *GEMMACH) PNH() NextData { return w.flipreadGroupAlt(w.pNH) }
 
 // TotalPM25 helps fulfill the Preprocessor interface.
 func (w *GEMMACH) TotalPM25() NextData { return w.flipreadGroup(w.totalPM25) }

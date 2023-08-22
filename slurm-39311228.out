@@ -1,0 +1,3528 @@
+2023/07/23 22:38:41 Parsing output variable expressions...
+2023/07/23 22:38:41 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_Sumlcc.shp.
+2023/07/23 22:39:29 Loading CTM data...
+2023/07/23 22:39:29 Reading input data...
+2023/07/23 22:45:58 Loading population and mortality rate data...
+2023/07/23 22:46:43 Initializing model...
+2023/07/23 22:48:46 Emission totals:
+2023/07/23 22:48:46 gOrg, 2681.304597225357 μg/s
+2023/07/23 22:48:46 pOrg, 0 μg/s
+2023/07/23 22:48:46 PM2_5, 953.1036215469032 μg/s
+2023/07/23 22:48:46 gNH, 946.3238749029346 μg/s
+2023/07/23 22:48:46 pNH, 0 μg/s
+2023/07/23 22:48:46 gS, 555.7922413977092 μg/s
+2023/07/23 22:48:46 pS, 0 μg/s
+2023/07/23 22:48:46 gNO, 748.2338874292113 μg/s
+2023/07/23 22:48:46 pNO, 0 μg/s
+2023/07/23 22:48:46 iteration 1     walltime=0.0344h  Δwalltime=1.2e+02s  timestep= 4s  day=4.19e-05
+2023/07/23 22:48:47 iteration 27    walltime=0.0344h  Δwalltime=0.0063s  timestep= 4s  day=0.00113
+2023/07/23 22:48:49 iteration 331   walltime= 0.035h  Δwalltime=0.0062s  timestep= 4s  day=0.0139
+2023/07/23 22:48:51 iteration 644   walltime=0.0355h  Δwalltime=0.0092s  timestep= 4s  day=0.027
+2023/07/23 22:48:53 iteration 931   walltime=0.0361h  Δwalltime=0.0064s  timestep= 4s  day=0.039
+2023/07/23 22:48:55 iteration 1202  walltime=0.0366h  Δwalltime=0.0067s  timestep= 4s  day=0.0503
+2023/07/23 22:48:57 iteration 1511  walltime=0.0372h  Δwalltime=0.0063s  timestep= 4s  day=0.0633
+2023/07/23 22:48:59 iteration 1823  walltime=0.0377h  Δwalltime=0.0062s  timestep= 4s  day=0.0764
+2023/07/23 22:49:01 iteration 2141  walltime=0.0383h  Δwalltime=0.0062s  timestep= 4s  day=0.0897
+2023/07/23 22:49:03 iteration 2455  walltime=0.0389h  Δwalltime=0.0061s  timestep= 4s  day=0.103
+2023/07/23 22:49:05 iteration 2761  walltime=0.0394h  Δwalltime=0.0063s  timestep= 4s  day=0.116
+2023/07/23 22:49:06 Adding grid cells...
+2023/07/23 22:49:35 Added 6264 grid cells; there are now 58764 cells total
+2023/07/23 22:49:39 iteration 2986  walltime= 0.049h  Δwalltime=  33s  timestep= 4s  day=0.125
+2023/07/23 22:49:39 Percent change since last convergence check:
+VOC:			+Inf%
+VOC pop-wtd:		+Inf%
+SOA:			+Inf%
+SOA pop-wtd:		+Inf%
+PrimaryPM25:		+Inf%
+PrimaryPM25 pop-wtd:	+Inf%
+NH3:			+Inf%
+NH3 pop-wtd:		+Inf%
+pNH4:			+Inf%
+pNH4 pop-wtd:		+Inf%
+SOx:			+Inf%
+SOx pop-wtd:		+Inf%
+pSO4:			+Inf%
+pSO4 pop-wtd:		+Inf%
+NOx:			+Inf%
+NOx pop-wtd:		+Inf%
+pNO3:			+Inf%
+pNO3 pop-wtd:		+Inf%
+2023/07/23 22:49:41 iteration 3178  walltime=0.0494h  Δwalltime=0.0071s  timestep= 4s  day=0.133
+2023/07/23 22:49:43 iteration 3450  walltime=  0.05h  Δwalltime=0.0072s  timestep= 4s  day=0.145
+2023/07/23 22:49:45 iteration 3702  walltime=0.0505h  Δwalltime=0.012s  timestep= 4s  day=0.155
+2023/07/23 22:49:47 iteration 3977  walltime=0.0511h  Δwalltime=0.0071s  timestep= 4s  day=0.167
+2023/07/23 22:49:49 iteration 4256  walltime=0.0516h  Δwalltime=0.0069s  timestep= 4s  day=0.178
+2023/07/23 22:49:51 iteration 4480  walltime=0.0522h  Δwalltime=0.013s  timestep= 4s  day=0.188
+2023/07/23 22:49:53 iteration 4700  walltime=0.0527h  Δwalltime=0.007s  timestep= 4s  day=0.197
+2023/07/23 22:49:55 iteration 4942  walltime=0.0533h  Δwalltime=0.0072s  timestep= 4s  day=0.207
+2023/07/23 22:49:57 iteration 5153  walltime=0.0539h  Δwalltime=0.0098s  timestep= 4s  day=0.216
+2023/07/23 22:49:59 iteration 5402  walltime=0.0544h  Δwalltime=0.0069s  timestep= 4s  day=0.226
+2023/07/23 22:50:01 iteration 5674  walltime= 0.055h  Δwalltime=0.0069s  timestep= 4s  day=0.238
+2023/07/23 22:50:03 iteration 5951  walltime=0.0555h  Δwalltime=0.0068s  timestep= 4s  day=0.249
+2023/07/23 22:50:03 Adding grid cells...
+2023/07/23 22:50:03 Added 147 grid cells; there are now 58911 cells total
+2023/07/23 22:50:07 Percent change since last convergence check:
+VOC:			83%
+VOC pop-wtd:		1.1e+02%
+SOA:			85%
+SOA pop-wtd:		1e+02%
+PrimaryPM25:		86%
+PrimaryPM25 pop-wtd:	96%
+NH3:			1.2e+02%
+NH3 pop-wtd:		73%
+pNH4:			86%
+pNH4 pop-wtd:		74%
+SOx:			13%
+SOx pop-wtd:		1e+02%
+pSO4:			1.3e+02%
+pSO4 pop-wtd:		1.6e+02%
+NOx:			84%
+NOx pop-wtd:		1.3e+02%
+pNO3:			1e+02%
+pNO3 pop-wtd:		79%
+2023/07/23 22:50:07 iteration 5971  walltime=0.0568h  Δwalltime= 4.4s  timestep= 4s  day=0.25
+2023/07/23 22:50:09 iteration 6167  walltime=0.0572h  Δwalltime=0.0072s  timestep= 4s  day=0.258
+2023/07/23 22:50:11 iteration 6413  walltime=0.0577h  Δwalltime=0.0071s  timestep= 4s  day=0.269
+2023/07/23 22:50:13 iteration 6689  walltime=0.0583h  Δwalltime=0.0071s  timestep= 4s  day=0.28
+2023/07/23 22:50:15 iteration 6964  walltime=0.0589h  Δwalltime=0.0077s  timestep= 4s  day=0.292
+2023/07/23 22:50:17 iteration 7243  walltime=0.0594h  Δwalltime=0.0071s  timestep= 4s  day=0.303
+2023/07/23 22:50:19 iteration 7520  walltime=  0.06h  Δwalltime=0.0072s  timestep= 4s  day=0.315
+2023/07/23 22:50:21 iteration 7799  walltime=0.0605h  Δwalltime=0.0071s  timestep= 4s  day=0.327
+2023/07/23 22:50:23 iteration 8078  walltime=0.0611h  Δwalltime=0.0071s  timestep= 4s  day=0.338
+2023/07/23 22:50:25 iteration 8321  walltime=0.0616h  Δwalltime=0.0071s  timestep= 4s  day=0.349
+2023/07/23 22:50:27 iteration 8600  walltime=0.0622h  Δwalltime=0.0071s  timestep= 4s  day=0.36
+2023/07/23 22:50:29 iteration 8877  walltime=0.0627h  Δwalltime=0.0069s  timestep= 4s  day=0.372
+2023/07/23 22:50:29 Adding grid cells...
+2023/07/23 22:50:29 Added 156 grid cells; there are now 59067 cells total
+2023/07/23 22:50:34 iteration 8956  walltime=0.0642h  Δwalltime= 4.6s  timestep= 4s  day=0.375
+2023/07/23 22:50:34 Percent change since last convergence check:
+VOC:			40%
+VOC pop-wtd:		12%
+SOA:			42%
+SOA pop-wtd:		12%
+PrimaryPM25:		42%
+PrimaryPM25 pop-wtd:	14%
+NH3:			59%
+NH3 pop-wtd:		14%
+pNH4:			42%
+pNH4 pop-wtd:		14%
+SOx:			4.2%
+SOx pop-wtd:		0.38%
+pSO4:			54%
+pSO4 pop-wtd:		29%
+NOx:			41%
+NOx pop-wtd:		17%
+pNO3:			50%
+pNO3 pop-wtd:		17%
+2023/07/23 22:50:35 iteration 9059  walltime=0.0644h  Δwalltime=0.0071s  timestep= 4s  day=0.379
+2023/07/23 22:50:37 iteration 9336  walltime= 0.065h  Δwalltime=0.0072s  timestep= 4s  day=0.391
+2023/07/23 22:50:39 iteration 9613  walltime=0.0655h  Δwalltime=0.007s  timestep= 4s  day=0.403
+2023/07/23 22:50:41 iteration 9858  walltime=0.0661h  Δwalltime=0.007s  timestep= 4s  day=0.413
+2023/07/23 22:50:43 iteration 10130  walltime=0.0666h  Δwalltime=0.007s  timestep= 4s  day=0.424
+2023/07/23 22:50:45 iteration 10399  walltime=0.0672h  Δwalltime=0.007s  timestep= 4s  day=0.436
+2023/07/23 22:50:47 iteration 10671  walltime=0.0677h  Δwalltime=0.007s  timestep= 4s  day=0.447
+2023/07/23 22:50:49 iteration 10949  walltime=0.0683h  Δwalltime=0.0071s  timestep= 4s  day=0.459
+2023/07/23 22:50:51 iteration 11229  walltime=0.0689h  Δwalltime=0.0072s  timestep= 4s  day=0.47
+2023/07/23 22:50:53 iteration 11508  walltime=0.0694h  Δwalltime=0.0072s  timestep= 4s  day=0.482
+2023/07/23 22:50:55 iteration 11748  walltime=  0.07h  Δwalltime=0.007s  timestep= 4s  day=0.492
+2023/07/23 22:50:56 Adding grid cells...
+2023/07/23 22:50:56 Added 138 grid cells; there are now 59205 cells total
+2023/07/23 22:51:01 iteration 11941  walltime=0.0718h  Δwalltime= 5.2s  timestep= 4s  day=0.5
+2023/07/23 22:51:01 Percent change since last convergence check:
+VOC:			26%
+VOC pop-wtd:		6.7%
+SOA:			27%
+SOA pop-wtd:		6.6%
+PrimaryPM25:		28%
+PrimaryPM25 pop-wtd:	7.8%
+NH3:			38%
+NH3 pop-wtd:		8%
+pNH4:			27%
+pNH4 pop-wtd:		8.3%
+SOx:			1.8%
+SOx pop-wtd:		0.057%
+pSO4:			33%
+pSO4 pop-wtd:		15%
+NOx:			27%
+NOx pop-wtd:		9.7%
+pNO3:			33%
+pNO3 pop-wtd:		10%
+2023/07/23 22:51:03 iteration 12068  walltime=0.0722h  Δwalltime=0.0073s  timestep= 4s  day=0.505
+2023/07/23 22:51:05 iteration 12287  walltime=0.0727h  Δwalltime=0.0074s  timestep= 4s  day=0.515
+2023/07/23 22:51:07 iteration 12519  walltime=0.0733h  Δwalltime=0.013s  timestep= 4s  day=0.524
+2023/07/23 22:51:09 iteration 12775  walltime=0.0739h  Δwalltime=0.0077s  timestep= 4s  day=0.535
+2023/07/23 22:51:11 iteration 13024  walltime=0.0744h  Δwalltime=0.012s  timestep= 4s  day=0.546
+2023/07/23 22:51:13 iteration 13293  walltime= 0.075h  Δwalltime=0.0073s  timestep= 4s  day=0.557
+2023/07/23 22:51:15 iteration 13568  walltime=0.0755h  Δwalltime=0.0072s  timestep= 4s  day=0.568
+2023/07/23 22:51:17 iteration 13847  walltime=0.0761h  Δwalltime=0.0071s  timestep= 4s  day=0.58
+2023/07/23 22:51:19 iteration 14122  walltime=0.0766h  Δwalltime=0.007s  timestep= 4s  day=0.591
+2023/07/23 22:51:21 iteration 14350  walltime=0.0772h  Δwalltime=0.013s  timestep= 4s  day=0.601
+2023/07/23 22:51:23 iteration 14564  walltime=0.0777h  Δwalltime=0.0072s  timestep= 4s  day=0.61
+2023/07/23 22:51:25 iteration 14812  walltime=0.0783h  Δwalltime=0.007s  timestep= 4s  day=0.62
+2023/07/23 22:51:25 Adding grid cells...
+2023/07/23 22:51:26 Added 147 grid cells; there are now 59352 cells total
+2023/07/23 22:51:30 Percent change since last convergence check:
+VOC:			19%
+VOC pop-wtd:		4.7%
+SOA:			20%
+SOA pop-wtd:		4.6%
+PrimaryPM25:		20%
+PrimaryPM25 pop-wtd:	5.6%
+NH3:			28%
+NH3 pop-wtd:		5.8%
+pNH4:			20%
+pNH4 pop-wtd:		6.1%
+SOx:			0.82%
+SOx pop-wtd:		0.018%
+pSO4:			23%
+pSO4 pop-wtd:		11%
+NOx:			19%
+NOx pop-wtd:		7.1%
+pNO3:			24%
+pNO3 pop-wtd:		7.4%
+2023/07/23 22:51:30 iteration 14926  walltime=0.0797h  Δwalltime= 4.2s  timestep= 4s  day=0.625
+2023/07/23 22:51:31 iteration 15056  walltime=  0.08h  Δwalltime=0.0073s  timestep= 4s  day=0.631
+2023/07/23 22:51:33 iteration 15331  walltime=0.0805h  Δwalltime=0.0073s  timestep= 4s  day=0.642
+2023/07/23 22:51:35 iteration 15603  walltime=0.0811h  Δwalltime=0.0072s  timestep= 4s  day=0.654
+2023/07/23 22:51:37 iteration 15880  walltime=0.0816h  Δwalltime=0.0072s  timestep= 4s  day=0.665
+2023/07/23 22:51:39 iteration 16154  walltime=0.0822h  Δwalltime=0.0071s  timestep= 4s  day=0.677
+2023/07/23 22:51:41 iteration 16402  walltime=0.0827h  Δwalltime=0.0072s  timestep= 4s  day=0.687
+2023/07/23 22:51:43 iteration 16673  walltime=0.0833h  Δwalltime=0.0072s  timestep= 4s  day=0.698
+2023/07/23 22:51:45 iteration 16946  walltime=0.0839h  Δwalltime=0.0074s  timestep= 4s  day=0.71
+2023/07/23 22:51:47 iteration 17222  walltime=0.0844h  Δwalltime=0.0072s  timestep= 4s  day=0.721
+2023/07/23 22:51:49 iteration 17498  walltime= 0.085h  Δwalltime=0.0074s  timestep= 4s  day=0.733
+2023/07/23 22:51:51 iteration 17774  walltime=0.0855h  Δwalltime=0.0075s  timestep= 4s  day=0.744
+2023/07/23 22:51:52 Adding grid cells...
+2023/07/23 22:51:52 Added 111 grid cells; there are now 59463 cells total
+2023/07/23 22:51:56 Percent change since last convergence check:
+VOC:			15%
+VOC pop-wtd:		3.6%
+SOA:			16%
+SOA pop-wtd:		3.5%
+PrimaryPM25:		16%
+PrimaryPM25 pop-wtd:	4.4%
+NH3:			22%
+NH3 pop-wtd:		4.6%
+pNH4:			16%
+pNH4 pop-wtd:		4.8%
+SOx:			0.39%
+SOx pop-wtd:		0.0064%
+pSO4:			18%
+pSO4 pop-wtd:		8%
+NOx:			15%
+NOx pop-wtd:		5.6%
+pNO3:			19%
+pNO3 pop-wtd:		5.9%
+2023/07/23 22:51:56 iteration 17911  walltime= 0.087h  Δwalltime= 4.4s  timestep= 4s  day=0.75
+2023/07/23 22:51:57 iteration 17990  walltime=0.0872h  Δwalltime=0.007s  timestep= 4s  day=0.753
+2023/07/23 22:51:59 iteration 18269  walltime=0.0877h  Δwalltime=0.0071s  timestep= 4s  day=0.765
+2023/07/23 22:52:01 iteration 18540  walltime=0.0883h  Δwalltime=0.0073s  timestep= 4s  day=0.777
+2023/07/23 22:52:03 iteration 18812  walltime=0.0889h  Δwalltime=0.0071s  timestep= 4s  day=0.788
+2023/07/23 22:52:05 iteration 19082  walltime=0.0894h  Δwalltime=0.0071s  timestep= 4s  day=0.799
+2023/07/23 22:52:07 iteration 19356  walltime=  0.09h  Δwalltime=0.016s  timestep= 4s  day=0.811
+2023/07/23 22:52:09 iteration 19625  walltime=0.0905h  Δwalltime=0.0071s  timestep= 4s  day=0.822
+2023/07/23 22:52:11 iteration 19873  walltime=0.0911h  Δwalltime=0.012s  timestep= 4s  day=0.832
+2023/07/23 22:52:13 iteration 20141  walltime=0.0916h  Δwalltime=0.0073s  timestep= 4s  day=0.844
+2023/07/23 22:52:15 iteration 20411  walltime=0.0922h  Δwalltime=0.0095s  timestep= 4s  day=0.855
+2023/07/23 22:52:17 iteration 20679  walltime=0.0927h  Δwalltime=0.0071s  timestep= 4s  day=0.866
+2023/07/23 22:52:18 Adding grid cells...
+2023/07/23 22:52:18 Added 162 grid cells; there are now 59625 cells total
+2023/07/23 22:52:23 iteration 20896  walltime=0.0944h  Δwalltime= 4.6s  timestep= 4s  day=0.875
+2023/07/23 22:52:23 Percent change since last convergence check:
+VOC:			12%
+VOC pop-wtd:		2.9%
+SOA:			13%
+SOA pop-wtd:		2.8%
+PrimaryPM25:		13%
+PrimaryPM25 pop-wtd:	3.5%
+NH3:			18%
+NH3 pop-wtd:		3.8%
+pNH4:			13%
+pNH4 pop-wtd:		4%
+SOx:			0.19%
+SOx pop-wtd:		0.0024%
+pSO4:			14%
+pSO4 pop-wtd:		6.4%
+NOx:			12%
+NOx pop-wtd:		4.6%
+pNO3:			16%
+pNO3 pop-wtd:		4.9%
+2023/07/23 22:52:25 iteration 21130  walltime= 0.095h  Δwalltime=0.0074s  timestep= 4s  day=0.885
+2023/07/23 22:52:27 iteration 21398  walltime=0.0955h  Δwalltime=0.0072s  timestep= 4s  day=0.896
+2023/07/23 22:52:29 iteration 21671  walltime=0.0961h  Δwalltime=0.0071s  timestep= 4s  day=0.908
+2023/07/23 22:52:31 iteration 21939  walltime=0.0966h  Δwalltime=0.0078s  timestep= 4s  day=0.919
+2023/07/23 22:52:33 iteration 22208  walltime=0.0972h  Δwalltime=0.0071s  timestep= 4s  day=0.93
+2023/07/23 22:52:35 iteration 22474  walltime=0.0977h  Δwalltime=0.0072s  timestep= 4s  day=0.941
+2023/07/23 22:52:37 iteration 22739  walltime=0.0983h  Δwalltime=0.0072s  timestep= 4s  day=0.952
+2023/07/23 22:52:39 iteration 23007  walltime=0.0989h  Δwalltime=0.0075s  timestep= 4s  day=0.964
+2023/07/23 22:52:41 iteration 23253  walltime=0.0994h  Δwalltime=0.0074s  timestep= 4s  day=0.974
+2023/07/23 22:52:43 iteration 23519  walltime=   0.1h  Δwalltime=0.0071s  timestep= 4s  day=0.985
+2023/07/23 22:52:45 iteration 23782  walltime= 0.101h  Δwalltime=0.012s  timestep= 4s  day=0.996
+2023/07/23 22:52:45 Adding grid cells...
+2023/07/23 22:52:46 Added 138 grid cells; there are now 59763 cells total
+2023/07/23 22:52:50 iteration 23881  walltime= 0.102h  Δwalltime= 4.6s  timestep= 4s  day=1
+2023/07/23 22:52:50 Percent change since last convergence check:
+VOC:			10%
+VOC pop-wtd:		2.4%
+SOA:			11%
+SOA pop-wtd:		2.3%
+PrimaryPM25:		11%
+PrimaryPM25 pop-wtd:	3%
+NH3:			15%
+NH3 pop-wtd:		3.2%
+pNH4:			11%
+pNH4 pop-wtd:		3.4%
+SOx:			0.093%
+SOx pop-wtd:		0.00095%
+pSO4:			12%
+pSO4 pop-wtd:		5.2%
+NOx:			10%
+NOx pop-wtd:		3.9%
+pNO3:			13%
+pNO3 pop-wtd:		4.2%
+2023/07/23 22:52:51 iteration 23936  walltime= 0.102h  Δwalltime=0.014s  timestep= 4s  day=1
+2023/07/23 22:52:53 iteration 24152  walltime= 0.103h  Δwalltime=0.0074s  timestep= 4s  day=1.01
+2023/07/23 22:52:55 iteration 24396  walltime= 0.103h  Δwalltime=0.0073s  timestep= 4s  day=1.02
+2023/07/23 22:52:57 iteration 24662  walltime= 0.104h  Δwalltime=0.0074s  timestep= 4s  day=1.03
+2023/07/23 22:52:59 iteration 24928  walltime= 0.104h  Δwalltime=0.0075s  timestep= 4s  day=1.04
+2023/07/23 22:53:01 iteration 25195  walltime= 0.105h  Δwalltime=0.0075s  timestep= 4s  day=1.06
+2023/07/23 22:53:03 iteration 25337  walltime= 0.106h  Δwalltime=0.013s  timestep= 4s  day=1.06
+2023/07/23 22:53:05 iteration 25569  walltime= 0.106h  Δwalltime=0.0074s  timestep= 4s  day=1.07
+2023/07/23 22:53:07 iteration 25814  walltime= 0.107h  Δwalltime=0.0074s  timestep= 4s  day=1.08
+2023/07/23 22:53:09 iteration 26057  walltime= 0.107h  Δwalltime=0.01s  timestep= 4s  day=1.09
+2023/07/23 22:53:11 iteration 26294  walltime= 0.108h  Δwalltime=0.0076s  timestep= 4s  day=1.1
+2023/07/23 22:53:13 iteration 26551  walltime= 0.108h  Δwalltime=0.0075s  timestep= 4s  day=1.11
+2023/07/23 22:53:15 iteration 26816  walltime= 0.109h  Δwalltime=0.012s  timestep= 4s  day=1.12
+2023/07/23 22:53:15 Adding grid cells...
+2023/07/23 22:53:15 Added 93 grid cells; there are now 59856 cells total
+2023/07/23 22:53:19 Percent change since last convergence check:
+VOC:			8.8%
+VOC pop-wtd:		2%
+SOA:			9.5%
+SOA pop-wtd:		2%
+PrimaryPM25:		9.5%
+PrimaryPM25 pop-wtd:	2.5%
+NH3:			13%
+NH3 pop-wtd:		2.8%
+pNH4:			9.5%
+pNH4 pop-wtd:		3%
+SOx:			0.046%
+SOx pop-wtd:		0.00039%
+pSO4:			10%
+pSO4 pop-wtd:		4.4%
+NOx:			9%
+NOx pop-wtd:		3.4%
+pNO3:			12%
+pNO3 pop-wtd:		3.6%
+2023/07/23 22:53:19 iteration 26866  walltime=  0.11h  Δwalltime= 3.9s  timestep= 4s  day=1.13
+2023/07/23 22:53:21 iteration 27092  walltime= 0.111h  Δwalltime=0.0075s  timestep= 4s  day=1.13
+2023/07/23 22:53:23 iteration 27355  walltime= 0.111h  Δwalltime=0.0074s  timestep= 4s  day=1.15
+2023/07/23 22:53:25 iteration 27599  walltime= 0.112h  Δwalltime=0.0076s  timestep= 4s  day=1.16
+2023/07/23 22:53:27 iteration 27856  walltime= 0.112h  Δwalltime=0.0075s  timestep= 4s  day=1.17
+2023/07/23 22:53:29 iteration 28117  walltime= 0.113h  Δwalltime=0.0077s  timestep= 4s  day=1.18
+2023/07/23 22:53:31 iteration 28374  walltime= 0.113h  Δwalltime=0.0076s  timestep= 4s  day=1.19
+2023/07/23 22:53:33 iteration 28635  walltime= 0.114h  Δwalltime=0.008s  timestep= 4s  day=1.2
+2023/07/23 22:53:35 iteration 28894  walltime= 0.114h  Δwalltime=0.0075s  timestep= 4s  day=1.21
+2023/07/23 22:53:37 iteration 29156  walltime= 0.115h  Δwalltime=0.0077s  timestep= 4s  day=1.22
+2023/07/23 22:53:39 iteration 29418  walltime= 0.116h  Δwalltime=0.0075s  timestep= 4s  day=1.23
+2023/07/23 22:53:41 iteration 29658  walltime= 0.116h  Δwalltime=0.01s  timestep= 4s  day=1.24
+2023/07/23 22:53:42 Adding grid cells...
+2023/07/23 22:53:42 Added 135 grid cells; there are now 59991 cells total
+2023/07/23 22:53:46 iteration 29851  walltime= 0.118h  Δwalltime= 4.4s  timestep= 4s  day=1.25
+2023/07/23 22:53:46 Percent change since last convergence check:
+VOC:			7.7%
+VOC pop-wtd:		1.7%
+SOA:			8.4%
+SOA pop-wtd:		1.7%
+PrimaryPM25:		8.3%
+PrimaryPM25 pop-wtd:	2.2%
+NH3:			11%
+NH3 pop-wtd:		2.5%
+pNH4:			8.3%
+pNH4 pop-wtd:		2.7%
+SOx:			0.022%
+SOx pop-wtd:		0.00017%
+pSO4:			8.9%
+pSO4 pop-wtd:		3.7%
+NOx:			7.8%
+NOx pop-wtd:		3%
+pNO3:			10%
+pNO3 pop-wtd:		3.2%
+2023/07/23 22:53:47 iteration 29861  walltime= 0.118h  Δwalltime=0.0077s  timestep= 4s  day=1.25
+2023/07/23 22:53:49 iteration 30123  walltime= 0.118h  Δwalltime=0.0074s  timestep= 4s  day=1.26
+2023/07/23 22:53:51 iteration 30386  walltime= 0.119h  Δwalltime=0.0077s  timestep= 4s  day=1.27
+2023/07/23 22:53:53 iteration 30648  walltime= 0.119h  Δwalltime=0.0074s  timestep= 4s  day=1.28
+2023/07/23 22:53:55 iteration 30893  walltime=  0.12h  Δwalltime=0.0076s  timestep= 4s  day=1.29
+2023/07/23 22:53:57 iteration 31153  walltime= 0.121h  Δwalltime=0.0076s  timestep= 4s  day=1.3
+2023/07/23 22:53:59 iteration 31415  walltime= 0.121h  Δwalltime=0.0076s  timestep= 4s  day=1.32
+2023/07/23 22:54:01 iteration 31672  walltime= 0.122h  Δwalltime=0.0075s  timestep= 4s  day=1.33
+2023/07/23 22:54:03 iteration 31931  walltime= 0.122h  Δwalltime=0.0076s  timestep= 4s  day=1.34
+2023/07/23 22:54:05 iteration 32189  walltime= 0.123h  Δwalltime=0.011s  timestep= 4s  day=1.35
+2023/07/23 22:54:07 iteration 32450  walltime= 0.123h  Δwalltime=0.0076s  timestep= 4s  day=1.36
+2023/07/23 22:54:09 iteration 32706  walltime= 0.124h  Δwalltime=0.0075s  timestep= 4s  day=1.37
+2023/07/23 22:54:10 Adding grid cells...
+2023/07/23 22:54:10 Added 141 grid cells; there are now 60132 cells total
+2023/07/23 22:54:14 iteration 32836  walltime= 0.125h  Δwalltime= 4.6s  timestep= 4s  day=1.38
+2023/07/23 22:54:14 Percent change since last convergence check:
+VOC:			6.8%
+VOC pop-wtd:		1.5%
+SOA:			7.4%
+SOA pop-wtd:		1.4%
+PrimaryPM25:		7.3%
+PrimaryPM25 pop-wtd:	1.9%
+NH3:			10%
+NH3 pop-wtd:		2.3%
+pNH4:			7.4%
+pNH4 pop-wtd:		2.4%
+SOx:			0.011%
+SOx pop-wtd:		7.6e-05%
+pSO4:			7.8%
+pSO4 pop-wtd:		3.2%
+NOx:			6.9%
+NOx pop-wtd:		2.6%
+pNO3:			9%
+pNO3 pop-wtd:		2.8%
+2023/07/23 22:54:15 iteration 32873  walltime= 0.126h  Δwalltime=0.0076s  timestep= 4s  day=1.38
+2023/07/23 22:54:17 iteration 33135  walltime= 0.126h  Δwalltime=0.0077s  timestep= 4s  day=1.39
+2023/07/23 22:54:19 iteration 33397  walltime= 0.127h  Δwalltime=0.0077s  timestep= 4s  day=1.4
+2023/07/23 22:54:21 iteration 33615  walltime= 0.127h  Δwalltime=0.012s  timestep= 4s  day=1.41
+2023/07/23 22:54:23 iteration 33821  walltime= 0.128h  Δwalltime=0.0077s  timestep= 4s  day=1.42
+2023/07/23 22:54:25 iteration 34058  walltime= 0.128h  Δwalltime=0.012s  timestep= 4s  day=1.43
+2023/07/23 22:54:27 iteration 34316  walltime= 0.129h  Δwalltime=0.0078s  timestep= 4s  day=1.44
+2023/07/23 22:54:29 iteration 34575  walltime= 0.129h  Δwalltime=0.0076s  timestep= 4s  day=1.45
+2023/07/23 22:54:31 iteration 34831  walltime=  0.13h  Δwalltime=0.0077s  timestep= 4s  day=1.46
+2023/07/23 22:54:33 iteration 35078  walltime= 0.131h  Δwalltime=0.0076s  timestep= 4s  day=1.47
+2023/07/23 22:54:35 iteration 35336  walltime= 0.131h  Δwalltime=0.0076s  timestep= 4s  day=1.48
+2023/07/23 22:54:37 iteration 35594  walltime= 0.132h  Δwalltime=0.0077s  timestep= 4s  day=1.49
+2023/07/23 22:54:38 Adding grid cells...
+2023/07/23 22:54:39 Added 90 grid cells; there are now 60222 cells total
+2023/07/23 22:54:43 iteration 35821  walltime= 0.133h  Δwalltime= 4.5s  timestep= 4s  day=1.5
+2023/07/23 22:54:43 Percent change since last convergence check:
+VOC:			6%
+VOC pop-wtd:		1.3%
+SOA:			6.7%
+SOA pop-wtd:		1.3%
+PrimaryPM25:		6.6%
+PrimaryPM25 pop-wtd:	1.7%
+NH3:			8.9%
+NH3 pop-wtd:		2%
+pNH4:			6.6%
+pNH4 pop-wtd:		2.2%
+SOx:			0.0054%
+SOx pop-wtd:		3.5e-05%
+pSO4:			6.9%
+pSO4 pop-wtd:		2.7%
+NOx:			6.2%
+NOx pop-wtd:		2.4%
+pNO3:			8.1%
+pNO3 pop-wtd:		2.5%
+2023/07/23 22:54:45 iteration 36040  walltime= 0.134h  Δwalltime=0.0077s  timestep= 4s  day=1.51
+2023/07/23 22:54:47 iteration 36299  walltime= 0.134h  Δwalltime=0.0075s  timestep= 4s  day=1.52
+2023/07/23 22:54:49 iteration 36559  walltime= 0.135h  Δwalltime=0.0076s  timestep= 4s  day=1.53
+2023/07/23 22:54:51 iteration 36821  walltime= 0.136h  Δwalltime=0.0074s  timestep= 4s  day=1.54
+2023/07/23 22:54:53 iteration 37078  walltime= 0.136h  Δwalltime=0.0077s  timestep= 4s  day=1.55
+2023/07/23 22:54:55 iteration 37322  walltime= 0.137h  Δwalltime=0.0077s  timestep= 4s  day=1.56
+2023/07/23 22:54:57 iteration 37582  walltime= 0.137h  Δwalltime=0.0076s  timestep= 4s  day=1.57
+2023/07/23 22:54:59 iteration 37837  walltime= 0.138h  Δwalltime=0.0074s  timestep= 4s  day=1.58
+2023/07/23 22:55:01 iteration 38096  walltime= 0.138h  Δwalltime=0.0075s  timestep= 4s  day=1.6
+2023/07/23 22:55:03 iteration 38267  walltime= 0.139h  Δwalltime=0.013s  timestep= 4s  day=1.6
+2023/07/23 22:55:05 iteration 38479  walltime= 0.139h  Δwalltime=0.0075s  timestep= 4s  day=1.61
+2023/07/23 22:55:07 iteration 38737  walltime=  0.14h  Δwalltime=0.0077s  timestep= 4s  day=1.62
+2023/07/23 22:55:07 Adding grid cells...
+2023/07/23 22:55:07 Added 102 grid cells; there are now 60324 cells total
+2023/07/23 22:55:11 Percent change since last convergence check:
+VOC:			5.4%
+VOC pop-wtd:		1.2%
+SOA:			6%
+SOA pop-wtd:		1.1%
+PrimaryPM25:		5.9%
+PrimaryPM25 pop-wtd:	1.5%
+NH3:			8%
+NH3 pop-wtd:		1.9%
+pNH4:			6%
+pNH4 pop-wtd:		2%
+SOx:			0.0027%
+SOx pop-wtd:		1.6e-05%
+pSO4:			6.2%
+pSO4 pop-wtd:		2.4%
+NOx:			5.6%
+NOx pop-wtd:		2.1%
+pNO3:			7.3%
+pNO3 pop-wtd:		2.3%
+2023/07/23 22:55:11 iteration 38806  walltime= 0.141h  Δwalltime= 3.9s  timestep= 4s  day=1.63
+2023/07/23 22:55:13 iteration 38997  walltime= 0.142h  Δwalltime=0.0076s  timestep= 4s  day=1.63
+2023/07/23 22:55:15 iteration 39252  walltime= 0.142h  Δwalltime=0.0078s  timestep= 4s  day=1.64
+2023/07/23 22:55:17 iteration 39510  walltime= 0.143h  Δwalltime=0.0078s  timestep= 4s  day=1.65
+2023/07/23 22:55:19 iteration 39771  walltime= 0.143h  Δwalltime=0.0075s  timestep= 4s  day=1.67
+2023/07/23 22:55:21 iteration 40032  walltime= 0.144h  Δwalltime=0.012s  timestep= 4s  day=1.68
+2023/07/23 22:55:23 iteration 40292  walltime= 0.144h  Δwalltime=0.0077s  timestep= 4s  day=1.69
+2023/07/23 22:55:25 iteration 40536  walltime= 0.145h  Δwalltime=0.0075s  timestep= 4s  day=1.7
+2023/07/23 22:55:27 iteration 40794  walltime= 0.146h  Δwalltime=0.0077s  timestep= 4s  day=1.71
+2023/07/23 22:55:29 iteration 41050  walltime= 0.146h  Δwalltime=0.0079s  timestep= 4s  day=1.72
+2023/07/23 22:55:31 iteration 41289  walltime= 0.147h  Δwalltime=0.0079s  timestep= 4s  day=1.73
+2023/07/23 22:55:33 iteration 41543  walltime= 0.147h  Δwalltime=0.0077s  timestep= 4s  day=1.74
+2023/07/23 22:55:35 Adding grid cells...
+2023/07/23 22:55:35 Added 162 grid cells; there are now 60486 cells total
+2023/07/23 22:55:39 Percent change since last convergence check:
+VOC:			4.9%
+VOC pop-wtd:		1%
+SOA:			5.5%
+SOA pop-wtd:		0.98%
+PrimaryPM25:		5.4%
+PrimaryPM25 pop-wtd:	1.4%
+NH3:			7.3%
+NH3 pop-wtd:		1.7%
+pNH4:			5.4%
+pNH4 pop-wtd:		1.8%
+SOx:			0.0015%
+SOx pop-wtd:		7.8e-06%
+pSO4:			5.6%
+pSO4 pop-wtd:		2.1%
+NOx:			5%
+NOx pop-wtd:		1.9%
+pNO3:			6.7%
+pNO3 pop-wtd:		2.1%
+2023/07/23 22:55:39 iteration 41791  walltime= 0.149h  Δwalltime= 4.5s  timestep= 4s  day=1.75
+2023/07/23 22:55:41 iteration 41981  walltime= 0.149h  Δwalltime=0.0077s  timestep= 4s  day=1.76
+2023/07/23 22:55:43 iteration 42226  walltime=  0.15h  Δwalltime=0.0077s  timestep= 4s  day=1.77
+2023/07/23 22:55:45 iteration 42481  walltime= 0.151h  Δwalltime=0.008s  timestep= 4s  day=1.78
+2023/07/23 22:55:47 iteration 42738  walltime= 0.151h  Δwalltime=0.0074s  timestep= 4s  day=1.79
+2023/07/23 22:55:49 iteration 42996  walltime= 0.152h  Δwalltime=0.0077s  timestep= 4s  day=1.8
+2023/07/23 22:55:51 iteration 43213  walltime= 0.152h  Δwalltime=0.013s  timestep= 4s  day=1.81
+2023/07/23 22:55:53 iteration 43415  walltime= 0.153h  Δwalltime=0.0077s  timestep= 4s  day=1.82
+2023/07/23 22:55:55 iteration 43656  walltime= 0.153h  Δwalltime=0.0077s  timestep= 4s  day=1.83
+2023/07/23 22:55:57 iteration 43916  walltime= 0.154h  Δwalltime=0.0077s  timestep= 4s  day=1.84
+2023/07/23 22:55:59 iteration 44172  walltime= 0.154h  Δwalltime=0.0082s  timestep= 4s  day=1.85
+2023/07/23 22:56:01 iteration 44422  walltime= 0.155h  Δwalltime=0.0077s  timestep= 4s  day=1.86
+2023/07/23 22:56:03 iteration 44680  walltime= 0.156h  Δwalltime=0.0078s  timestep= 4s  day=1.87
+2023/07/23 22:56:03 Adding grid cells...
+2023/07/23 22:56:04 Added 126 grid cells; there are now 60612 cells total
+2023/07/23 22:56:08 iteration 44776  walltime= 0.157h  Δwalltime= 4.5s  timestep= 4s  day=1.88
+2023/07/23 22:56:08 Percent change since last convergence check:
+VOC:			4.5%
+VOC pop-wtd:		0.93%
+SOA:			5%
+SOA pop-wtd:		0.87%
+PrimaryPM25:		4.9%
+PrimaryPM25 pop-wtd:	1.2%
+NH3:			6.7%
+NH3 pop-wtd:		1.6%
+pNH4:			5%
+pNH4 pop-wtd:		1.7%
+SOx:			0.00079%
+SOx pop-wtd:		4.1e-06%
+pSO4:			5.1%
+pSO4 pop-wtd:		1.8%
+NOx:			4.6%
+NOx pop-wtd:		1.8%
+pNO3:			6.1%
+pNO3 pop-wtd:		1.9%
+2023/07/23 22:56:09 iteration 44866  walltime= 0.157h  Δwalltime=0.0076s  timestep= 4s  day=1.88
+2023/07/23 22:56:11 iteration 45101  walltime= 0.158h  Δwalltime=0.0077s  timestep= 4s  day=1.89
+2023/07/23 22:56:13 iteration 45359  walltime= 0.158h  Δwalltime=0.0079s  timestep= 4s  day=1.9
+2023/07/23 22:56:15 iteration 45615  walltime= 0.159h  Δwalltime=0.017s  timestep= 4s  day=1.91
+2023/07/23 22:56:17 iteration 45864  walltime= 0.159h  Δwalltime=0.0078s  timestep= 4s  day=1.92
+2023/07/23 22:56:19 iteration 46124  walltime=  0.16h  Δwalltime=0.0076s  timestep= 4s  day=1.93
+2023/07/23 22:56:21 iteration 46381  walltime= 0.161h  Δwalltime=0.0091s  timestep= 4s  day=1.94
+2023/07/23 22:56:23 iteration 46632  walltime= 0.161h  Δwalltime=0.0075s  timestep= 4s  day=1.95
+2023/07/23 22:56:25 iteration 46874  walltime= 0.162h  Δwalltime=0.0079s  timestep= 4s  day=1.96
+2023/07/23 22:56:27 iteration 47131  walltime= 0.162h  Δwalltime=0.0078s  timestep= 4s  day=1.97
+2023/07/23 22:56:29 iteration 47390  walltime= 0.163h  Δwalltime=0.012s  timestep= 4s  day=1.98
+2023/07/23 22:56:31 iteration 47643  walltime= 0.163h  Δwalltime=0.0077s  timestep= 4s  day=2
+2023/07/23 22:56:31 Adding grid cells...
+2023/07/23 22:56:32 Added 57 grid cells; there are now 60669 cells total
+2023/07/23 22:56:36 iteration 47761  walltime= 0.165h  Δwalltime= 4.5s  timestep= 4s  day=2
+2023/07/23 22:56:36 Percent change since last convergence check:
+VOC:			4.1%
+VOC pop-wtd:		0.83%
+SOA:			4.6%
+SOA pop-wtd:		0.78%
+PrimaryPM25:		4.5%
+PrimaryPM25 pop-wtd:	1.1%
+NH3:			6.1%
+NH3 pop-wtd:		1.5%
+pNH4:			4.6%
+pNH4 pop-wtd:		1.5%
+SOx:			0.00043%
+SOx pop-wtd:		2.4e-06%
+pSO4:			4.7%
+pSO4 pop-wtd:		1.6%
+NOx:			4.2%
+NOx pop-wtd:		1.6%
+pNO3:			5.6%
+pNO3 pop-wtd:		1.7%
+2023/07/23 22:56:37 iteration 47831  walltime= 0.165h  Δwalltime=0.0078s  timestep= 4s  day=2
+2023/07/23 22:56:39 iteration 48085  walltime= 0.166h  Δwalltime=0.0078s  timestep= 4s  day=2.01
+2023/07/23 22:56:41 iteration 48324  walltime= 0.166h  Δwalltime=0.0077s  timestep= 4s  day=2.02
+2023/07/23 22:56:43 iteration 48581  walltime= 0.167h  Δwalltime=0.008s  timestep= 4s  day=2.03
+2023/07/23 22:56:45 iteration 48823  walltime= 0.167h  Δwalltime=0.0078s  timestep= 4s  day=2.04
+2023/07/23 22:56:47 iteration 49078  walltime= 0.168h  Δwalltime=0.0078s  timestep= 4s  day=2.06
+2023/07/23 22:56:49 iteration 49326  walltime= 0.168h  Δwalltime=0.0079s  timestep= 4s  day=2.07
+2023/07/23 22:56:51 iteration 49584  walltime= 0.169h  Δwalltime=0.0075s  timestep= 4s  day=2.08
+2023/07/23 22:56:53 iteration 49844  walltime= 0.169h  Δwalltime=0.0078s  timestep= 4s  day=2.09
+2023/07/23 22:56:55 iteration 50085  walltime=  0.17h  Δwalltime=0.012s  timestep= 4s  day=2.1
+2023/07/23 22:56:57 iteration 50341  walltime= 0.171h  Δwalltime=0.0077s  timestep= 4s  day=2.11
+2023/07/23 22:56:59 iteration 50599  walltime= 0.171h  Δwalltime=0.0077s  timestep= 4s  day=2.12
+2023/07/23 22:57:00 Adding grid cells...
+2023/07/23 22:57:00 Added 102 grid cells; there are now 60771 cells total
+2023/07/23 22:57:05 Percent change since last convergence check:
+VOC:			3.7%
+VOC pop-wtd:		0.75%
+SOA:			4.3%
+SOA pop-wtd:		0.7%
+PrimaryPM25:		4.2%
+PrimaryPM25 pop-wtd:	1%
+NH3:			5.6%
+NH3 pop-wtd:		1.4%
+pNH4:			4.2%
+pNH4 pop-wtd:		1.4%
+SOx:			0.00023%
+SOx pop-wtd:		1.3e-06%
+pSO4:			4.3%
+pSO4 pop-wtd:		1.5%
+NOx:			3.9%
+NOx pop-wtd:		1.5%
+pNO3:			5.2%
+pNO3 pop-wtd:		1.6%
+2023/07/23 22:57:05 iteration 50746  walltime= 0.173h  Δwalltime= 4.9s  timestep= 4s  day=2.13
+2023/07/23 22:57:07 iteration 50990  walltime= 0.173h  Δwalltime=0.0078s  timestep= 4s  day=2.14
+2023/07/23 22:57:09 iteration 51244  walltime= 0.174h  Δwalltime=0.0081s  timestep= 4s  day=2.15
+2023/07/23 22:57:11 iteration 51480  walltime= 0.174h  Δwalltime=0.008s  timestep= 4s  day=2.16
+2023/07/23 22:57:13 iteration 51735  walltime= 0.175h  Δwalltime=0.0078s  timestep= 4s  day=2.17
+2023/07/23 22:57:15 iteration 51990  walltime= 0.176h  Δwalltime=0.0078s  timestep= 4s  day=2.18
+2023/07/23 22:57:17 iteration 52244  walltime= 0.176h  Δwalltime=0.0078s  timestep= 4s  day=2.19
+2023/07/23 22:57:19 iteration 52500  walltime= 0.177h  Δwalltime=0.0077s  timestep= 4s  day=2.2
+2023/07/23 22:57:21 iteration 52714  walltime= 0.177h  Δwalltime=0.012s  timestep= 4s  day=2.21
+2023/07/23 22:57:23 iteration 52910  walltime= 0.178h  Δwalltime=0.0079s  timestep= 4s  day=2.22
+2023/07/23 22:57:25 iteration 53138  walltime= 0.178h  Δwalltime=0.0079s  timestep= 4s  day=2.23
+2023/07/23 22:57:27 iteration 53396  walltime= 0.179h  Δwalltime=0.0078s  timestep= 4s  day=2.24
+2023/07/23 22:57:29 iteration 53652  walltime= 0.179h  Δwalltime=0.0074s  timestep= 4s  day=2.25
+2023/07/23 22:57:29 Adding grid cells...
+2023/07/23 22:57:29 Added 147 grid cells; there are now 60918 cells total
+2023/07/23 22:57:33 iteration 53731  walltime= 0.181h  Δwalltime= 4.2s  timestep= 4s  day=2.25
+2023/07/23 22:57:33 Percent change since last convergence check:
+VOC:			3.4%
+VOC pop-wtd:		0.68%
+SOA:			3.9%
+SOA pop-wtd:		0.64%
+PrimaryPM25:		3.9%
+PrimaryPM25 pop-wtd:	0.94%
+NH3:			5.2%
+NH3 pop-wtd:		1.3%
+pNH4:			3.9%
+pNH4 pop-wtd:		1.3%
+SOx:			0.00015%
+SOx pop-wtd:		5.5e-07%
+pSO4:			4%
+pSO4 pop-wtd:		1.3%
+NOx:			3.6%
+NOx pop-wtd:		1.4%
+pNO3:			4.8%
+pNO3 pop-wtd:		1.5%
+2023/07/23 22:57:35 iteration 53876  walltime= 0.181h  Δwalltime=0.0078s  timestep= 4s  day=2.26
+2023/07/23 22:57:37 iteration 54127  walltime= 0.182h  Δwalltime=0.0078s  timestep= 4s  day=2.27
+2023/07/23 22:57:39 iteration 54383  walltime= 0.182h  Δwalltime=0.008s  timestep= 4s  day=2.28
+2023/07/23 22:57:41 iteration 54619  walltime= 0.183h  Δwalltime=0.0077s  timestep= 4s  day=2.29
+2023/07/23 22:57:43 iteration 54861  walltime= 0.183h  Δwalltime=0.0079s  timestep= 4s  day=2.3
+2023/07/23 22:57:45 iteration 55116  walltime= 0.184h  Δwalltime=0.0079s  timestep= 4s  day=2.31
+2023/07/23 22:57:47 iteration 55371  walltime= 0.184h  Δwalltime=0.0079s  timestep= 4s  day=2.32
+2023/07/23 22:57:49 iteration 55624  walltime= 0.185h  Δwalltime=0.0078s  timestep= 4s  day=2.33
+2023/07/23 22:57:51 iteration 55876  walltime= 0.186h  Δwalltime=0.0076s  timestep= 4s  day=2.34
+2023/07/23 22:57:53 iteration 56130  walltime= 0.186h  Δwalltime=0.008s  timestep= 4s  day=2.35
+2023/07/23 22:57:55 iteration 56365  walltime= 0.187h  Δwalltime=0.012s  timestep= 4s  day=2.36
+2023/07/23 22:57:57 iteration 56618  walltime= 0.187h  Δwalltime=0.0078s  timestep= 4s  day=2.37
+2023/07/23 22:57:57 Adding grid cells...
+2023/07/23 22:57:58 Added 60 grid cells; there are now 60978 cells total
+2023/07/23 22:58:02 Percent change since last convergence check:
+VOC:			3.2%
+VOC pop-wtd:		0.62%
+SOA:			3.7%
+SOA pop-wtd:		0.58%
+PrimaryPM25:		3.6%
+PrimaryPM25 pop-wtd:	0.86%
+NH3:			4.8%
+NH3 pop-wtd:		1.2%
+pNH4:			3.6%
+pNH4 pop-wtd:		1.2%
+SOx:			9.8e-05%
+SOx pop-wtd:		5.1e-07%
+pSO4:			3.7%
+pSO4 pop-wtd:		1.2%
+NOx:			3.3%
+NOx pop-wtd:		1.3%
+pNO3:			4.5%
+pNO3 pop-wtd:		1.3%
+2023/07/23 22:58:02 iteration 56716  walltime= 0.189h  Δwalltime= 4.4s  timestep= 4s  day=2.38
+2023/07/23 22:58:03 iteration 56803  walltime= 0.189h  Δwalltime=0.0079s  timestep= 4s  day=2.38
+2023/07/23 22:58:05 iteration 57052  walltime= 0.189h  Δwalltime=0.0078s  timestep= 4s  day=2.39
+2023/07/23 22:58:07 iteration 57308  walltime=  0.19h  Δwalltime=0.0077s  timestep= 4s  day=2.4
+2023/07/23 22:58:09 iteration 57562  walltime= 0.191h  Δwalltime=0.0077s  timestep= 4s  day=2.41
+2023/07/23 22:58:11 iteration 57797  walltime= 0.191h  Δwalltime=0.0078s  timestep= 4s  day=2.42
+2023/07/23 22:58:13 iteration 58033  walltime= 0.192h  Δwalltime=0.0078s  timestep= 4s  day=2.43
+2023/07/23 22:58:15 iteration 58287  walltime= 0.192h  Δwalltime=0.0077s  timestep= 4s  day=2.44
+2023/07/23 22:58:17 iteration 58539  walltime= 0.193h  Δwalltime=0.0079s  timestep= 4s  day=2.45
+2023/07/23 22:58:19 iteration 58768  walltime= 0.193h  Δwalltime=0.0077s  timestep= 4s  day=2.46
+2023/07/23 22:58:21 iteration 59023  walltime= 0.194h  Δwalltime=0.0079s  timestep= 4s  day=2.47
+2023/07/23 22:58:23 iteration 59278  walltime= 0.194h  Δwalltime=0.0079s  timestep= 4s  day=2.48
+2023/07/23 22:58:25 iteration 59515  walltime= 0.195h  Δwalltime=0.0078s  timestep= 4s  day=2.49
+2023/07/23 22:58:26 Adding grid cells...
+2023/07/23 22:58:26 Added 63 grid cells; there are now 61041 cells total
+2023/07/23 22:58:31 Percent change since last convergence check:
+VOC:			3%
+VOC pop-wtd:		0.56%
+SOA:			3.4%
+SOA pop-wtd:		0.53%
+PrimaryPM25:		3.3%
+PrimaryPM25 pop-wtd:	0.79%
+NH3:			4.5%
+NH3 pop-wtd:		1.1%
+pNH4:			3.4%
+pNH4 pop-wtd:		1.1%
+SOx:			6.2e-05%
+SOx pop-wtd:		4.1e-07%
+pSO4:			3.4%
+pSO4 pop-wtd:		1.1%
+NOx:			3.1%
+NOx pop-wtd:		1.2%
+pNO3:			4.2%
+pNO3 pop-wtd:		1.3%
+2023/07/23 22:58:31 iteration 59701  walltime= 0.197h  Δwalltime= 4.5s  timestep= 4s  day=2.5
+2023/07/23 22:58:31 iteration 59709  walltime= 0.197h  Δwalltime=0.008s  timestep= 4s  day=2.5
+2023/07/23 22:58:33 iteration 59949  walltime= 0.197h  Δwalltime=0.0079s  timestep= 4s  day=2.51
+2023/07/23 22:58:35 iteration 60195  walltime= 0.198h  Δwalltime=0.0077s  timestep= 4s  day=2.52
+2023/07/23 22:58:37 iteration 60452  walltime= 0.198h  Δwalltime=0.0079s  timestep= 4s  day=2.53
+2023/07/23 22:58:39 iteration 60708  walltime= 0.199h  Δwalltime=0.0077s  timestep= 4s  day=2.54
+2023/07/23 22:58:41 iteration 60933  walltime= 0.199h  Δwalltime=0.0078s  timestep= 4s  day=2.55
+2023/07/23 22:58:43 iteration 61191  walltime=   0.2h  Δwalltime=0.0078s  timestep= 4s  day=2.56
+2023/07/23 22:58:45 iteration 61447  walltime= 0.201h  Δwalltime=0.008s  timestep= 4s  day=2.57
+2023/07/23 22:58:47 iteration 61699  walltime= 0.201h  Δwalltime=0.0079s  timestep= 4s  day=2.58
+2023/07/23 22:58:49 iteration 61954  walltime= 0.202h  Δwalltime=0.0078s  timestep= 4s  day=2.59
+2023/07/23 22:58:51 iteration 62167  walltime= 0.202h  Δwalltime=0.0083s  timestep= 4s  day=2.6
+2023/07/23 22:58:53 iteration 62366  walltime= 0.203h  Δwalltime=0.0089s  timestep= 4s  day=2.61
+2023/07/23 22:58:55 iteration 62589  walltime= 0.203h  Δwalltime=0.008s  timestep= 4s  day=2.62
+2023/07/23 22:58:55 Adding grid cells...
+2023/07/23 22:58:56 Added 81 grid cells; there are now 61122 cells total
+2023/07/23 22:59:00 iteration 62686  walltime= 0.205h  Δwalltime= 4.6s  timestep= 4s  day=2.63
+2023/07/23 22:59:00 Percent change since last convergence check:
+VOC:			2.7%
+VOC pop-wtd:		0.52%
+SOA:			3.2%
+SOA pop-wtd:		0.48%
+PrimaryPM25:		3.1%
+PrimaryPM25 pop-wtd:	0.73%
+NH3:			4.2%
+NH3 pop-wtd:		1%
+pNH4:			3.2%
+pNH4 pop-wtd:		1.1%
+SOx:			3.4e-05%
+SOx pop-wtd:		2.9e-07%
+pSO4:			3.2%
+pSO4 pop-wtd:		0.97%
+NOx:			2.9%
+NOx pop-wtd:		1.1%
+pNO3:			3.9%
+pNO3 pop-wtd:		1.2%
+2023/07/23 22:59:01 iteration 62757  walltime= 0.205h  Δwalltime=0.0079s  timestep= 4s  day=2.63
+2023/07/23 22:59:03 iteration 63006  walltime= 0.206h  Δwalltime=0.046s  timestep= 4s  day=2.64
+2023/07/23 22:59:05 iteration 63143  walltime= 0.206h  Δwalltime=0.0075s  timestep= 4s  day=2.64
+2023/07/23 22:59:07 iteration 63397  walltime= 0.207h  Δwalltime=0.0077s  timestep= 4s  day=2.66
+2023/07/23 22:59:09 iteration 63652  walltime= 0.207h  Δwalltime=0.0078s  timestep= 4s  day=2.67
+2023/07/23 22:59:11 iteration 63891  walltime= 0.208h  Δwalltime=0.0077s  timestep= 4s  day=2.68
+2023/07/23 22:59:13 iteration 64148  walltime= 0.208h  Δwalltime=0.008s  timestep= 4s  day=2.69
+2023/07/23 22:59:15 iteration 64401  walltime= 0.209h  Δwalltime=0.0076s  timestep= 4s  day=2.7
+2023/07/23 22:59:17 iteration 64659  walltime= 0.209h  Δwalltime=0.0077s  timestep= 4s  day=2.71
+2023/07/23 22:59:19 iteration 64909  walltime=  0.21h  Δwalltime=0.013s  timestep= 4s  day=2.72
+2023/07/23 22:59:21 iteration 65161  walltime= 0.211h  Δwalltime=0.0075s  timestep= 4s  day=2.73
+2023/07/23 22:59:23 iteration 65412  walltime= 0.211h  Δwalltime=0.0081s  timestep= 4s  day=2.74
+2023/07/23 22:59:25 iteration 65647  walltime= 0.212h  Δwalltime=0.011s  timestep= 4s  day=2.75
+2023/07/23 22:59:25 Adding grid cells...
+2023/07/23 22:59:25 Added 90 grid cells; there are now 61212 cells total
+2023/07/23 22:59:29 iteration 65671  walltime= 0.213h  Δwalltime= 4.2s  timestep= 4s  day=2.75
+2023/07/23 22:59:29 Percent change since last convergence check:
+VOC:			2.6%
+VOC pop-wtd:		0.47%
+SOA:			3%
+SOA pop-wtd:		0.44%
+PrimaryPM25:		2.9%
+PrimaryPM25 pop-wtd:	0.68%
+NH3:			3.9%
+NH3 pop-wtd:		0.96%
+pNH4:			3%
+pNH4 pop-wtd:		0.99%
+SOx:			7.6e-05%
+SOx pop-wtd:		1.9e-07%
+pSO4:			3%
+pSO4 pop-wtd:		0.89%
+NOx:			2.7%
+NOx pop-wtd:		1%
+pNO3:			3.7%
+pNO3 pop-wtd:		1.1%
+2023/07/23 22:59:31 iteration 65863  walltime= 0.213h  Δwalltime=0.0079s  timestep= 4s  day=2.76
+2023/07/23 22:59:33 iteration 66116  walltime= 0.214h  Δwalltime=0.0079s  timestep= 4s  day=2.77
+2023/07/23 22:59:35 iteration 66365  walltime= 0.214h  Δwalltime=0.0079s  timestep= 4s  day=2.78
+2023/07/23 22:59:37 iteration 66617  walltime= 0.215h  Δwalltime=0.0077s  timestep= 4s  day=2.79
+2023/07/23 22:59:39 iteration 66871  walltime= 0.216h  Δwalltime=0.0078s  timestep= 4s  day=2.8
+2023/07/23 22:59:41 iteration 67085  walltime= 0.216h  Δwalltime=0.008s  timestep= 4s  day=2.81
+2023/07/23 22:59:43 iteration 67340  walltime= 0.217h  Δwalltime=0.0077s  timestep= 4s  day=2.82
+2023/07/23 22:59:45 iteration 67597  walltime= 0.217h  Δwalltime=0.0078s  timestep= 4s  day=2.83
+2023/07/23 22:59:47 iteration 67851  walltime= 0.218h  Δwalltime=0.0076s  timestep= 4s  day=2.84
+2023/07/23 22:59:49 iteration 68105  walltime= 0.218h  Δwalltime=0.0076s  timestep= 4s  day=2.85
+2023/07/23 22:59:51 iteration 68354  walltime= 0.219h  Δwalltime=0.0077s  timestep= 4s  day=2.86
+2023/07/23 22:59:53 iteration 68609  walltime= 0.219h  Δwalltime=0.0079s  timestep= 4s  day=2.87
+2023/07/23 22:59:53 Adding grid cells...
+2023/07/23 22:59:53 Added 72 grid cells; there are now 61284 cells total
+2023/07/23 22:59:57 Percent change since last convergence check:
+VOC:			2.4%
+VOC pop-wtd:		0.44%
+SOA:			2.8%
+SOA pop-wtd:		0.41%
+PrimaryPM25:		2.7%
+PrimaryPM25 pop-wtd:	0.63%
+NH3:			3.7%
+NH3 pop-wtd:		0.9%
+pNH4:			2.8%
+pNH4 pop-wtd:		0.92%
+SOx:			2.8e-05%
+SOx pop-wtd:		-1.5e-07%
+pSO4:			2.8%
+pSO4 pop-wtd:		0.81%
+NOx:			2.5%
+NOx pop-wtd:		0.96%
+pNO3:			3.5%
+pNO3 pop-wtd:		1%
+2023/07/23 22:59:57 iteration 68656  walltime= 0.221h  Δwalltime= 4.5s  timestep= 4s  day=2.88
+2023/07/23 22:59:59 iteration 68793  walltime= 0.221h  Δwalltime=0.0078s  timestep= 4s  day=2.88
+2023/07/23 23:00:01 iteration 69046  walltime= 0.222h  Δwalltime=0.0077s  timestep= 4s  day=2.89
+2023/07/23 23:00:03 iteration 69296  walltime= 0.222h  Δwalltime=0.008s  timestep= 4s  day=2.9
+2023/07/23 23:00:05 iteration 69536  walltime= 0.223h  Δwalltime=0.0079s  timestep= 4s  day=2.91
+2023/07/23 23:00:07 iteration 69787  walltime= 0.223h  Δwalltime=0.0077s  timestep= 4s  day=2.92
+2023/07/23 23:00:09 iteration 70036  walltime= 0.224h  Δwalltime=0.0081s  timestep= 4s  day=2.93
+2023/07/23 23:00:11 iteration 70272  walltime= 0.224h  Δwalltime=0.0079s  timestep= 4s  day=2.94
+2023/07/23 23:00:13 iteration 70528  walltime= 0.225h  Δwalltime=0.008s  timestep= 4s  day=2.95
+2023/07/23 23:00:15 iteration 70778  walltime= 0.226h  Δwalltime=0.013s  timestep= 4s  day=2.96
+2023/07/23 23:00:17 iteration 71025  walltime= 0.226h  Δwalltime=0.0081s  timestep= 4s  day=2.97
+2023/07/23 23:00:19 iteration 71279  walltime= 0.227h  Δwalltime=0.0078s  timestep= 4s  day=2.99
+2023/07/23 23:00:21 iteration 71492  walltime= 0.227h  Δwalltime=0.011s  timestep= 4s  day=2.99
+2023/07/23 23:00:22 Adding grid cells...
+2023/07/23 23:00:23 Added 63 grid cells; there are now 61347 cells total
+2023/07/23 23:00:27 iteration 71641  walltime= 0.229h  Δwalltime= 4.6s  timestep= 4s  day=3
+2023/07/23 23:00:27 Percent change since last convergence check:
+VOC:			2.2%
+VOC pop-wtd:		0.4%
+SOA:			2.6%
+SOA pop-wtd:		0.37%
+PrimaryPM25:		2.6%
+PrimaryPM25 pop-wtd:	0.59%
+NH3:			3.5%
+NH3 pop-wtd:		0.84%
+pNH4:			2.6%
+pNH4 pop-wtd:		0.86%
+SOx:			8.8e-06%
+SOx pop-wtd:		-4.8e-08%
+pSO4:			2.6%
+pSO4 pop-wtd:		0.75%
+NOx:			2.4%
+NOx pop-wtd:		0.9%
+pNO3:			3.3%
+pNO3 pop-wtd:		0.96%
+2023/07/23 23:00:29 iteration 71871  walltime= 0.229h  Δwalltime=0.0079s  timestep= 4s  day=3.01
+2023/07/23 23:00:31 iteration 72125  walltime=  0.23h  Δwalltime=0.008s  timestep= 4s  day=3.02
+2023/07/23 23:00:33 iteration 72376  walltime= 0.231h  Δwalltime=0.0078s  timestep= 4s  day=3.03
+2023/07/23 23:00:35 iteration 72626  walltime= 0.231h  Δwalltime=0.008s  timestep= 4s  day=3.04
+2023/07/23 23:00:37 iteration 72874  walltime= 0.232h  Δwalltime=0.0081s  timestep= 4s  day=3.05
+2023/07/23 23:00:39 iteration 73081  walltime= 0.232h  Δwalltime=0.008s  timestep= 4s  day=3.06
+2023/07/23 23:00:41 iteration 73311  walltime= 0.233h  Δwalltime=0.0076s  timestep= 4s  day=3.07
+2023/07/23 23:00:43 iteration 73564  walltime= 0.233h  Δwalltime=0.0079s  timestep= 4s  day=3.08
+2023/07/23 23:00:45 iteration 73820  walltime= 0.234h  Δwalltime=0.0079s  timestep= 4s  day=3.09
+2023/07/23 23:00:47 iteration 74074  walltime= 0.234h  Δwalltime=0.0079s  timestep= 4s  day=3.1
+2023/07/23 23:00:49 iteration 74327  walltime= 0.235h  Δwalltime=0.0077s  timestep= 4s  day=3.11
+2023/07/23 23:00:51 iteration 74573  walltime= 0.236h  Δwalltime=0.008s  timestep= 4s  day=3.12
+2023/07/23 23:00:51 Adding grid cells...
+2023/07/23 23:00:51 Added 63 grid cells; there are now 61410 cells total
+2023/07/23 23:00:55 Percent change since last convergence check:
+VOC:			2.1%
+VOC pop-wtd:		0.37%
+SOA:			2.5%
+SOA pop-wtd:		0.35%
+PrimaryPM25:		2.4%
+PrimaryPM25 pop-wtd:	0.55%
+NH3:			3.2%
+NH3 pop-wtd:		0.79%
+pNH4:			2.5%
+pNH4 pop-wtd:		0.81%
+SOx:			2.1e-06%
+SOx pop-wtd:		1.9e-08%
+pSO4:			2.4%
+pSO4 pop-wtd:		0.69%
+NOx:			2.2%
+NOx pop-wtd:		0.84%
+pNO3:			3.1%
+pNO3 pop-wtd:		0.9%
+2023/07/23 23:00:55 iteration 74626  walltime= 0.237h  Δwalltime= 4.5s  timestep= 4s  day=3.13
+2023/07/23 23:00:57 iteration 74762  walltime= 0.237h  Δwalltime=0.0077s  timestep= 4s  day=3.13
+2023/07/23 23:00:59 iteration 75014  walltime= 0.238h  Δwalltime=0.008s  timestep= 4s  day=3.14
+2023/07/23 23:01:01 iteration 75249  walltime= 0.238h  Δwalltime=0.012s  timestep= 4s  day=3.15
+2023/07/23 23:01:03 iteration 75502  walltime= 0.239h  Δwalltime=0.0084s  timestep= 4s  day=3.16
+2023/07/23 23:01:05 iteration 75653  walltime= 0.239h  Δwalltime=0.013s  timestep= 4s  day=3.17
+2023/07/23 23:01:07 iteration 75879  walltime=  0.24h  Δwalltime=0.0078s  timestep= 4s  day=3.18
+2023/07/23 23:01:09 iteration 76131  walltime= 0.241h  Δwalltime=0.008s  timestep= 4s  day=3.19
+2023/07/23 23:01:11 iteration 76366  walltime= 0.241h  Δwalltime=0.0078s  timestep= 4s  day=3.2
+2023/07/23 23:01:13 iteration 76622  walltime= 0.242h  Δwalltime=0.0077s  timestep= 4s  day=3.21
+2023/07/23 23:01:15 iteration 76877  walltime= 0.242h  Δwalltime=0.0078s  timestep= 4s  day=3.22
+2023/07/23 23:01:17 iteration 77131  walltime= 0.243h  Δwalltime=0.0078s  timestep= 4s  day=3.23
+2023/07/23 23:01:19 iteration 77375  walltime= 0.243h  Δwalltime=0.0076s  timestep= 4s  day=3.24
+2023/07/23 23:01:20 Adding grid cells...
+2023/07/23 23:01:21 Added 81 grid cells; there are now 61491 cells total
+2023/07/23 23:01:25 iteration 77611  walltime= 0.245h  Δwalltime= 4.1s  timestep= 4s  day=3.25
+2023/07/23 23:01:25 Percent change since last convergence check:
+VOC:			2%
+VOC pop-wtd:		0.35%
+SOA:			2.3%
+SOA pop-wtd:		0.32%
+PrimaryPM25:		2.3%
+PrimaryPM25 pop-wtd:	0.51%
+NH3:			3.1%
+NH3 pop-wtd:		0.74%
+pNH4:			2.3%
+pNH4 pop-wtd:		0.76%
+SOx:			7.2e-07%
+SOx pop-wtd:		1.9e-08%
+pSO4:			2.3%
+pSO4 pop-wtd:		0.63%
+NOx:			2.1%
+NOx pop-wtd:		0.79%
+pNO3:			2.9%
+pNO3 pop-wtd:		0.85%
+2023/07/23 23:01:25 iteration 77615  walltime= 0.245h  Δwalltime=0.0085s  timestep= 4s  day=3.25
+2023/07/23 23:01:27 iteration 77866  walltime= 0.246h  Δwalltime=0.0079s  timestep= 4s  day=3.26
+2023/07/23 23:01:29 iteration 78115  walltime= 0.246h  Δwalltime=0.0078s  timestep= 4s  day=3.27
+2023/07/23 23:01:31 iteration 78366  walltime= 0.247h  Δwalltime=0.0077s  timestep= 4s  day=3.28
+2023/07/23 23:01:33 iteration 78614  walltime= 0.247h  Δwalltime=0.0078s  timestep= 4s  day=3.29
+2023/07/23 23:01:35 iteration 78865  walltime= 0.248h  Δwalltime=0.0078s  timestep= 4s  day=3.3
+2023/07/23 23:01:37 iteration 79118  walltime= 0.248h  Δwalltime=0.0078s  timestep= 4s  day=3.31
+2023/07/23 23:01:39 iteration 79365  walltime= 0.249h  Δwalltime=0.0079s  timestep= 4s  day=3.32
+2023/07/23 23:01:41 iteration 79601  walltime= 0.249h  Δwalltime=0.0075s  timestep= 4s  day=3.33
+2023/07/23 23:01:43 iteration 79856  walltime=  0.25h  Δwalltime=0.008s  timestep= 4s  day=3.34
+2023/07/23 23:01:45 iteration 80094  walltime= 0.251h  Δwalltime=0.0082s  timestep= 4s  day=3.35
+2023/07/23 23:01:47 iteration 80349  walltime= 0.251h  Δwalltime=0.0077s  timestep= 4s  day=3.37
+2023/07/23 23:01:49 Adding grid cells...
+2023/07/23 23:01:49 Added 54 grid cells; there are now 61545 cells total
+2023/07/23 23:01:53 iteration 80596  walltime= 0.253h  Δwalltime= 4.6s  timestep= 4s  day=3.38
+2023/07/23 23:01:53 Percent change since last convergence check:
+VOC:			1.8%
+VOC pop-wtd:		0.32%
+SOA:			2.2%
+SOA pop-wtd:		0.3%
+PrimaryPM25:		2.1%
+PrimaryPM25 pop-wtd:	0.48%
+NH3:			2.9%
+NH3 pop-wtd:		0.7%
+pNH4:			2.2%
+pNH4 pop-wtd:		0.71%
+SOx:			3.8e-07%
+SOx pop-wtd:		1.1e-08%
+pSO4:			2.2%
+pSO4 pop-wtd:		0.59%
+NOx:			2%
+NOx pop-wtd:		0.75%
+pNO3:			2.8%
+pNO3 pop-wtd:		0.8%
+2023/07/23 23:01:55 iteration 80756  walltime= 0.253h  Δwalltime=0.01s  timestep= 4s  day=3.38
+2023/07/23 23:01:57 iteration 81009  walltime= 0.254h  Δwalltime=0.0079s  timestep= 4s  day=3.39
+2023/07/23 23:01:59 iteration 81261  walltime= 0.254h  Δwalltime=0.0078s  timestep= 4s  day=3.4
+2023/07/23 23:02:01 iteration 81508  walltime= 0.255h  Δwalltime=0.0079s  timestep= 4s  day=3.41
+2023/07/23 23:02:03 iteration 81756  walltime= 0.256h  Δwalltime=0.0078s  timestep= 4s  day=3.42
+2023/07/23 23:02:05 iteration 82007  walltime= 0.256h  Δwalltime=0.0081s  timestep= 4s  day=3.43
+2023/07/23 23:02:07 iteration 82258  walltime= 0.257h  Δwalltime=0.008s  timestep= 4s  day=3.45
+2023/07/23 23:02:09 iteration 82507  walltime= 0.257h  Δwalltime=0.0077s  timestep= 4s  day=3.46
+2023/07/23 23:02:11 iteration 82728  walltime= 0.258h  Δwalltime=0.0081s  timestep= 4s  day=3.47
+2023/07/23 23:02:13 iteration 82979  walltime= 0.258h  Δwalltime=0.0079s  timestep= 4s  day=3.48
+2023/07/23 23:02:15 iteration 83232  walltime= 0.259h  Δwalltime=0.0077s  timestep= 4s  day=3.49
+2023/07/23 23:02:17 iteration 83486  walltime= 0.259h  Δwalltime=0.0077s  timestep= 4s  day=3.5
+2023/07/23 23:02:17 Adding grid cells...
+2023/07/23 23:02:18 Added 72 grid cells; there are now 61617 cells total
+2023/07/23 23:02:22 iteration 83581  walltime= 0.261h  Δwalltime= 4.4s  timestep= 4s  day=3.5
+2023/07/23 23:02:22 Percent change since last convergence check:
+VOC:			1.7%
+VOC pop-wtd:		0.3%
+SOA:			2.1%
+SOA pop-wtd:		0.28%
+PrimaryPM25:		2%
+PrimaryPM25 pop-wtd:	0.45%
+NH3:			2.7%
+NH3 pop-wtd:		0.66%
+pNH4:			2.1%
+pNH4 pop-wtd:		0.66%
+SOx:			5.3e-07%
+SOx pop-wtd:		5.7e-09%
+pSO4:			2%
+pSO4 pop-wtd:		0.54%
+NOx:			1.9%
+NOx pop-wtd:		0.7%
+pNO3:			2.6%
+pNO3 pop-wtd:		0.75%
+2023/07/23 23:02:23 iteration 83682  walltime= 0.261h  Δwalltime=0.0079s  timestep= 4s  day=3.5
+2023/07/23 23:02:25 iteration 83921  walltime= 0.262h  Δwalltime=0.008s  timestep= 4s  day=3.51
+2023/07/23 23:02:27 iteration 84177  walltime= 0.262h  Δwalltime=0.0076s  timestep= 4s  day=3.53
+2023/07/23 23:02:29 iteration 84425  walltime= 0.263h  Δwalltime=0.0077s  timestep= 4s  day=3.54
+2023/07/23 23:02:31 iteration 84680  walltime= 0.263h  Δwalltime=0.0076s  timestep= 4s  day=3.55
+2023/07/23 23:02:33 iteration 84931  walltime= 0.264h  Δwalltime=0.0077s  timestep= 4s  day=3.56
+2023/07/23 23:02:35 iteration 85172  walltime= 0.264h  Δwalltime=0.0086s  timestep= 4s  day=3.57
+2023/07/23 23:02:37 iteration 85423  walltime= 0.265h  Δwalltime=0.008s  timestep= 4s  day=3.58
+2023/07/23 23:02:39 iteration 85672  walltime= 0.266h  Δwalltime=0.0084s  timestep= 4s  day=3.59
+2023/07/23 23:02:41 iteration 85889  walltime= 0.266h  Δwalltime=0.0077s  timestep= 4s  day=3.6
+2023/07/23 23:02:43 iteration 86141  walltime= 0.267h  Δwalltime=0.008s  timestep= 4s  day=3.61
+2023/07/23 23:02:45 iteration 86389  walltime= 0.267h  Δwalltime=0.011s  timestep= 4s  day=3.62
+2023/07/23 23:02:46 Adding grid cells...
+2023/07/23 23:02:46 Added 18 grid cells; there are now 61635 cells total
+2023/07/23 23:02:50 Percent change since last convergence check:
+VOC:			1.6%
+VOC pop-wtd:		0.28%
+SOA:			2%
+SOA pop-wtd:		0.26%
+PrimaryPM25:		1.9%
+PrimaryPM25 pop-wtd:	0.42%
+NH3:			2.6%
+NH3 pop-wtd:		0.62%
+pNH4:			2%
+pNH4 pop-wtd:		0.62%
+SOx:			0.00038%
+SOx pop-wtd:		2.9e-08%
+pSO4:			1.9%
+pSO4 pop-wtd:		0.51%
+NOx:			1.8%
+NOx pop-wtd:		0.67%
+pNO3:			2.5%
+pNO3 pop-wtd:		0.71%
+2023/07/23 23:02:50 iteration 86566  walltime= 0.269h  Δwalltime= 4.5s  timestep= 4s  day=3.63
+2023/07/23 23:02:51 iteration 86575  walltime= 0.269h  Δwalltime=0.008s  timestep= 4s  day=3.63
+2023/07/23 23:02:53 iteration 86827  walltime= 0.269h  Δwalltime=0.0077s  timestep= 4s  day=3.64
+2023/07/23 23:02:55 iteration 87064  walltime=  0.27h  Δwalltime=0.0078s  timestep= 4s  day=3.65
+2023/07/23 23:02:57 iteration 87310  walltime= 0.271h  Δwalltime=0.0078s  timestep= 4s  day=3.66
+2023/07/23 23:02:59 iteration 87478  walltime= 0.271h  Δwalltime=0.019s  timestep= 4s  day=3.66
+2023/07/23 23:03:01 iteration 87625  walltime= 0.272h  Δwalltime=0.013s  timestep= 4s  day=3.67
+2023/07/23 23:03:03 iteration 87854  walltime= 0.272h  Δwalltime=0.0081s  timestep= 4s  day=3.68
+2023/07/23 23:03:05 iteration 88027  walltime= 0.273h  Δwalltime=0.013s  timestep= 4s  day=3.69
+2023/07/23 23:03:07 iteration 88226  walltime= 0.273h  Δwalltime=0.0078s  timestep= 4s  day=3.7
+2023/07/23 23:03:09 iteration 88478  walltime= 0.274h  Δwalltime=0.0079s  timestep= 4s  day=3.71
+2023/07/23 23:03:11 iteration 88715  walltime= 0.274h  Δwalltime=0.008s  timestep= 4s  day=3.72
+2023/07/23 23:03:13 iteration 88959  walltime= 0.275h  Δwalltime=0.0079s  timestep= 4s  day=3.73
+2023/07/23 23:03:15 iteration 89206  walltime= 0.276h  Δwalltime=0.0081s  timestep= 4s  day=3.74
+2023/07/23 23:03:17 iteration 89454  walltime= 0.276h  Δwalltime=0.0078s  timestep= 4s  day=3.75
+2023/07/23 23:03:17 Adding grid cells...
+2023/07/23 23:03:18 Added 36 grid cells; there are now 61671 cells total
+2023/07/23 23:03:21 Percent change since last convergence check:
+VOC:			1.5%
+VOC pop-wtd:		0.26%
+SOA:			1.9%
+SOA pop-wtd:		0.24%
+PrimaryPM25:		1.8%
+PrimaryPM25 pop-wtd:	0.4%
+NH3:			2.4%
+NH3 pop-wtd:		0.58%
+pNH4:			1.8%
+pNH4 pop-wtd:		0.59%
+SOx:			0.00041%
+SOx pop-wtd:		3.9e-07%
+pSO4:			1.8%
+pSO4 pop-wtd:		0.47%
+NOx:			1.7%
+NOx pop-wtd:		0.63%
+pNO3:			2.4%
+pNO3 pop-wtd:		0.68%
+2023/07/23 23:03:21 iteration 89551  walltime= 0.277h  Δwalltime= 3.9s  timestep= 4s  day=3.75
+2023/07/23 23:03:23 iteration 89721  walltime= 0.278h  Δwalltime=0.008s  timestep= 4s  day=3.76
+2023/07/23 23:03:25 iteration 89953  walltime= 0.278h  Δwalltime=0.0082s  timestep= 4s  day=3.77
+2023/07/23 23:03:27 iteration 90205  walltime= 0.279h  Δwalltime=0.0078s  timestep= 4s  day=3.78
+2023/07/23 23:03:29 iteration 90450  walltime= 0.279h  Δwalltime=0.008s  timestep= 4s  day=3.79
+2023/07/23 23:03:31 iteration 90703  walltime=  0.28h  Δwalltime=0.0076s  timestep= 4s  day=3.8
+2023/07/23 23:03:33 iteration 90949  walltime= 0.281h  Δwalltime=0.013s  timestep= 4s  day=3.81
+2023/07/23 23:03:35 iteration 91190  walltime= 0.281h  Δwalltime=0.0081s  timestep= 4s  day=3.82
+2023/07/23 23:03:37 iteration 91442  walltime= 0.282h  Δwalltime=0.0079s  timestep= 4s  day=3.83
+2023/07/23 23:03:39 iteration 91693  walltime= 0.282h  Δwalltime=0.0079s  timestep= 4s  day=3.84
+2023/07/23 23:03:41 iteration 91926  walltime= 0.283h  Δwalltime=0.0079s  timestep= 4s  day=3.85
+2023/07/23 23:03:43 iteration 92178  walltime= 0.283h  Δwalltime=0.0079s  timestep= 4s  day=3.86
+2023/07/23 23:03:45 iteration 92427  walltime= 0.284h  Δwalltime=0.0079s  timestep= 4s  day=3.87
+2023/07/23 23:03:46 Adding grid cells...
+2023/07/23 23:03:46 Added 69 grid cells; there are now 61740 cells total
+2023/07/23 23:03:51 Percent change since last convergence check:
+VOC:			1.5%
+VOC pop-wtd:		0.24%
+SOA:			1.8%
+SOA pop-wtd:		0.22%
+PrimaryPM25:		1.7%
+PrimaryPM25 pop-wtd:	0.37%
+NH3:			2.3%
+NH3 pop-wtd:		0.55%
+pNH4:			1.7%
+pNH4 pop-wtd:		0.55%
+SOx:			0.00025%
+SOx pop-wtd:		5.7e-07%
+pSO4:			1.7%
+pSO4 pop-wtd:		0.44%
+NOx:			1.6%
+NOx pop-wtd:		0.6%
+pNO3:			2.2%
+pNO3 pop-wtd:		0.64%
+2023/07/23 23:03:51 iteration 92536  walltime= 0.286h  Δwalltime= 4.9s  timestep= 4s  day=3.88
+2023/07/23 23:03:51 iteration 92544  walltime= 0.286h  Δwalltime=0.0082s  timestep= 4s  day=3.88
+2023/07/23 23:03:53 iteration 92798  walltime= 0.286h  Δwalltime=0.0078s  timestep= 4s  day=3.89
+2023/07/23 23:03:55 iteration 93036  walltime= 0.287h  Δwalltime=0.012s  timestep= 4s  day=3.9
+2023/07/23 23:03:57 iteration 93277  walltime= 0.287h  Δwalltime=0.0077s  timestep= 4s  day=3.91
+2023/07/23 23:03:59 iteration 93529  walltime= 0.288h  Δwalltime=0.0078s  timestep= 4s  day=3.92
+2023/07/23 23:04:01 iteration 93779  walltime= 0.288h  Δwalltime=0.0078s  timestep= 4s  day=3.93
+2023/07/23 23:04:03 iteration 94027  walltime= 0.289h  Δwalltime=0.0082s  timestep= 4s  day=3.94
+2023/07/23 23:04:05 iteration 94273  walltime= 0.289h  Δwalltime=0.008s  timestep= 4s  day=3.95
+2023/07/23 23:04:07 iteration 94521  walltime=  0.29h  Δwalltime=0.012s  timestep= 4s  day=3.96
+2023/07/23 23:04:09 iteration 94759  walltime= 0.291h  Δwalltime=0.0079s  timestep= 4s  day=3.97
+2023/07/23 23:04:11 iteration 94995  walltime= 0.291h  Δwalltime=0.0079s  timestep= 4s  day=3.98
+2023/07/23 23:04:13 iteration 95246  walltime= 0.292h  Δwalltime=0.0083s  timestep= 4s  day=3.99
+2023/07/23 23:04:15 iteration 95490  walltime= 0.292h  Δwalltime=0.0081s  timestep= 4s  day=4
+2023/07/23 23:04:15 Adding grid cells...
+2023/07/23 23:04:15 Added 45 grid cells; there are now 61785 cells total
+2023/07/23 23:04:19 iteration 95521  walltime= 0.294h  Δwalltime= 4.5s  timestep= 4s  day=4
+2023/07/23 23:04:19 Percent change since last convergence check:
+VOC:			1.4%
+VOC pop-wtd:		0.23%
+SOA:			1.7%
+SOA pop-wtd:		0.21%
+PrimaryPM25:		1.6%
+PrimaryPM25 pop-wtd:	0.35%
+NH3:			2.2%
+NH3 pop-wtd:		0.52%
+pNH4:			1.7%
+pNH4 pop-wtd:		0.52%
+SOx:			0.00034%
+SOx pop-wtd:		4.4e-07%
+pSO4:			1.6%
+pSO4 pop-wtd:		0.41%
+NOx:			1.5%
+NOx pop-wtd:		0.57%
+pNO3:			2.1%
+pNO3 pop-wtd:		0.61%
+2023/07/23 23:04:21 iteration 95676  walltime= 0.294h  Δwalltime=0.0079s  timestep= 4s  day=4.01
+2023/07/23 23:04:23 iteration 95929  walltime= 0.294h  Δwalltime=0.0079s  timestep= 4s  day=4.02
+2023/07/23 23:04:25 iteration 96164  walltime= 0.295h  Δwalltime=0.0079s  timestep= 4s  day=4.03
+2023/07/23 23:04:27 iteration 96419  walltime= 0.296h  Δwalltime=0.0083s  timestep= 4s  day=4.04
+2023/07/23 23:04:29 iteration 96668  walltime= 0.296h  Δwalltime=0.0078s  timestep= 4s  day=4.05
+2023/07/23 23:04:31 iteration 96897  walltime= 0.297h  Δwalltime=0.0079s  timestep= 4s  day=4.06
+2023/07/23 23:04:33 iteration 97143  walltime= 0.297h  Δwalltime=0.0079s  timestep= 4s  day=4.07
+2023/07/23 23:04:35 iteration 97375  walltime= 0.298h  Δwalltime=0.0079s  timestep= 4s  day=4.08
+2023/07/23 23:04:37 iteration 97589  walltime= 0.298h  Δwalltime=0.0079s  timestep= 4s  day=4.09
+2023/07/23 23:04:39 iteration 97839  walltime= 0.299h  Δwalltime=0.0079s  timestep= 4s  day=4.1
+2023/07/23 23:04:41 iteration 98072  walltime= 0.299h  Δwalltime=0.0081s  timestep= 4s  day=4.11
+2023/07/23 23:04:43 iteration 98322  walltime=   0.3h  Δwalltime=0.0078s  timestep= 4s  day=4.12
+2023/07/23 23:04:44 Adding grid cells...
+2023/07/23 23:04:44 Added 51 grid cells; there are now 61836 cells total
+2023/07/23 23:04:49 iteration 98506  walltime= 0.302h  Δwalltime= 4.5s  timestep= 4s  day=4.13
+2023/07/23 23:04:49 Percent change since last convergence check:
+VOC:			1.3%
+VOC pop-wtd:		0.21%
+SOA:			1.6%
+SOA pop-wtd:		0.2%
+PrimaryPM25:		1.5%
+PrimaryPM25 pop-wtd:	0.33%
+NH3:			2.1%
+NH3 pop-wtd:		0.49%
+pNH4:			1.6%
+pNH4 pop-wtd:		0.49%
+SOx:			0.00028%
+SOx pop-wtd:		3.3e-07%
+pSO4:			1.5%
+pSO4 pop-wtd:		0.39%
+NOx:			1.4%
+NOx pop-wtd:		0.54%
+pNO3:			2%
+pNO3 pop-wtd:		0.58%
+2023/07/23 23:04:49 iteration 98511  walltime= 0.302h  Δwalltime=0.0082s  timestep= 4s  day=4.13
+2023/07/23 23:04:51 iteration 98719  walltime= 0.302h  Δwalltime=0.013s  timestep= 4s  day=4.13
+2023/07/23 23:04:53 iteration 98913  walltime= 0.303h  Δwalltime=0.008s  timestep= 4s  day=4.14
+2023/07/23 23:04:55 iteration 99147  walltime= 0.303h  Δwalltime=0.0086s  timestep= 4s  day=4.15
+2023/07/23 23:04:57 iteration 99399  walltime= 0.304h  Δwalltime=0.0079s  timestep= 4s  day=4.16
+2023/07/23 23:04:59 iteration 99648  walltime= 0.304h  Δwalltime=0.0078s  timestep= 4s  day=4.17
+2023/07/23 23:05:01 iteration 99896  walltime= 0.305h  Δwalltime=0.0079s  timestep= 4s  day=4.18
+2023/07/23 23:05:03 iteration 100146  walltime= 0.306h  Δwalltime=0.0084s  timestep= 4s  day=4.19
+2023/07/23 23:05:05 iteration 100343  walltime= 0.306h  Δwalltime=0.028s  timestep= 4s  day=4.2
+2023/07/23 23:05:07 iteration 100515  walltime= 0.307h  Δwalltime=0.0079s  timestep= 4s  day=4.21
+2023/07/23 23:05:09 iteration 100765  walltime= 0.307h  Δwalltime=0.0082s  timestep= 4s  day=4.22
+2023/07/23 23:05:11 iteration 100989  walltime= 0.308h  Δwalltime=0.0079s  timestep= 4s  day=4.23
+2023/07/23 23:05:13 iteration 101238  walltime= 0.308h  Δwalltime=0.0083s  timestep= 4s  day=4.24
+2023/07/23 23:05:15 iteration 101452  walltime= 0.309h  Δwalltime=0.008s  timestep= 4s  day=4.25
+2023/07/23 23:05:15 Adding grid cells...
+2023/07/23 23:05:15 Added 27 grid cells; there are now 61863 cells total
+2023/07/23 23:05:19 Percent change since last convergence check:
+VOC:			1.2%
+VOC pop-wtd:		0.2%
+SOA:			1.5%
+SOA pop-wtd:		0.18%
+PrimaryPM25:		1.5%
+PrimaryPM25 pop-wtd:	0.31%
+NH3:			2%
+NH3 pop-wtd:		0.46%
+pNH4:			1.5%
+pNH4 pop-wtd:		0.46%
+SOx:			0.00015%
+SOx pop-wtd:		2.8e-07%
+pSO4:			1.5%
+pSO4 pop-wtd:		0.36%
+NOx:			1.4%
+NOx pop-wtd:		0.51%
+pNO3:			1.9%
+pNO3 pop-wtd:		0.55%
+2023/07/23 23:05:19 iteration 101491  walltime=  0.31h  Δwalltime= 3.9s  timestep= 4s  day=4.25
+2023/07/23 23:05:21 iteration 101718  walltime= 0.311h  Δwalltime=0.008s  timestep= 4s  day=4.26
+2023/07/23 23:05:23 iteration 101961  walltime= 0.311h  Δwalltime=0.0078s  timestep= 4s  day=4.27
+2023/07/23 23:05:25 iteration 102196  walltime= 0.312h  Δwalltime=0.012s  timestep= 4s  day=4.28
+2023/07/23 23:05:27 iteration 102444  walltime= 0.312h  Δwalltime=0.008s  timestep= 4s  day=4.29
+2023/07/23 23:05:29 iteration 102695  walltime= 0.313h  Δwalltime=0.0082s  timestep= 4s  day=4.3
+2023/07/23 23:05:31 iteration 102943  walltime= 0.313h  Δwalltime=0.0081s  timestep= 4s  day=4.31
+2023/07/23 23:05:33 iteration 103192  walltime= 0.314h  Δwalltime=0.011s  timestep= 4s  day=4.32
+2023/07/23 23:05:35 iteration 103431  walltime= 0.314h  Δwalltime=0.0079s  timestep= 4s  day=4.33
+2023/07/23 23:05:37 iteration 103680  walltime= 0.315h  Δwalltime=0.0079s  timestep= 4s  day=4.34
+2023/07/23 23:05:39 iteration 103900  walltime= 0.316h  Δwalltime=0.013s  timestep= 4s  day=4.35
+2023/07/23 23:05:41 iteration 104116  walltime= 0.316h  Δwalltime=0.0076s  timestep= 4s  day=4.36
+2023/07/23 23:05:43 iteration 104361  walltime= 0.317h  Δwalltime=0.008s  timestep= 4s  day=4.37
+2023/07/23 23:05:44 Adding grid cells...
+2023/07/23 23:05:44 Added 60 grid cells; there are now 61923 cells total
+2023/07/23 23:05:48 Percent change since last convergence check:
+VOC:			1.2%
+VOC pop-wtd:		0.19%
+SOA:			1.4%
+SOA pop-wtd:		0.17%
+PrimaryPM25:		1.4%
+PrimaryPM25 pop-wtd:	0.3%
+NH3:			1.8%
+NH3 pop-wtd:		0.44%
+pNH4:			1.4%
+pNH4 pop-wtd:		0.43%
+SOx:			7.6e-05%
+SOx pop-wtd:		2e-07%
+pSO4:			1.4%
+pSO4 pop-wtd:		0.34%
+NOx:			1.3%
+NOx pop-wtd:		0.49%
+pNO3:			1.8%
+pNO3 pop-wtd:		0.52%
+2023/07/23 23:05:48 iteration 104476  walltime= 0.318h  Δwalltime= 4.5s  timestep= 4s  day=4.38
+2023/07/23 23:05:49 iteration 104538  walltime= 0.318h  Δwalltime=0.0078s  timestep= 4s  day=4.38
+2023/07/23 23:05:51 iteration 104791  walltime= 0.319h  Δwalltime=0.0093s  timestep= 4s  day=4.39
+2023/07/23 23:05:53 iteration 105037  walltime= 0.319h  Δwalltime=0.0081s  timestep= 4s  day=4.4
+2023/07/23 23:05:55 iteration 105262  walltime=  0.32h  Δwalltime=0.0079s  timestep= 4s  day=4.41
+2023/07/23 23:05:57 iteration 105514  walltime= 0.321h  Δwalltime=0.008s  timestep= 4s  day=4.42
+2023/07/23 23:05:59 iteration 105755  walltime= 0.321h  Δwalltime=0.0081s  timestep= 4s  day=4.43
+2023/07/23 23:06:01 iteration 106004  walltime= 0.322h  Δwalltime=0.0076s  timestep= 4s  day=4.44
+2023/07/23 23:06:03 iteration 106249  walltime= 0.322h  Δwalltime=0.008s  timestep= 4s  day=4.45
+2023/07/23 23:06:05 iteration 106495  walltime= 0.323h  Δwalltime=0.0078s  timestep= 4s  day=4.46
+2023/07/23 23:06:07 iteration 106747  walltime= 0.323h  Δwalltime=0.0082s  timestep= 4s  day=4.47
+2023/07/23 23:06:09 iteration 106993  walltime= 0.324h  Δwalltime=0.0079s  timestep= 4s  day=4.48
+2023/07/23 23:06:11 iteration 107223  walltime= 0.324h  Δwalltime=0.0089s  timestep= 4s  day=4.49
+2023/07/23 23:06:13 Adding grid cells...
+2023/07/23 23:06:13 Added 42 grid cells; there are now 61965 cells total
+2023/07/23 23:06:18 iteration 107461  walltime= 0.326h  Δwalltime=   5s  timestep= 4s  day=4.5
+2023/07/23 23:06:18 Percent change since last convergence check:
+VOC:			1.1%
+VOC pop-wtd:		0.18%
+SOA:			1.4%
+SOA pop-wtd:		0.16%
+PrimaryPM25:		1.3%
+PrimaryPM25 pop-wtd:	0.28%
+NH3:			1.8%
+NH3 pop-wtd:		0.41%
+pNH4:			1.3%
+pNH4 pop-wtd:		0.41%
+SOx:			4.1e-05%
+SOx pop-wtd:		1.3e-07%
+pSO4:			1.3%
+pSO4 pop-wtd:		0.32%
+NOx:			1.2%
+NOx pop-wtd:		0.47%
+pNO3:			1.8%
+pNO3 pop-wtd:		0.5%
+2023/07/23 23:06:19 iteration 107595  walltime= 0.327h  Δwalltime=0.0078s  timestep= 4s  day=4.51
+2023/07/23 23:06:21 iteration 107803  walltime= 0.327h  Δwalltime=0.013s  timestep= 4s  day=4.52
+2023/07/23 23:06:23 iteration 107999  walltime= 0.328h  Δwalltime=0.0079s  timestep= 4s  day=4.52
+2023/07/23 23:06:25 iteration 108234  walltime= 0.328h  Δwalltime=0.0079s  timestep= 4s  day=4.53
+2023/07/23 23:06:27 iteration 108476  walltime= 0.329h  Δwalltime=0.0081s  timestep= 4s  day=4.54
+2023/07/23 23:06:29 iteration 108722  walltime= 0.329h  Δwalltime=0.0079s  timestep= 4s  day=4.55
+2023/07/23 23:06:31 iteration 108974  walltime=  0.33h  Δwalltime=0.0079s  timestep= 4s  day=4.56
+2023/07/23 23:06:33 iteration 109197  walltime= 0.331h  Δwalltime=0.014s  timestep= 4s  day=4.57
+2023/07/23 23:06:35 iteration 109434  walltime= 0.331h  Δwalltime=0.008s  timestep= 4s  day=4.58
+2023/07/23 23:06:37 iteration 109682  walltime= 0.332h  Δwalltime=0.0079s  timestep= 4s  day=4.59
+2023/07/23 23:06:39 iteration 109928  walltime= 0.332h  Δwalltime=0.008s  timestep= 4s  day=4.6
+2023/07/23 23:06:41 iteration 110150  walltime= 0.333h  Δwalltime=0.0082s  timestep= 4s  day=4.61
+2023/07/23 23:06:43 iteration 110380  walltime= 0.333h  Δwalltime=0.014s  timestep= 4s  day=4.62
+2023/07/23 23:06:43 Adding grid cells...
+2023/07/23 23:06:44 Added 30 grid cells; there are now 61995 cells total
+2023/07/23 23:06:48 iteration 110446  walltime= 0.335h  Δwalltime= 4.8s  timestep= 4s  day=4.63
+2023/07/23 23:06:48 Percent change since last convergence check:
+VOC:			1%
+VOC pop-wtd:		0.17%
+SOA:			1.3%
+SOA pop-wtd:		0.15%
+PrimaryPM25:		1.3%
+PrimaryPM25 pop-wtd:	0.26%
+NH3:			1.7%
+NH3 pop-wtd:		0.39%
+pNH4:			1.3%
+pNH4 pop-wtd:		0.38%
+SOx:			1.8e-05%
+SOx pop-wtd:		7.5e-08%
+pSO4:			1.2%
+pSO4 pop-wtd:		0.3%
+NOx:			1.2%
+NOx pop-wtd:		0.44%
+pNO3:			1.7%
+pNO3 pop-wtd:		0.48%
+2023/07/23 23:06:49 iteration 110490  walltime= 0.335h  Δwalltime=0.0082s  timestep= 4s  day=4.63
+2023/07/23 23:06:51 iteration 110742  walltime= 0.336h  Δwalltime=0.0079s  timestep= 4s  day=4.64
+2023/07/23 23:06:53 iteration 110992  walltime= 0.336h  Δwalltime=0.008s  timestep= 4s  day=4.65
+2023/07/23 23:06:55 iteration 111227  walltime= 0.337h  Δwalltime=0.008s  timestep= 4s  day=4.66
+2023/07/23 23:06:57 iteration 111466  walltime= 0.337h  Δwalltime=0.0078s  timestep= 4s  day=4.67
+2023/07/23 23:06:59 iteration 111717  walltime= 0.338h  Δwalltime=0.0082s  timestep= 4s  day=4.68
+2023/07/23 23:07:01 iteration 111956  walltime= 0.338h  Δwalltime=0.0079s  timestep= 4s  day=4.69
+2023/07/23 23:07:03 iteration 112200  walltime= 0.339h  Δwalltime=0.013s  timestep= 4s  day=4.7
+2023/07/23 23:07:05 iteration 112447  walltime= 0.339h  Δwalltime=0.0079s  timestep= 4s  day=4.71
+2023/07/23 23:07:07 iteration 112574  walltime=  0.34h  Δwalltime=0.0083s  timestep= 4s  day=4.72
+2023/07/23 23:07:09 iteration 112819  walltime= 0.341h  Δwalltime=0.0078s  timestep= 4s  day=4.73
+2023/07/23 23:07:11 iteration 113046  walltime= 0.341h  Δwalltime=0.0083s  timestep= 4s  day=4.73
+2023/07/23 23:07:13 iteration 113294  walltime= 0.342h  Δwalltime=0.0082s  timestep= 4s  day=4.75
+2023/07/23 23:07:14 Adding grid cells...
+2023/07/23 23:07:14 Added 24 grid cells; there are now 62019 cells total
+2023/07/23 23:07:18 Percent change since last convergence check:
+VOC:			0.99%
+VOC pop-wtd:		0.16%
+SOA:			1.2%
+SOA pop-wtd:		0.14%
+PrimaryPM25:		1.2%
+PrimaryPM25 pop-wtd:	0.25%
+NH3:			1.6%
+NH3 pop-wtd:		0.37%
+pNH4:			1.2%
+pNH4 pop-wtd:		0.36%
+SOx:			7.6e-06%
+SOx pop-wtd:		4e-08%
+pSO4:			1.2%
+pSO4 pop-wtd:		0.28%
+NOx:			1.1%
+NOx pop-wtd:		0.42%
+pNO3:			1.6%
+pNO3 pop-wtd:		0.46%
+2023/07/23 23:07:18 iteration 113431  walltime= 0.343h  Δwalltime= 3.9s  timestep= 4s  day=4.75
+2023/07/23 23:07:19 iteration 113561  walltime= 0.343h  Δwalltime=0.008s  timestep= 4s  day=4.76
+2023/07/23 23:07:21 iteration 113813  walltime= 0.344h  Δwalltime=0.0078s  timestep= 4s  day=4.77
+2023/07/23 23:07:23 iteration 114046  walltime= 0.344h  Δwalltime=0.008s  timestep= 4s  day=4.78
+2023/07/23 23:07:25 iteration 114277  walltime= 0.345h  Δwalltime=0.0079s  timestep= 4s  day=4.79
+2023/07/23 23:07:27 iteration 114523  walltime= 0.346h  Δwalltime=0.0079s  timestep= 4s  day=4.8
+2023/07/23 23:07:29 iteration 114758  walltime= 0.346h  Δwalltime=0.0093s  timestep= 4s  day=4.81
+2023/07/23 23:07:31 iteration 115006  walltime= 0.347h  Δwalltime=0.0078s  timestep= 4s  day=4.82
+2023/07/23 23:07:33 iteration 115251  walltime= 0.347h  Δwalltime=0.0082s  timestep= 4s  day=4.83
+2023/07/23 23:07:35 iteration 115495  walltime= 0.348h  Δwalltime=0.0078s  timestep= 4s  day=4.84
+2023/07/23 23:07:37 iteration 115744  walltime= 0.348h  Δwalltime=0.008s  timestep= 4s  day=4.85
+2023/07/23 23:07:39 iteration 115993  walltime= 0.349h  Δwalltime=0.0081s  timestep= 4s  day=4.86
+2023/07/23 23:07:41 iteration 116224  walltime= 0.349h  Δwalltime=0.0078s  timestep= 4s  day=4.87
+2023/07/23 23:07:42 Adding grid cells...
+2023/07/23 23:07:42 Added 36 grid cells; there are now 62055 cells total
+2023/07/23 23:07:47 iteration 116416  walltime= 0.351h  Δwalltime= 4.5s  timestep= 4s  day=4.88
+2023/07/23 23:07:47 Percent change since last convergence check:
+VOC:			0.94%
+VOC pop-wtd:		0.15%
+SOA:			1.2%
+SOA pop-wtd:		0.14%
+PrimaryPM25:		1.1%
+PrimaryPM25 pop-wtd:	0.24%
+NH3:			1.5%
+NH3 pop-wtd:		0.35%
+pNH4:			1.1%
+pNH4 pop-wtd:		0.34%
+SOx:			3.5e-06%
+SOx pop-wtd:		2.1e-08%
+pSO4:			1.1%
+pSO4 pop-wtd:		0.27%
+NOx:			1.1%
+NOx pop-wtd:		0.41%
+pNO3:			1.5%
+pNO3 pop-wtd:		0.44%
+2023/07/23 23:07:49 iteration 116658  walltime= 0.352h  Δwalltime=0.0081s  timestep= 4s  day=4.89
+2023/07/23 23:07:51 iteration 116864  walltime= 0.352h  Δwalltime=0.013s  timestep= 4s  day=4.89
+2023/07/23 23:07:53 iteration 117058  walltime= 0.353h  Δwalltime=0.0078s  timestep= 4s  day=4.9
+2023/07/23 23:07:55 iteration 117293  walltime= 0.353h  Δwalltime=0.0079s  timestep= 4s  day=4.91
+2023/07/23 23:07:57 iteration 117542  walltime= 0.354h  Δwalltime=0.0076s  timestep= 4s  day=4.92
+2023/07/23 23:07:59 iteration 117789  walltime= 0.354h  Δwalltime=0.0083s  timestep= 4s  day=4.93
+2023/07/23 23:08:01 iteration 118041  walltime= 0.355h  Δwalltime=0.0081s  timestep= 4s  day=4.94
+2023/07/23 23:08:03 iteration 118281  walltime= 0.356h  Δwalltime=0.008s  timestep= 4s  day=4.95
+2023/07/23 23:08:05 iteration 118525  walltime= 0.356h  Δwalltime=0.008s  timestep= 4s  day=4.96
+2023/07/23 23:08:07 iteration 118772  walltime= 0.357h  Δwalltime=0.0083s  timestep= 4s  day=4.97
+2023/07/23 23:08:09 iteration 119006  walltime= 0.357h  Δwalltime=0.0079s  timestep= 4s  day=4.98
+2023/07/23 23:08:11 iteration 119225  walltime= 0.358h  Δwalltime=0.0081s  timestep= 4s  day=4.99
+2023/07/23 23:08:12 Adding grid cells...
+2023/07/23 23:08:12 Added 18 grid cells; there are now 62073 cells total
+2023/07/23 23:08:16 Percent change since last convergence check:
+VOC:			0.89%
+VOC pop-wtd:		0.14%
+SOA:			1.1%
+SOA pop-wtd:		0.13%
+PrimaryPM25:		1.1%
+PrimaryPM25 pop-wtd:	0.22%
+NH3:			1.4%
+NH3 pop-wtd:		0.33%
+pNH4:			1.1%
+pNH4 pop-wtd:		0.32%
+SOx:			1.6e-06%
+SOx pop-wtd:		1e-08%
+pSO4:			1.1%
+pSO4 pop-wtd:		0.25%
+NOx:			1%
+NOx pop-wtd:		0.39%
+pNO3:			1.5%
+pNO3 pop-wtd:		0.42%
+2023/07/23 23:08:16 iteration 119401  walltime= 0.359h  Δwalltime= 4.4s  timestep= 4s  day=5
+2023/07/23 23:08:17 iteration 119417  walltime= 0.359h  Δwalltime=0.0082s  timestep= 4s  day=5
+2023/07/23 23:08:19 iteration 119665  walltime=  0.36h  Δwalltime=0.0079s  timestep= 4s  day=5.01
+2023/07/23 23:08:21 iteration 119913  walltime= 0.361h  Δwalltime=0.008s  timestep= 4s  day=5.02
+2023/07/23 23:08:23 iteration 120161  walltime= 0.361h  Δwalltime=0.0082s  timestep= 4s  day=5.03
+2023/07/23 23:08:25 iteration 120395  walltime= 0.362h  Δwalltime=0.008s  timestep= 4s  day=5.04
+2023/07/23 23:08:27 iteration 120645  walltime= 0.362h  Δwalltime=0.0077s  timestep= 4s  day=5.05
+2023/07/23 23:08:29 iteration 120882  walltime= 0.363h  Δwalltime=0.0082s  timestep= 4s  day=5.06
+2023/07/23 23:08:31 iteration 121122  walltime= 0.363h  Δwalltime=0.008s  timestep= 4s  day=5.07
+2023/07/23 23:08:33 iteration 121371  walltime= 0.364h  Δwalltime=0.0079s  timestep= 4s  day=5.08
+2023/07/23 23:08:35 iteration 121613  walltime= 0.364h  Δwalltime=0.0079s  timestep= 4s  day=5.09
+2023/07/23 23:08:37 iteration 121863  walltime= 0.365h  Δwalltime=0.008s  timestep= 4s  day=5.1
+2023/07/23 23:08:39 iteration 122112  walltime= 0.366h  Δwalltime=0.008s  timestep= 4s  day=5.11
+2023/07/23 23:08:41 iteration 122344  walltime= 0.366h  Δwalltime=0.0078s  timestep= 4s  day=5.12
+2023/07/23 23:08:41 Adding grid cells...
+2023/07/23 23:08:41 Added 51 grid cells; there are now 62124 cells total
+2023/07/23 23:08:45 Percent change since last convergence check:
+VOC:			0.85%
+VOC pop-wtd:		0.13%
+SOA:			1.1%
+SOA pop-wtd:		0.12%
+PrimaryPM25:		1%
+PrimaryPM25 pop-wtd:	0.21%
+NH3:			1.4%
+NH3 pop-wtd:		0.31%
+pNH4:			1%
+pNH4 pop-wtd:		0.3%
+SOx:			8.5e-07%
+SOx pop-wtd:		5.1e-09%
+pSO4:			1%
+pSO4 pop-wtd:		0.24%
+NOx:			0.98%
+NOx pop-wtd:		0.37%
+pNO3:			1.4%
+pNO3 pop-wtd:		0.4%
+2023/07/23 23:08:45 iteration 122386  walltime= 0.367h  Δwalltime= 4.5s  timestep= 4s  day=5.13
+2023/07/23 23:08:47 iteration 122517  walltime= 0.368h  Δwalltime=0.0079s  timestep= 4s  day=5.13
+2023/07/23 23:08:49 iteration 122765  walltime= 0.368h  Δwalltime=0.008s  timestep= 4s  day=5.14
+2023/07/23 23:08:51 iteration 123011  walltime= 0.369h  Δwalltime=0.0081s  timestep= 4s  day=5.15
+2023/07/23 23:08:53 iteration 123260  walltime= 0.369h  Δwalltime=0.0079s  timestep= 4s  day=5.16
+2023/07/23 23:08:55 iteration 123496  walltime=  0.37h  Δwalltime=0.008s  timestep= 4s  day=5.17
+2023/07/23 23:08:57 iteration 123735  walltime= 0.371h  Δwalltime=0.0079s  timestep= 4s  day=5.18
+2023/07/23 23:08:59 iteration 123987  walltime= 0.371h  Δwalltime=0.008s  timestep= 4s  day=5.19
+2023/07/23 23:09:01 iteration 124237  walltime= 0.372h  Δwalltime=0.008s  timestep= 4s  day=5.2
+2023/07/23 23:09:03 iteration 124478  walltime= 0.372h  Δwalltime=0.0083s  timestep= 4s  day=5.21
+2023/07/23 23:09:05 iteration 124721  walltime= 0.373h  Δwalltime=0.0084s  timestep= 4s  day=5.22
+2023/07/23 23:09:07 iteration 124882  walltime= 0.373h  Δwalltime=0.013s  timestep= 4s  day=5.23
+2023/07/23 23:09:09 iteration 125098  walltime= 0.374h  Δwalltime=0.0079s  timestep= 4s  day=5.24
+2023/07/23 23:09:11 iteration 125321  walltime= 0.374h  Δwalltime=0.008s  timestep= 4s  day=5.25
+2023/07/23 23:09:11 Adding grid cells...
+2023/07/23 23:09:11 Added 27 grid cells; there are now 62151 cells total
+2023/07/23 23:09:15 iteration 125371  walltime= 0.376h  Δwalltime= 3.9s  timestep= 4s  day=5.25
+2023/07/23 23:09:15 Percent change since last convergence check:
+VOC:			0.8%
+VOC pop-wtd:		0.12%
+SOA:			1%
+SOA pop-wtd:		0.11%
+PrimaryPM25:		0.98%
+PrimaryPM25 pop-wtd:	0.2%
+NH3:			1.3%
+NH3 pop-wtd:		0.29%
+pNH4:			0.98%
+pNH4 pop-wtd:		0.29%
+SOx:			0.0001%
+SOx pop-wtd:		2.6e-09%
+pSO4:			0.97%
+pSO4 pop-wtd:		0.23%
+NOx:			0.93%
+NOx pop-wtd:		0.35%
+pNO3:			1.3%
+pNO3 pop-wtd:		0.38%
+2023/07/23 23:09:17 iteration 125579  walltime= 0.376h  Δwalltime=0.0078s  timestep= 4s  day=5.26
+2023/07/23 23:09:19 iteration 125826  walltime= 0.377h  Δwalltime=0.0082s  timestep= 4s  day=5.27
+2023/07/23 23:09:21 iteration 126031  walltime= 0.377h  Δwalltime=0.011s  timestep= 4s  day=5.28
+2023/07/23 23:09:23 iteration 126224  walltime= 0.378h  Δwalltime=0.0097s  timestep= 4s  day=5.29
+2023/07/23 23:09:25 iteration 126455  walltime= 0.378h  Δwalltime=0.0081s  timestep= 4s  day=5.3
+2023/07/23 23:09:27 iteration 126704  walltime= 0.379h  Δwalltime=0.0081s  timestep= 4s  day=5.31
+2023/07/23 23:09:29 iteration 126954  walltime= 0.379h  Δwalltime=0.0079s  timestep= 4s  day=5.32
+2023/07/23 23:09:31 iteration 127184  walltime=  0.38h  Δwalltime=0.0078s  timestep= 4s  day=5.33
+2023/07/23 23:09:33 iteration 127431  walltime= 0.381h  Δwalltime=0.012s  timestep= 4s  day=5.34
+2023/07/23 23:09:35 iteration 127673  walltime= 0.381h  Δwalltime=0.008s  timestep= 4s  day=5.35
+2023/07/23 23:09:37 iteration 127919  walltime= 0.382h  Δwalltime=0.008s  timestep= 4s  day=5.36
+2023/07/23 23:09:39 iteration 128171  walltime= 0.382h  Δwalltime=0.0078s  timestep= 4s  day=5.37
+2023/07/23 23:09:40 Adding grid cells...
+2023/07/23 23:09:40 Added 12 grid cells; there are now 62163 cells total
+2023/07/23 23:09:45 Percent change since last convergence check:
+VOC:			0.76%
+VOC pop-wtd:		0.12%
+SOA:			0.96%
+SOA pop-wtd:		0.11%
+PrimaryPM25:		0.93%
+PrimaryPM25 pop-wtd:	0.19%
+NH3:			1.2%
+NH3 pop-wtd:		0.28%
+pNH4:			0.94%
+pNH4 pop-wtd:		0.27%
+SOx:			0.0001%
+SOx pop-wtd:		1.6e-08%
+pSO4:			0.92%
+pSO4 pop-wtd:		0.21%
+NOx:			0.89%
+NOx pop-wtd:		0.34%
+pNO3:			1.3%
+pNO3 pop-wtd:		0.36%
+2023/07/23 23:09:45 iteration 128356  walltime= 0.384h  Δwalltime= 4.4s  timestep= 4s  day=5.38
+2023/07/23 23:09:47 iteration 128584  walltime= 0.384h  Δwalltime=0.0082s  timestep= 4s  day=5.39
+2023/07/23 23:09:49 iteration 128831  walltime= 0.385h  Δwalltime=0.0082s  timestep= 4s  day=5.4
+2023/07/23 23:09:51 iteration 129079  walltime= 0.386h  Δwalltime=0.0079s  timestep= 4s  day=5.41
+2023/07/23 23:09:53 iteration 129323  walltime= 0.386h  Δwalltime=0.0082s  timestep= 4s  day=5.42
+2023/07/23 23:09:55 iteration 129535  walltime= 0.387h  Δwalltime=0.0081s  timestep= 4s  day=5.43
+2023/07/23 23:09:57 iteration 129785  walltime= 0.387h  Δwalltime=0.0079s  timestep= 4s  day=5.44
+2023/07/23 23:09:59 iteration 130036  walltime= 0.388h  Δwalltime=0.0079s  timestep= 4s  day=5.45
+2023/07/23 23:10:01 iteration 130287  walltime= 0.388h  Δwalltime=0.0079s  timestep= 4s  day=5.46
+2023/07/23 23:10:03 iteration 130529  walltime= 0.389h  Δwalltime=0.013s  timestep= 4s  day=5.47
+2023/07/23 23:10:05 iteration 130775  walltime= 0.389h  Δwalltime=0.008s  timestep= 4s  day=5.48
+2023/07/23 23:10:07 iteration 131023  walltime=  0.39h  Δwalltime=0.0082s  timestep= 4s  day=5.49
+2023/07/23 23:10:09 iteration 131264  walltime= 0.391h  Δwalltime=0.011s  timestep= 4s  day=5.5
+2023/07/23 23:10:09 Adding grid cells...
+2023/07/23 23:10:10 Added 30 grid cells; there are now 62193 cells total
+2023/07/23 23:10:14 iteration 131341  walltime= 0.392h  Δwalltime= 4.5s  timestep= 4s  day=5.5
+2023/07/23 23:10:14 Percent change since last convergence check:
+VOC:			0.72%
+VOC pop-wtd:		0.11%
+SOA:			0.91%
+SOA pop-wtd:		0.1%
+PrimaryPM25:		0.89%
+PrimaryPM25 pop-wtd:	0.18%
+NH3:			1.2%
+NH3 pop-wtd:		0.26%
+pNH4:			0.89%
+pNH4 pop-wtd:		0.26%
+SOx:			5.6e-05%
+SOx pop-wtd:		3.2e-08%
+pSO4:			0.88%
+pSO4 pop-wtd:		0.2%
+NOx:			0.85%
+NOx pop-wtd:		0.32%
+pNO3:			1.2%
+pNO3 pop-wtd:		0.35%
+2023/07/23 23:10:15 iteration 131432  walltime= 0.392h  Δwalltime=0.0081s  timestep= 4s  day=5.5
+2023/07/23 23:10:17 iteration 131681  walltime= 0.393h  Δwalltime=0.0081s  timestep= 4s  day=5.52
+2023/07/23 23:10:19 iteration 131931  walltime= 0.393h  Δwalltime=0.0079s  timestep= 4s  day=5.53
+2023/07/23 23:10:21 iteration 132179  walltime= 0.394h  Δwalltime=0.0078s  timestep= 4s  day=5.54
+2023/07/23 23:10:23 iteration 132426  walltime= 0.394h  Δwalltime=0.013s  timestep= 4s  day=5.55
+2023/07/23 23:10:25 iteration 132639  walltime= 0.395h  Δwalltime=0.0076s  timestep= 4s  day=5.56
+2023/07/23 23:10:27 iteration 132884  walltime= 0.396h  Δwalltime=0.008s  timestep= 4s  day=5.57
+2023/07/23 23:10:29 iteration 133134  walltime= 0.396h  Δwalltime=0.0083s  timestep= 4s  day=5.58
+2023/07/23 23:10:31 iteration 133380  walltime= 0.397h  Δwalltime=0.0084s  timestep= 4s  day=5.59
+2023/07/23 23:10:33 iteration 133628  walltime= 0.397h  Δwalltime=0.008s  timestep= 4s  day=5.6
+2023/07/23 23:10:35 iteration 133876  walltime= 0.398h  Δwalltime=0.008s  timestep= 4s  day=5.61
+2023/07/23 23:10:37 iteration 134125  walltime= 0.398h  Δwalltime=0.0081s  timestep= 4s  day=5.62
+2023/07/23 23:10:38 Adding grid cells...
+2023/07/23 23:10:38 Added 60 grid cells; there are now 62253 cells total
+2023/07/23 23:10:43 Percent change since last convergence check:
+VOC:			0.69%
+VOC pop-wtd:		0.11%
+SOA:			0.87%
+SOA pop-wtd:		0.097%
+PrimaryPM25:		0.84%
+PrimaryPM25 pop-wtd:	0.17%
+NH3:			1.1%
+NH3 pop-wtd:		0.25%
+pNH4:			0.85%
+pNH4 pop-wtd:		0.24%
+SOx:			2.6e-05%
+SOx pop-wtd:		3.2e-08%
+pSO4:			0.83%
+pSO4 pop-wtd:		0.19%
+NOx:			0.81%
+NOx pop-wtd:		0.31%
+pNO3:			1.2%
+pNO3 pop-wtd:		0.33%
+2023/07/23 23:10:43 iteration 134326  walltime=   0.4h  Δwalltime= 4.8s  timestep= 4s  day=5.63
+2023/07/23 23:10:45 iteration 134497  walltime= 0.401h  Δwalltime=0.0079s  timestep= 4s  day=5.63
+2023/07/23 23:10:47 iteration 134740  walltime= 0.401h  Δwalltime=0.008s  timestep= 4s  day=5.64
+2023/07/23 23:10:49 iteration 134964  walltime= 0.402h  Δwalltime=0.0077s  timestep= 4s  day=5.65
+2023/07/23 23:10:51 iteration 135153  walltime= 0.402h  Δwalltime=0.013s  timestep= 4s  day=5.66
+2023/07/23 23:10:53 iteration 135339  walltime= 0.403h  Δwalltime=0.0083s  timestep= 4s  day=5.67
+2023/07/23 23:10:55 iteration 135566  walltime= 0.403h  Δwalltime=0.008s  timestep= 4s  day=5.68
+2023/07/23 23:10:57 iteration 135813  walltime= 0.404h  Δwalltime=0.0082s  timestep= 4s  day=5.69
+2023/07/23 23:10:59 iteration 136059  walltime= 0.404h  Δwalltime=0.0083s  timestep= 4s  day=5.7
+2023/07/23 23:11:01 iteration 136310  walltime= 0.405h  Δwalltime=0.0078s  timestep= 4s  day=5.71
+2023/07/23 23:11:03 iteration 136561  walltime= 0.406h  Δwalltime=0.008s  timestep= 4s  day=5.72
+2023/07/23 23:11:05 iteration 136787  walltime= 0.406h  Δwalltime=0.014s  timestep= 4s  day=5.73
+2023/07/23 23:11:07 iteration 136966  walltime= 0.407h  Δwalltime=0.013s  timestep= 4s  day=5.74
+2023/07/23 23:11:09 iteration 137153  walltime= 0.407h  Δwalltime=0.0079s  timestep= 4s  day=5.74
+2023/07/23 23:11:10 Adding grid cells...
+2023/07/23 23:11:10 Added 21 grid cells; there are now 62274 cells total
+2023/07/23 23:11:14 iteration 137311  walltime= 0.409h  Δwalltime= 4.1s  timestep= 4s  day=5.75
+2023/07/23 23:11:14 Percent change since last convergence check:
+VOC:			0.65%
+VOC pop-wtd:		0.099%
+SOA:			0.83%
+SOA pop-wtd:		0.091%
+PrimaryPM25:		0.8%
+PrimaryPM25 pop-wtd:	0.16%
+NH3:			1.1%
+NH3 pop-wtd:		0.23%
+pNH4:			0.8%
+pNH4 pop-wtd:		0.23%
+SOx:			1e-05%
+SOx pop-wtd:		1.7e-08%
+pSO4:			0.79%
+pSO4 pop-wtd:		0.18%
+NOx:			0.78%
+NOx pop-wtd:		0.3%
+pNO3:			1.1%
+pNO3 pop-wtd:		0.32%
+2023/07/23 23:11:15 iteration 137352  walltime= 0.409h  Δwalltime=0.014s  timestep= 4s  day=5.75
+2023/07/23 23:11:17 iteration 137587  walltime= 0.409h  Δwalltime=0.008s  timestep= 4s  day=5.76
+2023/07/23 23:11:19 iteration 137810  walltime=  0.41h  Δwalltime=0.0078s  timestep= 4s  day=5.77
+2023/07/23 23:11:21 iteration 138052  walltime= 0.411h  Δwalltime=0.0083s  timestep= 4s  day=5.78
+2023/07/23 23:11:23 iteration 138298  walltime= 0.411h  Δwalltime=0.008s  timestep= 4s  day=5.79
+2023/07/23 23:11:25 iteration 138528  walltime= 0.412h  Δwalltime=0.0079s  timestep= 4s  day=5.8
+2023/07/23 23:11:27 iteration 138775  walltime= 0.412h  Δwalltime=0.0082s  timestep= 4s  day=5.81
+2023/07/23 23:11:29 iteration 139023  walltime= 0.413h  Δwalltime=0.0078s  timestep= 4s  day=5.82
+2023/07/23 23:11:31 iteration 139274  walltime= 0.413h  Δwalltime=0.0078s  timestep= 4s  day=5.83
+2023/07/23 23:11:33 iteration 139500  walltime= 0.414h  Δwalltime=0.0079s  timestep= 4s  day=5.84
+2023/07/23 23:11:35 iteration 139748  walltime= 0.414h  Δwalltime=0.0079s  timestep= 4s  day=5.85
+2023/07/23 23:11:37 iteration 140000  walltime= 0.415h  Δwalltime=0.0079s  timestep= 4s  day=5.86
+2023/07/23 23:11:39 iteration 140248  walltime= 0.416h  Δwalltime=0.0079s  timestep= 4s  day=5.87
+2023/07/23 23:11:39 Adding grid cells...
+2023/07/23 23:11:39 Added 21 grid cells; there are now 62295 cells total
+2023/07/23 23:11:43 iteration 140296  walltime= 0.417h  Δwalltime= 4.4s  timestep= 4s  day=5.88
+2023/07/23 23:11:43 Percent change since last convergence check:
+VOC:			0.62%
+VOC pop-wtd:		0.094%
+SOA:			0.79%
+SOA pop-wtd:		0.086%
+PrimaryPM25:		0.76%
+PrimaryPM25 pop-wtd:	0.15%
+NH3:			1%
+NH3 pop-wtd:		0.22%
+pNH4:			0.76%
+pNH4 pop-wtd:		0.22%
+SOx:			4.1e-06%
+SOx pop-wtd:		1.3e-08%
+pSO4:			0.76%
+pSO4 pop-wtd:		0.17%
+NOx:			0.74%
+NOx pop-wtd:		0.29%
+pNO3:			1.1%
+pNO3 pop-wtd:		0.31%
+2023/07/23 23:11:45 iteration 140438  walltime= 0.417h  Δwalltime=0.0079s  timestep= 4s  day=5.88
+2023/07/23 23:11:47 iteration 140686  walltime= 0.418h  Δwalltime=0.0078s  timestep= 4s  day=5.89
+2023/07/23 23:11:49 iteration 140926  walltime= 0.418h  Δwalltime=0.011s  timestep= 4s  day=5.9
+2023/07/23 23:11:51 iteration 141173  walltime= 0.419h  Δwalltime=0.008s  timestep= 4s  day=5.91
+2023/07/23 23:11:53 iteration 141422  walltime= 0.419h  Δwalltime=0.0079s  timestep= 4s  day=5.92
+2023/07/23 23:11:55 iteration 141641  walltime=  0.42h  Δwalltime=0.0082s  timestep= 4s  day=5.93
+2023/07/23 23:11:57 iteration 141865  walltime= 0.421h  Δwalltime=0.0083s  timestep= 4s  day=5.94
+2023/07/23 23:11:59 iteration 142111  walltime= 0.421h  Δwalltime=0.0081s  timestep= 4s  day=5.95
+2023/07/23 23:12:01 iteration 142351  walltime= 0.422h  Δwalltime=0.0077s  timestep= 4s  day=5.96
+2023/07/23 23:12:03 iteration 142601  walltime= 0.422h  Δwalltime=0.008s  timestep= 4s  day=5.97
+2023/07/23 23:12:05 iteration 142847  walltime= 0.423h  Δwalltime=0.0081s  timestep= 4s  day=5.98
+2023/07/23 23:12:07 iteration 143097  walltime= 0.423h  Δwalltime=0.0077s  timestep= 4s  day=5.99
+2023/07/23 23:12:08 Adding grid cells...
+2023/07/23 23:12:08 Added 9 grid cells; there are now 62304 cells total
+2023/07/23 23:12:12 iteration 143281  walltime= 0.425h  Δwalltime= 4.4s  timestep= 4s  day=6
+2023/07/23 23:12:12 Percent change since last convergence check:
+VOC:			0.59%
+VOC pop-wtd:		0.089%
+SOA:			0.75%
+SOA pop-wtd:		0.082%
+PrimaryPM25:		0.73%
+PrimaryPM25 pop-wtd:	0.15%
+NH3:			0.95%
+NH3 pop-wtd:		0.21%
+pNH4:			0.73%
+pNH4 pop-wtd:		0.2%
+SOx:			1.7e-06%
+SOx pop-wtd:		8.1e-09%
+pSO4:			0.72%
+pSO4 pop-wtd:		0.16%
+NOx:			0.71%
+NOx pop-wtd:		0.27%
+pNO3:			1%
+pNO3 pop-wtd:		0.29%
+2023/07/23 23:12:13 iteration 143293  walltime= 0.425h  Δwalltime=0.0083s  timestep= 4s  day=6
+2023/07/23 23:12:15 iteration 143503  walltime= 0.426h  Δwalltime=0.0082s  timestep= 4s  day=6.01
+2023/07/23 23:12:17 iteration 143745  walltime= 0.426h  Δwalltime=0.0079s  timestep= 4s  day=6.02
+2023/07/23 23:12:19 iteration 143978  walltime= 0.427h  Δwalltime=0.0079s  timestep= 4s  day=6.03
+2023/07/23 23:12:21 iteration 144185  walltime= 0.427h  Δwalltime=0.0092s  timestep= 4s  day=6.04
+2023/07/23 23:12:23 iteration 144376  walltime= 0.428h  Δwalltime=0.008s  timestep= 4s  day=6.05
+2023/07/23 23:12:25 iteration 144606  walltime= 0.428h  Δwalltime=0.0085s  timestep= 4s  day=6.06
+2023/07/23 23:12:27 iteration 144841  walltime= 0.429h  Δwalltime=0.0081s  timestep= 4s  day=6.07
+2023/07/23 23:12:29 iteration 145085  walltime= 0.429h  Δwalltime=0.0079s  timestep= 4s  day=6.08
+2023/07/23 23:12:31 iteration 145334  walltime=  0.43h  Δwalltime=0.008s  timestep= 4s  day=6.09
+2023/07/23 23:12:33 iteration 145586  walltime= 0.431h  Δwalltime=0.0081s  timestep= 4s  day=6.1
+2023/07/23 23:12:35 iteration 145761  walltime= 0.431h  Δwalltime=0.008s  timestep= 4s  day=6.11
+2023/07/23 23:12:37 iteration 146006  walltime= 0.432h  Δwalltime=0.0078s  timestep= 4s  day=6.12
+2023/07/23 23:12:39 iteration 146247  walltime= 0.432h  Δwalltime=0.0082s  timestep= 4s  day=6.13
+2023/07/23 23:12:39 Adding grid cells...
+2023/07/23 23:12:39 Added 3 grid cells; there are now 62307 cells total
+2023/07/23 23:12:43 iteration 146266  walltime= 0.433h  Δwalltime= 4.4s  timestep= 4s  day=6.13
+2023/07/23 23:12:43 Percent change since last convergence check:
+VOC:			0.56%
+VOC pop-wtd:		0.084%
+SOA:			0.71%
+SOA pop-wtd:		0.077%
+PrimaryPM25:		0.69%
+PrimaryPM25 pop-wtd:	0.14%
+NH3:			0.9%
+NH3 pop-wtd:		0.2%
+pNH4:			0.69%
+pNH4 pop-wtd:		0.19%
+SOx:			7.5e-07%
+SOx pop-wtd:		4.4e-09%
+pSO4:			0.69%
+pSO4 pop-wtd:		0.16%
+NOx:			0.68%
+NOx pop-wtd:		0.26%
+pNO3:			0.98%
+pNO3 pop-wtd:		0.28%
+2023/07/23 23:12:45 iteration 146430  walltime= 0.434h  Δwalltime=0.0082s  timestep= 4s  day=6.13
+2023/07/23 23:12:47 iteration 146679  walltime= 0.434h  Δwalltime=0.0081s  timestep= 4s  day=6.14
+2023/07/23 23:12:49 iteration 146922  walltime= 0.435h  Δwalltime=0.0079s  timestep= 4s  day=6.15
+2023/07/23 23:12:51 iteration 147168  walltime= 0.436h  Δwalltime=0.0079s  timestep= 4s  day=6.16
+2023/07/23 23:12:53 iteration 147414  walltime= 0.436h  Δwalltime=0.0082s  timestep= 4s  day=6.17
+2023/07/23 23:12:55 iteration 147627  walltime= 0.437h  Δwalltime=0.0083s  timestep= 4s  day=6.18
+2023/07/23 23:12:57 iteration 147868  walltime= 0.437h  Δwalltime=0.008s  timestep= 4s  day=6.19
+2023/07/23 23:12:59 iteration 148115  walltime= 0.438h  Δwalltime=0.0079s  timestep= 4s  day=6.2
+2023/07/23 23:13:01 iteration 148359  walltime= 0.438h  Δwalltime=0.0082s  timestep= 4s  day=6.21
+2023/07/23 23:13:03 iteration 148608  walltime= 0.439h  Δwalltime=0.008s  timestep= 4s  day=6.22
+2023/07/23 23:13:05 iteration 148797  walltime= 0.439h  Δwalltime=0.014s  timestep= 4s  day=6.23
+2023/07/23 23:13:07 iteration 149025  walltime=  0.44h  Δwalltime=0.04s  timestep= 4s  day=6.24
+2023/07/23 23:13:09 iteration 149172  walltime= 0.441h  Δwalltime=0.0081s  timestep= 4s  day=6.25
+2023/07/23 23:13:09 Adding grid cells...
+2023/07/23 23:13:09 Added 0 grid cells; there are now 62307 cells total
+2023/07/23 23:13:13 iteration 149251  walltime= 0.442h  Δwalltime= 3.8s  timestep= 4s  day=6.25
+2023/07/23 23:13:13 Percent change since last convergence check:
+VOC:			0.53%
+VOC pop-wtd:		0.08%
+SOA:			0.68%
+SOA pop-wtd:		0.073%
+PrimaryPM25:		0.66%
+PrimaryPM25 pop-wtd:	0.13%
+NH3:			0.86%
+NH3 pop-wtd:		0.19%
+pNH4:			0.66%
+pNH4 pop-wtd:		0.18%
+SOx:			3.5e-07%
+SOx pop-wtd:		2.3e-09%
+pSO4:			0.66%
+pSO4 pop-wtd:		0.15%
+NOx:			0.65%
+NOx pop-wtd:		0.25%
+pNO3:			0.94%
+pNO3 pop-wtd:		0.27%
+2023/07/23 23:13:15 iteration 149416  walltime= 0.442h  Δwalltime=0.0079s  timestep= 4s  day=6.26
+2023/07/23 23:13:17 iteration 149667  walltime= 0.443h  Δwalltime=0.012s  timestep= 4s  day=6.27
+2023/07/23 23:13:19 iteration 149896  walltime= 0.443h  Δwalltime=0.008s  timestep= 4s  day=6.28
+2023/07/23 23:13:21 iteration 150127  walltime= 0.444h  Δwalltime=0.0081s  timestep= 4s  day=6.29
+2023/07/23 23:13:23 iteration 150369  walltime= 0.444h  Δwalltime=0.0082s  timestep= 4s  day=6.3
+2023/07/23 23:13:25 iteration 150549  walltime= 0.445h  Δwalltime=0.0079s  timestep= 4s  day=6.31
+2023/07/23 23:13:27 iteration 150800  walltime= 0.446h  Δwalltime=0.008s  timestep= 4s  day=6.32
+2023/07/23 23:13:29 iteration 151038  walltime= 0.446h  Δwalltime=0.0082s  timestep= 4s  day=6.33
+2023/07/23 23:13:31 iteration 151290  walltime= 0.447h  Δwalltime=0.0077s  timestep= 4s  day=6.34
+2023/07/23 23:13:33 iteration 151538  walltime= 0.447h  Δwalltime=0.0079s  timestep= 4s  day=6.35
+2023/07/23 23:13:35 iteration 151769  walltime= 0.448h  Δwalltime=0.008s  timestep= 4s  day=6.36
+2023/07/23 23:13:37 iteration 152019  walltime= 0.448h  Δwalltime=0.0081s  timestep= 4s  day=6.37
+2023/07/23 23:13:38 Adding grid cells...
+2023/07/23 23:13:38 Added 0 grid cells; there are now 62307 cells total
+2023/07/23 23:13:43 iteration 152236  walltime=  0.45h  Δwalltime= 4.4s  timestep= 4s  day=6.38
+2023/07/23 23:13:43 Percent change since last convergence check:
+VOC:			0.51%
+VOC pop-wtd:		0.076%
+SOA:			0.65%
+SOA pop-wtd:		0.069%
+PrimaryPM25:		0.63%
+PrimaryPM25 pop-wtd:	0.13%
+NH3:			0.82%
+NH3 pop-wtd:		0.18%
+pNH4:			0.63%
+pNH4 pop-wtd:		0.17%
+SOx:			1.7e-07%
+SOx pop-wtd:		1.2e-09%
+pSO4:			0.63%
+pSO4 pop-wtd:		0.14%
+NOx:			0.62%
+NOx pop-wtd:		0.24%
+pNO3:			0.9%
+pNO3 pop-wtd:		0.26%
+2023/07/23 23:13:45 iteration 152461  walltime= 0.451h  Δwalltime=0.0078s  timestep= 4s  day=6.39
+2023/07/23 23:13:47 iteration 152702  walltime= 0.451h  Δwalltime=0.008s  timestep= 4s  day=6.4
+2023/07/23 23:13:49 iteration 152946  walltime= 0.452h  Δwalltime=0.008s  timestep= 4s  day=6.41
+2023/07/23 23:13:51 iteration 153149  walltime= 0.452h  Δwalltime=0.013s  timestep= 4s  day=6.41
+2023/07/23 23:13:53 iteration 153347  walltime= 0.453h  Δwalltime=0.0078s  timestep= 4s  day=6.42
+2023/07/23 23:13:55 iteration 153546  walltime= 0.453h  Δwalltime=0.0081s  timestep= 4s  day=6.43
+2023/07/23 23:13:57 iteration 153794  walltime= 0.454h  Δwalltime=0.008s  timestep= 4s  day=6.44
+2023/07/23 23:13:59 iteration 154046  walltime= 0.454h  Δwalltime=0.008s  timestep= 4s  day=6.45
+2023/07/23 23:14:01 iteration 154297  walltime= 0.455h  Δwalltime=0.0079s  timestep= 4s  day=6.46
+2023/07/23 23:14:03 iteration 154544  walltime= 0.456h  Δwalltime=0.008s  timestep= 4s  day=6.47
+2023/07/23 23:14:05 iteration 154754  walltime= 0.456h  Δwalltime=0.008s  timestep= 4s  day=6.48
+2023/07/23 23:14:07 iteration 155004  walltime= 0.457h  Δwalltime=0.0079s  timestep= 4s  day=6.49
+2023/07/23 23:14:08 Adding grid cells...
+2023/07/23 23:14:09 Added 12 grid cells; there are now 62319 cells total
+2023/07/23 23:14:13 iteration 155221  walltime= 0.458h  Δwalltime= 4.4s  timestep= 4s  day=6.5
+2023/07/23 23:14:13 Percent change since last convergence check:
+VOC:			0.48%
+VOC pop-wtd:		0.072%
+SOA:			0.61%
+SOA pop-wtd:		0.066%
+PrimaryPM25:		0.6%
+PrimaryPM25 pop-wtd:	0.12%
+NH3:			0.78%
+NH3 pop-wtd:		0.17%
+pNH4:			0.59%
+pNH4 pop-wtd:		0.16%
+SOx:			8.1e-08%
+SOx pop-wtd:		5.8e-10%
+pSO4:			0.6%
+pSO4 pop-wtd:		0.13%
+NOx:			0.59%
+NOx pop-wtd:		0.23%
+pNO3:			0.86%
+pNO3 pop-wtd:		0.25%
+2023/07/23 23:14:15 iteration 155415  walltime= 0.459h  Δwalltime=0.0079s  timestep= 4s  day=6.51
+2023/07/23 23:14:17 iteration 155662  walltime= 0.459h  Δwalltime=0.01s  timestep= 4s  day=6.52
+2023/07/23 23:14:19 iteration 155909  walltime=  0.46h  Δwalltime=0.0081s  timestep= 4s  day=6.53
+2023/07/23 23:14:21 iteration 156157  walltime= 0.461h  Δwalltime=0.008s  timestep= 4s  day=6.54
+2023/07/23 23:14:23 iteration 156397  walltime= 0.461h  Δwalltime=0.008s  timestep= 4s  day=6.55
+2023/07/23 23:14:25 iteration 156611  walltime= 0.462h  Δwalltime=0.008s  timestep= 4s  day=6.56
+2023/07/23 23:14:27 iteration 156863  walltime= 0.462h  Δwalltime=0.008s  timestep= 4s  day=6.57
+2023/07/23 23:14:29 iteration 157115  walltime= 0.463h  Δwalltime=0.0078s  timestep= 4s  day=6.58
+2023/07/23 23:14:31 iteration 157353  walltime= 0.463h  Δwalltime=0.0079s  timestep= 4s  day=6.59
+2023/07/23 23:14:33 iteration 157605  walltime= 0.464h  Δwalltime=0.0079s  timestep= 4s  day=6.6
+2023/07/23 23:14:35 iteration 157852  walltime= 0.464h  Δwalltime=0.013s  timestep= 4s  day=6.61
+2023/07/23 23:14:37 iteration 158100  walltime= 0.465h  Δwalltime=0.0079s  timestep= 4s  day=6.62
+2023/07/23 23:14:37 Adding grid cells...
+2023/07/23 23:14:38 Added 21 grid cells; there are now 62340 cells total
+2023/07/23 23:14:42 Percent change since last convergence check:
+VOC:			0.46%
+VOC pop-wtd:		0.068%
+SOA:			0.58%
+SOA pop-wtd:		0.062%
+PrimaryPM25:		0.57%
+PrimaryPM25 pop-wtd:	0.11%
+NH3:			0.74%
+NH3 pop-wtd:		0.16%
+pNH4:			0.57%
+pNH4 pop-wtd:		0.15%
+SOx:			4e-08%
+SOx pop-wtd:		2.8e-10%
+pSO4:			0.57%
+pSO4 pop-wtd:		0.13%
+NOx:			0.57%
+NOx pop-wtd:		0.22%
+pNO3:			0.83%
+pNO3 pop-wtd:		0.24%
+2023/07/23 23:14:42 iteration 158206  walltime= 0.466h  Δwalltime= 4.6s  timestep= 4s  day=6.63
+2023/07/23 23:14:43 iteration 158239  walltime= 0.467h  Δwalltime=0.014s  timestep= 4s  day=6.63
+2023/07/23 23:14:45 iteration 158481  walltime= 0.467h  Δwalltime=0.008s  timestep= 4s  day=6.64
+2023/07/23 23:14:47 iteration 158723  walltime= 0.468h  Δwalltime=0.0079s  timestep= 4s  day=6.65
+2023/07/23 23:14:49 iteration 158965  walltime= 0.468h  Δwalltime=0.0079s  timestep= 4s  day=6.66
+2023/07/23 23:14:51 iteration 159179  walltime= 0.469h  Δwalltime=0.0077s  timestep= 4s  day=6.67
+2023/07/23 23:14:53 iteration 159425  walltime= 0.469h  Δwalltime=0.0079s  timestep= 4s  day=6.68
+2023/07/23 23:14:55 iteration 159647  walltime=  0.47h  Δwalltime=0.008s  timestep= 4s  day=6.69
+2023/07/23 23:14:57 iteration 159895  walltime= 0.471h  Δwalltime=0.0078s  timestep= 4s  day=6.7
+2023/07/23 23:14:59 iteration 160135  walltime= 0.471h  Δwalltime=0.0078s  timestep= 4s  day=6.71
+2023/07/23 23:15:01 iteration 160378  walltime= 0.472h  Δwalltime=0.0079s  timestep= 4s  day=6.72
+2023/07/23 23:15:03 iteration 160630  walltime= 0.472h  Δwalltime=0.0079s  timestep= 4s  day=6.73
+2023/07/23 23:15:05 iteration 160869  walltime= 0.473h  Δwalltime=0.014s  timestep= 4s  day=6.74
+2023/07/23 23:15:07 iteration 161120  walltime= 0.473h  Δwalltime=0.012s  timestep= 4s  day=6.75
+2023/07/23 23:15:08 Adding grid cells...
+2023/07/23 23:15:08 Added 9 grid cells; there are now 62349 cells total
+2023/07/23 23:15:12 Percent change since last convergence check:
+VOC:			0.43%
+VOC pop-wtd:		0.064%
+SOA:			0.56%
+SOA pop-wtd:		0.059%
+PrimaryPM25:		0.54%
+PrimaryPM25 pop-wtd:	0.11%
+NH3:			0.71%
+NH3 pop-wtd:		0.15%
+pNH4:			0.54%
+pNH4 pop-wtd:		0.14%
+SOx:			8.8e-06%
+SOx pop-wtd:		7.3e-08%
+pSO4:			0.54%
+pSO4 pop-wtd:		0.12%
+NOx:			0.54%
+NOx pop-wtd:		0.21%
+pNO3:			0.79%
+pNO3 pop-wtd:		0.23%
+2023/07/23 23:15:12 iteration 161191  walltime= 0.475h  Δwalltime=   4s  timestep= 4s  day=6.75
+2023/07/23 23:15:13 iteration 161310  walltime= 0.475h  Δwalltime=0.0079s  timestep= 4s  day=6.76
+2023/07/23 23:15:15 iteration 161551  walltime= 0.476h  Δwalltime=0.0079s  timestep= 4s  day=6.77
+2023/07/23 23:15:17 iteration 161782  walltime= 0.476h  Δwalltime=0.0082s  timestep= 4s  day=6.78
+2023/07/23 23:15:19 iteration 162026  walltime= 0.477h  Δwalltime=0.012s  timestep= 4s  day=6.79
+2023/07/23 23:15:21 iteration 162213  walltime= 0.477h  Δwalltime=0.012s  timestep= 4s  day=6.79
+2023/07/23 23:15:23 iteration 162404  walltime= 0.478h  Δwalltime=0.0095s  timestep= 4s  day=6.8
+2023/07/23 23:15:25 iteration 162630  walltime= 0.478h  Δwalltime=0.0087s  timestep= 4s  day=6.81
+2023/07/23 23:15:27 iteration 162877  walltime= 0.479h  Δwalltime=0.0079s  timestep= 4s  day=6.82
+2023/07/23 23:15:29 iteration 163123  walltime= 0.479h  Δwalltime=0.008s  timestep= 4s  day=6.83
+2023/07/23 23:15:31 iteration 163365  walltime=  0.48h  Δwalltime=0.0082s  timestep= 4s  day=6.84
+2023/07/23 23:15:33 iteration 163612  walltime= 0.481h  Δwalltime=0.008s  timestep= 4s  day=6.85
+2023/07/23 23:15:35 iteration 163840  walltime= 0.481h  Δwalltime=0.0081s  timestep= 4s  day=6.86
+2023/07/23 23:15:37 iteration 164090  walltime= 0.482h  Δwalltime=0.0078s  timestep= 4s  day=6.87
+2023/07/23 23:15:37 Adding grid cells...
+2023/07/23 23:15:37 Added 18 grid cells; there are now 62367 cells total
+2023/07/23 23:15:42 Percent change since last convergence check:
+VOC:			0.41%
+VOC pop-wtd:		0.061%
+SOA:			0.53%
+SOA pop-wtd:		0.056%
+PrimaryPM25:		0.52%
+PrimaryPM25 pop-wtd:	0.1%
+NH3:			0.67%
+NH3 pop-wtd:		0.14%
+pNH4:			0.51%
+pNH4 pop-wtd:		0.14%
+SOx:			5.2e-06%
+SOx pop-wtd:		7.7e-08%
+pSO4:			0.52%
+pSO4 pop-wtd:		0.11%
+NOx:			0.52%
+NOx pop-wtd:		0.2%
+pNO3:			0.76%
+pNO3 pop-wtd:		0.22%
+2023/07/23 23:15:42 iteration 164176  walltime= 0.483h  Δwalltime= 4.4s  timestep= 4s  day=6.88
+2023/07/23 23:15:43 iteration 164249  walltime= 0.483h  Δwalltime=0.0081s  timestep= 4s  day=6.88
+2023/07/23 23:15:45 iteration 164497  walltime= 0.484h  Δwalltime=0.0079s  timestep= 4s  day=6.89
+2023/07/23 23:15:47 iteration 164703  walltime= 0.484h  Δwalltime=0.017s  timestep= 4s  day=6.9
+2023/07/23 23:15:49 iteration 164928  walltime= 0.485h  Δwalltime=0.0079s  timestep= 4s  day=6.91
+2023/07/23 23:15:51 iteration 165171  walltime= 0.486h  Δwalltime=0.0079s  timestep= 4s  day=6.92
+2023/07/23 23:15:53 iteration 165420  walltime= 0.486h  Δwalltime=0.0079s  timestep= 4s  day=6.93
+2023/07/23 23:15:55 iteration 165648  walltime= 0.487h  Δwalltime=0.0081s  timestep= 4s  day=6.94
+2023/07/23 23:15:57 iteration 165898  walltime= 0.487h  Δwalltime=0.008s  timestep= 4s  day=6.95
+2023/07/23 23:15:59 iteration 166146  walltime= 0.488h  Δwalltime=0.0085s  timestep= 4s  day=6.96
+2023/07/23 23:16:01 iteration 166387  walltime= 0.488h  Δwalltime=0.0082s  timestep= 4s  day=6.97
+2023/07/23 23:16:03 iteration 166634  walltime= 0.489h  Δwalltime=0.008s  timestep= 4s  day=6.98
+2023/07/23 23:16:05 iteration 166866  walltime= 0.489h  Δwalltime=0.014s  timestep= 4s  day=6.99
+2023/07/23 23:16:07 iteration 167100  walltime=  0.49h  Δwalltime=0.0081s  timestep= 4s  day=7
+2023/07/23 23:16:07 Adding grid cells...
+2023/07/23 23:16:07 Added 21 grid cells; there are now 62388 cells total
+2023/07/23 23:16:12 iteration 167161  walltime= 0.491h  Δwalltime= 4.4s  timestep= 4s  day=7
+2023/07/23 23:16:12 Percent change since last convergence check:
+VOC:			0.39%
+VOC pop-wtd:		0.058%
+SOA:			0.5%
+SOA pop-wtd:		0.053%
+PrimaryPM25:		0.49%
+PrimaryPM25 pop-wtd:	0.096%
+NH3:			0.64%
+NH3 pop-wtd:		0.14%
+pNH4:			0.49%
+pNH4 pop-wtd:		0.13%
+SOx:			2.1e-06%
+SOx pop-wtd:		2.8e-08%
+pSO4:			0.49%
+pSO4 pop-wtd:		0.11%
+NOx:			0.5%
+NOx pop-wtd:		0.2%
+pNO3:			0.73%
+pNO3 pop-wtd:		0.21%
+2023/07/23 23:16:13 iteration 167277  walltime= 0.492h  Δwalltime=0.008s  timestep= 4s  day=7.01
+2023/07/23 23:16:15 iteration 167526  walltime= 0.492h  Δwalltime=0.008s  timestep= 4s  day=7.02
+2023/07/23 23:16:17 iteration 167773  walltime= 0.493h  Δwalltime=0.0077s  timestep= 4s  day=7.03
+2023/07/23 23:16:19 iteration 168022  walltime= 0.493h  Δwalltime=0.008s  timestep= 4s  day=7.04
+2023/07/23 23:16:21 iteration 168253  walltime= 0.494h  Δwalltime=0.0082s  timestep= 4s  day=7.05
+2023/07/23 23:16:23 iteration 168501  walltime= 0.494h  Δwalltime=0.0081s  timestep= 4s  day=7.06
+2023/07/23 23:16:25 iteration 168733  walltime= 0.495h  Δwalltime=0.012s  timestep= 4s  day=7.07
+2023/07/23 23:16:27 iteration 168975  walltime= 0.496h  Δwalltime=0.008s  timestep= 4s  day=7.08
+2023/07/23 23:16:29 iteration 169225  walltime= 0.496h  Δwalltime=0.0083s  timestep= 4s  day=7.09
+2023/07/23 23:16:31 iteration 169470  walltime= 0.497h  Δwalltime=0.0079s  timestep= 4s  day=7.1
+2023/07/23 23:16:33 iteration 169716  walltime= 0.497h  Δwalltime=0.0081s  timestep= 4s  day=7.11
+2023/07/23 23:16:35 iteration 169963  walltime= 0.498h  Δwalltime=0.008s  timestep= 4s  day=7.12
+2023/07/23 23:16:36 Adding grid cells...
+2023/07/23 23:16:36 Added 21 grid cells; there are now 62409 cells total
+2023/07/23 23:16:40 Percent change since last convergence check:
+VOC:			0.37%
+VOC pop-wtd:		0.054%
+SOA:			0.48%
+SOA pop-wtd:		0.05%
+PrimaryPM25:		0.47%
+PrimaryPM25 pop-wtd:	0.091%
+NH3:			0.61%
+NH3 pop-wtd:		0.13%
+pNH4:			0.46%
+pNH4 pop-wtd:		0.12%
+SOx:			7.4e-07%
+SOx pop-wtd:		1.1e-08%
+pSO4:			0.47%
+pSO4 pop-wtd:		0.1%
+NOx:			0.48%
+NOx pop-wtd:		0.19%
+pNO3:			0.7%
+pNO3 pop-wtd:		0.2%
+2023/07/23 23:16:40 iteration 170146  walltime= 0.499h  Δwalltime= 4.4s  timestep= 4s  day=7.13
+2023/07/23 23:16:41 iteration 170157  walltime= 0.499h  Δwalltime=0.0083s  timestep= 4s  day=7.13
+2023/07/23 23:16:43 iteration 170403  walltime=   0.5h  Δwalltime=0.0082s  timestep= 4s  day=7.14
+2023/07/23 23:16:45 iteration 170652  walltime= 0.501h  Δwalltime=0.0079s  timestep= 4s  day=7.15
+2023/07/23 23:16:47 iteration 170903  walltime= 0.501h  Δwalltime=0.0079s  timestep= 4s  day=7.16
+2023/07/23 23:16:49 iteration 171152  walltime= 0.502h  Δwalltime=0.008s  timestep= 4s  day=7.17
+2023/07/23 23:16:51 iteration 171362  walltime= 0.502h  Δwalltime=0.013s  timestep= 4s  day=7.18
+2023/07/23 23:16:53 iteration 171555  walltime= 0.503h  Δwalltime=0.0079s  timestep= 4s  day=7.19
+2023/07/23 23:16:55 iteration 171768  walltime= 0.503h  Δwalltime=0.0081s  timestep= 4s  day=7.19
+2023/07/23 23:16:57 iteration 172004  walltime= 0.504h  Δwalltime=0.013s  timestep= 4s  day=7.2
+2023/07/23 23:16:59 iteration 172249  walltime= 0.504h  Δwalltime=0.0081s  timestep= 4s  day=7.21
+2023/07/23 23:17:01 iteration 172492  walltime= 0.505h  Δwalltime=0.0079s  timestep= 4s  day=7.22
+2023/07/23 23:17:03 iteration 172736  walltime= 0.506h  Δwalltime=0.0081s  timestep= 4s  day=7.23
+2023/07/23 23:17:05 iteration 172984  walltime= 0.506h  Δwalltime=0.0079s  timestep= 4s  day=7.25
+2023/07/23 23:17:06 Adding grid cells...
+2023/07/23 23:17:06 Added 21 grid cells; there are now 62430 cells total
+2023/07/23 23:17:10 iteration 173131  walltime= 0.508h  Δwalltime= 4.5s  timestep= 4s  day=7.25
+2023/07/23 23:17:10 Percent change since last convergence check:
+VOC:			0.35%
+VOC pop-wtd:		0.052%
+SOA:			0.45%
+SOA pop-wtd:		0.047%
+PrimaryPM25:		0.45%
+PrimaryPM25 pop-wtd:	0.086%
+NH3:			0.58%
+NH3 pop-wtd:		0.12%
+pNH4:			0.44%
+pNH4 pop-wtd:		0.12%
+SOx:			2.2e-07%
+SOx pop-wtd:		3.8e-09%
+pSO4:			0.45%
+pSO4 pop-wtd:		0.097%
+NOx:			0.46%
+NOx pop-wtd:		0.18%
+pNO3:			0.67%
+pNO3 pop-wtd:		0.19%
+2023/07/23 23:17:11 iteration 173164  walltime= 0.508h  Δwalltime=0.0086s  timestep= 4s  day=7.25
+2023/07/23 23:17:13 iteration 173410  walltime= 0.508h  Δwalltime=0.0079s  timestep= 4s  day=7.26
+2023/07/23 23:17:15 iteration 173660  walltime= 0.509h  Δwalltime=0.0081s  timestep= 4s  day=7.27
+2023/07/23 23:17:17 iteration 173908  walltime= 0.509h  Δwalltime=0.0079s  timestep= 4s  day=7.28
+2023/07/23 23:17:19 iteration 174120  walltime=  0.51h  Δwalltime=0.0079s  timestep= 4s  day=7.29
+2023/07/23 23:17:21 iteration 174367  walltime= 0.511h  Δwalltime=0.008s  timestep= 4s  day=7.3
+2023/07/23 23:17:23 iteration 174608  walltime= 0.511h  Δwalltime=0.008s  timestep= 4s  day=7.31
+2023/07/23 23:17:25 iteration 174823  walltime= 0.512h  Δwalltime=0.0084s  timestep= 4s  day=7.32
+2023/07/23 23:17:27 iteration 175073  walltime= 0.512h  Δwalltime=0.0079s  timestep= 4s  day=7.33
+2023/07/23 23:17:29 iteration 175317  walltime= 0.513h  Δwalltime=0.008s  timestep= 4s  day=7.34
+2023/07/23 23:17:31 iteration 175564  walltime= 0.513h  Δwalltime=0.008s  timestep= 4s  day=7.35
+2023/07/23 23:17:33 iteration 175817  walltime= 0.514h  Δwalltime=0.0082s  timestep= 4s  day=7.36
+2023/07/23 23:17:35 iteration 176052  walltime= 0.514h  Δwalltime=0.0084s  timestep= 4s  day=7.37
+2023/07/23 23:17:35 Adding grid cells...
+2023/07/23 23:17:35 Added 6 grid cells; there are now 62436 cells total
+2023/07/23 23:17:39 iteration 176116  walltime= 0.516h  Δwalltime= 4.3s  timestep= 4s  day=7.38
+2023/07/23 23:17:39 Percent change since last convergence check:
+VOC:			0.34%
+VOC pop-wtd:		0.049%
+SOA:			0.43%
+SOA pop-wtd:		0.045%
+PrimaryPM25:		0.43%
+PrimaryPM25 pop-wtd:	0.082%
+NH3:			0.55%
+NH3 pop-wtd:		0.11%
+pNH4:			0.42%
+pNH4 pop-wtd:		0.11%
+SOx:			6e-08%
+SOx pop-wtd:		1.3e-09%
+pSO4:			0.43%
+pSO4 pop-wtd:		0.092%
+NOx:			0.44%
+NOx pop-wtd:		0.17%
+pNO3:			0.64%
+pNO3 pop-wtd:		0.19%
+2023/07/23 23:17:41 iteration 176256  walltime= 0.516h  Δwalltime=0.0078s  timestep= 4s  day=7.38
+2023/07/23 23:17:43 iteration 176505  walltime= 0.517h  Δwalltime=0.008s  timestep= 4s  day=7.39
+2023/07/23 23:17:45 iteration 176745  walltime= 0.517h  Δwalltime=0.008s  timestep= 4s  day=7.4
+2023/07/23 23:17:47 iteration 176992  walltime= 0.518h  Δwalltime=0.0097s  timestep= 4s  day=7.41
+2023/07/23 23:17:49 iteration 177239  walltime= 0.518h  Δwalltime=0.0081s  timestep= 4s  day=7.42
+2023/07/23 23:17:51 iteration 177489  walltime= 0.519h  Δwalltime=0.008s  timestep= 4s  day=7.43
+2023/07/23 23:17:53 iteration 177723  walltime= 0.519h  Δwalltime=0.008s  timestep= 4s  day=7.44
+2023/07/23 23:17:55 iteration 177957  walltime=  0.52h  Δwalltime=0.008s  timestep= 4s  day=7.45
+2023/07/23 23:17:57 iteration 178180  walltime= 0.521h  Δwalltime=0.008s  timestep= 4s  day=7.46
+2023/07/23 23:17:59 iteration 178429  walltime= 0.521h  Δwalltime=0.014s  timestep= 4s  day=7.47
+2023/07/23 23:18:01 iteration 178670  walltime= 0.522h  Δwalltime=0.0083s  timestep= 4s  day=7.48
+2023/07/23 23:18:03 iteration 178919  walltime= 0.522h  Δwalltime=0.0078s  timestep= 4s  day=7.49
+2023/07/23 23:18:04 Adding grid cells...
+2023/07/23 23:18:04 Added 9 grid cells; there are now 62445 cells total
+2023/07/23 23:18:09 iteration 179101  walltime= 0.524h  Δwalltime= 4.4s  timestep= 4s  day=7.5
+2023/07/23 23:18:09 Percent change since last convergence check:
+VOC:			0.32%
+VOC pop-wtd:		0.046%
+SOA:			0.41%
+SOA pop-wtd:		0.042%
+PrimaryPM25:		0.41%
+PrimaryPM25 pop-wtd:	0.078%
+NH3:			0.52%
+NH3 pop-wtd:		0.11%
+pNH4:			0.4%
+pNH4 pop-wtd:		0.1%
+SOx:			1.4e-08%
+SOx pop-wtd:		4.3e-10%
+pSO4:			0.41%
+pSO4 pop-wtd:		0.087%
+NOx:			0.42%
+NOx pop-wtd:		0.17%
+pNO3:			0.61%
+pNO3 pop-wtd:		0.18%
+2023/07/23 23:18:09 iteration 179103  walltime= 0.524h  Δwalltime=0.009s  timestep= 4s  day=7.5
+2023/07/23 23:18:11 iteration 179332  walltime= 0.524h  Δwalltime=0.0081s  timestep= 4s  day=7.51
+2023/07/23 23:18:13 iteration 179575  walltime= 0.525h  Δwalltime=0.008s  timestep= 4s  day=7.52
+2023/07/23 23:18:15 iteration 179818  walltime= 0.526h  Δwalltime=0.0085s  timestep= 4s  day=7.53
+2023/07/23 23:18:17 iteration 180065  walltime= 0.526h  Δwalltime=0.0078s  timestep= 4s  day=7.54
+2023/07/23 23:18:19 iteration 180297  walltime= 0.527h  Δwalltime=0.0076s  timestep= 4s  day=7.55
+2023/07/23 23:18:21 iteration 180494  walltime= 0.527h  Δwalltime=0.014s  timestep= 4s  day=7.56
+2023/07/23 23:18:23 iteration 180688  walltime= 0.528h  Δwalltime=0.0085s  timestep= 4s  day=7.57
+2023/07/23 23:18:25 iteration 180903  walltime= 0.528h  Δwalltime=0.008s  timestep= 4s  day=7.58
+2023/07/23 23:18:27 iteration 181152  walltime= 0.529h  Δwalltime=0.0079s  timestep= 4s  day=7.59
+2023/07/23 23:18:29 iteration 181401  walltime= 0.529h  Δwalltime=0.0082s  timestep= 4s  day=7.6
+2023/07/23 23:18:31 iteration 181647  walltime=  0.53h  Δwalltime=0.0078s  timestep= 4s  day=7.61
+2023/07/23 23:18:33 iteration 181891  walltime= 0.531h  Δwalltime=0.0079s  timestep= 4s  day=7.62
+2023/07/23 23:18:34 Adding grid cells...
+2023/07/23 23:18:34 Added 21 grid cells; there are now 62466 cells total
+2023/07/23 23:18:39 Percent change since last convergence check:
+VOC:			0.3%
+VOC pop-wtd:		0.044%
+SOA:			0.39%
+SOA pop-wtd:		0.04%
+PrimaryPM25:		0.39%
+PrimaryPM25 pop-wtd:	0.074%
+NH3:			0.5%
+NH3 pop-wtd:		0.1%
+pNH4:			0.38%
+pNH4 pop-wtd:		0.098%
+SOx:			1.9e-09%
+SOx pop-wtd:		1.4e-10%
+pSO4:			0.39%
+pSO4 pop-wtd:		0.083%
+NOx:			0.4%
+NOx pop-wtd:		0.16%
+pNO3:			0.59%
+pNO3 pop-wtd:		0.17%
+2023/07/23 23:18:39 iteration 182086  walltime= 0.532h  Δwalltime= 4.7s  timestep= 4s  day=7.63
+2023/07/23 23:18:41 iteration 182269  walltime= 0.533h  Δwalltime=0.008s  timestep= 4s  day=7.63
+2023/07/23 23:18:43 iteration 182516  walltime= 0.533h  Δwalltime=0.0082s  timestep= 4s  day=7.64
+2023/07/23 23:18:45 iteration 182762  walltime= 0.534h  Δwalltime=0.008s  timestep= 4s  day=7.65
+2023/07/23 23:18:47 iteration 183003  walltime= 0.534h  Δwalltime=0.012s  timestep= 4s  day=7.66
+2023/07/23 23:18:49 iteration 183248  walltime= 0.535h  Δwalltime=0.0083s  timestep= 4s  day=7.68
+2023/07/23 23:18:51 iteration 183488  walltime= 0.536h  Δwalltime=0.0095s  timestep= 4s  day=7.69
+2023/07/23 23:18:53 iteration 183714  walltime= 0.536h  Δwalltime=0.008s  timestep= 4s  day=7.69
+2023/07/23 23:18:55 iteration 183940  walltime= 0.537h  Δwalltime=0.008s  timestep= 4s  day=7.7
+2023/07/23 23:18:57 iteration 184185  walltime= 0.537h  Δwalltime=0.008s  timestep= 4s  day=7.71
+2023/07/23 23:18:59 iteration 184435  walltime= 0.538h  Δwalltime=0.0078s  timestep= 4s  day=7.72
+2023/07/23 23:19:01 iteration 184682  walltime= 0.538h  Δwalltime=0.0078s  timestep= 4s  day=7.74
+2023/07/23 23:19:03 iteration 184931  walltime= 0.539h  Δwalltime=0.008s  timestep= 4s  day=7.75
+2023/07/23 23:19:04 Adding grid cells...
+2023/07/23 23:19:04 Added 12 grid cells; there are now 62478 cells total
+2023/07/23 23:19:08 Percent change since last convergence check:
+VOC:			0.29%
+VOC pop-wtd:		0.041%
+SOA:			0.37%
+SOA pop-wtd:		0.038%
+PrimaryPM25:		0.37%
+PrimaryPM25 pop-wtd:	0.07%
+NH3:			0.47%
+NH3 pop-wtd:		0.097%
+pNH4:			0.36%
+pNH4 pop-wtd:		0.092%
+SOx:			-3.8e-10%
+SOx pop-wtd:		4.3e-11%
+pSO4:			0.37%
+pSO4 pop-wtd:		0.079%
+NOx:			0.38%
+NOx pop-wtd:		0.15%
+pNO3:			0.56%
+pNO3 pop-wtd:		0.16%
+2023/07/23 23:19:08 iteration 185071  walltime=  0.54h  Δwalltime= 4.5s  timestep= 4s  day=7.75
+2023/07/23 23:19:09 iteration 185087  walltime= 0.541h  Δwalltime=0.013s  timestep= 4s  day=7.75
+2023/07/23 23:19:11 iteration 185275  walltime= 0.541h  Δwalltime=0.0079s  timestep= 4s  day=7.76
+2023/07/23 23:19:13 iteration 185520  walltime= 0.542h  Δwalltime=0.0081s  timestep= 4s  day=7.77
+2023/07/23 23:19:15 iteration 185761  walltime= 0.542h  Δwalltime=0.008s  timestep= 4s  day=7.78
+2023/07/23 23:19:17 iteration 186008  walltime= 0.543h  Δwalltime=0.0079s  timestep= 4s  day=7.79
+2023/07/23 23:19:19 iteration 186240  walltime= 0.543h  Δwalltime=0.0082s  timestep= 4s  day=7.8
+2023/07/23 23:19:21 iteration 186453  walltime= 0.544h  Δwalltime=0.008s  timestep= 4s  day=7.81
+2023/07/23 23:19:23 iteration 186694  walltime= 0.544h  Δwalltime=0.013s  timestep= 4s  day=7.82
+2023/07/23 23:19:25 iteration 186924  walltime= 0.545h  Δwalltime=0.0081s  timestep= 4s  day=7.83
+2023/07/23 23:19:27 iteration 187160  walltime= 0.546h  Δwalltime=0.0081s  timestep= 4s  day=7.84
+2023/07/23 23:19:29 iteration 187399  walltime= 0.546h  Δwalltime=0.0081s  timestep= 4s  day=7.85
+2023/07/23 23:19:31 iteration 187639  walltime= 0.547h  Δwalltime=0.0078s  timestep= 4s  day=7.86
+2023/07/23 23:19:33 iteration 187882  walltime= 0.547h  Δwalltime=0.008s  timestep= 4s  day=7.87
+2023/07/23 23:19:34 Adding grid cells...
+2023/07/23 23:19:34 Added 0 grid cells; there are now 62478 cells total
+2023/07/23 23:19:38 iteration 188056  walltime= 0.549h  Δwalltime= 3.8s  timestep= 4s  day=7.88
+2023/07/23 23:19:38 Percent change since last convergence check:
+VOC:			0.27%
+VOC pop-wtd:		0.039%
+SOA:			0.35%
+SOA pop-wtd:		0.036%
+PrimaryPM25:		0.35%
+PrimaryPM25 pop-wtd:	0.066%
+NH3:			0.45%
+NH3 pop-wtd:		0.092%
+pNH4:			0.34%
+pNH4 pop-wtd:		0.087%
+SOx:			-5.2e-10%
+SOx pop-wtd:		1.3e-11%
+pSO4:			0.36%
+pSO4 pop-wtd:		0.075%
+NOx:			0.37%
+NOx pop-wtd:		0.15%
+pNO3:			0.54%
+pNO3 pop-wtd:		0.16%
+2023/07/23 23:19:39 iteration 188154  walltime= 0.549h  Δwalltime=0.0079s  timestep= 4s  day=7.88
+2023/07/23 23:19:41 iteration 188380  walltime= 0.549h  Δwalltime=0.015s  timestep= 4s  day=7.89
+2023/07/23 23:19:43 iteration 188614  walltime=  0.55h  Δwalltime=0.014s  timestep= 4s  day=7.9
+2023/07/23 23:19:45 iteration 188837  walltime= 0.551h  Δwalltime=0.0079s  timestep= 4s  day=7.91
+2023/07/23 23:19:47 iteration 189084  walltime= 0.551h  Δwalltime=0.008s  timestep= 4s  day=7.92
+2023/07/23 23:19:49 iteration 189328  walltime= 0.552h  Δwalltime=0.013s  timestep= 4s  day=7.93
+2023/07/23 23:19:51 iteration 189526  walltime= 0.552h  Δwalltime=0.011s  timestep= 4s  day=7.94
+2023/07/23 23:19:53 iteration 189722  walltime= 0.553h  Δwalltime=0.0079s  timestep= 4s  day=7.95
+2023/07/23 23:19:55 iteration 189931  walltime= 0.553h  Δwalltime=0.0084s  timestep= 4s  day=7.96
+2023/07/23 23:19:57 iteration 190179  walltime= 0.554h  Δwalltime=0.0078s  timestep= 4s  day=7.97
+2023/07/23 23:19:59 iteration 190419  walltime= 0.554h  Δwalltime=0.0079s  timestep= 4s  day=7.98
+2023/07/23 23:20:01 iteration 190662  walltime= 0.555h  Δwalltime=0.0082s  timestep= 4s  day=7.99
+2023/07/23 23:20:03 iteration 190902  walltime= 0.556h  Δwalltime=0.0082s  timestep= 4s  day=8
+2023/07/23 23:20:04 Adding grid cells...
+2023/07/23 23:20:04 Added 9 grid cells; there are now 62487 cells total
+2023/07/23 23:20:08 iteration 191041  walltime= 0.557h  Δwalltime= 4.5s  timestep= 4s  day=8
+2023/07/23 23:20:08 Percent change since last convergence check:
+VOC:			0.26%
+VOC pop-wtd:		0.037%
+SOA:			0.33%
+SOA pop-wtd:		0.034%
+PrimaryPM25:		0.33%
+PrimaryPM25 pop-wtd:	0.063%
+NH3:			0.43%
+NH3 pop-wtd:		0.087%
+pNH4:			0.33%
+pNH4 pop-wtd:		0.083%
+SOx:			-3.3e-10%
+SOx pop-wtd:		3.8e-12%
+pSO4:			0.34%
+pSO4 pop-wtd:		0.071%
+NOx:			0.35%
+NOx pop-wtd:		0.14%
+pNO3:			0.52%
+pNO3 pop-wtd:		0.15%
+2023/07/23 23:20:09 iteration 191085  walltime= 0.557h  Δwalltime=0.0082s  timestep= 4s  day=8
+2023/07/23 23:20:11 iteration 191304  walltime= 0.558h  Δwalltime=0.008s  timestep= 4s  day=8.01
+2023/07/23 23:20:13 iteration 191555  walltime= 0.558h  Δwalltime=0.0079s  timestep= 4s  day=8.02
+2023/07/23 23:20:15 iteration 191800  walltime= 0.559h  Δwalltime=0.008s  timestep= 4s  day=8.03
+2023/07/23 23:20:17 iteration 192040  walltime= 0.559h  Δwalltime=0.008s  timestep= 4s  day=8.04
+2023/07/23 23:20:19 iteration 192274  walltime=  0.56h  Δwalltime=0.0081s  timestep= 4s  day=8.05
+2023/07/23 23:20:21 iteration 192516  walltime= 0.561h  Δwalltime=0.0079s  timestep= 4s  day=8.06
+2023/07/23 23:20:23 iteration 192763  walltime= 0.561h  Δwalltime=0.0081s  timestep= 4s  day=8.07
+2023/07/23 23:20:25 iteration 192997  walltime= 0.562h  Δwalltime=0.012s  timestep= 4s  day=8.08
+2023/07/23 23:20:27 iteration 193230  walltime= 0.562h  Δwalltime=0.008s  timestep= 4s  day=8.09
+2023/07/23 23:20:29 iteration 193478  walltime= 0.563h  Δwalltime=0.0079s  timestep= 4s  day=8.1
+2023/07/23 23:20:31 iteration 193698  walltime= 0.563h  Δwalltime=0.0082s  timestep= 4s  day=8.11
+2023/07/23 23:20:33 iteration 193947  walltime= 0.564h  Δwalltime=0.008s  timestep= 4s  day=8.12
+2023/07/23 23:20:33 Adding grid cells...
+2023/07/23 23:20:33 Added 9 grid cells; there are now 62496 cells total
+2023/07/23 23:20:38 Percent change since last convergence check:
+VOC:			0.25%
+VOC pop-wtd:		0.035%
+SOA:			0.32%
+SOA pop-wtd:		0.032%
+PrimaryPM25:		0.32%
+PrimaryPM25 pop-wtd:	0.059%
+NH3:			0.41%
+NH3 pop-wtd:		0.083%
+pNH4:			0.31%
+pNH4 pop-wtd:		0.078%
+SOx:			-1.7e-10%
+SOx pop-wtd:		1.1e-12%
+pSO4:			0.32%
+pSO4 pop-wtd:		0.067%
+NOx:			0.34%
+NOx pop-wtd:		0.13%
+pNO3:			0.49%
+pNO3 pop-wtd:		0.14%
+2023/07/23 23:20:38 iteration 194026  walltime= 0.565h  Δwalltime= 4.9s  timestep= 4s  day=8.13
+2023/07/23 23:20:39 iteration 194073  walltime= 0.566h  Δwalltime=0.008s  timestep= 4s  day=8.13
+2023/07/23 23:20:41 iteration 194306  walltime= 0.566h  Δwalltime=0.0079s  timestep= 4s  day=8.14
+2023/07/23 23:20:43 iteration 194537  walltime= 0.567h  Δwalltime=0.0083s  timestep= 4s  day=8.15
+2023/07/23 23:20:45 iteration 194781  walltime= 0.567h  Δwalltime=0.0079s  timestep= 4s  day=8.16
+2023/07/23 23:20:47 iteration 194986  walltime= 0.568h  Δwalltime=0.013s  timestep= 4s  day=8.17
+2023/07/23 23:20:49 iteration 195220  walltime= 0.568h  Δwalltime=0.0081s  timestep= 4s  day=8.18
+2023/07/23 23:20:51 iteration 195445  walltime= 0.569h  Δwalltime=0.013s  timestep= 4s  day=8.19
+2023/07/23 23:20:53 iteration 195685  walltime= 0.569h  Δwalltime=0.013s  timestep= 4s  day=8.2
+2023/07/23 23:20:55 iteration 195904  walltime=  0.57h  Δwalltime=0.0087s  timestep= 4s  day=8.21
+2023/07/23 23:20:57 iteration 196138  walltime= 0.571h  Δwalltime=0.008s  timestep= 4s  day=8.22
+2023/07/23 23:20:59 iteration 196369  walltime= 0.571h  Δwalltime=0.0078s  timestep= 4s  day=8.22
+2023/07/23 23:21:01 iteration 196605  walltime= 0.572h  Δwalltime=0.0091s  timestep= 4s  day=8.23
+2023/07/23 23:21:03 iteration 196843  walltime= 0.572h  Δwalltime=0.0081s  timestep= 4s  day=8.24
+2023/07/23 23:21:04 Adding grid cells...
+2023/07/23 23:21:04 Added 21 grid cells; there are now 62517 cells total
+2023/07/23 23:21:08 iteration 197011  walltime= 0.574h  Δwalltime= 4.5s  timestep= 4s  day=8.25
+2023/07/23 23:21:08 Percent change since last convergence check:
+VOC:			0.23%
+VOC pop-wtd:		0.033%
+SOA:			0.3%
+SOA pop-wtd:		0.03%
+PrimaryPM25:		0.3%
+PrimaryPM25 pop-wtd:	0.056%
+NH3:			0.39%
+NH3 pop-wtd:		0.078%
+pNH4:			0.3%
+pNH4 pop-wtd:		0.074%
+SOx:			2.3e-08%
+SOx pop-wtd:		3e-13%
+pSO4:			0.31%
+pSO4 pop-wtd:		0.064%
+NOx:			0.32%
+NOx pop-wtd:		0.13%
+pNO3:			0.47%
+pNO3 pop-wtd:		0.14%
+2023/07/23 23:21:09 iteration 197021  walltime= 0.574h  Δwalltime=0.033s  timestep= 4s  day=8.25
+2023/07/23 23:21:11 iteration 197167  walltime= 0.574h  Δwalltime=0.0079s  timestep= 4s  day=8.26
+2023/07/23 23:21:13 iteration 197404  walltime= 0.575h  Δwalltime=0.008s  timestep= 4s  day=8.27
+2023/07/23 23:21:15 iteration 197655  walltime= 0.576h  Δwalltime=0.0079s  timestep= 4s  day=8.28
+2023/07/23 23:21:17 iteration 197886  walltime= 0.576h  Δwalltime=0.008s  timestep= 4s  day=8.29
+2023/07/23 23:21:19 iteration 198126  walltime= 0.577h  Δwalltime=0.0079s  timestep= 4s  day=8.3
+2023/07/23 23:21:21 iteration 198324  walltime= 0.577h  Δwalltime=0.013s  timestep= 4s  day=8.31
+2023/07/23 23:21:23 iteration 198518  walltime= 0.578h  Δwalltime=0.0079s  timestep= 4s  day=8.31
+2023/07/23 23:21:25 iteration 198743  walltime= 0.578h  Δwalltime=0.008s  timestep= 4s  day=8.32
+2023/07/23 23:21:27 iteration 198989  walltime= 0.579h  Δwalltime=0.0079s  timestep= 4s  day=8.33
+2023/07/23 23:21:29 iteration 199229  walltime= 0.579h  Δwalltime=0.008s  timestep= 4s  day=8.34
+2023/07/23 23:21:31 iteration 199476  walltime=  0.58h  Δwalltime=0.0078s  timestep= 4s  day=8.35
+2023/07/23 23:21:33 iteration 199721  walltime= 0.581h  Δwalltime=0.0079s  timestep= 4s  day=8.37
+2023/07/23 23:21:35 iteration 199957  walltime= 0.581h  Δwalltime=0.014s  timestep= 4s  day=8.38
+2023/07/23 23:21:35 Adding grid cells...
+2023/07/23 23:21:35 Added 6 grid cells; there are now 62523 cells total
+2023/07/23 23:21:39 iteration 199996  walltime= 0.582h  Δwalltime=   4s  timestep= 4s  day=8.38
+2023/07/23 23:21:39 Percent change since last convergence check:
+VOC:			0.22%
+VOC pop-wtd:		0.031%
+SOA:			0.29%
+SOA pop-wtd:		0.029%
+PrimaryPM25:		0.29%
+PrimaryPM25 pop-wtd:	0.053%
+NH3:			0.37%
+NH3 pop-wtd:		0.074%
+pNH4:			0.28%
+pNH4 pop-wtd:		0.07%
+SOx:			1.9e-08%
+SOx pop-wtd:		1e-13%
+pSO4:			0.3%
+pSO4 pop-wtd:		0.06%
+NOx:			0.31%
+NOx pop-wtd:		0.12%
+pNO3:			0.45%
+pNO3 pop-wtd:		0.13%
+2023/07/23 23:21:41 iteration 200184  walltime= 0.583h  Δwalltime=0.0079s  timestep= 4s  day=8.38
+2023/07/23 23:21:43 iteration 200431  walltime= 0.583h  Δwalltime=0.0083s  timestep= 4s  day=8.39
+2023/07/23 23:21:45 iteration 200674  walltime= 0.584h  Δwalltime=0.0085s  timestep= 4s  day=8.41
+2023/07/23 23:21:47 iteration 200926  walltime= 0.584h  Δwalltime=0.0077s  timestep= 4s  day=8.42
+2023/07/23 23:21:49 iteration 201174  walltime= 0.585h  Δwalltime=0.0081s  timestep= 4s  day=8.43
+2023/07/23 23:21:51 iteration 201407  walltime= 0.586h  Δwalltime=0.0081s  timestep= 4s  day=8.44
+2023/07/23 23:21:53 iteration 201647  walltime= 0.586h  Δwalltime=0.0082s  timestep= 4s  day=8.45
+2023/07/23 23:21:55 iteration 201858  walltime= 0.587h  Δwalltime=0.0084s  timestep= 4s  day=8.45
+2023/07/23 23:21:57 iteration 202085  walltime= 0.587h  Δwalltime=0.0081s  timestep= 4s  day=8.46
+2023/07/23 23:21:59 iteration 202323  walltime= 0.588h  Δwalltime=0.013s  timestep= 4s  day=8.47
+2023/07/23 23:22:01 iteration 202567  walltime= 0.588h  Δwalltime=0.0087s  timestep= 4s  day=8.48
+2023/07/23 23:22:03 iteration 202810  walltime= 0.589h  Δwalltime=0.0079s  timestep= 4s  day=8.49
+2023/07/23 23:22:04 Adding grid cells...
+2023/07/23 23:22:04 Added 15 grid cells; there are now 62538 cells total
+2023/07/23 23:22:09 iteration 202981  walltime= 0.591h  Δwalltime= 4.5s  timestep= 4s  day=8.5
+2023/07/23 23:22:09 Percent change since last convergence check:
+VOC:			0.21%
+VOC pop-wtd:		0.03%
+SOA:			0.27%
+SOA pop-wtd:		0.027%
+PrimaryPM25:		0.28%
+PrimaryPM25 pop-wtd:	0.05%
+NH3:			0.35%
+NH3 pop-wtd:		0.07%
+pNH4:			0.27%
+pNH4 pop-wtd:		0.066%
+SOx:			6.1e-09%
+SOx pop-wtd:		1.7e-14%
+pSO4:			0.28%
+pSO4 pop-wtd:		0.057%
+NOx:			0.3%
+NOx pop-wtd:		0.12%
+pNO3:			0.43%
+pNO3 pop-wtd:		0.13%
+2023/07/23 23:22:09 iteration 202984  walltime= 0.591h  Δwalltime=0.0089s  timestep= 4s  day=8.5
+2023/07/23 23:22:11 iteration 203196  walltime= 0.591h  Δwalltime=0.0084s  timestep= 4s  day=8.51
+2023/07/23 23:22:13 iteration 203434  walltime= 0.592h  Δwalltime=0.0079s  timestep= 4s  day=8.52
+2023/07/23 23:22:15 iteration 203675  walltime= 0.592h  Δwalltime=0.0081s  timestep= 4s  day=8.53
+2023/07/23 23:22:17 iteration 203897  walltime= 0.593h  Δwalltime=0.0085s  timestep= 4s  day=8.54
+2023/07/23 23:22:19 iteration 204136  walltime= 0.593h  Δwalltime=0.0079s  timestep= 4s  day=8.55
+2023/07/23 23:22:21 iteration 204371  walltime= 0.594h  Δwalltime=0.008s  timestep= 4s  day=8.56
+2023/07/23 23:22:23 iteration 204608  walltime= 0.594h  Δwalltime=0.0079s  timestep= 4s  day=8.57
+2023/07/23 23:22:25 iteration 204842  walltime= 0.595h  Δwalltime=0.008s  timestep= 4s  day=8.58
+2023/07/23 23:22:27 iteration 205082  walltime= 0.596h  Δwalltime=0.0085s  timestep= 4s  day=8.59
+2023/07/23 23:22:29 iteration 205319  walltime= 0.596h  Δwalltime=0.0077s  timestep= 4s  day=8.6
+2023/07/23 23:22:31 iteration 205567  walltime= 0.597h  Δwalltime=0.0079s  timestep= 4s  day=8.61
+2023/07/23 23:22:33 iteration 205811  walltime= 0.597h  Δwalltime=0.0082s  timestep= 4s  day=8.62
+2023/07/23 23:22:34 Adding grid cells...
+2023/07/23 23:22:34 Added 12 grid cells; there are now 62550 cells total
+2023/07/23 23:22:38 Percent change since last convergence check:
+VOC:			0.2%
+VOC pop-wtd:		0.028%
+SOA:			0.26%
+SOA pop-wtd:		0.026%
+PrimaryPM25:		0.26%
+PrimaryPM25 pop-wtd:	0.048%
+NH3:			0.34%
+NH3 pop-wtd:		0.066%
+pNH4:			0.25%
+pNH4 pop-wtd:		0.062%
+SOx:			3.7e-09%
+SOx pop-wtd:		-7e-14%
+pSO4:			0.27%
+pSO4 pop-wtd:		0.054%
+NOx:			0.28%
+NOx pop-wtd:		0.11%
+pNO3:			0.42%
+pNO3 pop-wtd:		0.12%
+2023/07/23 23:22:38 iteration 205966  walltime= 0.599h  Δwalltime= 4.4s  timestep= 4s  day=8.63
+2023/07/23 23:22:39 iteration 206005  walltime= 0.599h  Δwalltime=0.0082s  timestep= 4s  day=8.63
+2023/07/23 23:22:41 iteration 206226  walltime= 0.599h  Δwalltime=0.0079s  timestep= 4s  day=8.64
+2023/07/23 23:22:43 iteration 206472  walltime=   0.6h  Δwalltime=0.0079s  timestep= 4s  day=8.65
+2023/07/23 23:22:45 iteration 206720  walltime= 0.601h  Δwalltime=0.0079s  timestep= 4s  day=8.66
+2023/07/23 23:22:47 iteration 206967  walltime= 0.601h  Δwalltime=0.008s  timestep= 4s  day=8.67
+2023/07/23 23:22:49 iteration 207215  walltime= 0.602h  Δwalltime=0.0078s  timestep= 4s  day=8.68
+2023/07/23 23:22:51 iteration 207420  walltime= 0.602h  Δwalltime=0.013s  timestep= 4s  day=8.69
+2023/07/23 23:22:53 iteration 207434  walltime= 0.603h  Δwalltime=0.0083s  timestep= 4s  day=8.69
+2023/07/23 23:22:55 iteration 207667  walltime= 0.603h  Δwalltime=0.0082s  timestep= 4s  day=8.7
+2023/07/23 23:22:57 iteration 207917  walltime= 0.604h  Δwalltime=0.008s  timestep= 4s  day=8.71
+2023/07/23 23:22:59 iteration 208168  walltime= 0.604h  Δwalltime=0.008s  timestep= 4s  day=8.72
+2023/07/23 23:23:01 iteration 208408  walltime= 0.605h  Δwalltime=0.0082s  timestep= 4s  day=8.73
+2023/07/23 23:23:03 iteration 208634  walltime= 0.606h  Δwalltime=0.0079s  timestep= 4s  day=8.74
+2023/07/23 23:23:05 iteration 208883  walltime= 0.606h  Δwalltime=0.008s  timestep= 4s  day=8.75
+2023/07/23 23:23:05 Adding grid cells...
+2023/07/23 23:23:05 Added 12 grid cells; there are now 62562 cells total
+2023/07/23 23:23:11 iteration 208951  walltime= 0.608h  Δwalltime= 5.6s  timestep= 4s  day=8.75
+2023/07/23 23:23:11 Percent change since last convergence check:
+VOC:			0.19%
+VOC pop-wtd:		0.026%
+SOA:			0.24%
+SOA pop-wtd:		0.024%
+PrimaryPM25:		0.25%
+PrimaryPM25 pop-wtd:	0.045%
+NH3:			0.32%
+NH3 pop-wtd:		0.063%
+pNH4:			0.24%
+pNH4 pop-wtd:		0.059%
+SOx:			1.5e-09%
+SOx pop-wtd:		-7e-14%
+pSO4:			0.26%
+pSO4 pop-wtd:		0.052%
+NOx:			0.27%
+NOx pop-wtd:		0.11%
+pNO3:			0.4%
+pNO3 pop-wtd:		0.12%
+2023/07/23 23:23:13 iteration 209185  walltime= 0.608h  Δwalltime=0.008s  timestep= 4s  day=8.76
+2023/07/23 23:23:15 iteration 209424  walltime= 0.609h  Δwalltime=0.008s  timestep= 4s  day=8.77
+2023/07/23 23:23:17 iteration 209665  walltime= 0.609h  Δwalltime=0.0077s  timestep= 4s  day=8.78
+2023/07/23 23:23:19 iteration 209909  walltime=  0.61h  Δwalltime=0.0078s  timestep= 4s  day=8.79
+2023/07/23 23:23:21 iteration 210149  walltime= 0.611h  Δwalltime=0.0079s  timestep= 4s  day=8.8
+2023/07/23 23:23:23 iteration 210394  walltime= 0.611h  Δwalltime=0.0082s  timestep= 4s  day=8.81
+2023/07/23 23:23:25 iteration 210610  walltime= 0.612h  Δwalltime=0.008s  timestep= 4s  day=8.82
+2023/07/23 23:23:27 iteration 210860  walltime= 0.612h  Δwalltime=0.0079s  timestep= 4s  day=8.83
+2023/07/23 23:23:29 iteration 211109  walltime= 0.613h  Δwalltime=0.0083s  timestep= 4s  day=8.84
+2023/07/23 23:23:31 iteration 211358  walltime= 0.613h  Δwalltime=0.008s  timestep= 4s  day=8.85
+2023/07/23 23:23:33 iteration 211606  walltime= 0.614h  Δwalltime=0.0079s  timestep= 4s  day=8.86
+2023/07/23 23:23:35 iteration 211852  walltime= 0.614h  Δwalltime=0.011s  timestep= 4s  day=8.87
+2023/07/23 23:23:35 Adding grid cells...
+2023/07/23 23:23:35 Added 0 grid cells; there are now 62562 cells total
+2023/07/23 23:23:39 Percent change since last convergence check:
+VOC:			0.18%
+VOC pop-wtd:		0.025%
+SOA:			0.23%
+SOA pop-wtd:		0.023%
+PrimaryPM25:		0.24%
+PrimaryPM25 pop-wtd:	0.043%
+NH3:			0.31%
+NH3 pop-wtd:		0.059%
+pNH4:			0.23%
+pNH4 pop-wtd:		0.056%
+SOx:			6.2e-10%
+SOx pop-wtd:		-3.5e-14%
+pSO4:			0.24%
+pSO4 pop-wtd:		0.049%
+NOx:			0.26%
+NOx pop-wtd:		0.1%
+pNO3:			0.38%
+pNO3 pop-wtd:		0.11%
+2023/07/23 23:23:39 iteration 211936  walltime= 0.616h  Δwalltime= 3.9s  timestep= 4s  day=8.88
+2023/07/23 23:23:41 iteration 212100  walltime= 0.616h  Δwalltime=0.0079s  timestep= 4s  day=8.88
+2023/07/23 23:23:43 iteration 212345  walltime= 0.617h  Δwalltime=0.0081s  timestep= 4s  day=8.89
+2023/07/23 23:23:45 iteration 212593  walltime= 0.617h  Δwalltime=0.0079s  timestep= 4s  day=8.9
+2023/07/23 23:23:47 iteration 212829  walltime= 0.618h  Δwalltime=0.0083s  timestep= 4s  day=8.91
+2023/07/23 23:23:49 iteration 213075  walltime= 0.618h  Δwalltime=0.008s  timestep= 4s  day=8.92
+2023/07/23 23:23:51 iteration 213318  walltime= 0.619h  Δwalltime=0.0083s  timestep= 4s  day=8.93
+2023/07/23 23:23:53 iteration 213550  walltime= 0.619h  Δwalltime=0.0079s  timestep= 4s  day=8.94
+2023/07/23 23:23:55 iteration 213779  walltime=  0.62h  Δwalltime=0.0083s  timestep= 4s  day=8.95
+2023/07/23 23:23:57 iteration 214026  walltime= 0.621h  Δwalltime=0.0081s  timestep= 4s  day=8.96
+2023/07/23 23:23:59 iteration 214279  walltime= 0.621h  Δwalltime=0.0078s  timestep= 4s  day=8.97
+2023/07/23 23:24:01 iteration 214528  walltime= 0.622h  Δwalltime=0.008s  timestep= 4s  day=8.99
+2023/07/23 23:24:03 iteration 214777  walltime= 0.622h  Δwalltime=0.0081s  timestep= 4s  day=9
+2023/07/23 23:24:04 Adding grid cells...
+2023/07/23 23:24:04 Added 6 grid cells; there are now 62568 cells total
+2023/07/23 23:24:09 iteration 214921  walltime= 0.624h  Δwalltime=   5s  timestep= 4s  day=9
+2023/07/23 23:24:09 Percent change since last convergence check:
+VOC:			0.17%
+VOC pop-wtd:		0.024%
+SOA:			0.22%
+SOA pop-wtd:		0.022%
+PrimaryPM25:		0.23%
+PrimaryPM25 pop-wtd:	0.041%
+NH3:			0.29%
+NH3 pop-wtd:		0.056%
+pNH4:			0.22%
+pNH4 pop-wtd:		0.053%
+SOx:			2.4e-10%
+SOx pop-wtd:		-1.7e-14%
+pSO4:			0.23%
+pSO4 pop-wtd:		0.047%
+NOx:			0.25%
+NOx pop-wtd:		0.098%
+pNO3:			0.37%
+pNO3 pop-wtd:		0.11%
+2023/07/23 23:24:11 iteration 215116  walltime= 0.624h  Δwalltime=0.0082s  timestep= 4s  day=9.01
+2023/07/23 23:24:13 iteration 215363  walltime= 0.625h  Δwalltime=0.0081s  timestep= 4s  day=9.02
+2023/07/23 23:24:15 iteration 215602  walltime= 0.626h  Δwalltime=0.0081s  timestep= 4s  day=9.03
+2023/07/23 23:24:17 iteration 215838  walltime= 0.626h  Δwalltime=0.0082s  timestep= 4s  day=9.04
+2023/07/23 23:24:19 iteration 216081  walltime= 0.627h  Δwalltime=0.0082s  timestep= 4s  day=9.05
+2023/07/23 23:24:21 iteration 216280  walltime= 0.627h  Δwalltime=0.014s  timestep= 4s  day=9.06
+2023/07/23 23:24:23 iteration 216468  walltime= 0.628h  Δwalltime=0.0081s  timestep= 4s  day=9.07
+2023/07/23 23:24:25 iteration 216686  walltime= 0.628h  Δwalltime=0.0081s  timestep= 4s  day=9.08
+2023/07/23 23:24:27 iteration 216921  walltime= 0.629h  Δwalltime=0.0081s  timestep= 4s  day=9.09
+2023/07/23 23:24:29 iteration 217172  walltime= 0.629h  Δwalltime=0.008s  timestep= 4s  day=9.1
+2023/07/23 23:24:31 iteration 217420  walltime=  0.63h  Δwalltime=0.008s  timestep= 4s  day=9.11
+2023/07/23 23:24:33 iteration 217670  walltime= 0.631h  Δwalltime=0.0081s  timestep= 4s  day=9.12
+2023/07/23 23:24:34 Adding grid cells...
+2023/07/23 23:24:35 Added 0 grid cells; there are now 62568 cells total
+2023/07/23 23:24:39 iteration 217906  walltime= 0.632h  Δwalltime= 4.3s  timestep= 4s  day=9.13
+2023/07/23 23:24:39 Percent change since last convergence check:
+VOC:			0.16%
+VOC pop-wtd:		0.022%
+SOA:			0.21%
+SOA pop-wtd:		0.02%
+PrimaryPM25:		0.22%
+PrimaryPM25 pop-wtd:	0.038%
+NH3:			0.28%
+NH3 pop-wtd:		0.053%
+pNH4:			0.21%
+pNH4 pop-wtd:		0.05%
+SOx:			-2.8e-08%
+SOx pop-wtd:		-3.5e-14%
+pSO4:			0.22%
+pSO4 pop-wtd:		0.044%
+NOx:			0.24%
+NOx pop-wtd:		0.094%
+pNO3:			0.35%
+pNO3 pop-wtd:		0.1%
+2023/07/23 23:24:41 iteration 218102  walltime= 0.633h  Δwalltime=0.0081s  timestep= 4s  day=9.14
+2023/07/23 23:24:43 iteration 218346  walltime= 0.633h  Δwalltime=0.0084s  timestep= 4s  day=9.15
+2023/07/23 23:24:45 iteration 218593  walltime= 0.634h  Δwalltime=0.0081s  timestep= 4s  day=9.16
+2023/07/23 23:24:47 iteration 218835  walltime= 0.634h  Δwalltime=0.0081s  timestep= 4s  day=9.17
+2023/07/23 23:24:49 iteration 219076  walltime= 0.635h  Δwalltime=0.0085s  timestep= 4s  day=9.18
+2023/07/23 23:24:51 iteration 219317  walltime= 0.636h  Δwalltime=0.0077s  timestep= 4s  day=9.19
+2023/07/23 23:24:53 iteration 219561  walltime= 0.636h  Δwalltime=0.008s  timestep= 4s  day=9.2
+2023/07/23 23:24:55 iteration 219771  walltime= 0.637h  Δwalltime=0.008s  timestep= 4s  day=9.2
+2023/07/23 23:24:57 iteration 220016  walltime= 0.637h  Δwalltime=0.0079s  timestep= 4s  day=9.22
+2023/07/23 23:24:59 iteration 220266  walltime= 0.638h  Δwalltime=0.008s  timestep= 4s  day=9.23
+2023/07/23 23:25:01 iteration 220516  walltime= 0.638h  Δwalltime=0.011s  timestep= 4s  day=9.24
+2023/07/23 23:25:03 iteration 220756  walltime= 0.639h  Δwalltime=0.0082s  timestep= 4s  day=9.25
+2023/07/23 23:25:04 Adding grid cells...
+2023/07/23 23:25:04 Added 0 grid cells; there are now 62568 cells total
+2023/07/23 23:25:08 Percent change since last convergence check:
+VOC:			0.15%
+VOC pop-wtd:		0.021%
+SOA:			0.2%
+SOA pop-wtd:		0.019%
+PrimaryPM25:		0.21%
+PrimaryPM25 pop-wtd:	0.036%
+NH3:			0.26%
+NH3 pop-wtd:		0.05%
+pNH4:			0.2%
+pNH4 pop-wtd:		0.047%
+SOx:			-1e-08%
+SOx pop-wtd:		-8.5e-13%
+pSO4:			0.21%
+pSO4 pop-wtd:		0.042%
+NOx:			0.23%
+NOx pop-wtd:		0.09%
+pNO3:			0.34%
+pNO3 pop-wtd:		0.097%
+2023/07/23 23:25:08 iteration 220891  walltime=  0.64h  Δwalltime= 4.4s  timestep= 4s  day=9.25
+2023/07/23 23:25:09 iteration 220933  walltime= 0.641h  Δwalltime=0.0082s  timestep= 4s  day=9.25
+2023/07/23 23:25:11 iteration 221083  walltime= 0.641h  Δwalltime=0.013s  timestep= 4s  day=9.26
+2023/07/23 23:25:13 iteration 221292  walltime= 0.642h  Δwalltime=0.0082s  timestep= 4s  day=9.27
+2023/07/23 23:25:15 iteration 221533  walltime= 0.642h  Δwalltime=0.0082s  timestep= 4s  day=9.28
+2023/07/23 23:25:17 iteration 221773  walltime= 0.643h  Δwalltime=0.0083s  timestep= 4s  day=9.29
+2023/07/23 23:25:19 iteration 222012  walltime= 0.643h  Δwalltime=0.0081s  timestep= 4s  day=9.3
+2023/07/23 23:25:21 iteration 222248  walltime= 0.644h  Δwalltime=0.0081s  timestep= 4s  day=9.31
+2023/07/23 23:25:23 iteration 222495  walltime= 0.644h  Δwalltime=0.014s  timestep= 4s  day=9.32
+2023/07/23 23:25:25 iteration 222727  walltime= 0.645h  Δwalltime=0.0082s  timestep= 4s  day=9.33
+2023/07/23 23:25:27 iteration 222798  walltime= 0.646h  Δwalltime=0.0079s  timestep= 4s  day=9.33
+2023/07/23 23:25:29 iteration 223050  walltime= 0.646h  Δwalltime=0.008s  timestep= 4s  day=9.34
+2023/07/23 23:25:31 iteration 223300  walltime= 0.647h  Δwalltime=0.0084s  timestep= 4s  day=9.35
+2023/07/23 23:25:33 iteration 223550  walltime= 0.647h  Δwalltime=0.008s  timestep= 4s  day=9.36
+2023/07/23 23:25:35 iteration 223798  walltime= 0.648h  Δwalltime=0.008s  timestep= 4s  day=9.37
+2023/07/23 23:25:35 Adding grid cells...
+2023/07/23 23:25:35 Added 6 grid cells; there are now 62574 cells total
+2023/07/23 23:25:39 iteration 223876  walltime= 0.649h  Δwalltime=   4s  timestep= 4s  day=9.38
+2023/07/23 23:25:39 Percent change since last convergence check:
+VOC:			0.15%
+VOC pop-wtd:		0.02%
+SOA:			0.19%
+SOA pop-wtd:		0.018%
+PrimaryPM25:		0.2%
+PrimaryPM25 pop-wtd:	0.034%
+NH3:			0.25%
+NH3 pop-wtd:		0.048%
+pNH4:			0.19%
+pNH4 pop-wtd:		0.045%
+SOx:			-4e-09%
+SOx pop-wtd:		-1.1e-12%
+pSO4:			0.2%
+pSO4 pop-wtd:		0.04%
+NOx:			0.22%
+NOx pop-wtd:		0.086%
+pNO3:			0.32%
+pNO3 pop-wtd:		0.093%
+2023/07/23 23:25:41 iteration 224045  walltime= 0.649h  Δwalltime=0.0079s  timestep= 4s  day=9.38
+2023/07/23 23:25:43 iteration 224292  walltime=  0.65h  Δwalltime=0.0079s  timestep= 4s  day=9.39
+2023/07/23 23:25:45 iteration 224536  walltime= 0.651h  Δwalltime=0.0082s  timestep= 4s  day=9.4
+2023/07/23 23:25:47 iteration 224763  walltime= 0.651h  Δwalltime=0.013s  timestep= 4s  day=9.41
+2023/07/23 23:25:49 iteration 224974  walltime= 0.652h  Δwalltime=0.0082s  timestep= 4s  day=9.42
+2023/07/23 23:25:51 iteration 225181  walltime= 0.652h  Δwalltime=0.013s  timestep= 4s  day=9.43
+2023/07/23 23:25:53 iteration 225366  walltime= 0.653h  Δwalltime=0.0082s  timestep= 4s  day=9.44
+2023/07/23 23:25:55 iteration 225593  walltime= 0.653h  Δwalltime=0.008s  timestep= 4s  day=9.45
+2023/07/23 23:25:57 iteration 225843  walltime= 0.654h  Δwalltime=0.008s  timestep= 4s  day=9.46
+2023/07/23 23:25:59 iteration 226094  walltime= 0.654h  Δwalltime=0.0082s  timestep= 4s  day=9.47
+2023/07/23 23:26:01 iteration 226344  walltime= 0.655h  Δwalltime=0.0079s  timestep= 4s  day=9.48
+2023/07/23 23:26:03 iteration 226593  walltime= 0.656h  Δwalltime=0.0079s  timestep= 4s  day=9.49
+2023/07/23 23:26:05 iteration 226840  walltime= 0.656h  Δwalltime=0.0079s  timestep= 4s  day=9.5
+2023/07/23 23:26:05 Adding grid cells...
+2023/07/23 23:26:05 Added 9 grid cells; there are now 62583 cells total
+2023/07/23 23:26:09 Percent change since last convergence check:
+VOC:			0.14%
+VOC pop-wtd:		0.019%
+SOA:			0.18%
+SOA pop-wtd:		0.017%
+PrimaryPM25:		0.19%
+PrimaryPM25 pop-wtd:	0.033%
+NH3:			0.24%
+NH3 pop-wtd:		0.045%
+pNH4:			0.18%
+pNH4 pop-wtd:		0.042%
+SOx:			-1.6e-09%
+SOx pop-wtd:		-7.3e-13%
+pSO4:			0.19%
+pSO4 pop-wtd:		0.038%
+NOx:			0.21%
+NOx pop-wtd:		0.083%
+pNO3:			0.31%
+pNO3 pop-wtd:		0.089%
+2023/07/23 23:26:09 iteration 226861  walltime= 0.657h  Δwalltime= 4.4s  timestep= 4s  day=9.5
+2023/07/23 23:26:11 iteration 227032  walltime= 0.658h  Δwalltime=0.0079s  timestep= 4s  day=9.51
+2023/07/23 23:26:13 iteration 227279  walltime= 0.658h  Δwalltime=0.0077s  timestep= 4s  day=9.52
+2023/07/23 23:26:15 iteration 227523  walltime= 0.659h  Δwalltime=0.0079s  timestep= 4s  day=9.53
+2023/07/23 23:26:17 iteration 227758  walltime= 0.659h  Δwalltime=0.0084s  timestep= 4s  day=9.54
+2023/07/23 23:26:19 iteration 228005  walltime=  0.66h  Δwalltime=0.0079s  timestep= 4s  day=9.55
+2023/07/23 23:26:21 iteration 228251  walltime= 0.661h  Δwalltime=0.0083s  timestep= 4s  day=9.56
+2023/07/23 23:26:23 iteration 228497  walltime= 0.661h  Δwalltime=0.008s  timestep= 4s  day=9.57
+2023/07/23 23:26:25 iteration 228727  walltime= 0.662h  Δwalltime=0.0082s  timestep= 4s  day=9.58
+2023/07/23 23:26:27 iteration 228969  walltime= 0.662h  Δwalltime=0.008s  timestep= 4s  day=9.59
+2023/07/23 23:26:29 iteration 229220  walltime= 0.663h  Δwalltime=0.008s  timestep= 4s  day=9.6
+2023/07/23 23:26:31 iteration 229471  walltime= 0.663h  Δwalltime=0.0081s  timestep= 4s  day=9.61
+2023/07/23 23:26:33 iteration 229713  walltime= 0.664h  Δwalltime=0.012s  timestep= 4s  day=9.62
+2023/07/23 23:26:34 Adding grid cells...
+2023/07/23 23:26:34 Added 6 grid cells; there are now 62589 cells total
+2023/07/23 23:26:38 iteration 229846  walltime= 0.665h  Δwalltime= 4.4s  timestep= 4s  day=9.63
+2023/07/23 23:26:38 Percent change since last convergence check:
+VOC:			0.13%
+VOC pop-wtd:		0.018%
+SOA:			0.17%
+SOA pop-wtd:		0.016%
+PrimaryPM25:		0.18%
+PrimaryPM25 pop-wtd:	0.031%
+NH3:			0.23%
+NH3 pop-wtd:		0.043%
+pNH4:			0.17%
+pNH4 pop-wtd:		0.04%
+SOx:			1.1e-10%
+SOx pop-wtd:		-3.7e-13%
+pSO4:			0.19%
+pSO4 pop-wtd:		0.036%
+NOx:			0.2%
+NOx pop-wtd:		0.079%
+pNO3:			0.29%
+pNO3 pop-wtd:		0.085%
+2023/07/23 23:26:39 iteration 229904  walltime= 0.666h  Δwalltime=0.008s  timestep= 4s  day=9.63
+2023/07/23 23:26:41 iteration 230139  walltime= 0.666h  Δwalltime=0.008s  timestep= 4s  day=9.64
+2023/07/23 23:26:43 iteration 230385  walltime= 0.667h  Δwalltime=0.0081s  timestep= 4s  day=9.65
+2023/07/23 23:26:45 iteration 230633  walltime= 0.667h  Δwalltime=0.0079s  timestep= 4s  day=9.66
+2023/07/23 23:26:47 iteration 230883  walltime= 0.668h  Δwalltime=0.011s  timestep= 4s  day=9.67
+2023/07/23 23:26:49 iteration 231128  walltime= 0.668h  Δwalltime=0.008s  timestep= 4s  day=9.68
+2023/07/23 23:26:51 iteration 231375  walltime= 0.669h  Δwalltime=0.0079s  timestep= 4s  day=9.69
+2023/07/23 23:26:53 iteration 231624  walltime= 0.669h  Δwalltime=0.0081s  timestep= 4s  day=9.7
+2023/07/23 23:26:55 iteration 231848  walltime=  0.67h  Δwalltime=0.0077s  timestep= 4s  day=9.71
+2023/07/23 23:26:57 iteration 232098  walltime= 0.671h  Δwalltime=0.008s  timestep= 4s  day=9.72
+2023/07/23 23:26:59 iteration 232340  walltime= 0.671h  Δwalltime=0.008s  timestep= 4s  day=9.73
+2023/07/23 23:27:01 iteration 232581  walltime= 0.672h  Δwalltime=0.0079s  timestep= 4s  day=9.74
+2023/07/23 23:27:03 iteration 232829  walltime= 0.672h  Δwalltime=0.008s  timestep= 4s  day=9.75
+2023/07/23 23:27:03 Adding grid cells...
+2023/07/23 23:27:03 Added 9 grid cells; there are now 62598 cells total
+2023/07/23 23:27:07 iteration 232831  walltime= 0.673h  Δwalltime= 4.4s  timestep= 4s  day=9.75
+2023/07/23 23:27:07 Percent change since last convergence check:
+VOC:			0.12%
+VOC pop-wtd:		0.017%
+SOA:			0.16%
+SOA pop-wtd:		0.015%
+PrimaryPM25:		0.17%
+PrimaryPM25 pop-wtd:	0.029%
+NH3:			0.22%
+NH3 pop-wtd:		0.04%
+pNH4:			0.16%
+pNH4 pop-wtd:		0.038%
+SOx:			-1.2e-08%
+SOx pop-wtd:		-1.4e-13%
+pSO4:			0.18%
+pSO4 pop-wtd:		0.034%
+NOx:			0.19%
+NOx pop-wtd:		0.075%
+pNO3:			0.28%
+pNO3 pop-wtd:		0.081%
+2023/07/23 23:27:09 iteration 233027  walltime= 0.674h  Δwalltime=0.008s  timestep= 4s  day=9.76
+2023/07/23 23:27:11 iteration 233175  walltime= 0.674h  Δwalltime=0.023s  timestep= 4s  day=9.77
+2023/07/23 23:27:13 iteration 233369  walltime= 0.675h  Δwalltime=0.008s  timestep= 4s  day=9.77
+2023/07/23 23:27:15 iteration 233621  walltime= 0.676h  Δwalltime=0.0079s  timestep= 4s  day=9.79
+2023/07/23 23:27:17 iteration 233868  walltime= 0.676h  Δwalltime=0.0081s  timestep= 4s  day=9.8
+2023/07/23 23:27:19 iteration 234092  walltime= 0.677h  Δwalltime=0.0079s  timestep= 4s  day=9.8
+2023/07/23 23:27:21 iteration 234295  walltime= 0.677h  Δwalltime=0.0098s  timestep= 4s  day=9.81
+2023/07/23 23:27:23 iteration 234489  walltime= 0.678h  Δwalltime=0.008s  timestep= 4s  day=9.82
+2023/07/23 23:27:25 iteration 234695  walltime= 0.678h  Δwalltime=0.0081s  timestep= 4s  day=9.83
+2023/07/23 23:27:27 iteration 234943  walltime= 0.679h  Δwalltime=0.0079s  timestep= 4s  day=9.84
+2023/07/23 23:27:29 iteration 235178  walltime= 0.679h  Δwalltime=0.012s  timestep= 4s  day=9.85
+2023/07/23 23:27:31 iteration 235421  walltime=  0.68h  Δwalltime=0.008s  timestep= 4s  day=9.86
+2023/07/23 23:27:33 iteration 235668  walltime= 0.681h  Δwalltime=0.0082s  timestep= 4s  day=9.87
+2023/07/23 23:27:34 Adding grid cells...
+2023/07/23 23:27:34 Added 0 grid cells; there are now 62598 cells total
+2023/07/23 23:27:38 iteration 235816  walltime= 0.682h  Δwalltime=   4s  timestep= 4s  day=9.88
+2023/07/23 23:27:38 Percent change since last convergence check:
+VOC:			0.12%
+VOC pop-wtd:		0.016%
+SOA:			0.15%
+SOA pop-wtd:		0.014%
+PrimaryPM25:		0.16%
+PrimaryPM25 pop-wtd:	0.028%
+NH3:			0.21%
+NH3 pop-wtd:		0.038%
+pNH4:			0.15%
+pNH4 pop-wtd:		0.036%
+SOx:			-9.2e-09%
+SOx pop-wtd:		-5.2e-14%
+pSO4:			0.17%
+pSO4 pop-wtd:		0.032%
+NOx:			0.18%
+NOx pop-wtd:		0.072%
+pNO3:			0.27%
+pNO3 pop-wtd:		0.078%
+2023/07/23 23:27:39 iteration 235913  walltime= 0.682h  Δwalltime=0.0079s  timestep= 4s  day=9.88
+2023/07/23 23:27:41 iteration 236141  walltime= 0.683h  Δwalltime=0.008s  timestep= 4s  day=9.89
+2023/07/23 23:27:43 iteration 236391  walltime= 0.683h  Δwalltime=0.0079s  timestep= 4s  day=9.9
+2023/07/23 23:27:45 iteration 236631  walltime= 0.684h  Δwalltime=0.008s  timestep= 4s  day=9.91
+2023/07/23 23:27:47 iteration 236868  walltime= 0.684h  Δwalltime=0.0081s  timestep= 4s  day=9.92
+2023/07/23 23:27:49 iteration 237115  walltime= 0.685h  Δwalltime=0.008s  timestep= 4s  day=9.93
+2023/07/23 23:27:51 iteration 237347  walltime= 0.686h  Δwalltime=0.012s  timestep= 4s  day=9.94
+2023/07/23 23:27:53 iteration 237584  walltime= 0.686h  Δwalltime=0.0078s  timestep= 4s  day=9.95
+2023/07/23 23:27:55 iteration 237799  walltime= 0.687h  Δwalltime=0.013s  timestep= 4s  day=9.96
+2023/07/23 23:27:57 iteration 238020  walltime= 0.687h  Δwalltime=0.0079s  timestep= 4s  day=9.97
+2023/07/23 23:27:59 iteration 238247  walltime= 0.688h  Δwalltime=0.008s  timestep= 4s  day=9.98
+2023/07/23 23:28:01 iteration 238479  walltime= 0.688h  Δwalltime=0.0084s  timestep= 4s  day=9.99
+2023/07/23 23:28:03 iteration 238721  walltime= 0.689h  Δwalltime=0.0081s  timestep= 4s  day=10
+2023/07/23 23:28:03 Adding grid cells...
+2023/07/23 23:28:03 Added 0 grid cells; there are now 62598 cells total
+2023/07/23 23:28:08 iteration 238801  walltime=  0.69h  Δwalltime= 4.3s  timestep= 4s  day=10
+2023/07/23 23:28:08 Percent change since last convergence check:
+VOC:			0.11%
+VOC pop-wtd:		0.015%
+SOA:			0.14%
+SOA pop-wtd:		0.014%
+PrimaryPM25:		0.15%
+PrimaryPM25 pop-wtd:	0.026%
+NH3:			0.2%
+NH3 pop-wtd:		0.036%
+pNH4:			0.15%
+pNH4 pop-wtd:		0.034%
+SOx:			-5.2e-09%
+SOx pop-wtd:		-1.7e-14%
+pSO4:			0.16%
+pSO4 pop-wtd:		0.031%
+NOx:			0.17%
+NOx pop-wtd:		0.069%
+pNO3:			0.26%
+pNO3 pop-wtd:		0.074%
+2023/07/23 23:28:09 iteration 238929  walltime= 0.691h  Δwalltime=0.0079s  timestep= 4s  day=10
+2023/07/23 23:28:11 iteration 239151  walltime= 0.691h  Δwalltime=0.0079s  timestep= 4s  day=10
+2023/07/23 23:28:13 iteration 239398  walltime= 0.692h  Δwalltime=0.008s  timestep= 4s  day=10
+2023/07/23 23:28:15 iteration 239648  walltime= 0.692h  Δwalltime=0.008s  timestep= 4s  day=10
+2023/07/23 23:28:17 iteration 239874  walltime= 0.693h  Δwalltime=0.013s  timestep= 4s  day=10
+2023/07/23 23:28:19 iteration 240111  walltime= 0.693h  Δwalltime=0.008s  timestep= 4s  day=10.1
+2023/07/23 23:28:21 iteration 240358  walltime= 0.694h  Δwalltime=0.008s  timestep= 4s  day=10.1
+2023/07/23 23:28:23 iteration 240610  walltime= 0.694h  Δwalltime=0.0084s  timestep= 4s  day=10.1
+2023/07/23 23:28:25 iteration 240839  walltime= 0.695h  Δwalltime=0.013s  timestep= 4s  day=10.1
+2023/07/23 23:28:27 iteration 241085  walltime= 0.696h  Δwalltime=0.008s  timestep= 4s  day=10.1
+2023/07/23 23:28:29 iteration 241324  walltime= 0.696h  Δwalltime=0.0083s  timestep= 4s  day=10.1
+2023/07/23 23:28:31 iteration 241572  walltime= 0.697h  Δwalltime=0.008s  timestep= 4s  day=10.1
+2023/07/23 23:28:32 Adding grid cells...
+2023/07/23 23:28:33 Added 3 grid cells; there are now 62601 cells total
+2023/07/23 23:28:37 iteration 241786  walltime= 0.698h  Δwalltime= 4.4s  timestep= 4s  day=10.1
+2023/07/23 23:28:37 Percent change since last convergence check:
+VOC:			0.11%
+VOC pop-wtd:		0.014%
+SOA:			0.14%
+SOA pop-wtd:		0.013%
+PrimaryPM25:		0.15%
+PrimaryPM25 pop-wtd:	0.025%
+NH3:			0.19%
+NH3 pop-wtd:		0.034%
+pNH4:			0.14%
+pNH4 pop-wtd:		0.032%
+SOx:			-2.5e-09%
+SOx pop-wtd:		-1.7e-14%
+pSO4:			0.15%
+pSO4 pop-wtd:		0.029%
+NOx:			0.17%
+NOx pop-wtd:		0.066%
+pNO3:			0.25%
+pNO3 pop-wtd:		0.071%
+2023/07/23 23:28:39 iteration 242012  walltime= 0.699h  Δwalltime=0.0081s  timestep= 4s  day=10.1
+2023/07/23 23:28:41 iteration 242244  walltime= 0.699h  Δwalltime=0.008s  timestep= 4s  day=10.1
+2023/07/23 23:28:43 iteration 242495  walltime=   0.7h  Δwalltime=0.0083s  timestep= 4s  day=10.2
+2023/07/23 23:28:45 iteration 242745  walltime= 0.701h  Δwalltime=0.0079s  timestep= 4s  day=10.2
+2023/07/23 23:28:47 iteration 242992  walltime= 0.701h  Δwalltime=0.0079s  timestep= 4s  day=10.2
+2023/07/23 23:28:49 iteration 243218  walltime= 0.702h  Δwalltime=0.0078s  timestep= 4s  day=10.2
+2023/07/23 23:28:51 iteration 243421  walltime= 0.702h  Δwalltime=0.014s  timestep= 4s  day=10.2
+2023/07/23 23:28:53 iteration 243604  walltime= 0.703h  Δwalltime=0.008s  timestep= 4s  day=10.2
+2023/07/23 23:28:55 iteration 243832  walltime= 0.703h  Δwalltime=0.0081s  timestep= 4s  day=10.2
+2023/07/23 23:28:57 iteration 244063  walltime= 0.704h  Δwalltime=0.008s  timestep= 4s  day=10.2
+2023/07/23 23:28:59 iteration 244310  walltime= 0.704h  Δwalltime=0.011s  timestep= 4s  day=10.2
+2023/07/23 23:29:01 iteration 244557  walltime= 0.705h  Δwalltime=0.0079s  timestep= 4s  day=10.2
+2023/07/23 23:29:02 Adding grid cells...
+2023/07/23 23:29:02 Added 15 grid cells; there are now 62616 cells total
+2023/07/23 23:29:07 iteration 244771  walltime= 0.707h  Δwalltime= 4.4s  timestep= 4s  day=10.3
+2023/07/23 23:29:07 Percent change since last convergence check:
+VOC:			0.1%
+VOC pop-wtd:		0.013%
+SOA:			0.13%
+SOA pop-wtd:		0.012%
+PrimaryPM25:		0.14%
+PrimaryPM25 pop-wtd:	0.023%
+NH3:			0.18%
+NH3 pop-wtd:		0.032%
+pNH4:			0.13%
+pNH4 pop-wtd:		0.03%
+SOx:			-1.1e-09%
+SOx pop-wtd:		0%
+pSO4:			0.15%
+pSO4 pop-wtd:		0.028%
+NOx:			0.16%
+NOx pop-wtd:		0.063%
+pNO3:			0.24%
+pNO3 pop-wtd:		0.068%
+2023/07/23 23:29:09 iteration 244997  walltime= 0.707h  Δwalltime=0.0079s  timestep= 4s  day=10.3
+2023/07/23 23:29:11 iteration 245230  walltime= 0.708h  Δwalltime=0.008s  timestep= 4s  day=10.3
+2023/07/23 23:29:13 iteration 245373  walltime= 0.708h  Δwalltime=0.0083s  timestep= 4s  day=10.3
+2023/07/23 23:29:15 iteration 245620  walltime= 0.709h  Δwalltime=0.008s  timestep= 4s  day=10.3
+2023/07/23 23:29:17 iteration 245868  walltime= 0.709h  Δwalltime=0.0092s  timestep= 4s  day=10.3
+2023/07/23 23:29:19 iteration 246110  walltime=  0.71h  Δwalltime=0.0082s  timestep= 4s  day=10.3
+2023/07/23 23:29:21 iteration 246351  walltime= 0.711h  Δwalltime=0.008s  timestep= 4s  day=10.3
+2023/07/23 23:29:23 iteration 246595  walltime= 0.711h  Δwalltime=0.008s  timestep= 4s  day=10.3
+2023/07/23 23:29:25 iteration 246824  walltime= 0.712h  Δwalltime=0.008s  timestep= 4s  day=10.3
+2023/07/23 23:29:27 iteration 247061  walltime= 0.712h  Δwalltime=0.008s  timestep= 4s  day=10.3
+2023/07/23 23:29:29 iteration 247295  walltime= 0.713h  Δwalltime=0.008s  timestep= 4s  day=10.4
+2023/07/23 23:29:31 iteration 247533  walltime= 0.713h  Δwalltime=0.012s  timestep= 4s  day=10.4
+2023/07/23 23:29:32 Adding grid cells...
+2023/07/23 23:29:32 Added 0 grid cells; there are now 62616 cells total
+2023/07/23 23:29:36 iteration 247756  walltime= 0.715h  Δwalltime=   4s  timestep= 4s  day=10.4
+2023/07/23 23:29:36 Percent change since last convergence check:
+VOC:			0.095%
+VOC pop-wtd:		0.012%
+SOA:			0.12%
+SOA pop-wtd:		0.011%
+PrimaryPM25:		0.13%
+PrimaryPM25 pop-wtd:	0.022%
+NH3:			0.17%
+NH3 pop-wtd:		0.031%
+pNH4:			0.13%
+pNH4 pop-wtd:		0.028%
+SOx:			-4.9e-10%
+SOx pop-wtd:		0%
+pSO4:			0.14%
+pSO4 pop-wtd:		0.026%
+NOx:			0.15%
+NOx pop-wtd:		0.06%
+pNO3:			0.23%
+pNO3 pop-wtd:		0.065%
+2023/07/23 23:29:37 iteration 247782  walltime= 0.715h  Δwalltime=0.0083s  timestep= 4s  day=10.4
+2023/07/23 23:29:39 iteration 248029  walltime= 0.716h  Δwalltime=0.0079s  timestep= 4s  day=10.4
+2023/07/23 23:29:41 iteration 248261  walltime= 0.716h  Δwalltime=0.0077s  timestep= 4s  day=10.4
+2023/07/23 23:29:43 iteration 248510  walltime= 0.717h  Δwalltime=0.0079s  timestep= 4s  day=10.4
+2023/07/23 23:29:45 iteration 248760  walltime= 0.717h  Δwalltime=0.0079s  timestep= 4s  day=10.4
+2023/07/23 23:29:47 iteration 249009  walltime= 0.718h  Δwalltime=0.008s  timestep= 4s  day=10.4
+2023/07/23 23:29:49 iteration 249254  walltime= 0.718h  Δwalltime=0.0078s  timestep= 4s  day=10.4
+2023/07/23 23:29:51 iteration 249504  walltime= 0.719h  Δwalltime=0.012s  timestep= 4s  day=10.5
+2023/07/23 23:29:53 iteration 249748  walltime= 0.719h  Δwalltime=0.0079s  timestep= 4s  day=10.5
+2023/07/23 23:29:55 iteration 249977  walltime=  0.72h  Δwalltime=0.01s  timestep= 4s  day=10.5
+2023/07/23 23:29:57 iteration 250216  walltime= 0.721h  Δwalltime=0.008s  timestep= 4s  day=10.5
+2023/07/23 23:29:59 iteration 250454  walltime= 0.721h  Δwalltime=0.008s  timestep= 4s  day=10.5
+2023/07/23 23:30:01 iteration 250700  walltime= 0.722h  Δwalltime=0.009s  timestep= 4s  day=10.5
+2023/07/23 23:30:01 Adding grid cells...
+2023/07/23 23:30:01 Added 6 grid cells; there are now 62622 cells total
+2023/07/23 23:30:05 iteration 250741  walltime= 0.723h  Δwalltime= 4.4s  timestep= 4s  day=10.5
+2023/07/23 23:30:05 Percent change since last convergence check:
+VOC:			0.09%
+VOC pop-wtd:		0.012%
+SOA:			0.12%
+SOA pop-wtd:		0.011%
+PrimaryPM25:		0.13%
+PrimaryPM25 pop-wtd:	0.021%
+NH3:			0.16%
+NH3 pop-wtd:		0.029%
+pNH4:			0.12%
+pNH4 pop-wtd:		0.027%
+SOx:			-2e-10%
+SOx pop-wtd:		0%
+pSO4:			0.13%
+pSO4 pop-wtd:		0.025%
+NOx:			0.15%
+NOx pop-wtd:		0.058%
+pNO3:			0.22%
+pNO3 pop-wtd:		0.062%
+2023/07/23 23:30:07 iteration 250893  walltime= 0.723h  Δwalltime=0.008s  timestep= 4s  day=10.5
+2023/07/23 23:30:09 iteration 251137  walltime= 0.724h  Δwalltime=0.0082s  timestep= 4s  day=10.5
+2023/07/23 23:30:11 iteration 251363  walltime= 0.724h  Δwalltime=0.008s  timestep= 4s  day=10.5
+2023/07/23 23:30:13 iteration 251610  walltime= 0.725h  Δwalltime=0.0079s  timestep= 4s  day=10.5
+2023/07/23 23:30:15 iteration 251858  walltime= 0.726h  Δwalltime=0.008s  timestep= 4s  day=10.5
+2023/07/23 23:30:17 iteration 252108  walltime= 0.726h  Δwalltime=0.008s  timestep= 4s  day=10.6
+2023/07/23 23:30:19 iteration 252355  walltime= 0.727h  Δwalltime=0.011s  timestep= 4s  day=10.6
+2023/07/23 23:30:21 iteration 252558  walltime= 0.727h  Δwalltime=0.013s  timestep= 4s  day=10.6
+2023/07/23 23:30:23 iteration 252755  walltime= 0.728h  Δwalltime=0.011s  timestep= 4s  day=10.6
+2023/07/23 23:30:25 iteration 252984  walltime= 0.728h  Δwalltime=0.0081s  timestep= 4s  day=10.6
+2023/07/23 23:30:27 iteration 253227  walltime= 0.729h  Δwalltime=0.0092s  timestep= 4s  day=10.6
+2023/07/23 23:30:29 iteration 253474  walltime= 0.729h  Δwalltime=0.0079s  timestep= 4s  day=10.6
+2023/07/23 23:30:31 iteration 253721  walltime=  0.73h  Δwalltime=0.0083s  timestep= 4s  day=10.6
+2023/07/23 23:30:31 Adding grid cells...
+2023/07/23 23:30:31 Added 0 grid cells; there are now 62622 cells total
+2023/07/23 23:30:35 Percent change since last convergence check:
+VOC:			0.085%
+VOC pop-wtd:		0.011%
+SOA:			0.11%
+SOA pop-wtd:		0.01%
+PrimaryPM25:		0.12%
+PrimaryPM25 pop-wtd:	0.02%
+NH3:			0.15%
+NH3 pop-wtd:		0.027%
+pNH4:			0.11%
+pNH4 pop-wtd:		0.025%
+SOx:			-8.3e-11%
+SOx pop-wtd:		0%
+pSO4:			0.13%
+pSO4 pop-wtd:		0.024%
+NOx:			0.14%
+NOx pop-wtd:		0.055%
+pNO3:			0.21%
+pNO3 pop-wtd:		0.059%
+2023/07/23 23:30:35 iteration 253726  walltime= 0.731h  Δwalltime= 4.7s  timestep= 4s  day=10.6
+2023/07/23 23:30:37 iteration 253881  walltime= 0.732h  Δwalltime=0.0081s  timestep= 4s  day=10.6
+2023/07/23 23:30:39 iteration 254133  walltime= 0.732h  Δwalltime=0.0078s  timestep= 4s  day=10.6
+2023/07/23 23:30:41 iteration 254366  walltime= 0.733h  Δwalltime=0.008s  timestep= 4s  day=10.7
+2023/07/23 23:30:43 iteration 254614  walltime= 0.733h  Δwalltime=0.008s  timestep= 4s  day=10.7
+2023/07/23 23:30:45 iteration 254864  walltime= 0.734h  Δwalltime=0.008s  timestep= 4s  day=10.7
+2023/07/23 23:30:47 iteration 255069  walltime= 0.734h  Δwalltime=0.013s  timestep= 4s  day=10.7
+2023/07/23 23:30:49 iteration 255294  walltime= 0.735h  Δwalltime=0.0078s  timestep= 4s  day=10.7
+2023/07/23 23:30:51 iteration 255529  walltime= 0.736h  Δwalltime=0.0079s  timestep= 4s  day=10.7
+2023/07/23 23:30:53 iteration 255773  walltime= 0.736h  Δwalltime=0.0082s  timestep= 4s  day=10.7
+2023/07/23 23:30:55 iteration 255994  walltime= 0.737h  Δwalltime=0.0081s  timestep= 4s  day=10.7
+2023/07/23 23:30:57 iteration 256215  walltime= 0.737h  Δwalltime=0.0081s  timestep= 4s  day=10.7
+2023/07/23 23:30:59 iteration 256461  walltime= 0.738h  Δwalltime=0.0082s  timestep= 4s  day=10.7
+2023/07/23 23:31:01 iteration 256692  walltime= 0.738h  Δwalltime=0.013s  timestep= 4s  day=10.8
+2023/07/23 23:31:01 Adding grid cells...
+2023/07/23 23:31:01 Added 0 grid cells; there are now 62622 cells total
+2023/07/23 23:31:05 iteration 256711  walltime=  0.74h  Δwalltime= 4.4s  timestep= 4s  day=10.8
+2023/07/23 23:31:05 Percent change since last convergence check:
+VOC:			0.081%
+VOC pop-wtd:		0.01%
+SOA:			0.1%
+SOA pop-wtd:		0.0095%
+PrimaryPM25:		0.11%
+PrimaryPM25 pop-wtd:	0.019%
+NH3:			0.15%
+NH3 pop-wtd:		0.026%
+pNH4:			0.11%
+pNH4 pop-wtd:		0.024%
+SOx:			-3.3e-11%
+SOx pop-wtd:		0%
+pSO4:			0.12%
+pSO4 pop-wtd:		0.022%
+NOx:			0.13%
+NOx pop-wtd:		0.053%
+pNO3:			0.2%
+pNO3 pop-wtd:		0.057%
+2023/07/23 23:31:07 iteration 256884  walltime=  0.74h  Δwalltime=0.0081s  timestep= 4s  day=10.8
+2023/07/23 23:31:09 iteration 257134  walltime= 0.741h  Δwalltime=0.008s  timestep= 4s  day=10.8
+2023/07/23 23:31:11 iteration 257350  walltime= 0.741h  Δwalltime=0.008s  timestep= 4s  day=10.8
+2023/07/23 23:31:13 iteration 257502  walltime= 0.742h  Δwalltime=0.013s  timestep= 4s  day=10.8
+2023/07/23 23:31:15 iteration 257743  walltime= 0.742h  Δwalltime=0.0098s  timestep= 4s  day=10.8
+2023/07/23 23:31:17 iteration 257984  walltime= 0.743h  Δwalltime=0.0077s  timestep= 4s  day=10.8
+2023/07/23 23:31:19 iteration 258223  walltime= 0.743h  Δwalltime=0.0078s  timestep= 4s  day=10.8
+2023/07/23 23:31:21 iteration 258464  walltime= 0.744h  Δwalltime=0.01s  timestep= 4s  day=10.8
+2023/07/23 23:31:23 iteration 258702  walltime= 0.744h  Δwalltime=0.012s  timestep= 4s  day=10.8
+2023/07/23 23:31:25 iteration 258926  walltime= 0.745h  Δwalltime=0.0079s  timestep= 4s  day=10.8
+2023/07/23 23:31:27 iteration 259170  walltime= 0.746h  Δwalltime=0.008s  timestep= 4s  day=10.9
+2023/07/23 23:31:29 iteration 259422  walltime= 0.746h  Δwalltime=0.0081s  timestep= 4s  day=10.9
+2023/07/23 23:31:31 iteration 259671  walltime= 0.747h  Δwalltime=0.0078s  timestep= 4s  day=10.9
+2023/07/23 23:31:31 Adding grid cells...
+2023/07/23 23:31:31 Added 3 grid cells; there are now 62625 cells total
+2023/07/23 23:31:35 iteration 259696  walltime= 0.748h  Δwalltime=   4s  timestep= 4s  day=10.9
+2023/07/23 23:31:35 Percent change since last convergence check:
+VOC:			0.077%
+VOC pop-wtd:		0.0099%
+SOA:			0.098%
+SOA pop-wtd:		0.009%
+PrimaryPM25:		0.11%
+PrimaryPM25 pop-wtd:	0.018%
+NH3:			0.14%
+NH3 pop-wtd:		0.024%
+pNH4:			0.1%
+pNH4 pop-wtd:		0.023%
+SOx:			-1.4e-11%
+SOx pop-wtd:		0%
+pSO4:			0.12%
+pSO4 pop-wtd:		0.021%
+NOx:			0.13%
+NOx pop-wtd:		0.05%
+pNO3:			0.19%
+pNO3 pop-wtd:		0.054%
+2023/07/23 23:31:37 iteration 259909  walltime= 0.748h  Δwalltime=0.0082s  timestep= 4s  day=10.9
+2023/07/23 23:31:39 iteration 260152  walltime= 0.749h  Δwalltime=0.0076s  timestep= 4s  day=10.9
+2023/07/23 23:31:41 iteration 260371  walltime= 0.749h  Δwalltime=0.0082s  timestep= 4s  day=10.9
+2023/07/23 23:31:43 iteration 260621  walltime=  0.75h  Δwalltime=0.008s  timestep= 4s  day=10.9
+2023/07/23 23:31:45 iteration 260866  walltime= 0.751h  Δwalltime=0.008s  timestep= 4s  day=10.9
+2023/07/23 23:31:47 iteration 261112  walltime= 0.751h  Δwalltime=0.0081s  timestep= 4s  day=10.9
+2023/07/23 23:31:49 iteration 261358  walltime= 0.752h  Δwalltime=0.0082s  timestep= 4s  day=10.9
+2023/07/23 23:31:51 iteration 261560  walltime= 0.752h  Δwalltime=0.0098s  timestep= 4s  day=11
+2023/07/23 23:31:53 iteration 261755  walltime= 0.753h  Δwalltime=0.0081s  timestep= 4s  day=11
+2023/07/23 23:31:55 iteration 261975  walltime= 0.753h  Δwalltime=0.008s  timestep= 4s  day=11
+2023/07/23 23:31:57 iteration 262218  walltime= 0.754h  Δwalltime=0.008s  timestep= 4s  day=11
+2023/07/23 23:31:59 iteration 262468  walltime= 0.754h  Δwalltime=0.0078s  timestep= 4s  day=11
+2023/07/23 23:32:00 Adding grid cells...
+2023/07/23 23:32:00 Added 0 grid cells; there are now 62625 cells total
+2023/07/23 23:32:05 Percent change since last convergence check:
+VOC:			0.073%
+VOC pop-wtd:		0.0093%
+SOA:			0.093%
+SOA pop-wtd:		0.0085%
+PrimaryPM25:		0.1%
+PrimaryPM25 pop-wtd:	0.017%
+NH3:			0.13%
+NH3 pop-wtd:		0.023%
+pNH4:			0.097%
+pNH4 pop-wtd:		0.022%
+SOx:			-5.3e-12%
+SOx pop-wtd:		0%
+pSO4:			0.11%
+pSO4 pop-wtd:		0.02%
+NOx:			0.12%
+NOx pop-wtd:		0.048%
+pNO3:			0.18%
+pNO3 pop-wtd:		0.052%
+2023/07/23 23:32:05 iteration 262681  walltime= 0.756h  Δwalltime= 4.3s  timestep= 4s  day=11
+2023/07/23 23:32:07 iteration 262919  walltime= 0.757h  Δwalltime=0.0079s  timestep= 4s  day=11
+2023/07/23 23:32:09 iteration 263165  walltime= 0.757h  Δwalltime=0.0078s  timestep= 4s  day=11
+2023/07/23 23:32:11 iteration 263385  walltime= 0.758h  Δwalltime=0.0082s  timestep= 4s  day=11
+2023/07/23 23:32:13 iteration 263632  walltime= 0.758h  Δwalltime=0.008s  timestep= 4s  day=11
+2023/07/23 23:32:15 iteration 263874  walltime= 0.759h  Δwalltime=0.008s  timestep= 4s  day=11.1
+2023/07/23 23:32:17 iteration 264105  walltime= 0.759h  Δwalltime=0.0081s  timestep= 4s  day=11.1
+2023/07/23 23:32:19 iteration 264350  walltime=  0.76h  Δwalltime=0.008s  timestep= 4s  day=11.1
+2023/07/23 23:32:21 iteration 264598  walltime= 0.761h  Δwalltime=0.0079s  timestep= 4s  day=11.1
+2023/07/23 23:32:23 iteration 264848  walltime= 0.761h  Δwalltime=0.0079s  timestep= 4s  day=11.1
+2023/07/23 23:32:25 iteration 265081  walltime= 0.762h  Δwalltime=0.0079s  timestep= 4s  day=11.1
+2023/07/23 23:32:27 iteration 265334  walltime= 0.762h  Δwalltime=0.0077s  timestep= 4s  day=11.1
+2023/07/23 23:32:29 iteration 265580  walltime= 0.763h  Δwalltime=0.0077s  timestep= 4s  day=11.1
+2023/07/23 23:32:29 Adding grid cells...
+2023/07/23 23:32:29 Added 15 grid cells; there are now 62640 cells total
+2023/07/23 23:32:34 Percent change since last convergence check:
+VOC:			0.069%
+VOC pop-wtd:		0.0088%
+SOA:			0.088%
+SOA pop-wtd:		0.008%
+PrimaryPM25:		0.098%
+PrimaryPM25 pop-wtd:	0.016%
+NH3:			0.13%
+NH3 pop-wtd:		0.022%
+pNH4:			0.092%
+pNH4 pop-wtd:		0.02%
+SOx:			-2.5e-12%
+SOx pop-wtd:		0%
+pSO4:			0.11%
+pSO4 pop-wtd:		0.019%
+NOx:			0.12%
+NOx pop-wtd:		0.046%
+pNO3:			0.17%
+pNO3 pop-wtd:		0.049%
+2023/07/23 23:32:34 iteration 265666  walltime= 0.764h  Δwalltime= 4.4s  timestep= 4s  day=11.1
+2023/07/23 23:32:35 iteration 265764  walltime= 0.764h  Δwalltime=0.0079s  timestep= 4s  day=11.1
+2023/07/23 23:32:37 iteration 266014  walltime= 0.765h  Δwalltime=0.008s  timestep= 4s  day=11.1
+2023/07/23 23:32:39 iteration 266262  walltime= 0.766h  Δwalltime=0.0082s  timestep= 4s  day=11.2
+2023/07/23 23:32:41 iteration 266485  walltime= 0.766h  Δwalltime=0.011s  timestep= 4s  day=11.2
+2023/07/23 23:32:43 iteration 266734  walltime= 0.767h  Δwalltime=0.0083s  timestep= 4s  day=11.2
+2023/07/23 23:32:45 iteration 266980  walltime= 0.767h  Δwalltime=0.0081s  timestep= 4s  day=11.2
+2023/07/23 23:32:47 iteration 267230  walltime= 0.768h  Δwalltime=0.0081s  timestep= 4s  day=11.2
+2023/07/23 23:32:49 iteration 267477  walltime= 0.768h  Δwalltime=0.011s  timestep= 4s  day=11.2
+2023/07/23 23:32:51 iteration 267724  walltime= 0.769h  Δwalltime=0.008s  timestep= 4s  day=11.2
+2023/07/23 23:32:53 iteration 267971  walltime= 0.769h  Δwalltime=0.008s  timestep= 4s  day=11.2
+2023/07/23 23:32:55 iteration 268198  walltime=  0.77h  Δwalltime=0.014s  timestep= 4s  day=11.2
+2023/07/23 23:32:57 iteration 268446  walltime= 0.771h  Δwalltime=0.0079s  timestep= 4s  day=11.2
+2023/07/23 23:32:58 Adding grid cells...
+2023/07/23 23:32:58 Added 0 grid cells; there are now 62640 cells total
+2023/07/23 23:33:03 Percent change since last convergence check:
+VOC:			0.065%
+VOC pop-wtd:		0.0083%
+SOA:			0.083%
+SOA pop-wtd:		0.0075%
+PrimaryPM25:		0.094%
+PrimaryPM25 pop-wtd:	0.015%
+NH3:			0.12%
+NH3 pop-wtd:		0.021%
+pNH4:			0.088%
+pNH4 pop-wtd:		0.019%
+SOx:			-7.1e-13%
+SOx pop-wtd:		0%
+pSO4:			0.1%
+pSO4 pop-wtd:		0.018%
+NOx:			0.11%
+NOx pop-wtd:		0.044%
+pNO3:			0.17%
+pNO3 pop-wtd:		0.047%
+2023/07/23 23:33:03 iteration 268651  walltime= 0.772h  Δwalltime= 4.3s  timestep= 4s  day=11.3
+2023/07/23 23:33:03 iteration 268654  walltime= 0.772h  Δwalltime=0.0083s  timestep= 4s  day=11.3
+2023/07/23 23:33:05 iteration 268900  walltime= 0.773h  Δwalltime=0.008s  timestep= 4s  day=11.3
+2023/07/23 23:33:07 iteration 269148  walltime= 0.773h  Δwalltime=0.0092s  timestep= 4s  day=11.3
+2023/07/23 23:33:09 iteration 269395  walltime= 0.774h  Δwalltime=0.008s  timestep= 4s  day=11.3
+2023/07/23 23:33:11 iteration 269622  walltime= 0.774h  Δwalltime=0.0082s  timestep= 4s  day=11.3
+2023/07/23 23:33:13 iteration 269787  walltime= 0.775h  Δwalltime=0.013s  timestep= 4s  day=11.3
+2023/07/23 23:33:15 iteration 269993  walltime= 0.776h  Δwalltime=0.012s  timestep= 4s  day=11.3
+2023/07/23 23:33:17 iteration 270236  walltime= 0.776h  Δwalltime=0.0078s  timestep= 4s  day=11.3
+2023/07/23 23:33:19 iteration 270477  walltime= 0.777h  Δwalltime=0.0077s  timestep= 4s  day=11.3
+2023/07/23 23:33:21 iteration 270679  walltime= 0.777h  Δwalltime=0.013s  timestep= 4s  day=11.3
+2023/07/23 23:33:23 iteration 270883  walltime= 0.778h  Δwalltime=0.008s  timestep= 4s  day=11.3
+2023/07/23 23:33:25 iteration 271103  walltime= 0.778h  Δwalltime=0.008s  timestep= 4s  day=11.4
+2023/07/23 23:33:27 iteration 271353  walltime= 0.779h  Δwalltime=0.0079s  timestep= 4s  day=11.4
+2023/07/23 23:33:29 iteration 271604  walltime= 0.779h  Δwalltime=0.0084s  timestep= 4s  day=11.4
+2023/07/23 23:33:29 Adding grid cells...
+2023/07/23 23:33:29 Added 0 grid cells; there are now 62640 cells total
+2023/07/23 23:33:33 Percent change since last convergence check:
+VOC:			0.062%
+VOC pop-wtd:		0.0078%
+SOA:			0.079%
+SOA pop-wtd:		0.0071%
+PrimaryPM25:		0.089%
+PrimaryPM25 pop-wtd:	0.014%
+NH3:			0.11%
+NH3 pop-wtd:		0.02%
+pNH4:			0.084%
+pNH4 pop-wtd:		0.018%
+SOx:			-2e-14%
+SOx pop-wtd:		0%
+pSO4:			0.097%
+pSO4 pop-wtd:		0.017%
+NOx:			0.11%
+NOx pop-wtd:		0.042%
+pNO3:			0.16%
+pNO3 pop-wtd:		0.045%
+2023/07/23 23:33:33 iteration 271636  walltime= 0.781h  Δwalltime= 3.8s  timestep= 4s  day=11.4
+2023/07/23 23:33:35 iteration 271858  walltime= 0.781h  Δwalltime=0.0084s  timestep= 4s  day=11.4
+2023/07/23 23:33:37 iteration 272103  walltime= 0.782h  Δwalltime=0.0081s  timestep= 4s  day=11.4
+2023/07/23 23:33:39 iteration 272329  walltime= 0.782h  Δwalltime=0.008s  timestep= 4s  day=11.4
+2023/07/23 23:33:41 iteration 272530  walltime= 0.783h  Δwalltime=0.0079s  timestep= 4s  day=11.4
+2023/07/23 23:33:43 iteration 272776  walltime= 0.783h  Δwalltime=0.008s  timestep= 4s  day=11.4
+2023/07/23 23:33:45 iteration 273023  walltime= 0.784h  Δwalltime=0.0077s  timestep= 4s  day=11.4
+2023/07/23 23:33:47 iteration 273255  walltime= 0.784h  Δwalltime=0.013s  timestep= 4s  day=11.4
+2023/07/23 23:33:49 iteration 273505  walltime= 0.785h  Δwalltime=0.0078s  timestep= 4s  day=11.5
+2023/07/23 23:33:51 iteration 273755  walltime= 0.786h  Δwalltime=0.0082s  timestep= 4s  day=11.5
+2023/07/23 23:33:53 iteration 274003  walltime= 0.786h  Δwalltime=0.008s  timestep= 4s  day=11.5
+2023/07/23 23:33:55 iteration 274236  walltime= 0.787h  Δwalltime=0.0079s  timestep= 4s  day=11.5
+2023/07/23 23:33:57 iteration 274485  walltime= 0.787h  Δwalltime=0.0079s  timestep= 4s  day=11.5
+2023/07/23 23:33:58 Adding grid cells...
+2023/07/23 23:33:58 Added 0 grid cells; there are now 62640 cells total
+2023/07/23 23:34:02 iteration 274621  walltime= 0.789h  Δwalltime= 4.4s  timestep= 4s  day=11.5
+2023/07/23 23:34:02 Percent change since last convergence check:
+VOC:			0.058%
+VOC pop-wtd:		0.0073%
+SOA:			0.074%
+SOA pop-wtd:		0.0067%
+PrimaryPM25:		0.085%
+PrimaryPM25 pop-wtd:	0.014%
+NH3:			0.11%
+NH3 pop-wtd:		0.019%
+pNH4:			0.079%
+pNH4 pop-wtd:		0.017%
+SOx:			0%
+SOx pop-wtd:		0%
+pSO4:			0.093%
+pSO4 pop-wtd:		0.016%
+NOx:			0.1%
+NOx pop-wtd:		0.04%
+pNO3:			0.15%
+pNO3 pop-wtd:		0.043%
+2023/07/23 23:34:03 iteration 274684  walltime= 0.789h  Δwalltime=0.0081s  timestep= 4s  day=11.5
+2023/07/23 23:34:05 iteration 274929  walltime= 0.789h  Δwalltime=0.014s  timestep= 4s  day=11.5
+2023/07/23 23:34:07 iteration 275170  walltime=  0.79h  Δwalltime=0.0078s  timestep= 4s  day=11.5
+2023/07/23 23:34:09 iteration 275395  walltime= 0.791h  Δwalltime=0.008s  timestep= 4s  day=11.5
+2023/07/23 23:34:11 iteration 275621  walltime= 0.791h  Δwalltime=0.008s  timestep= 4s  day=11.5
+2023/07/23 23:34:13 iteration 275867  walltime= 0.792h  Δwalltime=0.008s  timestep= 4s  day=11.6
+2023/07/23 23:34:15 iteration 276116  walltime= 0.792h  Δwalltime=0.0078s  timestep= 4s  day=11.6
+2023/07/23 23:34:17 iteration 276367  walltime= 0.793h  Δwalltime=0.0081s  timestep= 4s  day=11.6
+2023/07/23 23:34:19 iteration 276616  walltime= 0.793h  Δwalltime=0.0083s  timestep= 4s  day=11.6
+2023/07/23 23:34:21 iteration 276864  walltime= 0.794h  Δwalltime=0.0078s  timestep= 4s  day=11.6
+2023/07/23 23:34:23 iteration 277104  walltime= 0.794h  Δwalltime=0.012s  timestep= 4s  day=11.6
+2023/07/23 23:34:25 iteration 277336  walltime= 0.795h  Δwalltime=0.0082s  timestep= 4s  day=11.6
+2023/07/23 23:34:27 iteration 277588  walltime= 0.796h  Δwalltime=0.008s  timestep= 4s  day=11.6
+2023/07/23 23:34:27 Adding grid cells...
+2023/07/23 23:34:27 Added 0 grid cells; there are now 62640 cells total
+2023/07/23 23:34:31 Percent change since last convergence check:
+VOC:			0.055%
+VOC pop-wtd:		0.0069%
+SOA:			0.07%
+SOA pop-wtd:		0.0063%
+PrimaryPM25:		0.081%
+PrimaryPM25 pop-wtd:	0.013%
+NH3:			0.1%
+NH3 pop-wtd:		0.018%
+pNH4:			0.076%
+pNH4 pop-wtd:		0.016%
+SOx:			-7.9e-14%
+SOx pop-wtd:		0%
+pSO4:			0.089%
+pSO4 pop-wtd:		0.016%
+NOx:			0.098%
+NOx pop-wtd:		0.038%
+pNO3:			0.15%
+pNO3 pop-wtd:		0.041%
+2023/07/23 23:34:31 iteration 277606  walltime= 0.797h  Δwalltime= 4.3s  timestep= 4s  day=11.6
+2023/07/23 23:34:33 iteration 277796  walltime= 0.797h  Δwalltime=0.008s  timestep= 4s  day=11.6
+2023/07/23 23:34:35 iteration 278036  walltime= 0.798h  Δwalltime=0.0082s  timestep= 4s  day=11.6
+2023/07/23 23:34:37 iteration 278280  walltime= 0.798h  Δwalltime=0.0077s  timestep= 4s  day=11.7
+2023/07/23 23:34:39 iteration 278521  walltime= 0.799h  Δwalltime=0.0081s  timestep= 4s  day=11.7
+2023/07/23 23:34:41 iteration 278744  walltime= 0.799h  Δwalltime=0.014s  timestep= 4s  day=11.7
+2023/07/23 23:34:43 iteration 278976  walltime=   0.8h  Δwalltime=0.008s  timestep= 4s  day=11.7
+2023/07/23 23:34:45 iteration 279224  walltime= 0.801h  Δwalltime=0.008s  timestep= 4s  day=11.7
+2023/07/23 23:34:47 iteration 279458  walltime= 0.801h  Δwalltime=0.008s  timestep= 4s  day=11.7
+2023/07/23 23:34:49 iteration 279699  walltime= 0.802h  Δwalltime=0.0079s  timestep= 4s  day=11.7
+2023/07/23 23:34:51 iteration 279903  walltime= 0.802h  Δwalltime=0.013s  timestep= 4s  day=11.7
+2023/07/23 23:34:53 iteration 280090  walltime= 0.803h  Δwalltime=0.008s  timestep= 4s  day=11.7
+2023/07/23 23:34:55 iteration 280314  walltime= 0.803h  Δwalltime=0.0084s  timestep= 4s  day=11.7
+2023/07/23 23:34:57 iteration 280555  walltime= 0.804h  Δwalltime=0.008s  timestep= 4s  day=11.8
+2023/07/23 23:34:57 Adding grid cells...
+2023/07/23 23:34:57 Added 3 grid cells; there are now 62643 cells total
+2023/07/23 23:35:01 iteration 280591  walltime= 0.805h  Δwalltime= 4.5s  timestep= 4s  day=11.8
+2023/07/23 23:35:01 Percent change since last convergence check:
+VOC:			0.052%
+VOC pop-wtd:		0.0065%
+SOA:			0.067%
+SOA pop-wtd:		0.0059%
+PrimaryPM25:		0.077%
+PrimaryPM25 pop-wtd:	0.012%
+NH3:			0.099%
+NH3 pop-wtd:		0.017%
+pNH4:			0.072%
+pNH4 pop-wtd:		0.015%
+SOx:			3.9e-14%
+SOx pop-wtd:		0%
+pSO4:			0.085%
+pSO4 pop-wtd:		0.015%
+NOx:			0.094%
+NOx pop-wtd:		0.036%
+pNO3:			0.14%
+pNO3 pop-wtd:		0.039%
+2023/07/23 23:35:03 iteration 280742  walltime= 0.806h  Δwalltime=0.013s  timestep= 4s  day=11.8
+2023/07/23 23:35:05 iteration 280983  walltime= 0.806h  Δwalltime=0.009s  timestep= 4s  day=11.8
+2023/07/23 23:35:07 iteration 281227  walltime= 0.807h  Δwalltime=0.008s  timestep= 4s  day=11.8
+2023/07/23 23:35:09 iteration 281472  walltime= 0.807h  Δwalltime=0.0084s  timestep= 4s  day=11.8
+2023/07/23 23:35:11 iteration 281702  walltime= 0.808h  Δwalltime=0.008s  timestep= 4s  day=11.8
+2023/07/23 23:35:13 iteration 281907  walltime= 0.808h  Δwalltime=0.044s  timestep= 4s  day=11.8
+2023/07/23 23:35:15 iteration 282081  walltime= 0.809h  Δwalltime=0.0078s  timestep= 4s  day=11.8
+2023/07/23 23:35:17 iteration 282326  walltime= 0.809h  Δwalltime=0.0081s  timestep= 4s  day=11.8
+2023/07/23 23:35:19 iteration 282565  walltime=  0.81h  Δwalltime=0.008s  timestep= 4s  day=11.8
+2023/07/23 23:35:21 iteration 282815  walltime= 0.811h  Δwalltime=0.0079s  timestep= 4s  day=11.8
+2023/07/23 23:35:23 iteration 283062  walltime= 0.811h  Δwalltime=0.0079s  timestep= 4s  day=11.9
+2023/07/23 23:35:25 iteration 283291  walltime= 0.812h  Δwalltime=0.0078s  timestep= 4s  day=11.9
+2023/07/23 23:35:27 iteration 283538  walltime= 0.812h  Δwalltime=0.0078s  timestep= 4s  day=11.9
+2023/07/23 23:35:27 Adding grid cells...
+2023/07/23 23:35:27 Added 0 grid cells; there are now 62643 cells total
+2023/07/23 23:35:31 iteration 283576  walltime= 0.813h  Δwalltime= 3.7s  timestep= 4s  day=11.9
+2023/07/23 23:35:31 Percent change since last convergence check:
+VOC:			0.05%
+VOC pop-wtd:		0.0061%
+SOA:			0.063%
+SOA pop-wtd:		0.0056%
+PrimaryPM25:		0.073%
+PrimaryPM25 pop-wtd:	0.011%
+NH3:			0.094%
+NH3 pop-wtd:		0.016%
+pNH4:			0.068%
+pNH4 pop-wtd:		0.015%
+SOx:			4e-12%
+SOx pop-wtd:		0%
+pSO4:			0.081%
+pSO4 pop-wtd:		0.014%
+NOx:			0.09%
+NOx pop-wtd:		0.035%
+pNO3:			0.13%
+pNO3 pop-wtd:		0.037%
+2023/07/23 23:35:33 iteration 283813  walltime= 0.814h  Δwalltime=0.008s  timestep= 4s  day=11.9
+2023/07/23 23:35:35 iteration 284051  walltime= 0.814h  Δwalltime=0.008s  timestep= 4s  day=11.9
+2023/07/23 23:35:37 iteration 284295  walltime= 0.815h  Δwalltime=0.0079s  timestep= 4s  day=11.9
+2023/07/23 23:35:39 iteration 284521  walltime= 0.816h  Δwalltime=0.008s  timestep= 4s  day=11.9
+2023/07/23 23:35:41 iteration 284753  walltime= 0.816h  Δwalltime=0.0079s  timestep= 4s  day=11.9
+2023/07/23 23:35:43 iteration 284993  walltime= 0.817h  Δwalltime=0.0082s  timestep= 4s  day=11.9
+2023/07/23 23:35:45 iteration 285236  walltime= 0.817h  Δwalltime=0.0079s  timestep= 4s  day=11.9
+2023/07/23 23:35:47 iteration 285477  walltime= 0.818h  Δwalltime=0.0077s  timestep= 4s  day=12
+2023/07/23 23:35:49 iteration 285721  walltime= 0.818h  Δwalltime=0.0079s  timestep= 4s  day=12
+2023/07/23 23:35:51 iteration 285971  walltime= 0.819h  Δwalltime=0.0083s  timestep= 4s  day=12
+2023/07/23 23:35:53 iteration 286222  walltime= 0.819h  Δwalltime=0.0079s  timestep= 4s  day=12
+2023/07/23 23:35:55 iteration 286453  walltime=  0.82h  Δwalltime=0.008s  timestep= 4s  day=12
+2023/07/23 23:35:55 Adding grid cells...
+2023/07/23 23:35:56 Added 0 grid cells; there are now 62643 cells total
+2023/07/23 23:36:00 iteration 286561  walltime= 0.821h  Δwalltime= 4.3s  timestep= 4s  day=12
+2023/07/23 23:36:00 Percent change since last convergence check:
+VOC:			0.047%
+VOC pop-wtd:		0.0058%
+SOA:			0.06%
+SOA pop-wtd:		0.0053%
+PrimaryPM25:		0.07%
+PrimaryPM25 pop-wtd:	0.011%
+NH3:			0.089%
+NH3 pop-wtd:		0.015%
+pNH4:			0.065%
+pNH4 pop-wtd:		0.014%
+SOx:			2.9e-12%
+SOx pop-wtd:		0%
+pSO4:			0.077%
+pSO4 pop-wtd:		0.013%
+NOx:			0.086%
+NOx pop-wtd:		0.033%
+pNO3:			0.13%
+pNO3 pop-wtd:		0.036%
+2023/07/23 23:36:01 iteration 286663  walltime= 0.822h  Δwalltime=0.0079s  timestep= 4s  day=12
+2023/07/23 23:36:03 iteration 286914  walltime= 0.822h  Δwalltime=0.008s  timestep= 4s  day=12
+2023/07/23 23:36:05 iteration 287156  walltime= 0.823h  Δwalltime=0.0099s  timestep= 4s  day=12
+2023/07/23 23:36:07 iteration 287408  walltime= 0.823h  Δwalltime=0.0079s  timestep= 4s  day=12
+2023/07/23 23:36:09 iteration 287649  walltime= 0.824h  Δwalltime=0.0097s  timestep= 4s  day=12
+2023/07/23 23:36:11 iteration 287860  walltime= 0.824h  Δwalltime=0.0078s  timestep= 4s  day=12.1
+2023/07/23 23:36:13 iteration 288105  walltime= 0.825h  Δwalltime=0.0082s  timestep= 4s  day=12.1
+2023/07/23 23:36:15 iteration 288348  walltime= 0.826h  Δwalltime=0.0078s  timestep= 4s  day=12.1
+2023/07/23 23:36:17 iteration 288587  walltime= 0.826h  Δwalltime=0.0079s  timestep= 4s  day=12.1
+2023/07/23 23:36:19 iteration 288837  walltime= 0.827h  Δwalltime=0.0078s  timestep= 4s  day=12.1
+2023/07/23 23:36:21 iteration 289040  walltime= 0.827h  Δwalltime=0.012s  timestep= 4s  day=12.1
+2023/07/23 23:36:23 iteration 289238  walltime= 0.828h  Δwalltime=0.0078s  timestep= 4s  day=12.1
+2023/07/23 23:36:25 iteration 289471  walltime= 0.828h  Δwalltime=0.008s  timestep= 4s  day=12.1
+2023/07/23 23:36:25 Adding grid cells...
+2023/07/23 23:36:25 Added 0 grid cells; there are now 62643 cells total
+2023/07/23 23:36:29 Percent change since last convergence check:
+VOC:			0.045%
+VOC pop-wtd:		0.0055%
+SOA:			0.057%
+SOA pop-wtd:		0.005%
+PrimaryPM25:		0.067%
+PrimaryPM25 pop-wtd:	0.01%
+NH3:			0.085%
+NH3 pop-wtd:		0.014%
+pNH4:			0.062%
+pNH4 pop-wtd:		0.013%
+SOx:			8.6e-13%
+SOx pop-wtd:		0%
+pSO4:			0.074%
+pSO4 pop-wtd:		0.013%
+NOx:			0.082%
+NOx pop-wtd:		0.032%
+pNO3:			0.12%
+pNO3 pop-wtd:		0.034%
+2023/07/23 23:36:29 iteration 289546  walltime=  0.83h  Δwalltime= 4.3s  timestep= 4s  day=12.1
+2023/07/23 23:36:31 iteration 289676  walltime=  0.83h  Δwalltime=0.015s  timestep= 4s  day=12.1
+2023/07/23 23:36:33 iteration 289867  walltime= 0.831h  Δwalltime=0.008s  timestep= 4s  day=12.1
+2023/07/23 23:36:35 iteration 290110  walltime= 0.831h  Δwalltime=0.014s  timestep= 4s  day=12.2
+2023/07/23 23:36:37 iteration 290344  walltime= 0.832h  Δwalltime=0.0078s  timestep= 4s  day=12.2
+2023/07/23 23:36:39 iteration 290585  walltime= 0.832h  Δwalltime=0.008s  timestep= 4s  day=12.2
+2023/07/23 23:36:41 iteration 290812  walltime= 0.833h  Δwalltime=0.008s  timestep= 4s  day=12.2
+2023/07/23 23:36:43 iteration 290978  walltime= 0.833h  Δwalltime=0.013s  timestep= 4s  day=12.2
+2023/07/23 23:36:45 iteration 291224  walltime= 0.834h  Δwalltime=0.008s  timestep= 4s  day=12.2
+2023/07/23 23:36:47 iteration 291476  walltime= 0.834h  Δwalltime=0.0079s  timestep= 4s  day=12.2
+2023/07/23 23:36:49 iteration 291725  walltime= 0.835h  Δwalltime=0.0083s  timestep= 4s  day=12.2
+2023/07/23 23:36:51 iteration 291970  walltime= 0.836h  Δwalltime=0.008s  timestep= 4s  day=12.2
+2023/07/23 23:36:53 iteration 292219  walltime= 0.836h  Δwalltime=0.008s  timestep= 4s  day=12.2
+2023/07/23 23:36:55 iteration 292453  walltime= 0.837h  Δwalltime=0.008s  timestep= 4s  day=12.2
+2023/07/23 23:36:55 Adding grid cells...
+2023/07/23 23:36:55 Added 3 grid cells; there are now 62646 cells total
+2023/07/23 23:37:00 iteration 292531  walltime= 0.838h  Δwalltime= 4.5s  timestep= 4s  day=12.3
+2023/07/23 23:37:00 Percent change since last convergence check:
+VOC:			0.042%
+VOC pop-wtd:		0.0051%
+SOA:			0.053%
+SOA pop-wtd:		0.0047%
+PrimaryPM25:		0.063%
+PrimaryPM25 pop-wtd:	0.0097%
+NH3:			0.081%
+NH3 pop-wtd:		0.013%
+pNH4:			0.059%
+pNH4 pop-wtd:		0.012%
+SOx:			3.5e-13%
+SOx pop-wtd:		0%
+pSO4:			0.07%
+pSO4 pop-wtd:		0.012%
+NOx:			0.079%
+NOx pop-wtd:		0.03%
+pNO3:			0.12%
+pNO3 pop-wtd:		0.033%
+2023/07/23 23:37:01 iteration 292640  walltime= 0.838h  Δwalltime=0.008s  timestep= 4s  day=12.3
+2023/07/23 23:37:03 iteration 292891  walltime= 0.839h  Δwalltime=0.008s  timestep= 4s  day=12.3
+2023/07/23 23:37:05 iteration 293123  walltime= 0.839h  Δwalltime=0.013s  timestep= 4s  day=12.3
+2023/07/23 23:37:07 iteration 293339  walltime=  0.84h  Δwalltime=0.0079s  timestep= 4s  day=12.3
+2023/07/23 23:37:09 iteration 293578  walltime= 0.841h  Δwalltime=0.0084s  timestep= 4s  day=12.3
+2023/07/23 23:37:11 iteration 293801  walltime= 0.841h  Δwalltime=0.014s  timestep= 4s  day=12.3
+2023/07/23 23:37:13 iteration 294043  walltime= 0.842h  Δwalltime=0.0078s  timestep= 4s  day=12.3
+2023/07/23 23:37:15 iteration 294185  walltime= 0.842h  Δwalltime=0.0083s  timestep= 4s  day=12.3
+2023/07/23 23:37:17 iteration 294432  walltime= 0.843h  Δwalltime=0.0078s  timestep= 4s  day=12.3
+2023/07/23 23:37:19 iteration 294682  walltime= 0.843h  Δwalltime=0.008s  timestep= 4s  day=12.3
+2023/07/23 23:37:21 iteration 294926  walltime= 0.844h  Δwalltime=0.008s  timestep= 4s  day=12.4
+2023/07/23 23:37:23 iteration 295175  walltime= 0.844h  Δwalltime=0.0096s  timestep= 4s  day=12.4
+2023/07/23 23:37:25 iteration 295407  walltime= 0.845h  Δwalltime=0.0081s  timestep= 4s  day=12.4
+2023/07/23 23:37:25 Adding grid cells...
+2023/07/23 23:37:26 Added 0 grid cells; there are now 62646 cells total
+2023/07/23 23:37:29 Percent change since last convergence check:
+VOC:			0.04%
+VOC pop-wtd:		0.0048%
+SOA:			0.051%
+SOA pop-wtd:		0.0044%
+PrimaryPM25:		0.06%
+PrimaryPM25 pop-wtd:	0.0092%
+NH3:			0.077%
+NH3 pop-wtd:		0.013%
+pNH4:			0.056%
+pNH4 pop-wtd:		0.012%
+SOx:			1.9e-10%
+SOx pop-wtd:		0%
+pSO4:			0.067%
+pSO4 pop-wtd:		0.011%
+NOx:			0.075%
+NOx pop-wtd:		0.029%
+pNO3:			0.11%
+pNO3 pop-wtd:		0.031%
+2023/07/23 23:37:29 iteration 295516  walltime= 0.846h  Δwalltime= 3.7s  timestep= 4s  day=12.4
+2023/07/23 23:37:31 iteration 295690  walltime= 0.847h  Δwalltime=0.012s  timestep= 4s  day=12.4
+2023/07/23 23:37:33 iteration 295931  walltime= 0.847h  Δwalltime=0.0081s  timestep= 4s  day=12.4
+2023/07/23 23:37:35 iteration 296175  walltime= 0.848h  Δwalltime=0.01s  timestep= 4s  day=12.4
+2023/07/23 23:37:37 iteration 296410  walltime= 0.848h  Δwalltime=0.0082s  timestep= 4s  day=12.4
+2023/07/23 23:37:39 iteration 296648  walltime= 0.849h  Δwalltime=0.0084s  timestep= 4s  day=12.4
+2023/07/23 23:37:41 iteration 296870  walltime= 0.849h  Δwalltime=0.0079s  timestep= 4s  day=12.4
+2023/07/23 23:37:43 iteration 297114  walltime=  0.85h  Δwalltime=0.008s  timestep= 4s  day=12.4
+2023/07/23 23:37:45 iteration 297363  walltime= 0.851h  Δwalltime=0.008s  timestep= 4s  day=12.5
+2023/07/23 23:37:47 iteration 297614  walltime= 0.851h  Δwalltime=0.0081s  timestep= 4s  day=12.5
+2023/07/23 23:37:49 iteration 297857  walltime= 0.852h  Δwalltime=0.0079s  timestep= 4s  day=12.5
+2023/07/23 23:37:51 iteration 298060  walltime= 0.852h  Δwalltime=0.0085s  timestep= 4s  day=12.5
+2023/07/23 23:37:53 iteration 298255  walltime= 0.853h  Δwalltime=0.008s  timestep= 4s  day=12.5
+2023/07/23 23:37:55 iteration 298489  walltime= 0.853h  Δwalltime=0.0081s  timestep= 4s  day=12.5
+2023/07/23 23:37:55 Adding grid cells...
+2023/07/23 23:37:55 Added 9 grid cells; there are now 62655 cells total
+2023/07/23 23:38:00 iteration 298501  walltime= 0.855h  Δwalltime= 4.9s  timestep= 4s  day=12.5
+2023/07/23 23:38:00 Percent change since last convergence check:
+VOC:			0.038%
+VOC pop-wtd:		0.0046%
+SOA:			0.048%
+SOA pop-wtd:		0.0042%
+PrimaryPM25:		0.057%
+PrimaryPM25 pop-wtd:	0.0087%
+NH3:			0.074%
+NH3 pop-wtd:		0.012%
+pNH4:			0.053%
+pNH4 pop-wtd:		0.011%
+SOx:			1.5e-10%
+SOx pop-wtd:		0%
+pSO4:			0.064%
+pSO4 pop-wtd:		0.011%
+NOx:			0.072%
+NOx pop-wtd:		0.027%
+pNO3:			0.11%
+pNO3 pop-wtd:		0.03%
+2023/07/23 23:38:01 iteration 298630  walltime= 0.855h  Δwalltime=0.0082s  timestep= 4s  day=12.5
+2023/07/23 23:38:03 iteration 298877  walltime= 0.856h  Δwalltime=0.008s  timestep= 4s  day=12.5
+2023/07/23 23:38:05 iteration 299120  walltime= 0.856h  Δwalltime=0.008s  timestep= 4s  day=12.5
+2023/07/23 23:38:07 iteration 299367  walltime= 0.857h  Δwalltime=0.0078s  timestep= 4s  day=12.5
+2023/07/23 23:38:09 iteration 299611  walltime= 0.857h  Δwalltime=0.0081s  timestep= 4s  day=12.5
+2023/07/23 23:38:11 iteration 299827  walltime= 0.858h  Δwalltime=0.0079s  timestep= 4s  day=12.6
+2023/07/23 23:38:13 iteration 300074  walltime= 0.858h  Δwalltime=0.0079s  timestep= 4s  day=12.6
+2023/07/23 23:38:15 iteration 300321  walltime= 0.859h  Δwalltime=0.008s  timestep= 4s  day=12.6
+2023/07/23 23:38:17 iteration 300569  walltime= 0.859h  Δwalltime=0.0077s  timestep= 4s  day=12.6
+2023/07/23 23:38:19 iteration 300807  walltime=  0.86h  Δwalltime=0.0076s  timestep= 4s  day=12.6
+2023/07/23 23:38:21 iteration 301057  walltime= 0.861h  Δwalltime=0.0079s  timestep= 4s  day=12.6
+2023/07/23 23:38:23 iteration 301307  walltime= 0.861h  Δwalltime=0.0081s  timestep= 4s  day=12.6
+2023/07/23 23:38:24 Adding grid cells...
+2023/07/23 23:38:24 Added 3 grid cells; there are now 62658 cells total
+2023/07/23 23:38:28 iteration 301486  walltime= 0.863h  Δwalltime= 4.4s  timestep= 4s  day=12.6
+2023/07/23 23:38:28 Percent change since last convergence check:
+VOC:			0.036%
+VOC pop-wtd:		0.0043%
+SOA:			0.045%
+SOA pop-wtd:		0.0039%
+PrimaryPM25:		0.055%
+PrimaryPM25 pop-wtd:	0.0082%
+NH3:			0.07%
+NH3 pop-wtd:		0.011%
+pNH4:			0.051%
+pNH4 pop-wtd:		0.01%
+SOx:			5.5e-11%
+SOx pop-wtd:		0%
+pSO4:			0.062%
+pSO4 pop-wtd:		0.01%
+NOx:			0.069%
+NOx pop-wtd:		0.026%
+pNO3:			0.1%
+pNO3 pop-wtd:		0.028%
+2023/07/23 23:38:29 iteration 301500  walltime= 0.863h  Δwalltime=0.0084s  timestep= 4s  day=12.6
+2023/07/23 23:38:31 iteration 301744  walltime= 0.863h  Δwalltime=0.012s  timestep= 4s  day=12.6
+2023/07/23 23:38:33 iteration 301986  walltime= 0.864h  Δwalltime=0.0082s  timestep= 4s  day=12.6
+2023/07/23 23:38:35 iteration 302225  walltime= 0.864h  Δwalltime=0.0081s  timestep= 4s  day=12.7
+2023/07/23 23:38:37 iteration 302470  walltime= 0.865h  Δwalltime=0.0083s  timestep= 4s  day=12.7
+2023/07/23 23:38:39 iteration 302710  walltime= 0.866h  Δwalltime=0.0079s  timestep= 4s  day=12.7
+2023/07/23 23:38:41 iteration 302932  walltime= 0.866h  Δwalltime=0.0078s  timestep= 4s  day=12.7
+2023/07/23 23:38:43 iteration 303179  walltime= 0.867h  Δwalltime=0.008s  timestep= 4s  day=12.7
+2023/07/23 23:38:45 iteration 303429  walltime= 0.867h  Δwalltime=0.0077s  timestep= 4s  day=12.7
+2023/07/23 23:38:47 iteration 303678  walltime= 0.868h  Δwalltime=0.0079s  timestep= 4s  day=12.7
+2023/07/23 23:38:49 iteration 303921  walltime= 0.868h  Δwalltime=0.0078s  timestep= 4s  day=12.7
+2023/07/23 23:38:51 iteration 304169  walltime= 0.869h  Δwalltime=0.0082s  timestep= 4s  day=12.7
+2023/07/23 23:38:53 iteration 304404  walltime= 0.869h  Δwalltime=0.0079s  timestep= 4s  day=12.7
+2023/07/23 23:38:53 Adding grid cells...
+2023/07/23 23:38:53 Added 0 grid cells; there are now 62658 cells total
+2023/07/23 23:38:57 Percent change since last convergence check:
+VOC:			0.034%
+VOC pop-wtd:		0.004%
+SOA:			0.043%
+SOA pop-wtd:		0.0037%
+PrimaryPM25:		0.052%
+PrimaryPM25 pop-wtd:	0.0078%
+NH3:			0.067%
+NH3 pop-wtd:		0.011%
+pNH4:			0.048%
+pNH4 pop-wtd:		0.0098%
+SOx:			1.6e-11%
+SOx pop-wtd:		0%
+pSO4:			0.059%
+pSO4 pop-wtd:		0.0097%
+NOx:			0.066%
+NOx pop-wtd:		0.025%
+pNO3:			0.098%
+pNO3 pop-wtd:		0.027%
+2023/07/23 23:38:59 Elapsed time: 1.005148 hours

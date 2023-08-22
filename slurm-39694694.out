@@ -1,0 +1,919 @@
+2023/08/09 14:43:30 Parsing output variable expressions...
+2023/08/09 14:43:30 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area_lcc2.shp.
+2023/08/09 14:44:21 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_major_lcc2.shp.
+2023/08/09 14:44:56 Loading CTM data...
+2023/08/09 14:44:56 Reading input data...
+2023/08/09 14:50:55 Loading population and mortality rate data...
+2023/08/09 14:51:38 Initializing model...
+2023/08/09 14:53:44 Emission totals:
+2023/08/09 14:53:44 gOrg, 3.1062126478204414e+12 μg/s
+2023/08/09 14:53:44 pOrg, 0 μg/s
+2023/08/09 14:53:44 PM2_5, 1.5170002236809583e+12 μg/s
+2023/08/09 14:53:44 gNH, 1.1940772250227711e+11 μg/s
+2023/08/09 14:53:44 pNH, 0 μg/s
+2023/08/09 14:53:44 gS, 3.7875012700753413e+12 μg/s
+2023/08/09 14:53:44 pS, 0 μg/s
+2023/08/09 14:53:44 gNO, 8.932906642561475e+11 μg/s
+2023/08/09 14:53:44 pNO, 0 μg/s
+2023/08/09 14:53:44 iteration 1     walltime= 0.035h  Δwalltime=1.3e+02s  timestep= 0s  day=2.32e-09
+2023/08/09 14:53:44 iteration 39    walltime=0.0351h  Δwalltime=0.0099s  timestep= 0s  day=9.06e-08
+2023/08/09 14:53:46 iteration 232   walltime=0.0357h  Δwalltime=0.01s  timestep= 0s  day=5.39e-07
+2023/08/09 14:53:48 iteration 489   walltime=0.0362h  Δwalltime=0.0096s  timestep= 0s  day=1.14e-06
+2023/08/09 14:53:50 iteration 811   walltime=0.0368h  Δwalltime=0.0061s  timestep= 0s  day=1.88e-06
+2023/08/09 14:53:52 iteration 1144  walltime=0.0373h  Δwalltime=0.006s  timestep= 0s  day=2.66e-06
+2023/08/09 14:53:54 iteration 1473  walltime=0.0379h  Δwalltime=0.0058s  timestep= 0s  day=3.42e-06
+2023/08/09 14:53:56 iteration 1806  walltime=0.0385h  Δwalltime=0.0059s  timestep= 0s  day=4.2e-06
+2023/08/09 14:53:58 iteration 2133  walltime= 0.039h  Δwalltime=0.0059s  timestep= 0s  day=4.96e-06
+2023/08/09 14:54:00 iteration 2441  walltime=0.0396h  Δwalltime=0.0062s  timestep= 0s  day=5.67e-06
+2023/08/09 14:54:02 iteration 2684  walltime=0.0401h  Δwalltime=0.006s  timestep= 0s  day=6.24e-06
+2023/08/09 14:54:04 iteration 3006  walltime=0.0407h  Δwalltime=0.0059s  timestep= 0s  day=6.99e-06
+2023/08/09 14:54:06 iteration 3340  walltime=0.0412h  Δwalltime=0.006s  timestep= 0s  day=7.76e-06
+2023/08/09 14:54:08 iteration 3666  walltime=0.0418h  Δwalltime=0.006s  timestep= 0s  day=8.52e-06
+2023/08/09 14:54:10 iteration 3986  walltime=0.0423h  Δwalltime=0.006s  timestep= 0s  day=9.26e-06
+2023/08/09 14:54:12 iteration 4309  walltime=0.0429h  Δwalltime=0.0059s  timestep= 0s  day=1e-05
+2023/08/09 14:54:14 iteration 4632  walltime=0.0435h  Δwalltime=0.006s  timestep= 0s  day=1.08e-05
+2023/08/09 14:54:16 iteration 4962  walltime= 0.044h  Δwalltime=0.0058s  timestep= 0s  day=1.15e-05
+2023/08/09 14:54:18 iteration 5295  walltime=0.0446h  Δwalltime=0.0059s  timestep= 0s  day=1.23e-05
+2023/08/09 14:54:20 iteration 5620  walltime=0.0451h  Δwalltime=0.006s  timestep= 0s  day=1.31e-05
+2023/08/09 14:54:22 iteration 5950  walltime=0.0457h  Δwalltime=0.0061s  timestep= 0s  day=1.38e-05
+2023/08/09 14:54:24 iteration 6278  walltime=0.0462h  Δwalltime=0.006s  timestep= 0s  day=1.46e-05
+2023/08/09 14:54:26 iteration 6594  walltime=0.0468h  Δwalltime=0.0061s  timestep= 0s  day=1.53e-05
+2023/08/09 14:54:28 iteration 6920  walltime=0.0473h  Δwalltime=0.0059s  timestep= 0s  day=1.61e-05
+2023/08/09 14:54:30 iteration 7235  walltime=0.0479h  Δwalltime=0.0095s  timestep= 0s  day=1.68e-05
+2023/08/09 14:54:32 iteration 7570  walltime=0.0485h  Δwalltime=0.006s  timestep= 0s  day=1.76e-05
+2023/08/09 14:54:34 iteration 7878  walltime= 0.049h  Δwalltime=0.0061s  timestep= 0s  day=1.83e-05
+2023/08/09 14:54:36 iteration 8211  walltime=0.0496h  Δwalltime=0.0059s  timestep= 0s  day=1.91e-05
+2023/08/09 14:54:38 iteration 8536  walltime=0.0501h  Δwalltime=0.0062s  timestep= 0s  day=1.98e-05
+2023/08/09 14:54:40 iteration 8872  walltime=0.0507h  Δwalltime=0.0059s  timestep= 0s  day=2.06e-05
+2023/08/09 14:54:42 iteration 9208  walltime=0.0512h  Δwalltime=0.0059s  timestep= 0s  day=2.14e-05
+2023/08/09 14:54:44 iteration 9520  walltime=0.0518h  Δwalltime=0.006s  timestep= 0s  day=2.21e-05
+2023/08/09 14:54:46 iteration 9850  walltime=0.0523h  Δwalltime=0.0058s  timestep= 0s  day=2.29e-05
+2023/08/09 14:54:48 iteration 10181  walltime=0.0529h  Δwalltime=0.006s  timestep= 0s  day=2.37e-05
+2023/08/09 14:54:50 iteration 10505  walltime=0.0535h  Δwalltime=0.006s  timestep= 0s  day=2.44e-05
+2023/08/09 14:54:52 iteration 10836  walltime= 0.054h  Δwalltime=0.0061s  timestep= 0s  day=2.52e-05
+2023/08/09 14:54:54 iteration 11168  walltime=0.0546h  Δwalltime=0.006s  timestep= 0s  day=2.6e-05
+2023/08/09 14:54:56 iteration 11499  walltime=0.0551h  Δwalltime=0.006s  timestep= 0s  day=2.67e-05
+2023/08/09 14:54:58 iteration 11835  walltime=0.0557h  Δwalltime=0.006s  timestep= 0s  day=2.75e-05
+2023/08/09 14:55:00 iteration 12152  walltime=0.0562h  Δwalltime=0.006s  timestep= 0s  day=2.82e-05
+2023/08/09 14:55:02 iteration 12475  walltime=0.0568h  Δwalltime=0.0059s  timestep= 0s  day=2.9e-05
+2023/08/09 14:55:04 iteration 12789  walltime=0.0573h  Δwalltime=0.0058s  timestep= 0s  day=2.97e-05
+2023/08/09 14:55:06 iteration 13124  walltime=0.0579h  Δwalltime=0.0059s  timestep= 0s  day=3.05e-05
+2023/08/09 14:55:08 iteration 13451  walltime=0.0585h  Δwalltime=0.006s  timestep= 0s  day=3.13e-05
+2023/08/09 14:55:10 iteration 13782  walltime= 0.059h  Δwalltime=0.006s  timestep= 0s  day=3.2e-05
+2023/08/09 14:55:12 iteration 14114  walltime=0.0596h  Δwalltime=0.006s  timestep= 0s  day=3.28e-05
+2023/08/09 14:55:14 iteration 14429  walltime=0.0601h  Δwalltime=0.0057s  timestep= 0s  day=3.35e-05
+2023/08/09 14:55:16 iteration 14763  walltime=0.0607h  Δwalltime=0.0057s  timestep= 0s  day=3.43e-05
+2023/08/09 14:55:18 iteration 15080  walltime=0.0612h  Δwalltime=0.0059s  timestep= 0s  day=3.5e-05
+2023/08/09 14:55:20 iteration 15414  walltime=0.0618h  Δwalltime=0.0057s  timestep= 0s  day=3.58e-05
+2023/08/09 14:55:22 iteration 15750  walltime=0.0623h  Δwalltime=0.0058s  timestep= 0s  day=3.66e-05
+2023/08/09 14:55:24 iteration 16085  walltime=0.0629h  Δwalltime=0.006s  timestep= 0s  day=3.74e-05
+2023/08/09 14:55:26 iteration 16410  walltime=0.0635h  Δwalltime=0.006s  timestep= 0s  day=3.81e-05
+2023/08/09 14:55:28 iteration 16737  walltime= 0.064h  Δwalltime=0.0059s  timestep= 0s  day=3.89e-05
+2023/08/09 14:55:30 iteration 17057  walltime=0.0646h  Δwalltime=0.006s  timestep= 0s  day=3.96e-05
+2023/08/09 14:55:32 iteration 17306  walltime=0.0651h  Δwalltime=0.0059s  timestep= 0s  day=4.02e-05
+2023/08/09 14:55:34 iteration 17631  walltime=0.0657h  Δwalltime=0.0072s  timestep= 0s  day=4.1e-05
+2023/08/09 14:55:36 iteration 17959  walltime=0.0662h  Δwalltime=0.0058s  timestep= 0s  day=4.17e-05
+2023/08/09 14:55:38 iteration 18290  walltime=0.0668h  Δwalltime=0.0057s  timestep= 0s  day=4.25e-05
+2023/08/09 14:55:40 iteration 18621  walltime=0.0673h  Δwalltime=0.0059s  timestep= 0s  day=4.33e-05
+2023/08/09 14:55:42 iteration 18956  walltime=0.0679h  Δwalltime=0.006s  timestep= 0s  day=4.41e-05
+2023/08/09 14:55:44 iteration 19235  walltime=0.0685h  Δwalltime=0.021s  timestep= 0s  day=4.47e-05
+2023/08/09 14:55:46 iteration 19444  walltime= 0.069h  Δwalltime=0.011s  timestep= 0s  day=4.52e-05
+2023/08/09 14:55:48 iteration 19690  walltime=0.0696h  Δwalltime=0.01s  timestep= 0s  day=4.58e-05
+2023/08/09 14:55:50 iteration 19967  walltime=0.0701h  Δwalltime=0.01s  timestep= 0s  day=4.64e-05
+2023/08/09 14:55:52 iteration 20224  walltime=0.0707h  Δwalltime=0.0093s  timestep= 0s  day=4.7e-05
+2023/08/09 14:55:54 iteration 20488  walltime=0.0712h  Δwalltime=0.01s  timestep= 0s  day=4.76e-05
+2023/08/09 14:55:56 iteration 20747  walltime=0.0718h  Δwalltime=0.011s  timestep= 0s  day=4.82e-05
+2023/08/09 14:55:58 iteration 21000  walltime=0.0723h  Δwalltime=0.01s  timestep= 0s  day=4.88e-05
+2023/08/09 14:56:00 iteration 21274  walltime=0.0729h  Δwalltime=0.0091s  timestep= 0s  day=4.94e-05
+2023/08/09 14:56:02 iteration 21525  walltime=0.0735h  Δwalltime=0.0061s  timestep= 0s  day=5e-05
+2023/08/09 14:56:04 iteration 21762  walltime= 0.074h  Δwalltime=0.011s  timestep= 0s  day=5.06e-05
+2023/08/09 14:56:06 iteration 22029  walltime=0.0746h  Δwalltime=0.01s  timestep= 0s  day=5.12e-05
+2023/08/09 14:56:08 iteration 22284  walltime=0.0751h  Δwalltime=0.011s  timestep= 0s  day=5.18e-05
+2023/08/09 14:56:10 iteration 22545  walltime=0.0757h  Δwalltime=0.0059s  timestep= 0s  day=5.24e-05
+2023/08/09 14:56:12 iteration 22864  walltime=0.0762h  Δwalltime=0.0065s  timestep= 0s  day=5.31e-05
+2023/08/09 14:56:14 iteration 23182  walltime=0.0768h  Δwalltime=0.0062s  timestep= 0s  day=5.39e-05
+2023/08/09 14:56:16 iteration 23448  walltime=0.0773h  Δwalltime=0.015s  timestep= 0s  day=5.45e-05
+2023/08/09 14:56:18 iteration 23736  walltime=0.0779h  Δwalltime=0.0062s  timestep= 0s  day=5.52e-05
+2023/08/09 14:56:20 iteration 24054  walltime=0.0785h  Δwalltime=0.0059s  timestep= 0s  day=5.59e-05
+2023/08/09 14:56:22 iteration 24378  walltime= 0.079h  Δwalltime=0.0061s  timestep= 0s  day=5.67e-05
+2023/08/09 14:56:24 iteration 24695  walltime=0.0796h  Δwalltime=0.0061s  timestep= 0s  day=5.74e-05
+2023/08/09 14:56:26 iteration 25019  walltime=0.0801h  Δwalltime=0.0061s  timestep= 0s  day=5.81e-05
+2023/08/09 14:56:28 iteration 25345  walltime=0.0807h  Δwalltime=0.0061s  timestep= 0s  day=5.89e-05
+2023/08/09 14:56:30 iteration 25658  walltime=0.0812h  Δwalltime=0.006s  timestep= 0s  day=5.96e-05
+2023/08/09 14:56:32 iteration 25981  walltime=0.0818h  Δwalltime=0.0063s  timestep= 0s  day=6.04e-05
+2023/08/09 14:56:34 iteration 26299  walltime=0.0823h  Δwalltime=0.0062s  timestep= 0s  day=6.11e-05
+2023/08/09 14:56:36 iteration 26628  walltime=0.0829h  Δwalltime=0.006s  timestep= 0s  day=6.19e-05
+2023/08/09 14:56:38 iteration 26951  walltime=0.0835h  Δwalltime=0.0061s  timestep= 0s  day=6.26e-05
+2023/08/09 14:56:40 iteration 27279  walltime= 0.084h  Δwalltime=0.0059s  timestep= 0s  day=6.34e-05
+2023/08/09 14:56:42 iteration 27607  walltime=0.0846h  Δwalltime=0.0062s  timestep= 0s  day=6.42e-05
+2023/08/09 14:56:44 iteration 27927  walltime=0.0851h  Δwalltime=0.0061s  timestep= 0s  day=6.49e-05
+2023/08/09 14:56:46 iteration 28241  walltime=0.0857h  Δwalltime=0.0061s  timestep= 0s  day=6.56e-05
+2023/08/09 14:56:48 iteration 28569  walltime=0.0862h  Δwalltime=0.0059s  timestep= 0s  day=6.64e-05
+2023/08/09 14:56:50 iteration 28898  walltime=0.0868h  Δwalltime=0.006s  timestep= 0s  day=6.72e-05
+2023/08/09 14:56:52 iteration 29228  walltime=0.0873h  Δwalltime=0.0062s  timestep= 0s  day=6.79e-05
+2023/08/09 14:56:54 iteration 29556  walltime=0.0879h  Δwalltime=0.006s  timestep= 0s  day=6.87e-05
+2023/08/09 14:56:56 iteration 29885  walltime=0.0885h  Δwalltime=0.0061s  timestep= 0s  day=6.95e-05
+2023/08/09 14:56:58 iteration 30214  walltime= 0.089h  Δwalltime=0.0059s  timestep= 0s  day=7.02e-05
+2023/08/09 14:57:00 iteration 30534  walltime=0.0896h  Δwalltime=0.0062s  timestep= 0s  day=7.1e-05
+2023/08/09 14:57:02 iteration 30791  walltime=0.0901h  Δwalltime=0.0061s  timestep= 0s  day=7.16e-05
+2023/08/09 14:57:04 iteration 31113  walltime=0.0907h  Δwalltime=0.0096s  timestep= 0s  day=7.23e-05
+2023/08/09 14:57:06 iteration 31434  walltime=0.0912h  Δwalltime=0.0059s  timestep= 0s  day=7.31e-05
+2023/08/09 14:57:08 iteration 31760  walltime=0.0918h  Δwalltime=0.0061s  timestep= 0s  day=7.38e-05
+2023/08/09 14:57:10 iteration 32087  walltime=0.0923h  Δwalltime=0.0061s  timestep= 0s  day=7.46e-05
+2023/08/09 14:57:12 iteration 32416  walltime=0.0929h  Δwalltime=0.0061s  timestep= 0s  day=7.53e-05
+2023/08/09 14:57:14 iteration 32737  walltime=0.0935h  Δwalltime=0.0061s  timestep= 0s  day=7.61e-05
+2023/08/09 14:57:16 iteration 33068  walltime= 0.094h  Δwalltime=0.0061s  timestep= 0s  day=7.68e-05
+2023/08/09 14:57:18 iteration 33398  walltime=0.0946h  Δwalltime=0.0061s  timestep= 0s  day=7.76e-05
+2023/08/09 14:57:20 iteration 33726  walltime=0.0951h  Δwalltime=0.0061s  timestep= 0s  day=7.84e-05
+2023/08/09 14:57:22 iteration 34055  walltime=0.0957h  Δwalltime=0.0057s  timestep= 0s  day=7.91e-05
+2023/08/09 14:57:24 iteration 34379  walltime=0.0962h  Δwalltime=0.0059s  timestep= 0s  day=7.99e-05
+2023/08/09 14:57:26 iteration 34705  walltime=0.0968h  Δwalltime=0.0062s  timestep= 0s  day=8.07e-05
+2023/08/09 14:57:28 iteration 35034  walltime=0.0973h  Δwalltime=0.0061s  timestep= 0s  day=8.14e-05
+2023/08/09 14:57:30 iteration 35356  walltime=0.0979h  Δwalltime=0.0062s  timestep= 0s  day=8.22e-05
+2023/08/09 14:57:32 iteration 35681  walltime=0.0985h  Δwalltime=0.0061s  timestep= 0s  day=8.29e-05
+2023/08/09 14:57:34 iteration 36007  walltime= 0.099h  Δwalltime=0.006s  timestep= 0s  day=8.37e-05
+2023/08/09 14:57:36 iteration 36334  walltime=0.0996h  Δwalltime=0.0061s  timestep= 0s  day=8.44e-05
+2023/08/09 14:57:38 iteration 36662  walltime=   0.1h  Δwalltime=0.0061s  timestep= 0s  day=8.52e-05
+2023/08/09 14:57:40 iteration 36991  walltime= 0.101h  Δwalltime=0.0059s  timestep= 0s  day=8.6e-05
+2023/08/09 14:57:42 iteration 37319  walltime= 0.101h  Δwalltime=0.0061s  timestep= 0s  day=8.67e-05
+2023/08/09 14:57:44 iteration 37641  walltime= 0.102h  Δwalltime=0.0058s  timestep= 0s  day=8.75e-05
+2023/08/09 14:57:46 iteration 37863  walltime= 0.102h  Δwalltime=0.0059s  timestep= 0s  day=8.8e-05
+2023/08/09 14:57:48 iteration 38188  walltime= 0.103h  Δwalltime=0.0097s  timestep= 0s  day=8.87e-05
+2023/08/09 14:57:50 iteration 38513  walltime= 0.103h  Δwalltime=0.006s  timestep= 0s  day=8.95e-05
+2023/08/09 14:57:52 iteration 38843  walltime= 0.104h  Δwalltime=0.0061s  timestep= 0s  day=9.03e-05
+2023/08/09 14:57:54 iteration 39171  walltime= 0.105h  Δwalltime=0.0097s  timestep= 0s  day=9.1e-05
+2023/08/09 14:57:56 iteration 39496  walltime= 0.105h  Δwalltime=0.0061s  timestep= 0s  day=9.18e-05
+2023/08/09 14:57:58 iteration 39820  walltime= 0.106h  Δwalltime=0.0061s  timestep= 0s  day=9.25e-05
+2023/08/09 14:58:00 iteration 40143  walltime= 0.106h  Δwalltime=0.0059s  timestep= 0s  day=9.33e-05
+2023/08/09 14:58:02 iteration 40471  walltime= 0.107h  Δwalltime=0.006s  timestep= 0s  day=9.41e-05
+2023/08/09 14:58:04 iteration 40793  walltime= 0.107h  Δwalltime=0.006s  timestep= 0s  day=9.48e-05
+2023/08/09 14:58:06 iteration 41114  walltime= 0.108h  Δwalltime=0.006s  timestep= 0s  day=9.55e-05
+2023/08/09 14:58:08 iteration 41437  walltime= 0.108h  Δwalltime=0.0061s  timestep= 0s  day=9.63e-05
+2023/08/09 14:58:10 iteration 41760  walltime= 0.109h  Δwalltime=0.0063s  timestep= 0s  day=9.7e-05
+2023/08/09 14:58:12 iteration 42085  walltime=  0.11h  Δwalltime=0.0059s  timestep= 0s  day=9.78e-05
+2023/08/09 14:58:14 iteration 42404  walltime=  0.11h  Δwalltime=0.0061s  timestep= 0s  day=9.85e-05
+2023/08/09 14:58:16 iteration 42731  walltime= 0.111h  Δwalltime=0.006s  timestep= 0s  day=9.93e-05
+2023/08/09 14:58:18 iteration 43059  walltime= 0.111h  Δwalltime=0.0061s  timestep= 0s  day=0.0001
+2023/08/09 14:58:20 iteration 43375  walltime= 0.112h  Δwalltime=0.006s  timestep= 0s  day=0.000101
+2023/08/09 14:58:22 iteration 43696  walltime= 0.112h  Δwalltime=0.0061s  timestep= 0s  day=0.000102
+2023/08/09 14:58:24 iteration 44024  walltime= 0.113h  Δwalltime=0.006s  timestep= 0s  day=0.000102
+2023/08/09 14:58:26 iteration 44348  walltime= 0.113h  Δwalltime=0.0062s  timestep= 0s  day=0.000103
+2023/08/09 14:58:28 iteration 44674  walltime= 0.114h  Δwalltime=0.0061s  timestep= 0s  day=0.000104
+2023/08/09 14:58:30 iteration 44992  walltime= 0.115h  Δwalltime=0.0061s  timestep= 0s  day=0.000105
+2023/08/09 14:58:32 iteration 45238  walltime= 0.115h  Δwalltime=0.006s  timestep= 0s  day=0.000105
+2023/08/09 14:58:34 iteration 45559  walltime= 0.116h  Δwalltime=0.0062s  timestep= 0s  day=0.000106
+2023/08/09 14:58:36 iteration 45884  walltime= 0.116h  Δwalltime=0.0062s  timestep= 0s  day=0.000107
+2023/08/09 14:58:38 iteration 46209  walltime= 0.117h  Δwalltime=0.0061s  timestep= 0s  day=0.000107
+2023/08/09 14:58:40 iteration 46536  walltime= 0.117h  Δwalltime=0.0063s  timestep= 0s  day=0.000108
+2023/08/09 14:58:42 iteration 46861  walltime= 0.118h  Δwalltime=0.0061s  timestep= 0s  day=0.000109
+2023/08/09 14:58:44 iteration 47183  walltime= 0.118h  Δwalltime=0.0059s  timestep= 0s  day=0.00011
+2023/08/09 14:58:46 iteration 47506  walltime= 0.119h  Δwalltime=0.0061s  timestep= 0s  day=0.00011
+2023/08/09 14:58:48 iteration 47831  walltime=  0.12h  Δwalltime=0.006s  timestep= 0s  day=0.000111
+2023/08/09 14:58:50 iteration 48145  walltime=  0.12h  Δwalltime=0.006s  timestep= 0s  day=0.000112
+2023/08/09 14:58:52 iteration 48470  walltime= 0.121h  Δwalltime=0.0063s  timestep= 0s  day=0.000113
+2023/08/09 14:58:54 iteration 48789  walltime= 0.121h  Δwalltime=0.0061s  timestep= 0s  day=0.000113
+2023/08/09 14:58:56 iteration 49115  walltime= 0.122h  Δwalltime=0.0062s  timestep= 0s  day=0.000114
+2023/08/09 14:58:58 iteration 49441  walltime= 0.122h  Δwalltime=0.006s  timestep= 0s  day=0.000115
+2023/08/09 14:59:00 iteration 49757  walltime= 0.123h  Δwalltime=0.0059s  timestep= 0s  day=0.000116
+2023/08/09 14:59:02 iteration 50082  walltime= 0.123h  Δwalltime=0.0063s  timestep= 0s  day=0.000116
+2023/08/09 14:59:04 iteration 50399  walltime= 0.124h  Δwalltime=0.006s  timestep= 0s  day=0.000117
+2023/08/09 14:59:06 iteration 50723  walltime= 0.125h  Δwalltime=0.0061s  timestep= 0s  day=0.000118
+2023/08/09 14:59:08 iteration 51045  walltime= 0.125h  Δwalltime=0.0061s  timestep= 0s  day=0.000119
+2023/08/09 14:59:10 iteration 51369  walltime= 0.126h  Δwalltime=0.0062s  timestep= 0s  day=0.000119
+2023/08/09 14:59:12 iteration 51685  walltime= 0.126h  Δwalltime=0.0061s  timestep= 0s  day=0.00012
+2023/08/09 14:59:14 iteration 51998  walltime= 0.127h  Δwalltime=0.0062s  timestep= 0s  day=0.000121
+2023/08/09 14:59:16 iteration 52321  walltime= 0.127h  Δwalltime=0.0062s  timestep= 0s  day=0.000122
+2023/08/09 14:59:18 iteration 52640  walltime= 0.128h  Δwalltime=0.0062s  timestep= 0s  day=0.000122
+2023/08/09 14:59:20 iteration 52961  walltime= 0.128h  Δwalltime=0.0062s  timestep= 0s  day=0.000123
+2023/08/09 14:59:22 iteration 53285  walltime= 0.129h  Δwalltime=0.0061s  timestep= 0s  day=0.000124
+2023/08/09 14:59:24 iteration 53611  walltime=  0.13h  Δwalltime=0.006s  timestep= 0s  day=0.000125
+2023/08/09 14:59:26 iteration 53931  walltime=  0.13h  Δwalltime=0.006s  timestep= 0s  day=0.000125
+2023/08/09 14:59:28 iteration 54257  walltime= 0.131h  Δwalltime=0.0061s  timestep= 0s  day=0.000126
+2023/08/09 14:59:30 iteration 54564  walltime= 0.131h  Δwalltime=0.0061s  timestep= 0s  day=0.000127
+2023/08/09 14:59:32 iteration 54885  walltime= 0.132h  Δwalltime=0.006s  timestep= 0s  day=0.000128
+2023/08/09 14:59:34 iteration 55193  walltime= 0.132h  Δwalltime=0.0066s  timestep= 0s  day=0.000128
+2023/08/09 14:59:36 iteration 55516  walltime= 0.133h  Δwalltime=0.006s  timestep= 0s  day=0.000129
+2023/08/09 14:59:38 iteration 55843  walltime= 0.133h  Δwalltime=0.0062s  timestep= 0s  day=0.00013
+2023/08/09 14:59:40 iteration 56165  walltime= 0.134h  Δwalltime=0.0064s  timestep= 0s  day=0.000131
+2023/08/09 14:59:42 iteration 56489  walltime= 0.135h  Δwalltime=0.0059s  timestep= 0s  day=0.000131
+2023/08/09 14:59:44 iteration 56807  walltime= 0.135h  Δwalltime=0.0062s  timestep= 0s  day=0.000132
+2023/08/09 14:59:46 iteration 57023  walltime= 0.136h  Δwalltime=0.0059s  timestep= 0s  day=0.000133
+2023/08/09 14:59:48 iteration 57347  walltime= 0.136h  Δwalltime=0.006s  timestep= 0s  day=0.000133
+2023/08/09 14:59:50 iteration 57661  walltime= 0.137h  Δwalltime=0.0063s  timestep= 0s  day=0.000134
+2023/08/09 14:59:52 iteration 57986  walltime= 0.137h  Δwalltime=0.0059s  timestep= 0s  day=0.000135
+2023/08/09 14:59:54 iteration 58310  walltime= 0.138h  Δwalltime=0.0063s  timestep= 0s  day=0.000136
+2023/08/09 14:59:56 iteration 58635  walltime= 0.138h  Δwalltime=0.0061s  timestep= 0s  day=0.000136
+2023/08/09 14:59:58 iteration 58959  walltime= 0.139h  Δwalltime=0.006s  timestep= 0s  day=0.000137
+2023/08/09 15:00:00 iteration 59276  walltime=  0.14h  Δwalltime=0.0062s  timestep= 0s  day=0.000138
+2023/08/09 15:00:02 iteration 59524  walltime=  0.14h  Δwalltime=0.0063s  timestep= 0s  day=0.000138
+2023/08/09 15:00:04 iteration 59834  walltime= 0.141h  Δwalltime=0.006s  timestep= 0s  day=0.000139
+2023/08/09 15:00:06 iteration 60161  walltime= 0.141h  Δwalltime=0.0062s  timestep= 0s  day=0.00014
+2023/08/09 15:00:08 iteration 60473  walltime= 0.142h  Δwalltime=0.0062s  timestep= 0s  day=0.000141
+2023/08/09 15:00:10 iteration 60789  walltime= 0.142h  Δwalltime=0.0061s  timestep= 0s  day=0.000141
+2023/08/09 15:00:12 iteration 61108  walltime= 0.143h  Δwalltime=0.0062s  timestep= 0s  day=0.000142
+2023/08/09 15:00:14 iteration 61428  walltime= 0.143h  Δwalltime=0.0059s  timestep= 0s  day=0.000143
+2023/08/09 15:00:16 iteration 61753  walltime= 0.144h  Δwalltime=0.006s  timestep= 0s  day=0.000144
+2023/08/09 15:00:18 iteration 62079  walltime= 0.145h  Δwalltime=0.0061s  timestep= 0s  day=0.000144
+2023/08/09 15:00:20 iteration 62401  walltime= 0.145h  Δwalltime=0.0096s  timestep= 0s  day=0.000145
+2023/08/09 15:00:22 iteration 62722  walltime= 0.146h  Δwalltime=0.0061s  timestep= 0s  day=0.000146
+2023/08/09 15:00:24 iteration 63046  walltime= 0.146h  Δwalltime=0.006s  timestep= 0s  day=0.000147
+2023/08/09 15:00:26 iteration 63355  walltime= 0.147h  Δwalltime=0.0059s  timestep= 0s  day=0.000147
+2023/08/09 15:00:28 iteration 63679  walltime= 0.147h  Δwalltime=0.0062s  timestep= 0s  day=0.000148
+2023/08/09 15:00:30 iteration 64000  walltime= 0.148h  Δwalltime=0.006s  timestep= 0s  day=0.000149
+2023/08/09 15:00:32 iteration 64326  walltime= 0.148h  Δwalltime=0.0062s  timestep= 0s  day=0.000149
+2023/08/09 15:00:34 iteration 64643  walltime= 0.149h  Δwalltime=0.0059s  timestep= 0s  day=0.00015
+2023/08/09 15:00:36 iteration 64951  walltime=  0.15h  Δwalltime=0.006s  timestep= 0s  day=0.000151
+2023/08/09 15:00:38 iteration 65274  walltime=  0.15h  Δwalltime=0.0061s  timestep= 0s  day=0.000152
+2023/08/09 15:00:40 iteration 65599  walltime= 0.151h  Δwalltime=0.0063s  timestep= 0s  day=0.000152
+2023/08/09 15:00:42 iteration 65921  walltime= 0.151h  Δwalltime=0.0062s  timestep= 0s  day=0.000153
+2023/08/09 15:00:44 iteration 66241  walltime= 0.152h  Δwalltime=0.0061s  timestep= 0s  day=0.000154
+2023/08/09 15:00:46 iteration 66556  walltime= 0.152h  Δwalltime=0.006s  timestep= 0s  day=0.000155
+2023/08/09 15:00:48 iteration 66878  walltime= 0.153h  Δwalltime=0.0059s  timestep= 0s  day=0.000155
+2023/08/09 15:00:50 iteration 67197  walltime= 0.153h  Δwalltime=0.0061s  timestep= 0s  day=0.000156
+2023/08/09 15:00:52 iteration 67520  walltime= 0.154h  Δwalltime=0.0063s  timestep= 0s  day=0.000157
+2023/08/09 15:00:54 iteration 67843  walltime= 0.155h  Δwalltime=0.006s  timestep= 0s  day=0.000158
+2023/08/09 15:00:56 iteration 68159  walltime= 0.155h  Δwalltime=0.0095s  timestep= 0s  day=0.000158
+2023/08/09 15:00:58 iteration 68458  walltime= 0.156h  Δwalltime=0.0059s  timestep= 0s  day=0.000159
+2023/08/09 15:01:00 iteration 68775  walltime= 0.156h  Δwalltime=0.0063s  timestep= 0s  day=0.00016
+2023/08/09 15:01:02 iteration 69096  walltime= 0.157h  Δwalltime=0.0063s  timestep= 0s  day=0.000161
+2023/08/09 15:01:04 iteration 69418  walltime= 0.157h  Δwalltime=0.006s  timestep= 0s  day=0.000161
+2023/08/09 15:01:06 iteration 69743  walltime= 0.158h  Δwalltime=0.0061s  timestep= 0s  day=0.000162
+2023/08/09 15:01:08 iteration 70069  walltime= 0.158h  Δwalltime=0.0062s  timestep= 0s  day=0.000163
+2023/08/09 15:01:10 iteration 70393  walltime= 0.159h  Δwalltime=0.01s  timestep= 0s  day=0.000164
+2023/08/09 15:01:12 iteration 70714  walltime=  0.16h  Δwalltime=0.006s  timestep= 0s  day=0.000164
+2023/08/09 15:01:14 iteration 71035  walltime=  0.16h  Δwalltime=0.0063s  timestep= 0s  day=0.000165
+2023/08/09 15:01:16 iteration 71313  walltime= 0.161h  Δwalltime=0.015s  timestep= 0s  day=0.000166
+2023/08/09 15:01:18 iteration 71589  walltime= 0.161h  Δwalltime=0.01s  timestep= 0s  day=0.000166
+2023/08/09 15:01:20 iteration 71888  walltime= 0.162h  Δwalltime=0.014s  timestep= 0s  day=0.000167
+2023/08/09 15:01:22 iteration 72208  walltime= 0.162h  Δwalltime=0.0063s  timestep= 0s  day=0.000168
+2023/08/09 15:01:24 iteration 72533  walltime= 0.163h  Δwalltime=0.0063s  timestep= 0s  day=0.000169
+2023/08/09 15:01:26 iteration 72850  walltime= 0.163h  Δwalltime=0.0061s  timestep= 0s  day=0.000169
+2023/08/09 15:01:28 iteration 73173  walltime= 0.164h  Δwalltime=0.0061s  timestep= 0s  day=0.00017
+2023/08/09 15:01:30 iteration 73494  walltime= 0.165h  Δwalltime=0.006s  timestep= 0s  day=0.000171
+2023/08/09 15:01:32 iteration 73746  walltime= 0.165h  Δwalltime=0.0063s  timestep= 0s  day=0.000171
+2023/08/09 15:01:34 iteration 74063  walltime= 0.166h  Δwalltime=0.006s  timestep= 0s  day=0.000172
+2023/08/09 15:01:36 iteration 74390  walltime= 0.166h  Δwalltime=0.0062s  timestep= 0s  day=0.000173
+2023/08/09 15:01:38 iteration 74701  walltime= 0.167h  Δwalltime=0.006s  timestep= 0s  day=0.000174
+2023/08/09 15:01:40 iteration 75016  walltime= 0.167h  Δwalltime=0.01s  timestep= 0s  day=0.000174
+2023/08/09 15:01:42 iteration 75325  walltime= 0.168h  Δwalltime=0.0059s  timestep= 0s  day=0.000175
+2023/08/09 15:01:44 iteration 75643  walltime= 0.168h  Δwalltime=0.0059s  timestep= 0s  day=0.000176
+2023/08/09 15:01:46 iteration 75871  walltime= 0.169h  Δwalltime=0.011s  timestep= 0s  day=0.000176
+2023/08/09 15:01:48 iteration 76181  walltime=  0.17h  Δwalltime=0.006s  timestep= 0s  day=0.000177
+2023/08/09 15:01:50 iteration 76504  walltime=  0.17h  Δwalltime=0.0096s  timestep= 0s  day=0.000178
+2023/08/09 15:01:52 iteration 76825  walltime= 0.171h  Δwalltime=0.0062s  timestep= 0s  day=0.000179
+2023/08/09 15:01:54 iteration 77150  walltime= 0.171h  Δwalltime=0.006s  timestep= 0s  day=0.000179
+2023/08/09 15:01:56 iteration 77475  walltime= 0.172h  Δwalltime=0.006s  timestep= 0s  day=0.00018
+2023/08/09 15:01:58 iteration 77800  walltime= 0.172h  Δwalltime=0.0061s  timestep= 0s  day=0.000181
+2023/08/09 15:02:00 iteration 78120  walltime= 0.173h  Δwalltime=0.0059s  timestep= 0s  day=0.000182
+2023/08/09 15:02:02 iteration 78442  walltime= 0.173h  Δwalltime=0.0062s  timestep= 0s  day=0.000182
+2023/08/09 15:02:04 iteration 78758  walltime= 0.174h  Δwalltime=0.006s  timestep= 0s  day=0.000183
+2023/08/09 15:02:06 iteration 79084  walltime= 0.175h  Δwalltime=0.0061s  timestep= 0s  day=0.000184
+2023/08/09 15:02:08 iteration 79404  walltime= 0.175h  Δwalltime=0.0061s  timestep= 0s  day=0.000185
+2023/08/09 15:02:10 iteration 79729  walltime= 0.176h  Δwalltime=0.0061s  timestep= 0s  day=0.000185
+2023/08/09 15:02:12 iteration 80053  walltime= 0.176h  Δwalltime=0.0059s  timestep= 0s  day=0.000186
+2023/08/09 15:02:14 iteration 80357  walltime= 0.177h  Δwalltime=0.0061s  timestep= 0s  day=0.000187
+2023/08/09 15:02:16 iteration 80681  walltime= 0.177h  Δwalltime=0.0059s  timestep= 0s  day=0.000188
+2023/08/09 15:02:18 iteration 80986  walltime= 0.178h  Δwalltime=0.01s  timestep= 0s  day=0.000188
+2023/08/09 15:02:20 iteration 81298  walltime= 0.178h  Δwalltime=0.0063s  timestep= 0s  day=0.000189
+2023/08/09 15:02:22 iteration 81625  walltime= 0.179h  Δwalltime=0.006s  timestep= 0s  day=0.00019
+2023/08/09 15:02:24 iteration 81951  walltime=  0.18h  Δwalltime=0.0062s  timestep= 0s  day=0.00019
+2023/08/09 15:02:26 iteration 82276  walltime=  0.18h  Δwalltime=0.006s  timestep= 0s  day=0.000191
+2023/08/09 15:02:28 iteration 82594  walltime= 0.181h  Δwalltime=0.0062s  timestep= 0s  day=0.000192
+2023/08/09 15:02:30 iteration 82913  walltime= 0.181h  Δwalltime=0.0061s  timestep= 0s  day=0.000193
+2023/08/09 15:02:32 iteration 83238  walltime= 0.182h  Δwalltime=0.0062s  timestep= 0s  day=0.000193
+2023/08/09 15:02:34 iteration 83556  walltime= 0.182h  Δwalltime=0.0093s  timestep= 0s  day=0.000194
+2023/08/09 15:02:36 iteration 83878  walltime= 0.183h  Δwalltime=0.0062s  timestep= 0s  day=0.000195
+2023/08/09 15:02:38 iteration 84205  walltime= 0.183h  Δwalltime=0.006s  timestep= 0s  day=0.000196
+2023/08/09 15:02:40 iteration 84528  walltime= 0.184h  Δwalltime=0.006s  timestep= 0s  day=0.000196
+2023/08/09 15:02:42 iteration 84854  walltime= 0.185h  Δwalltime=0.0062s  timestep= 0s  day=0.000197
+2023/08/09 15:02:44 iteration 85175  walltime= 0.185h  Δwalltime=0.0062s  timestep= 0s  day=0.000198
+2023/08/09 15:02:46 iteration 85497  walltime= 0.186h  Δwalltime=0.0063s  timestep= 0s  day=0.000199
+2023/08/09 15:02:48 iteration 85822  walltime= 0.186h  Δwalltime=0.0061s  timestep= 0s  day=0.000199
+2023/08/09 15:02:50 iteration 86146  walltime= 0.187h  Δwalltime=0.0095s  timestep= 0s  day=0.0002
+2023/08/09 15:02:52 iteration 86472  walltime= 0.187h  Δwalltime=0.0062s  timestep= 0s  day=0.000201
+2023/08/09 15:02:54 iteration 86797  walltime= 0.188h  Δwalltime=0.0063s  timestep= 0s  day=0.000202
+2023/08/09 15:02:56 iteration 87119  walltime= 0.188h  Δwalltime=0.0095s  timestep= 0s  day=0.000202
+2023/08/09 15:02:58 iteration 87444  walltime= 0.189h  Δwalltime=0.0062s  timestep= 0s  day=0.000203
+2023/08/09 15:03:00 iteration 87755  walltime=  0.19h  Δwalltime=0.0061s  timestep= 0s  day=0.000204
+2023/08/09 15:03:02 iteration 88003  walltime=  0.19h  Δwalltime=0.0061s  timestep= 0s  day=0.000205
+2023/08/09 15:03:04 iteration 88307  walltime= 0.191h  Δwalltime=0.0063s  timestep= 0s  day=0.000205
+2023/08/09 15:03:06 iteration 88632  walltime= 0.191h  Δwalltime=0.0062s  timestep= 0s  day=0.000206
+2023/08/09 15:03:08 iteration 88958  walltime= 0.192h  Δwalltime=0.0061s  timestep= 0s  day=0.000207
+2023/08/09 15:03:10 iteration 89283  walltime= 0.192h  Δwalltime=0.0061s  timestep= 0s  day=0.000207
+2023/08/09 15:03:12 iteration 89600  walltime= 0.193h  Δwalltime=0.0063s  timestep= 0s  day=0.000208
+2023/08/09 15:03:14 iteration 89919  walltime= 0.193h  Δwalltime=0.0061s  timestep= 0s  day=0.000209
+2023/08/09 15:03:16 iteration 90244  walltime= 0.194h  Δwalltime=0.006s  timestep= 0s  day=0.00021
+2023/08/09 15:03:18 iteration 90555  walltime= 0.195h  Δwalltime=0.0098s  timestep= 0s  day=0.00021
+2023/08/09 15:03:20 iteration 90848  walltime= 0.195h  Δwalltime=0.006s  timestep= 0s  day=0.000211
+2023/08/09 15:03:22 iteration 91172  walltime= 0.196h  Δwalltime=0.0061s  timestep= 0s  day=0.000212
+2023/08/09 15:03:24 iteration 91496  walltime= 0.196h  Δwalltime=0.0063s  timestep= 0s  day=0.000213
+2023/08/09 15:03:26 iteration 91822  walltime= 0.197h  Δwalltime=0.0061s  timestep= 0s  day=0.000213
+2023/08/09 15:03:28 iteration 92145  walltime= 0.197h  Δwalltime=0.0062s  timestep= 0s  day=0.000214
+2023/08/09 15:03:30 iteration 92467  walltime= 0.198h  Δwalltime=0.0059s  timestep= 0s  day=0.000215
+2023/08/09 15:03:32 iteration 92791  walltime= 0.198h  Δwalltime=0.006s  timestep= 0s  day=0.000216
+2023/08/09 15:03:34 iteration 93089  walltime= 0.199h  Δwalltime=0.006s  timestep= 0s  day=0.000216
+2023/08/09 15:03:36 iteration 93384  walltime=   0.2h  Δwalltime=0.0062s  timestep= 0s  day=0.000217
+2023/08/09 15:03:38 iteration 93702  walltime=   0.2h  Δwalltime=0.0063s  timestep= 0s  day=0.000218
+2023/08/09 15:03:40 iteration 94028  walltime= 0.201h  Δwalltime=0.0096s  timestep= 0s  day=0.000219
+2023/08/09 15:03:42 iteration 94352  walltime= 0.201h  Δwalltime=0.0061s  timestep= 0s  day=0.000219
+2023/08/09 15:03:44 iteration 94661  walltime= 0.202h  Δwalltime=0.01s  timestep= 0s  day=0.00022
+2023/08/09 15:03:46 iteration 94925  walltime= 0.202h  Δwalltime=0.01s  timestep= 0s  day=0.000221
+2023/08/09 15:03:48 iteration 95201  walltime= 0.203h  Δwalltime=0.0062s  timestep= 0s  day=0.000221
+2023/08/09 15:03:50 iteration 95524  walltime= 0.203h  Δwalltime=0.0061s  timestep= 0s  day=0.000222
+2023/08/09 15:03:52 iteration 95847  walltime= 0.204h  Δwalltime=0.0059s  timestep= 0s  day=0.000223
+2023/08/09 15:03:54 iteration 96168  walltime= 0.205h  Δwalltime=0.0062s  timestep= 0s  day=0.000223
+2023/08/09 15:03:56 iteration 96473  walltime= 0.205h  Δwalltime=0.0064s  timestep= 0s  day=0.000224
+2023/08/09 15:03:58 iteration 96799  walltime= 0.206h  Δwalltime=0.0062s  timestep= 0s  day=0.000225
+2023/08/09 15:04:00 iteration 97120  walltime= 0.206h  Δwalltime=0.006s  timestep= 0s  day=0.000226
+2023/08/09 15:04:02 iteration 97440  walltime= 0.207h  Δwalltime=0.0099s  timestep= 0s  day=0.000226
+2023/08/09 15:04:04 iteration 97757  walltime= 0.207h  Δwalltime=0.0062s  timestep= 0s  day=0.000227
+2023/08/09 15:04:06 iteration 98080  walltime= 0.208h  Δwalltime=0.0062s  timestep= 0s  day=0.000228
+2023/08/09 15:04:08 iteration 98392  walltime= 0.208h  Δwalltime=0.0061s  timestep= 0s  day=0.000229
+2023/08/09 15:04:10 iteration 98719  walltime= 0.209h  Δwalltime=0.0062s  timestep= 0s  day=0.000229
+2023/08/09 15:04:12 iteration 99044  walltime=  0.21h  Δwalltime=0.0062s  timestep= 0s  day=0.00023
+2023/08/09 15:04:14 iteration 99365  walltime=  0.21h  Δwalltime=0.0062s  timestep= 0s  day=0.000231
+2023/08/09 15:04:16 iteration 99691  walltime= 0.211h  Δwalltime=0.0059s  timestep= 0s  day=0.000232
+2023/08/09 15:04:18 iteration 100000  walltime= 0.211h  Δwalltime=0.0062s  timestep= 0s  day=0.000232
+2023/08/09 15:04:20 iteration 100325  walltime= 0.212h  Δwalltime=0.0062s  timestep= 0s  day=0.000233
+2023/08/09 15:04:22 iteration 100648  walltime= 0.212h  Δwalltime=0.0062s  timestep= 0s  day=0.000234
+2023/08/09 15:04:24 iteration 100973  walltime= 0.213h  Δwalltime=0.0059s  timestep= 0s  day=0.000235
+2023/08/09 15:04:26 iteration 101299  walltime= 0.213h  Δwalltime=0.0064s  timestep= 0s  day=0.000235
+2023/08/09 15:04:28 iteration 101626  walltime= 0.214h  Δwalltime=0.0061s  timestep= 0s  day=0.000236
+2023/08/09 15:04:30 iteration 101947  walltime= 0.215h  Δwalltime=0.0062s  timestep= 0s  day=0.000237
+2023/08/09 15:04:32 iteration 102197  walltime= 0.215h  Δwalltime=0.0061s  timestep= 0s  day=0.000238
+2023/08/09 15:04:34 iteration 102491  walltime= 0.216h  Δwalltime=0.0063s  timestep= 0s  day=0.000238
+2023/08/09 15:04:36 iteration 102817  walltime= 0.216h  Δwalltime=0.0061s  timestep= 0s  day=0.000239
+2023/08/09 15:04:38 iteration 103143  walltime= 0.217h  Δwalltime=0.006s  timestep= 0s  day=0.00024
+2023/08/09 15:04:40 iteration 103468  walltime= 0.217h  Δwalltime=0.0063s  timestep= 0s  day=0.00024
+2023/08/09 15:04:42 iteration 103794  walltime= 0.218h  Δwalltime=0.0063s  timestep= 0s  day=0.000241
+2023/08/09 15:04:44 iteration 104114  walltime= 0.218h  Δwalltime=0.0059s  timestep= 0s  day=0.000242
+2023/08/09 15:04:46 iteration 104441  walltime= 0.219h  Δwalltime=0.0061s  timestep= 0s  day=0.000243
+2023/08/09 15:04:48 iteration 104767  walltime=  0.22h  Δwalltime=0.0061s  timestep= 0s  day=0.000243
+2023/08/09 15:04:50 iteration 105080  walltime=  0.22h  Δwalltime=0.006s  timestep= 0s  day=0.000244
+2023/08/09 15:04:52 iteration 105406  walltime= 0.221h  Δwalltime=0.006s  timestep= 0s  day=0.000245
+2023/08/09 15:04:54 iteration 105733  walltime= 0.221h  Δwalltime=0.006s  timestep= 0s  day=0.000246
+2023/08/09 15:04:56 iteration 106060  walltime= 0.222h  Δwalltime=0.0063s  timestep= 0s  day=0.000246
+2023/08/09 15:04:58 iteration 106386  walltime= 0.222h  Δwalltime=0.0062s  timestep= 0s  day=0.000247
+2023/08/09 15:05:00 iteration 106705  walltime= 0.223h  Δwalltime=0.0094s  timestep= 0s  day=0.000248
+2023/08/09 15:05:02 iteration 107028  walltime= 0.223h  Δwalltime=0.0061s  timestep= 0s  day=0.000249
+2023/08/09 15:05:04 iteration 107346  walltime= 0.224h  Δwalltime=0.006s  timestep= 0s  day=0.000249
+2023/08/09 15:05:06 iteration 107673  walltime= 0.225h  Δwalltime=0.0061s  timestep= 0s  day=0.00025
+2023/08/09 15:05:08 iteration 107999  walltime= 0.225h  Δwalltime=0.006s  timestep= 0s  day=0.000251
+2023/08/09 15:05:10 iteration 108314  walltime= 0.226h  Δwalltime=0.0059s  timestep= 0s  day=0.000252
+2023/08/09 15:05:12 iteration 108638  walltime= 0.226h  Δwalltime=0.0062s  timestep= 0s  day=0.000252
+2023/08/09 15:05:14 iteration 108959  walltime= 0.227h  Δwalltime=0.0059s  timestep= 0s  day=0.000253
+2023/08/09 15:05:16 iteration 109276  walltime= 0.227h  Δwalltime=0.0061s  timestep= 0s  day=0.000254
+2023/08/09 15:05:18 iteration 109603  walltime= 0.228h  Δwalltime=0.006s  timestep= 0s  day=0.000255
+2023/08/09 15:05:20 iteration 109927  walltime= 0.228h  Δwalltime=0.006s  timestep= 0s  day=0.000255
+2023/08/09 15:05:22 iteration 110254  walltime= 0.229h  Δwalltime=0.0059s  timestep= 0s  day=0.000256
+2023/08/09 15:05:24 iteration 110580  walltime=  0.23h  Δwalltime=0.0059s  timestep= 0s  day=0.000257
+2023/08/09 15:05:26 iteration 110897  walltime=  0.23h  Δwalltime=0.0059s  timestep= 0s  day=0.000258
+2023/08/09 15:05:28 iteration 111201  walltime= 0.231h  Δwalltime=0.0062s  timestep= 0s  day=0.000258
+2023/08/09 15:05:30 iteration 111521  walltime= 0.231h  Δwalltime=0.0063s  timestep= 0s  day=0.000259
+2023/08/09 15:05:32 iteration 111845  walltime= 0.232h  Δwalltime=0.0062s  timestep= 0s  day=0.00026
+2023/08/09 15:05:34 iteration 112164  walltime= 0.232h  Δwalltime=0.0062s  timestep= 0s  day=0.000261
+2023/08/09 15:05:36 iteration 112489  walltime= 0.233h  Δwalltime=0.0061s  timestep= 0s  day=0.000261
+2023/08/09 15:05:38 iteration 112816  walltime= 0.233h  Δwalltime=0.0062s  timestep= 0s  day=0.000262
+2023/08/09 15:05:40 iteration 113140  walltime= 0.234h  Δwalltime=0.0062s  timestep= 0s  day=0.000263
+2023/08/09 15:05:42 iteration 113463  walltime= 0.235h  Δwalltime=0.006s  timestep= 0s  day=0.000264
+2023/08/09 15:05:44 iteration 113785  walltime= 0.235h  Δwalltime=0.0061s  timestep= 0s  day=0.000264
+2023/08/09 15:05:46 iteration 114096  walltime= 0.236h  Δwalltime=0.025s  timestep= 0s  day=0.000265
+2023/08/09 15:05:48 iteration 114319  walltime= 0.236h  Δwalltime=0.0061s  timestep= 0s  day=0.000266
+2023/08/09 15:05:50 iteration 114640  walltime= 0.237h  Δwalltime=0.0062s  timestep= 0s  day=0.000266
+2023/08/09 15:05:52 iteration 114962  walltime= 0.237h  Δwalltime=0.006s  timestep= 0s  day=0.000267
+2023/08/09 15:05:54 iteration 115287  walltime= 0.238h  Δwalltime=0.0061s  timestep= 0s  day=0.000268
+2023/08/09 15:05:56 iteration 115607  walltime= 0.238h  Δwalltime=0.0097s  timestep= 0s  day=0.000269
+2023/08/09 15:05:58 iteration 115927  walltime= 0.239h  Δwalltime=0.006s  timestep= 0s  day=0.000269
+2023/08/09 15:06:00 iteration 116245  walltime=  0.24h  Δwalltime=0.0059s  timestep= 0s  day=0.00027
+2023/08/09 15:06:02 iteration 116490  walltime=  0.24h  Δwalltime=0.0063s  timestep= 0s  day=0.000271
+2023/08/09 15:06:04 iteration 116810  walltime= 0.241h  Δwalltime=0.0061s  timestep= 0s  day=0.000271
+2023/08/09 15:06:06 iteration 117135  walltime= 0.241h  Δwalltime=0.009s  timestep= 0s  day=0.000272
+2023/08/09 15:06:08 iteration 117456  walltime= 0.242h  Δwalltime=0.0061s  timestep= 0s  day=0.000273
+2023/08/09 15:06:10 iteration 117782  walltime= 0.242h  Δwalltime=0.006s  timestep= 0s  day=0.000274
+2023/08/09 15:06:12 iteration 118108  walltime= 0.243h  Δwalltime=0.006s  timestep= 0s  day=0.000274
+2023/08/09 15:06:14 iteration 118428  walltime= 0.243h  Δwalltime=0.0062s  timestep= 0s  day=0.000275
+2023/08/09 15:06:16 iteration 118683  walltime= 0.244h  Δwalltime=0.0062s  timestep= 0s  day=0.000276
+2023/08/09 15:06:18 iteration 119005  walltime= 0.245h  Δwalltime=0.0059s  timestep= 0s  day=0.000277
+2023/08/09 15:06:20 iteration 119321  walltime= 0.245h  Δwalltime=0.0062s  timestep= 0s  day=0.000277
+2023/08/09 15:06:22 iteration 119643  walltime= 0.246h  Δwalltime=0.006s  timestep= 0s  day=0.000278
+2023/08/09 15:06:24 iteration 119952  walltime= 0.246h  Δwalltime=0.0059s  timestep= 0s  day=0.000279
+2023/08/09 15:06:26 iteration 120279  walltime= 0.247h  Δwalltime=0.0059s  timestep= 0s  day=0.00028
+2023/08/09 15:06:28 iteration 120605  walltime= 0.247h  Δwalltime=0.006s  timestep= 0s  day=0.00028
+2023/08/09 15:06:30 iteration 120917  walltime= 0.248h  Δwalltime=0.0063s  timestep= 0s  day=0.000281
+2023/08/09 15:06:32 iteration 121241  walltime= 0.248h  Δwalltime=0.0061s  timestep= 0s  day=0.000282
+2023/08/09 15:06:34 iteration 121562  walltime= 0.249h  Δwalltime=0.006s  timestep= 0s  day=0.000283
+2023/08/09 15:06:36 iteration 121887  walltime=  0.25h  Δwalltime=0.0059s  timestep= 0s  day=0.000283
+2023/08/09 15:06:38 iteration 122210  walltime=  0.25h  Δwalltime=0.0059s  timestep= 0s  day=0.000284
+2023/08/09 15:06:40 iteration 122534  walltime= 0.251h  Δwalltime=0.0062s  timestep= 0s  day=0.000285
+2023/08/09 15:06:42 iteration 122854  walltime= 0.251h  Δwalltime=0.0061s  timestep= 0s  day=0.000286
+2023/08/09 15:06:44 iteration 123169  walltime= 0.252h  Δwalltime=0.0062s  timestep= 0s  day=0.000286
+2023/08/09 15:06:46 iteration 123496  walltime= 0.252h  Δwalltime=0.0062s  timestep= 0s  day=0.000287
+2023/08/09 15:06:48 iteration 123820  walltime= 0.253h  Δwalltime=0.0061s  timestep= 0s  day=0.000288
+2023/08/09 15:06:50 iteration 124136  walltime= 0.253h  Δwalltime=0.0061s  timestep= 0s  day=0.000288
+2023/08/09 15:06:52 iteration 124461  walltime= 0.254h  Δwalltime=0.006s  timestep= 0s  day=0.000289
+2023/08/09 15:06:54 iteration 124784  walltime= 0.255h  Δwalltime=0.0063s  timestep= 0s  day=0.00029
+2023/08/09 15:06:56 iteration 125110  walltime= 0.255h  Δwalltime=0.0062s  timestep= 0s  day=0.000291
+2023/08/09 15:06:58 iteration 125436  walltime= 0.256h  Δwalltime=0.0061s  timestep= 0s  day=0.000292
+2023/08/09 15:07:00 iteration 125753  walltime= 0.256h  Δwalltime=0.0062s  timestep= 0s  day=0.000292
+2023/08/09 15:07:02 iteration 126079  walltime= 0.257h  Δwalltime=0.0059s  timestep= 0s  day=0.000293
+2023/08/09 15:07:04 iteration 126397  walltime= 0.257h  Δwalltime=0.0059s  timestep= 0s  day=0.000294
+2023/08/09 15:07:06 iteration 126720  walltime= 0.258h  Δwalltime=0.0062s  timestep= 0s  day=0.000294
+2023/08/09 15:07:08 iteration 127041  walltime= 0.258h  Δwalltime=0.0062s  timestep= 0s  day=0.000295
+2023/08/09 15:07:10 iteration 127367  walltime= 0.259h  Δwalltime=0.0063s  timestep= 0s  day=0.000296
+2023/08/09 15:07:12 iteration 127690  walltime=  0.26h  Δwalltime=0.0061s  timestep= 0s  day=0.000297
+2023/08/09 15:07:14 iteration 128010  walltime=  0.26h  Δwalltime=0.0063s  timestep= 0s  day=0.000297
+2023/08/09 15:07:16 iteration 128334  walltime= 0.261h  Δwalltime=0.006s  timestep= 0s  day=0.000298
+2023/08/09 15:07:18 iteration 128657  walltime= 0.261h  Δwalltime=0.0063s  timestep= 0s  day=0.000299
+2023/08/09 15:07:20 iteration 128981  walltime= 0.262h  Δwalltime=0.006s  timestep= 0s  day=0.0003
+2023/08/09 15:07:22 iteration 129308  walltime= 0.262h  Δwalltime=0.0062s  timestep= 0s  day=0.000301
+2023/08/09 15:07:24 iteration 129629  walltime= 0.263h  Δwalltime=0.0063s  timestep= 0s  day=0.000301
+2023/08/09 15:07:26 iteration 129953  walltime= 0.263h  Δwalltime=0.0061s  timestep= 0s  day=0.000302
+2023/08/09 15:07:28 iteration 130279  walltime= 0.264h  Δwalltime=0.0061s  timestep= 0s  day=0.000303
+2023/08/09 15:07:30 iteration 130589  walltime= 0.265h  Δwalltime=0.0059s  timestep= 0s  day=0.000303
+2023/08/09 15:07:32 iteration 130838  walltime= 0.265h  Δwalltime=0.006s  timestep= 0s  day=0.000304
+2023/08/09 15:07:34 iteration 131156  walltime= 0.266h  Δwalltime=0.006s  timestep= 0s  day=0.000305
+2023/08/09 15:07:36 iteration 131481  walltime= 0.266h  Δwalltime=0.0061s  timestep= 0s  day=0.000306
+2023/08/09 15:07:38 iteration 131804  walltime= 0.267h  Δwalltime=0.006s  timestep= 0s  day=0.000306
+2023/08/09 15:07:40 iteration 132130  walltime= 0.267h  Δwalltime=0.0062s  timestep= 0s  day=0.000307
+2023/08/09 15:07:42 iteration 132457  walltime= 0.268h  Δwalltime=0.0062s  timestep= 0s  day=0.000308
+2023/08/09 15:07:44 iteration 132778  walltime= 0.268h  Δwalltime=0.006s  timestep= 0s  day=0.000309
+2023/08/09 15:07:46 iteration 133104  walltime= 0.269h  Δwalltime=0.0061s  timestep= 0s  day=0.000309
+2023/08/09 15:07:48 iteration 133322  walltime=  0.27h  Δwalltime=0.0062s  timestep= 0s  day=0.00031
+2023/08/09 15:07:50 iteration 133647  walltime=  0.27h  Δwalltime=0.0061s  timestep= 0s  day=0.000311
+2023/08/09 15:07:52 iteration 133967  walltime= 0.271h  Δwalltime=0.006s  timestep= 0s  day=0.000311
+2023/08/09 15:07:54 iteration 134289  walltime= 0.271h  Δwalltime=0.0063s  timestep= 0s  day=0.000312
+2023/08/09 15:07:56 iteration 134600  walltime= 0.272h  Δwalltime=0.0062s  timestep= 0s  day=0.000313
+2023/08/09 15:07:58 iteration 134926  walltime= 0.272h  Δwalltime=0.0062s  timestep= 0s  day=0.000314
+2023/08/09 15:08:00 iteration 135246  walltime= 0.273h  Δwalltime=0.0061s  timestep= 0s  day=0.000314
+2023/08/09 15:08:02 iteration 135562  walltime= 0.273h  Δwalltime=0.011s  timestep= 0s  day=0.000315
+2023/08/09 15:08:04 iteration 135883  walltime= 0.274h  Δwalltime=0.0061s  timestep= 0s  day=0.000316
+2023/08/09 15:08:06 iteration 136209  walltime= 0.275h  Δwalltime=0.0061s  timestep= 0s  day=0.000317
+2023/08/09 15:08:08 iteration 136529  walltime= 0.275h  Δwalltime=0.006s  timestep= 0s  day=0.000317
+2023/08/09 15:08:10 iteration 136855  walltime= 0.276h  Δwalltime=0.0062s  timestep= 0s  day=0.000318
+2023/08/09 15:08:12 iteration 137179  walltime= 0.276h  Δwalltime=0.006s  timestep= 0s  day=0.000319
+2023/08/09 15:08:14 iteration 137501  walltime= 0.277h  Δwalltime=0.0062s  timestep= 0s  day=0.00032
+2023/08/09 15:08:16 iteration 137823  walltime= 0.277h  Δwalltime=0.0061s  timestep= 0s  day=0.00032
+2023/08/09 15:08:18 iteration 138150  walltime= 0.278h  Δwalltime=0.0061s  timestep= 0s  day=0.000321
+2023/08/09 15:08:20 iteration 138466  walltime= 0.278h  Δwalltime=0.0094s  timestep= 0s  day=0.000322
+2023/08/09 15:08:22 iteration 138789  walltime= 0.279h  Δwalltime=0.006s  timestep= 0s  day=0.000323
+2023/08/09 15:08:24 iteration 139090  walltime=  0.28h  Δwalltime=0.0063s  timestep= 0s  day=0.000323
+2023/08/09 15:08:26 iteration 139415  walltime=  0.28h  Δwalltime=0.0063s  timestep= 0s  day=0.000324
+2023/08/09 15:08:28 iteration 139738  walltime= 0.281h  Δwalltime=0.0062s  timestep= 0s  day=0.000325
+2023/08/09 15:08:30 iteration 140059  walltime= 0.281h  Δwalltime=0.0095s  timestep= 0s  day=0.000325
+2023/08/09 15:08:32 iteration 140377  walltime= 0.282h  Δwalltime=0.0062s  timestep= 0s  day=0.000326
+2023/08/09 15:08:34 iteration 140693  walltime= 0.282h  Δwalltime=0.0059s  timestep= 0s  day=0.000327
+2023/08/09 15:08:36 iteration 141012  walltime= 0.283h  Δwalltime=0.006s  timestep= 0s  day=0.000328
+2023/08/09 15:08:38 iteration 141339  walltime= 0.283h  Δwalltime=0.0063s  timestep= 0s  day=0.000328
+2023/08/09 15:08:40 iteration 141652  walltime= 0.284h  Δwalltime=0.0061s  timestep= 0s  day=0.000329
+2023/08/09 15:08:42 iteration 141977  walltime= 0.285h  Δwalltime=0.0062s  timestep= 0s  day=0.00033
+2023/08/09 15:08:44 iteration 142297  walltime= 0.285h  Δwalltime=0.006s  timestep= 0s  day=0.000331
+2023/08/09 15:08:46 iteration 142615  walltime= 0.286h  Δwalltime=0.0062s  timestep= 0s  day=0.000331
+2023/08/09 15:08:48 iteration 142941  walltime= 0.286h  Δwalltime=0.0062s  timestep= 0s  day=0.000332
+2023/08/09 15:08:50 iteration 143264  walltime= 0.287h  Δwalltime=0.006s  timestep= 0s  day=0.000333
+2023/08/09 15:08:52 iteration 143590  walltime= 0.287h  Δwalltime=0.0061s  timestep= 0s  day=0.000334
+2023/08/09 15:08:54 iteration 143917  walltime= 0.288h  Δwalltime=0.0061s  timestep= 0s  day=0.000334
+2023/08/09 15:08:56 iteration 144243  walltime= 0.288h  Δwalltime=0.006s  timestep= 0s  day=0.000335
+2023/08/09 15:08:58 iteration 144565  walltime= 0.289h  Δwalltime=0.0062s  timestep= 0s  day=0.000336
+2023/08/09 15:09:00 iteration 144882  walltime=  0.29h  Δwalltime=0.0063s  timestep= 0s  day=0.000337
+2023/08/09 15:09:02 iteration 145131  walltime=  0.29h  Δwalltime=0.0062s  timestep= 0s  day=0.000337
+2023/08/09 15:09:04 iteration 145454  walltime= 0.291h  Δwalltime=0.0059s  timestep= 0s  day=0.000338
+2023/08/09 15:09:06 iteration 145781  walltime= 0.291h  Δwalltime=0.0061s  timestep= 0s  day=0.000339
+2023/08/09 15:09:08 iteration 146099  walltime= 0.292h  Δwalltime=0.006s  timestep= 0s  day=0.00034
+2023/08/09 15:09:10 iteration 146422  walltime= 0.292h  Δwalltime=0.0062s  timestep= 0s  day=0.00034
+2023/08/09 15:09:12 iteration 146739  walltime= 0.293h  Δwalltime=0.0061s  timestep= 0s  day=0.000341
+2023/08/09 15:09:14 iteration 147061  walltime= 0.293h  Δwalltime=0.0063s  timestep= 0s  day=0.000342
+2023/08/09 15:09:16 iteration 147372  walltime= 0.294h  Δwalltime=0.0081s  timestep= 0s  day=0.000342
+2023/08/09 15:09:18 iteration 147690  walltime= 0.295h  Δwalltime=0.0061s  timestep= 0s  day=0.000343
+2023/08/09 15:09:20 iteration 148003  walltime= 0.295h  Δwalltime=0.006s  timestep= 0s  day=0.000344
+2023/08/09 15:09:22 iteration 148329  walltime= 0.296h  Δwalltime=0.006s  timestep= 0s  day=0.000345
+2023/08/09 15:09:24 iteration 148655  walltime= 0.296h  Δwalltime=0.0062s  timestep= 0s  day=0.000345
+2023/08/09 15:09:26 iteration 148981  walltime= 0.297h  Δwalltime=0.006s  timestep= 0s  day=0.000346
+2023/08/09 15:09:28 iteration 149300  walltime= 0.297h  Δwalltime=0.006s  timestep= 0s  day=0.000347
+2023/08/09 15:09:30 iteration 149621  walltime= 0.298h  Δwalltime=0.0095s  timestep= 0s  day=0.000348
+2023/08/09 15:09:32 iteration 149939  walltime= 0.298h  Δwalltime=0.0062s  timestep= 0s  day=0.000348
+2023/08/09 15:09:34 iteration 150258  walltime= 0.299h  Δwalltime=0.0095s  timestep= 0s  day=0.000349
+2023/08/09 15:09:36 iteration 150577  walltime=   0.3h  Δwalltime=0.0062s  timestep= 0s  day=0.00035
+2023/08/09 15:09:38 iteration 150904  walltime=   0.3h  Δwalltime=0.0061s  timestep= 0s  day=0.000351
+2023/08/09 15:09:40 iteration 151207  walltime= 0.301h  Δwalltime=0.0063s  timestep= 0s  day=0.000351
+2023/08/09 15:09:42 iteration 151528  walltime= 0.301h  Δwalltime=0.0059s  timestep= 0s  day=0.000352
+2023/08/09 15:09:44 iteration 151849  walltime= 0.302h  Δwalltime=0.0063s  timestep= 0s  day=0.000353
+2023/08/09 15:09:46 iteration 152177  walltime= 0.302h  Δwalltime=0.0064s  timestep= 0s  day=0.000354
+2023/08/09 15:09:48 iteration 152397  walltime= 0.303h  Δwalltime=0.011s  timestep= 0s  day=0.000354
+2023/08/09 15:09:50 iteration 152711  walltime= 0.303h  Δwalltime=0.0062s  timestep= 0s  day=0.000355
+2023/08/09 15:09:52 iteration 153034  walltime= 0.304h  Δwalltime=0.0059s  timestep= 0s  day=0.000356
+2023/08/09 15:09:54 iteration 153355  walltime= 0.305h  Δwalltime=0.0063s  timestep= 0s  day=0.000356
+2023/08/09 15:09:56 iteration 153673  walltime= 0.305h  Δwalltime=0.0061s  timestep= 0s  day=0.000357
+2023/08/09 15:09:58 iteration 154000  walltime= 0.306h  Δwalltime=0.0063s  timestep= 0s  day=0.000358
+2023/08/09 15:10:00 iteration 154317  walltime= 0.306h  Δwalltime=0.006s  timestep= 0s  day=0.000359
+2023/08/09 15:10:02 iteration 154634  walltime= 0.307h  Δwalltime=0.0062s  timestep= 0s  day=0.000359
+2023/08/09 15:10:04 iteration 154956  walltime= 0.307h  Δwalltime=0.0062s  timestep= 0s  day=0.00036
+2023/08/09 15:10:06 iteration 155284  walltime= 0.308h  Δwalltime=0.0098s  timestep= 0s  day=0.000361
+2023/08/09 15:10:08 iteration 155597  walltime= 0.308h  Δwalltime=0.006s  timestep= 0s  day=0.000362
+2023/08/09 15:10:10 iteration 155916  walltime= 0.309h  Δwalltime=0.0062s  timestep= 0s  day=0.000362
+2023/08/09 15:10:12 iteration 156236  walltime=  0.31h  Δwalltime=0.0086s  timestep= 0s  day=0.000363
+2023/08/09 15:10:14 iteration 156556  walltime=  0.31h  Δwalltime=0.0061s  timestep= 0s  day=0.000364
+2023/08/09 15:10:16 iteration 156880  walltime= 0.311h  Δwalltime=0.006s  timestep= 0s  day=0.000365
+2023/08/09 15:10:18 iteration 157206  walltime= 0.311h  Δwalltime=0.0062s  timestep= 0s  day=0.000365
+2023/08/09 15:10:20 iteration 157527  walltime= 0.312h  Δwalltime=0.006s  timestep= 0s  day=0.000366
+2023/08/09 15:10:22 iteration 157853  walltime= 0.312h  Δwalltime=0.006s  timestep= 0s  day=0.000367
+2023/08/09 15:10:24 iteration 158180  walltime= 0.313h  Δwalltime=0.0063s  timestep= 0s  day=0.000368
+2023/08/09 15:10:26 iteration 158497  walltime= 0.313h  Δwalltime=0.01s  timestep= 0s  day=0.000368
+2023/08/09 15:10:28 iteration 158809  walltime= 0.314h  Δwalltime=0.006s  timestep= 0s  day=0.000369
+2023/08/09 15:10:30 iteration 159130  walltime= 0.315h  Δwalltime=0.0062s  timestep= 0s  day=0.00037
+2023/08/09 15:10:32 iteration 159380  walltime= 0.315h  Δwalltime=0.0062s  timestep= 0s  day=0.00037
+2023/08/09 15:10:34 iteration 159703  walltime= 0.316h  Δwalltime=0.0062s  timestep= 0s  day=0.000371
+2023/08/09 15:10:36 iteration 160021  walltime= 0.316h  Δwalltime=0.0061s  timestep= 0s  day=0.000372
+2023/08/09 15:10:38 iteration 160348  walltime= 0.317h  Δwalltime=0.006s  timestep= 0s  day=0.000373
+2023/08/09 15:10:40 iteration 160671  walltime= 0.317h  Δwalltime=0.0062s  timestep= 0s  day=0.000373
+2023/08/09 15:10:42 iteration 160998  walltime= 0.318h  Δwalltime=0.006s  timestep= 0s  day=0.000374
+2023/08/09 15:10:44 iteration 161318  walltime= 0.318h  Δwalltime=0.0061s  timestep= 0s  day=0.000375
+2023/08/09 15:10:46 iteration 161634  walltime= 0.319h  Δwalltime=0.006s  timestep= 0s  day=0.000376
+2023/08/09 15:10:48 iteration 161962  walltime=  0.32h  Δwalltime=0.006s  timestep= 0s  day=0.000376
+2023/08/09 15:10:50 iteration 162287  walltime=  0.32h  Δwalltime=0.0061s  timestep= 0s  day=0.000377
+2023/08/09 15:10:52 iteration 162611  walltime= 0.321h  Δwalltime=0.0062s  timestep= 0s  day=0.000378
+2023/08/09 15:10:54 iteration 162936  walltime= 0.321h  Δwalltime=0.0059s  timestep= 0s  day=0.000379
+2023/08/09 15:10:56 iteration 163262  walltime= 0.322h  Δwalltime=0.0061s  timestep= 0s  day=0.000379
+2023/08/09 15:10:58 iteration 163576  walltime= 0.322h  Δwalltime=0.0061s  timestep= 0s  day=0.00038
+2023/08/09 15:11:00 iteration 163898  walltime= 0.323h  Δwalltime=0.006s  timestep= 0s  day=0.000381
+2023/08/09 15:11:02 iteration 164225  walltime= 0.323h  Δwalltime=0.0062s  timestep= 0s  day=0.000382
+2023/08/09 15:11:04 iteration 164536  walltime= 0.324h  Δwalltime=0.0059s  timestep= 0s  day=0.000382
+2023/08/09 15:11:06 iteration 164863  walltime= 0.325h  Δwalltime=0.0061s  timestep= 0s  day=0.000383
+2023/08/09 15:11:08 iteration 165190  walltime= 0.325h  Δwalltime=0.0061s  timestep= 0s  day=0.000384
+2023/08/09 15:11:10 iteration 165518  walltime= 0.326h  Δwalltime=0.0062s  timestep= 0s  day=0.000385
+2023/08/09 15:11:12 iteration 165846  walltime= 0.326h  Δwalltime=0.006s  timestep= 0s  day=0.000385
+2023/08/09 15:11:14 iteration 166168  walltime= 0.327h  Δwalltime=0.0061s  timestep= 0s  day=0.000386
+2023/08/09 15:11:16 iteration 166494  walltime= 0.327h  Δwalltime=0.0062s  timestep= 0s  day=0.000387
+2023/08/09 15:11:18 iteration 166749  walltime= 0.328h  Δwalltime=0.006s  timestep= 0s  day=0.000388
+2023/08/09 15:11:20 iteration 167070  walltime= 0.328h  Δwalltime=0.006s  timestep= 0s  day=0.000388
+2023/08/09 15:11:22 iteration 167391  walltime= 0.329h  Δwalltime=0.0098s  timestep= 0s  day=0.000389
+2023/08/09 15:11:24 iteration 167717  walltime=  0.33h  Δwalltime=0.0061s  timestep= 0s  day=0.00039
+2023/08/09 15:11:26 iteration 168041  walltime=  0.33h  Δwalltime=0.0061s  timestep= 0s  day=0.000391
+2023/08/09 15:11:28 iteration 168365  walltime= 0.331h  Δwalltime=0.0059s  timestep= 0s  day=0.000391
+2023/08/09 15:11:30 iteration 168685  walltime= 0.331h  Δwalltime=0.0061s  timestep= 0s  day=0.000392
+2023/08/09 15:11:32 iteration 169010  walltime= 0.332h  Δwalltime=0.0061s  timestep= 0s  day=0.000393
+2023/08/09 15:11:34 iteration 169332  walltime= 0.332h  Δwalltime=0.0062s  timestep= 0s  day=0.000394
+2023/08/09 15:11:36 iteration 169658  walltime= 0.333h  Δwalltime=0.006s  timestep= 0s  day=0.000394
+2023/08/09 15:11:38 iteration 169985  walltime= 0.333h  Δwalltime=0.0061s  timestep= 0s  day=0.000395
+2023/08/09 15:11:40 iteration 170310  walltime= 0.334h  Δwalltime=0.0061s  timestep= 0s  day=0.000396
+2023/08/09 15:11:42 iteration 170627  walltime= 0.335h  Δwalltime=0.0061s  timestep= 0s  day=0.000397
+2023/08/09 15:11:44 iteration 170948  walltime= 0.335h  Δwalltime=0.006s  timestep= 0s  day=0.000397
+2023/08/09 15:11:46 iteration 171275  walltime= 0.336h  Δwalltime=0.0062s  timestep= 0s  day=0.000398
+2023/08/09 15:11:48 iteration 171524  walltime= 0.336h  Δwalltime=0.01s  timestep= 0s  day=0.000399
+2023/08/09 15:11:50 iteration 171809  walltime= 0.337h  Δwalltime=0.0061s  timestep= 0s  day=0.000399
+2023/08/09 15:11:52 iteration 172134  walltime= 0.337h  Δwalltime=0.0062s  timestep= 0s  day=0.0004
+2023/08/09 15:11:54 iteration 172461  walltime= 0.338h  Δwalltime=0.0059s  timestep= 0s  day=0.000401
+2023/08/09 15:11:56 iteration 172782  walltime= 0.338h  Δwalltime=0.006s  timestep= 0s  day=0.000402
+2023/08/09 15:11:58 iteration 173102  walltime= 0.339h  Δwalltime=0.0061s  timestep= 0s  day=0.000402
+2023/08/09 15:12:00 iteration 173413  walltime=  0.34h  Δwalltime=0.0062s  timestep= 0s  day=0.000403
+2023/08/09 15:12:02 iteration 173655  walltime=  0.34h  Δwalltime=0.0062s  timestep= 0s  day=0.000404
+2023/08/09 15:12:04 iteration 173968  walltime= 0.341h  Δwalltime=0.0062s  timestep= 0s  day=0.000404
+2023/08/09 15:12:06 iteration 174291  walltime= 0.341h  Δwalltime=0.006s  timestep= 0s  day=0.000405
+2023/08/09 15:12:08 iteration 174612  walltime= 0.342h  Δwalltime=0.006s  timestep= 0s  day=0.000406
+2023/08/09 15:12:10 iteration 174933  walltime= 0.342h  Δwalltime=0.006s  timestep= 0s  day=0.000407
+2023/08/09 15:12:12 iteration 175256  walltime= 0.343h  Δwalltime=0.006s  timestep= 0s  day=0.000407
+2023/08/09 15:12:14 iteration 175567  walltime= 0.343h  Δwalltime=0.0061s  timestep= 0s  day=0.000408
+2023/08/09 15:12:16 iteration 175893  walltime= 0.344h  Δwalltime=0.0062s  timestep= 0s  day=0.000409
+2023/08/09 15:12:18 iteration 176221  walltime= 0.345h  Δwalltime=0.0059s  timestep= 0s  day=0.00041
+2023/08/09 15:12:20 iteration 176535  walltime= 0.345h  Δwalltime=0.006s  timestep= 0s  day=0.00041
+2023/08/09 15:12:22 iteration 176862  walltime= 0.346h  Δwalltime=0.0061s  timestep= 0s  day=0.000411
+2023/08/09 15:12:24 iteration 177189  walltime= 0.346h  Δwalltime=0.0096s  timestep= 0s  day=0.000412
+2023/08/09 15:12:26 iteration 177516  walltime= 0.347h  Δwalltime=0.0063s  timestep= 0s  day=0.000413
+2023/08/09 15:12:28 iteration 177841  walltime= 0.347h  Δwalltime=0.0063s  timestep= 0s  day=0.000413
+2023/08/09 15:12:30 iteration 178162  walltime= 0.348h  Δwalltime=0.0059s  timestep= 0s  day=0.000414
+2023/08/09 15:12:32 iteration 178482  walltime= 0.348h  Δwalltime=0.0062s  timestep= 0s  day=0.000415
+2023/08/09 15:12:34 iteration 178799  walltime= 0.349h  Δwalltime=0.0061s  timestep= 0s  day=0.000416
+2023/08/09 15:12:36 iteration 179126  walltime=  0.35h  Δwalltime=0.0062s  timestep= 0s  day=0.000416
+2023/08/09 15:12:38 iteration 179454  walltime=  0.35h  Δwalltime=0.0059s  timestep= 0s  day=0.000417
+2023/08/09 15:12:40 iteration 179780  walltime= 0.351h  Δwalltime=0.006s  timestep= 0s  day=0.000418
+2023/08/09 15:12:42 iteration 180105  walltime= 0.351h  Δwalltime=0.0061s  timestep= 0s  day=0.000419
+2023/08/09 15:12:44 iteration 180422  walltime= 0.352h  Δwalltime=0.0062s  timestep= 0s  day=0.000419
+2023/08/09 15:12:46 iteration 180747  walltime= 0.352h  Δwalltime=0.0076s  timestep= 0s  day=0.00042
+2023/08/09 15:12:48 iteration 181073  walltime= 0.353h  Δwalltime=0.0061s  timestep= 0s  day=0.000421
+2023/08/09 15:12:50 iteration 181394  walltime= 0.353h  Δwalltime=0.0059s  timestep= 0s  day=0.000422
+2023/08/09 15:12:52 iteration 181721  walltime= 0.354h  Δwalltime=0.0062s  timestep= 0s  day=0.000422
+2023/08/09 15:12:54 iteration 182048  walltime= 0.355h  Δwalltime=0.0062s  timestep= 0s  day=0.000423
+2023/08/09 15:12:56 iteration 182372  walltime= 0.355h  Δwalltime=0.0062s  timestep= 0s  day=0.000424
+2023/08/09 15:12:58 iteration 182700  walltime= 0.356h  Δwalltime=0.016s  timestep= 0s  day=0.000425
+2023/08/09 15:13:00 iteration 183013  walltime= 0.356h  Δwalltime=0.0062s  timestep= 0s  day=0.000425
+2023/08/09 15:13:02 iteration 183340  walltime= 0.357h  Δwalltime=0.0061s  timestep= 0s  day=0.000426
+2023/08/09 15:13:04 iteration 183658  walltime= 0.357h  Δwalltime=0.0061s  timestep= 0s  day=0.000427
+2023/08/09 15:13:06 iteration 183985  walltime= 0.358h  Δwalltime=0.006s  timestep= 0s  day=0.000428
+2023/08/09 15:13:08 iteration 184312  walltime= 0.358h  Δwalltime=0.0062s  timestep= 0s  day=0.000428
+2023/08/09 15:13:10 iteration 184637  walltime= 0.359h  Δwalltime=0.0063s  timestep= 0s  day=0.000429
+2023/08/09 15:13:12 iteration 184963  walltime=  0.36h  Δwalltime=0.0062s  timestep= 0s  day=0.00043
+2023/08/09 15:13:14 iteration 185284  walltime=  0.36h  Δwalltime=0.0062s  timestep= 0s  day=0.000431
+2023/08/09 15:13:16 iteration 185609  walltime= 0.361h  Δwalltime=0.0061s  timestep= 0s  day=0.000431
+2023/08/09 15:13:18 iteration 185936  walltime= 0.361h  Δwalltime=0.0062s  timestep= 0s  day=0.000432
+2023/08/09 15:13:20 iteration 186258  walltime= 0.362h  Δwalltime=0.006s  timestep= 0s  day=0.000433
+2023/08/09 15:13:22 iteration 186576  walltime= 0.362h  Δwalltime=0.0062s  timestep= 0s  day=0.000434
+2023/08/09 15:13:24 iteration 186900  walltime= 0.363h  Δwalltime=0.0063s  timestep= 0s  day=0.000434
+2023/08/09 15:13:26 iteration 187224  walltime= 0.363h  Δwalltime=0.006s  timestep= 0s  day=0.000435
+2023/08/09 15:13:28 iteration 187551  walltime= 0.364h  Δwalltime=0.0062s  timestep= 0s  day=0.000436
+2023/08/09 15:13:30 iteration 187863  walltime= 0.365h  Δwalltime=0.011s  timestep= 0s  day=0.000437
+2023/08/09 15:13:32 iteration 188100  walltime= 0.365h  Δwalltime=0.0061s  timestep= 0s  day=0.000437
+2023/08/09 15:13:34 iteration 188418  walltime= 0.366h  Δwalltime=0.0058s  timestep= 0s  day=0.000438
+2023/08/09 15:13:36 iteration 188730  walltime= 0.366h  Δwalltime=0.0066s  timestep= 0s  day=0.000439
+2023/08/09 15:13:38 iteration 189056  walltime= 0.367h  Δwalltime=0.0062s  timestep= 0s  day=0.000439
+2023/08/09 15:13:40 iteration 189383  walltime= 0.367h  Δwalltime=0.006s  timestep= 0s  day=0.00044
+2023/08/09 15:13:42 iteration 189698  walltime= 0.368h  Δwalltime=0.01s  timestep= 0s  day=0.000441
+2023/08/09 15:13:44 iteration 190010  walltime= 0.368h  Δwalltime=0.0059s  timestep= 0s  day=0.000442
+2023/08/09 15:13:46 iteration 190337  walltime= 0.369h  Δwalltime=0.0061s  timestep= 0s  day=0.000442
+2023/08/09 15:13:48 iteration 190629  walltime=  0.37h  Δwalltime=0.044s  timestep= 0s  day=0.000443
+2023/08/09 15:13:50 iteration 190873  walltime=  0.37h  Δwalltime=0.0059s  timestep= 0s  day=0.000444
+2023/08/09 15:13:52 iteration 191200  walltime= 0.371h  Δwalltime=0.006s  timestep= 0s  day=0.000444
+2023/08/09 15:13:54 iteration 191526  walltime= 0.371h  Δwalltime=0.0059s  timestep= 0s  day=0.000445
+2023/08/09 15:13:56 iteration 191838  walltime= 0.372h  Δwalltime=0.006s  timestep= 0s  day=0.000446
+2023/08/09 15:13:58 iteration 192154  walltime= 0.372h  Δwalltime=0.006s  timestep= 0s  day=0.000447
+2023/08/09 15:14:00 iteration 192474  walltime= 0.373h  Δwalltime=0.006s  timestep= 0s  day=0.000447
+2023/08/09 15:14:02 iteration 192800  walltime= 0.373h  Δwalltime=0.0061s  timestep= 0s  day=0.000448
+2023/08/09 15:14:04 iteration 193116  walltime= 0.374h  Δwalltime=0.0063s  timestep= 0s  day=0.000449
+2023/08/09 15:14:06 iteration 193433  walltime= 0.375h  Δwalltime=0.0062s  timestep= 0s  day=0.00045
+2023/08/09 15:14:08 iteration 193747  walltime= 0.375h  Δwalltime=0.006s  timestep= 0s  day=0.00045
+2023/08/09 15:14:10 iteration 194073  walltime= 0.376h  Δwalltime=0.0061s  timestep= 0s  day=0.000451
+2023/08/09 15:14:12 iteration 194395  walltime= 0.376h  Δwalltime=0.0061s  timestep= 0s  day=0.000452
+2023/08/09 15:14:14 iteration 194712  walltime= 0.377h  Δwalltime=0.0061s  timestep= 0s  day=0.000453
+2023/08/09 15:14:16 iteration 195039  walltime= 0.377h  Δwalltime=0.0061s  timestep= 0s  day=0.000453
+2023/08/09 15:14:18 iteration 195365  walltime= 0.378h  Δwalltime=0.0061s  timestep= 0s  day=0.000454
+2023/08/09 15:14:20 iteration 195688  walltime= 0.378h  Δwalltime=0.0096s  timestep= 0s  day=0.000455
+2023/08/09 15:14:22 iteration 196010  walltime= 0.379h  Δwalltime=0.0062s  timestep= 0s  day=0.000456
+2023/08/09 15:14:24 iteration 196336  walltime=  0.38h  Δwalltime=0.006s  timestep= 0s  day=0.000456
+2023/08/09 15:14:26 iteration 196663  walltime=  0.38h  Δwalltime=0.0058s  timestep= 0s  day=0.000457
+2023/08/09 15:14:28 iteration 196989  walltime= 0.381h  Δwalltime=0.0061s  timestep= 0s  day=0.000458
+2023/08/09 15:14:30 iteration 197303  walltime= 0.381h  Δwalltime=0.0062s  timestep= 0s  day=0.000459
+2023/08/09 15:14:32 iteration 197617  walltime= 0.382h  Δwalltime=0.006s  timestep= 0s  day=0.000459
+2023/08/09 15:14:34 iteration 197939  walltime= 0.382h  Δwalltime=0.0062s  timestep= 0s  day=0.00046
+2023/08/09 15:14:36 iteration 198266  walltime= 0.383h  Δwalltime=0.0098s  timestep= 0s  day=0.000461
+2023/08/09 15:14:38 iteration 198576  walltime= 0.383h  Δwalltime=0.0062s  timestep= 0s  day=0.000461
+2023/08/09 15:14:40 iteration 198895  walltime= 0.384h  Δwalltime=0.0062s  timestep= 0s  day=0.000462
+2023/08/09 15:14:42 iteration 199222  walltime= 0.385h  Δwalltime=0.0062s  timestep= 0s  day=0.000463
+2023/08/09 15:14:44 iteration 199546  walltime= 0.385h  Δwalltime=0.0097s  timestep= 0s  day=0.000464
+2023/08/09 15:14:46 iteration 199872  walltime= 0.386h  Δwalltime=0.006s  timestep= 0s  day=0.000464
+2023/08/09 15:14:48 iteration 200200  walltime= 0.386h  Δwalltime=0.0061s  timestep= 0s  day=0.000465
+2023/08/09 15:14:50 iteration 200523  walltime= 0.387h  Δwalltime=0.0062s  timestep= 0s  day=0.000466
+2023/08/09 15:14:52 iteration 200846  walltime= 0.387h  Δwalltime=0.0066s  timestep= 0s  day=0.000467
+2023/08/09 15:14:54 iteration 201174  walltime= 0.388h  Δwalltime=0.0062s  timestep= 0s  day=0.000468
+2023/08/09 15:14:56 iteration 201500  walltime= 0.388h  Δwalltime=0.0095s  timestep= 0s  day=0.000468
+2023/08/09 15:14:58 iteration 201825  walltime= 0.389h  Δwalltime=0.0062s  timestep= 0s  day=0.000469
+2023/08/09 15:15:00 iteration 202144  walltime=  0.39h  Δwalltime=0.0059s  timestep= 0s  day=0.00047
+2023/08/09 15:15:02 iteration 202394  walltime=  0.39h  Δwalltime=0.0062s  timestep= 0s  day=0.00047
+2023/08/09 15:15:04 iteration 202711  walltime= 0.391h  Δwalltime=0.0059s  timestep= 0s  day=0.000471
+2023/08/09 15:15:06 iteration 203032  walltime= 0.391h  Δwalltime=0.0062s  timestep= 0s  day=0.000472
+2023/08/09 15:15:08 iteration 203360  walltime= 0.392h  Δwalltime=0.0061s  timestep= 0s  day=0.000473
+2023/08/09 15:15:10 iteration 203683  walltime= 0.392h  Δwalltime=0.0061s  timestep= 0s  day=0.000473
+2023/08/09 15:15:12 iteration 204009  walltime= 0.393h  Δwalltime=0.0061s  timestep= 0s  day=0.000474
+2023/08/09 15:15:14 iteration 204321  walltime= 0.393h  Δwalltime=0.0061s  timestep= 0s  day=0.000475
+2023/08/09 15:15:16 iteration 204649  walltime= 0.394h  Δwalltime=0.006s  timestep= 0s  day=0.000476
+2023/08/09 15:15:18 iteration 204976  walltime= 0.395h  Δwalltime=0.0061s  timestep= 0s  day=0.000476
+2023/08/09 15:15:20 iteration 205293  walltime= 0.395h  Δwalltime=0.0061s  timestep= 0s  day=0.000477
+2023/08/09 15:15:22 iteration 205615  walltime= 0.396h  Δwalltime=0.0096s  timestep= 0s  day=0.000478
+2023/08/09 15:15:24 iteration 205932  walltime= 0.396h  Δwalltime=0.0059s  timestep= 0s  day=0.000479
+2023/08/09 15:15:26 iteration 206259  walltime= 0.397h  Δwalltime=0.0061s  timestep= 0s  day=0.000479
+2023/08/09 15:15:28 iteration 206587  walltime= 0.397h  Δwalltime=0.0061s  timestep= 0s  day=0.00048
+2023/08/09 15:15:30 iteration 206908  walltime= 0.398h  Δwalltime=0.006s  timestep= 0s  day=0.000481
+2023/08/09 15:15:32 iteration 207231  walltime= 0.398h  Δwalltime=0.0061s  timestep= 0s  day=0.000482
+2023/08/09 15:15:34 iteration 207545  walltime= 0.399h  Δwalltime=0.0063s  timestep= 0s  day=0.000482
+2023/08/09 15:15:36 iteration 207872  walltime=   0.4h  Δwalltime=0.006s  timestep= 0s  day=0.000483
+2023/08/09 15:15:38 iteration 208200  walltime=   0.4h  Δwalltime=0.0061s  timestep= 0s  day=0.000484
+2023/08/09 15:15:40 iteration 208516  walltime= 0.401h  Δwalltime=0.0061s  timestep= 0s  day=0.000485
+2023/08/09 15:15:42 iteration 208842  walltime= 0.401h  Δwalltime=0.0061s  timestep= 0s  day=0.000485
+2023/08/09 15:15:44 iteration 209166  walltime= 0.402h  Δwalltime=0.006s  timestep= 0s  day=0.000486
+2023/08/09 15:15:46 iteration 209493  walltime= 0.402h  Δwalltime=0.006s  timestep= 0s  day=0.000487
+2023/08/09 15:15:48 iteration 209812  walltime= 0.403h  Δwalltime=0.0061s  timestep= 0s  day=0.000488
+2023/08/09 15:15:50 iteration 210026  walltime= 0.403h  Δwalltime=0.0097s  timestep= 0s  day=0.000488
+2023/08/09 15:15:52 iteration 210345  walltime= 0.404h  Δwalltime=0.0061s  timestep= 0s  day=0.000489
+2023/08/09 15:15:54 iteration 210672  walltime= 0.405h  Δwalltime=0.0061s  timestep= 0s  day=0.00049
+2023/08/09 15:15:56 iteration 211000  walltime= 0.405h  Δwalltime=0.0062s  timestep= 0s  day=0.00049
+2023/08/09 15:15:58 iteration 211324  walltime= 0.406h  Δwalltime=0.0061s  timestep= 0s  day=0.000491
+2023/08/09 15:16:00 iteration 211634  walltime= 0.406h  Δwalltime=0.0061s  timestep= 0s  day=0.000492
+2023/08/09 15:16:02 iteration 211962  walltime= 0.407h  Δwalltime=0.0062s  timestep= 0s  day=0.000493
+2023/08/09 15:16:04 iteration 212279  walltime= 0.407h  Δwalltime=0.0061s  timestep= 0s  day=0.000493
+2023/08/09 15:16:06 iteration 212607  walltime= 0.408h  Δwalltime=0.0062s  timestep= 0s  day=0.000494
+2023/08/09 15:16:08 iteration 212930  walltime= 0.408h  Δwalltime=0.0061s  timestep= 0s  day=0.000495
+2023/08/09 15:16:10 iteration 213257  walltime= 0.409h  Δwalltime=0.006s  timestep= 0s  day=0.000496
+2023/08/09 15:16:12 iteration 213582  walltime=  0.41h  Δwalltime=0.0061s  timestep= 0s  day=0.000496
+2023/08/09 15:16:14 iteration 213904  walltime=  0.41h  Δwalltime=0.006s  timestep= 0s  day=0.000497
+2023/08/09 15:16:16 iteration 214210  walltime= 0.411h  Δwalltime=0.011s  timestep= 0s  day=0.000498
+2023/08/09 15:16:18 iteration 214480  walltime= 0.411h  Δwalltime=0.0061s  timestep= 0s  day=0.000498
+2023/08/09 15:16:20 iteration 214805  walltime= 0.412h  Δwalltime=0.0062s  timestep= 0s  day=0.000499
+2023/08/09 15:16:22 iteration 215131  walltime= 0.412h  Δwalltime=0.0061s  timestep= 0s  day=0.0005
+2023/08/09 15:16:24 iteration 215454  walltime= 0.413h  Δwalltime=0.0062s  timestep= 0s  day=0.000501
+2023/08/09 15:16:26 iteration 215765  walltime= 0.413h  Δwalltime=0.01s  timestep= 0s  day=0.000501
+2023/08/09 15:16:28 iteration 216083  walltime= 0.414h  Δwalltime=0.006s  timestep= 0s  day=0.000502
+2023/08/09 15:16:30 iteration 216400  walltime= 0.415h  Δwalltime=0.006s  timestep= 0s  day=0.000503
+2023/08/09 15:16:32 iteration 216648  walltime= 0.415h  Δwalltime=0.006s  timestep= 0s  day=0.000503
+2023/08/09 15:16:34 iteration 216968  walltime= 0.416h  Δwalltime=0.006s  timestep= 0s  day=0.000504
+2023/08/09 15:16:36 iteration 217296  walltime= 0.416h  Δwalltime=0.0062s  timestep= 0s  day=0.000505
+2023/08/09 15:16:38 iteration 217623  walltime= 0.417h  Δwalltime=0.0061s  timestep= 0s  day=0.000506
+2023/08/09 15:16:40 iteration 217943  walltime= 0.417h  Δwalltime=0.0061s  timestep= 0s  day=0.000506
+2023/08/09 15:16:42 iteration 218269  walltime= 0.418h  Δwalltime=0.0063s  timestep= 0s  day=0.000507
+2023/08/09 15:16:44 iteration 218589  walltime= 0.418h  Δwalltime=0.0063s  timestep= 0s  day=0.000508
+2023/08/09 15:16:46 iteration 218912  walltime= 0.419h  Δwalltime=0.0061s  timestep= 0s  day=0.000509
+2023/08/09 15:16:48 iteration 219236  walltime=  0.42h  Δwalltime=0.0063s  timestep= 0s  day=0.000509
+2023/08/09 15:16:50 iteration 219560  walltime=  0.42h  Δwalltime=0.0061s  timestep= 0s  day=0.00051
+2023/08/09 15:16:52 iteration 219885  walltime= 0.421h  Δwalltime=0.0063s  timestep= 0s  day=0.000511
+2023/08/09 15:16:54 iteration 220209  walltime= 0.421h  Δwalltime=0.0059s  timestep= 0s  day=0.000512
+2023/08/09 15:16:56 iteration 220537  walltime= 0.422h  Δwalltime=0.0061s  timestep= 0s  day=0.000513
+2023/08/09 15:16:58 iteration 220863  walltime= 0.422h  Δwalltime=0.0059s  timestep= 0s  day=0.000513
+2023/08/09 15:17:00 iteration 221185  walltime= 0.423h  Δwalltime=0.006s  timestep= 0s  day=0.000514
+2023/08/09 15:17:02 iteration 221506  walltime= 0.423h  Δwalltime=0.0061s  timestep= 0s  day=0.000515
+2023/08/09 15:17:04 iteration 221831  walltime= 0.424h  Δwalltime=0.0059s  timestep= 0s  day=0.000516
+2023/08/09 15:17:06 iteration 222146  walltime= 0.425h  Δwalltime=0.006s  timestep= 0s  day=0.000516
+2023/08/09 15:17:08 iteration 222475  walltime= 0.425h  Δwalltime=0.0062s  timestep= 0s  day=0.000517
+2023/08/09 15:17:10 iteration 222798  walltime= 0.426h  Δwalltime=0.0059s  timestep= 0s  day=0.000518
+2023/08/09 15:17:12 iteration 223126  walltime= 0.426h  Δwalltime=0.006s  timestep= 0s  day=0.000519
+2023/08/09 15:17:14 iteration 223443  walltime= 0.427h  Δwalltime=0.0062s  timestep= 0s  day=0.000519
+2023/08/09 15:17:16 iteration 223772  walltime= 0.427h  Δwalltime=0.0062s  timestep= 0s  day=0.00052
+2023/08/09 15:17:18 iteration 224099  walltime= 0.428h  Δwalltime=0.006s  timestep= 0s  day=0.000521
+2023/08/09 15:17:20 iteration 224417  walltime= 0.428h  Δwalltime=0.0062s  timestep= 0s  day=0.000522
+2023/08/09 15:17:22 iteration 224734  walltime= 0.429h  Δwalltime=0.006s  timestep= 0s  day=0.000522
+2023/08/09 15:17:24 iteration 225062  walltime=  0.43h  Δwalltime=0.0063s  timestep= 0s  day=0.000523
+2023/08/09 15:17:26 iteration 225388  walltime=  0.43h  Δwalltime=0.0061s  timestep= 0s  day=0.000524
+2023/08/09 15:17:28 iteration 225710  walltime= 0.431h  Δwalltime=0.0062s  timestep= 0s  day=0.000525
+2023/08/09 15:17:30 iteration 226015  walltime= 0.431h  Δwalltime=0.0062s  timestep= 0s  day=0.000525
+2023/08/09 15:17:32 iteration 226335  walltime= 0.432h  Δwalltime=0.0062s  timestep= 0s  day=0.000526
+2023/08/09 15:17:34 iteration 226646  walltime= 0.432h  Δwalltime=0.0062s  timestep= 0s  day=0.000527
+2023/08/09 15:17:36 iteration 226974  walltime= 0.433h  Δwalltime=0.0061s  timestep= 0s  day=0.000527
+2023/08/09 15:17:38 iteration 227295  walltime= 0.433h  Δwalltime=0.0061s  timestep= 0s  day=0.000528
+2023/08/09 15:17:40 iteration 227622  walltime= 0.434h  Δwalltime=0.0059s  timestep= 0s  day=0.000529
+2023/08/09 15:17:42 iteration 227947  walltime= 0.435h  Δwalltime=0.0061s  timestep= 0s  day=0.00053
+2023/08/09 15:17:44 iteration 228264  walltime= 0.435h  Δwalltime=0.0062s  timestep= 0s  day=0.00053
+2023/08/09 15:17:46 iteration 228571  walltime= 0.436h  Δwalltime=0.006s  timestep= 0s  day=0.000531
+2023/08/09 15:17:48 iteration 228893  walltime= 0.436h  Δwalltime=0.0062s  timestep= 0s  day=0.000532
+2023/08/09 15:17:50 iteration 229107  walltime= 0.437h  Δwalltime=0.0069s  timestep= 0s  day=0.000532
+2023/08/09 15:17:52 iteration 229435  walltime= 0.437h  Δwalltime=0.0061s  timestep= 0s  day=0.000533
+2023/08/09 15:17:54 iteration 229746  walltime= 0.438h  Δwalltime=0.0081s  timestep= 0s  day=0.000534
+2023/08/09 15:17:56 iteration 230068  walltime= 0.438h  Δwalltime=0.0061s  timestep= 0s  day=0.000535
+2023/08/09 15:17:58 iteration 230396  walltime= 0.439h  Δwalltime=0.0062s  timestep= 0s  day=0.000535
+2023/08/09 15:18:00 iteration 230715  walltime=  0.44h  Δwalltime=0.0062s  timestep= 0s  day=0.000536
+2023/08/09 15:18:02 iteration 230950  walltime=  0.44h  Δwalltime=0.01s  timestep= 0s  day=0.000537
+2023/08/09 15:18:04 iteration 231245  walltime= 0.441h  Δwalltime=0.006s  timestep= 0s  day=0.000537
+2023/08/09 15:18:06 iteration 231566  walltime= 0.441h  Δwalltime=0.0062s  timestep= 0s  day=0.000538
+2023/08/09 15:18:08 iteration 231889  walltime= 0.442h  Δwalltime=0.0062s  timestep= 0s  day=0.000539
+2023/08/09 15:18:10 iteration 232216  walltime= 0.442h  Δwalltime=0.0061s  timestep= 0s  day=0.00054
+2023/08/09 15:18:12 iteration 232540  walltime= 0.443h  Δwalltime=0.0059s  timestep= 0s  day=0.00054
+2023/08/09 15:18:14 iteration 232853  walltime= 0.443h  Δwalltime=0.01s  timestep= 0s  day=0.000541
+2023/08/09 15:18:16 iteration 233177  walltime= 0.444h  Δwalltime=0.0059s  timestep= 0s  day=0.000542
+2023/08/09 15:18:18 iteration 233506  walltime= 0.445h  Δwalltime=0.006s  timestep= 0s  day=0.000543
+2023/08/09 15:18:20 iteration 233831  walltime= 0.445h  Δwalltime=0.0062s  timestep= 0s  day=0.000543
+2023/08/09 15:18:22 iteration 234156  walltime= 0.446h  Δwalltime=0.0093s  timestep= 0s  day=0.000544
+2023/08/09 15:18:24 iteration 234484  walltime= 0.446h  Δwalltime=0.0061s  timestep= 0s  day=0.000545
+2023/08/09 15:18:26 iteration 234811  walltime= 0.447h  Δwalltime=0.0068s  timestep= 0s  day=0.000546
+2023/08/09 15:18:28 iteration 235139  walltime= 0.447h  Δwalltime=0.006s  timestep= 0s  day=0.000546
+2023/08/09 15:18:30 iteration 235461  walltime= 0.448h  Δwalltime=0.0061s  timestep= 0s  day=0.000547
+2023/08/09 15:18:32 iteration 235785  walltime= 0.448h  Δwalltime=0.0063s  timestep= 0s  day=0.000548
+2023/08/09 15:18:34 iteration 236106  walltime= 0.449h  Δwalltime=0.006s  timestep= 0s  day=0.000549
+2023/08/09 15:18:36 iteration 236433  walltime=  0.45h  Δwalltime=0.006s  timestep= 0s  day=0.000549
+2023/08/09 15:18:38 iteration 236760  walltime=  0.45h  Δwalltime=0.0059s  timestep= 0s  day=0.00055
+2023/08/09 15:18:40 iteration 237087  walltime= 0.451h  Δwalltime=0.0061s  timestep= 0s  day=0.000551
+2023/08/09 15:18:42 iteration 237415  walltime= 0.451h  Δwalltime=0.0061s  timestep= 0s  day=0.000552
+2023/08/09 15:18:44 iteration 237736  walltime= 0.452h  Δwalltime=0.0061s  timestep= 0s  day=0.000552
+2023/08/09 15:18:46 iteration 238064  walltime= 0.452h  Δwalltime=0.0062s  timestep= 0s  day=0.000553
+2023/08/09 15:18:48 iteration 238393  walltime= 0.453h  Δwalltime=0.0097s  timestep= 0s  day=0.000554
+2023/08/09 15:18:50 iteration 238715  walltime= 0.453h  Δwalltime=0.0061s  timestep= 0s  day=0.000555
+2023/08/09 15:18:52 iteration 239042  walltime= 0.454h  Δwalltime=0.0061s  timestep= 0s  day=0.000556
+2023/08/09 15:18:54 iteration 239369  walltime= 0.455h  Δwalltime=0.0059s  timestep= 0s  day=0.000556
+2023/08/09 15:18:56 iteration 239696  walltime= 0.455h  Δwalltime=0.006s  timestep= 0s  day=0.000557
+2023/08/09 15:18:58 iteration 240020  walltime= 0.456h  Δwalltime=0.0061s  timestep= 0s  day=0.000558
+2023/08/09 15:19:00 iteration 240319  walltime= 0.456h  Δwalltime=0.0061s  timestep= 0s  day=0.000558
+2023/08/09 15:19:02 iteration 240643  walltime= 0.457h  Δwalltime=0.0061s  timestep= 0s  day=0.000559
+2023/08/09 15:19:04 iteration 240945  walltime= 0.457h  Δwalltime=0.0059s  timestep= 0s  day=0.00056
+2023/08/09 15:19:06 iteration 241260  walltime= 0.458h  Δwalltime=0.0061s  timestep= 0s  day=0.000561
+2023/08/09 15:19:08 iteration 241588  walltime= 0.458h  Δwalltime=0.006s  timestep= 0s  day=0.000561
+2023/08/09 15:19:10 iteration 241916  walltime= 0.459h  Δwalltime=0.0059s  timestep= 0s  day=0.000562
+2023/08/09 15:19:12 iteration 242243  walltime=  0.46h  Δwalltime=0.0062s  timestep= 0s  day=0.000563
+2023/08/09 15:19:14 iteration 242562  walltime=  0.46h  Δwalltime=0.0062s  timestep= 0s  day=0.000564
+2023/08/09 15:19:16 iteration 242886  walltime= 0.461h  Δwalltime=0.0063s  timestep= 0s  day=0.000564
+2023/08/09 15:19:18 iteration 243213  walltime= 0.461h  Δwalltime=0.0061s  timestep= 0s  day=0.000565
+2023/08/09 15:19:20 iteration 243539  walltime= 0.462h  Δwalltime=0.0061s  timestep= 0s  day=0.000566
+2023/08/09 15:19:22 iteration 243858  walltime= 0.462h  Δwalltime=0.006s  timestep= 0s  day=0.000567
+2023/08/09 15:19:24 iteration 244185  walltime= 0.463h  Δwalltime=0.006s  timestep= 0s  day=0.000567
+2023/08/09 15:19:26 iteration 244507  walltime= 0.463h  Δwalltime=0.0059s  timestep= 0s  day=0.000568
+2023/08/09 15:19:28 iteration 244834  walltime= 0.464h  Δwalltime=0.006s  timestep= 0s  day=0.000569
+2023/08/09 15:19:30 iteration 245154  walltime= 0.465h  Δwalltime=0.0062s  timestep= 0s  day=0.00057
+2023/08/09 15:19:32 iteration 245392  walltime= 0.465h  Δwalltime=0.0061s  timestep= 0s  day=0.00057
+2023/08/09 15:19:34 iteration 245713  walltime= 0.466h  Δwalltime=0.0061s  timestep= 0s  day=0.000571
+2023/08/09 15:19:36 iteration 246040  walltime= 0.466h  Δwalltime=0.006s  timestep= 0s  day=0.000572
+2023/08/09 15:19:38 iteration 246368  walltime= 0.467h  Δwalltime=0.006s  timestep= 0s  day=0.000573
+2023/08/09 15:19:40 iteration 246694  walltime= 0.467h  Δwalltime=0.0059s  timestep= 0s  day=0.000573
+2023/08/09 15:19:42 iteration 247021  walltime= 0.468h  Δwalltime=0.0061s  timestep= 0s  day=0.000574
+2023/08/09 15:19:44 iteration 247340  walltime= 0.468h  Δwalltime=0.006s  timestep= 0s  day=0.000575
+2023/08/09 15:19:46 iteration 247650  walltime= 0.469h  Δwalltime=0.0061s  timestep= 0s  day=0.000576
+2023/08/09 15:19:48 iteration 247975  walltime=  0.47h  Δwalltime=0.0061s  timestep= 0s  day=0.000576
+2023/08/09 15:19:50 iteration 248218  walltime=  0.47h  Δwalltime=0.011s  timestep= 0s  day=0.000577
+2023/08/09 15:19:52 iteration 248513  walltime= 0.471h  Δwalltime=0.0061s  timestep= 0s  day=0.000578
+2023/08/09 15:19:54 iteration 248837  walltime= 0.471h  Δwalltime=0.006s  timestep= 0s  day=0.000578
+2023/08/09 15:19:56 iteration 249160  walltime= 0.472h  Δwalltime=0.0069s  timestep= 0s  day=0.000579
+2023/08/09 15:19:58 iteration 249485  walltime= 0.472h  Δwalltime=0.0062s  timestep= 0s  day=0.00058
+2023/08/09 15:20:00 iteration 249745  walltime= 0.473h  Δwalltime=0.012s  timestep= 0s  day=0.00058
+2023/08/09 15:20:02 iteration 249944  walltime= 0.473h  Δwalltime=0.006s  timestep= 0s  day=0.000581
+2023/08/09 15:20:04 iteration 250256  walltime= 0.474h  Δwalltime=0.0097s  timestep= 0s  day=0.000582
+2023/08/09 15:20:06 iteration 250571  walltime= 0.475h  Δwalltime=0.0061s  timestep= 0s  day=0.000582
+2023/08/09 15:20:08 iteration 250891  walltime= 0.475h  Δwalltime=0.0062s  timestep= 0s  day=0.000583
+2023/08/09 15:20:10 iteration 251220  walltime= 0.476h  Δwalltime=0.0061s  timestep= 0s  day=0.000584
+2023/08/09 15:20:12 iteration 251547  walltime= 0.476h  Δwalltime=0.0059s  timestep= 0s  day=0.000585
+2023/08/09 15:20:14 iteration 251871  walltime= 0.477h  Δwalltime=0.0062s  timestep= 0s  day=0.000585
+2023/08/09 15:20:16 iteration 252191  walltime= 0.477h  Δwalltime=0.006s  timestep= 0s  day=0.000586
+2023/08/09 15:20:18 iteration 252519  walltime= 0.478h  Δwalltime=0.006s  timestep= 0s  day=0.000587
+2023/08/09 15:20:20 iteration 252843  walltime= 0.478h  Δwalltime=0.0061s  timestep= 0s  day=0.000588
+2023/08/09 15:20:22 iteration 253170  walltime= 0.479h  Δwalltime=0.0062s  timestep= 0s  day=0.000588
+2023/08/09 15:20:24 iteration 253499  walltime=  0.48h  Δwalltime=0.0059s  timestep= 0s  day=0.000589
+2023/08/09 15:20:26 iteration 253827  walltime=  0.48h  Δwalltime=0.0059s  timestep= 0s  day=0.00059
+2023/08/09 15:20:28 iteration 254156  walltime= 0.481h  Δwalltime=0.0059s  timestep= 0s  day=0.000591
+2023/08/09 15:20:30 iteration 254476  walltime= 0.481h  Δwalltime=0.0062s  timestep= 0s  day=0.000591
+2023/08/09 15:20:32 iteration 254792  walltime= 0.482h  Δwalltime=0.0061s  timestep= 0s  day=0.000592
+2023/08/09 15:20:34 iteration 255114  walltime= 0.482h  Δwalltime=0.0063s  timestep= 0s  day=0.000593
+2023/08/09 15:20:36 iteration 255438  walltime= 0.483h  Δwalltime=0.0061s  timestep= 0s  day=0.000594
+2023/08/09 15:20:38 iteration 255768  walltime= 0.483h  Δwalltime=0.0061s  timestep= 0s  day=0.000594
+2023/08/09 15:20:40 iteration 256092  walltime= 0.484h  Δwalltime=0.0061s  timestep= 0s  day=0.000595
+2023/08/09 15:20:42 iteration 256419  walltime= 0.485h  Δwalltime=0.0061s  timestep= 0s  day=0.000596
+2023/08/09 15:20:44 iteration 256725  walltime= 0.485h  Δwalltime=0.0061s  timestep= 0s  day=0.000597
+2023/08/09 15:20:46 iteration 257052  walltime= 0.486h  Δwalltime=0.006s  timestep= 0s  day=0.000597
+2023/08/09 15:20:48 iteration 257375  walltime= 0.486h  Δwalltime=0.0062s  timestep= 0s  day=0.000598
+2023/08/09 15:20:50 iteration 257695  walltime= 0.487h  Δwalltime=0.006s  timestep= 0s  day=0.000599
+2023/08/09 15:20:52 iteration 258018  walltime= 0.487h  Δwalltime=0.0061s  timestep= 0s  day=0.0006
+2023/08/09 15:20:54 iteration 258336  walltime= 0.488h  Δwalltime=0.0062s  timestep= 0s  day=0.0006
+2023/08/09 15:20:56 iteration 258658  walltime= 0.488h  Δwalltime=0.006s  timestep= 0s  day=0.000601
+2023/08/09 15:20:58 iteration 258985  walltime= 0.489h  Δwalltime=0.0062s  timestep= 0s  day=0.000602
+2023/08/09 15:21:00 iteration 259298  walltime=  0.49h  Δwalltime=0.006s  timestep= 0s  day=0.000603
+2023/08/09 15:21:02 iteration 259544  walltime=  0.49h  Δwalltime=0.0061s  timestep= 0s  day=0.000603
+2023/08/09 15:21:04 iteration 259867  walltime= 0.491h  Δwalltime=0.006s  timestep= 0s  day=0.000604
+2023/08/09 15:21:06 iteration 260193  walltime= 0.491h  Δwalltime=0.0062s  timestep= 0s  day=0.000605
+2023/08/09 15:21:08 iteration 260521  walltime= 0.492h  Δwalltime=0.0061s  timestep= 0s  day=0.000605
+2023/08/09 15:21:10 iteration 260844  walltime= 0.492h  Δwalltime=0.0062s  timestep= 0s  day=0.000606
+2023/08/09 15:21:12 iteration 261172  walltime= 0.493h  Δwalltime=0.0059s  timestep= 0s  day=0.000607
+2023/08/09 15:21:14 iteration 261496  walltime= 0.493h  Δwalltime=0.0062s  timestep= 0s  day=0.000608
+2023/08/09 15:21:16 iteration 261810  walltime= 0.494h  Δwalltime=0.01s  timestep= 0s  day=0.000608
+2023/08/09 15:21:18 iteration 262069  walltime= 0.495h  Δwalltime=0.0059s  timestep= 0s  day=0.000609
+2023/08/09 15:21:20 iteration 262393  walltime= 0.495h  Δwalltime=0.0061s  timestep= 0s  day=0.00061
+2023/08/09 15:21:22 iteration 262721  walltime= 0.496h  Δwalltime=0.0061s  timestep= 0s  day=0.000611
+2023/08/09 15:21:24 iteration 263049  walltime= 0.496h  Δwalltime=0.0061s  timestep= 0s  day=0.000611
+2023/08/09 15:21:26 iteration 263373  walltime= 0.497h  Δwalltime=0.0061s  timestep= 0s  day=0.000612
+2023/08/09 15:21:28 iteration 263699  walltime= 0.497h  Δwalltime=0.0058s  timestep= 0s  day=0.000613
+2023/08/09 15:21:30 iteration 264012  walltime= 0.498h  Δwalltime=0.0061s  timestep= 0s  day=0.000614
+2023/08/09 15:21:32 iteration 264331  walltime= 0.498h  Δwalltime=0.0061s  timestep= 0s  day=0.000614
+2023/08/09 15:21:34 iteration 264657  walltime= 0.499h  Δwalltime=0.0062s  timestep= 0s  day=0.000615
+2023/08/09 15:21:36 iteration 264985  walltime=   0.5h  Δwalltime=0.0059s  timestep= 0s  day=0.000616
+2023/08/09 15:21:38 iteration 265314  walltime=   0.5h  Δwalltime=0.006s  timestep= 0s  day=0.000617
+2023/08/09 15:21:40 iteration 265636  walltime= 0.501h  Δwalltime=0.0062s  timestep= 0s  day=0.000617
+2023/08/09 15:21:42 iteration 265940  walltime= 0.501h  Δwalltime=0.0065s  timestep= 0s  day=0.000618
+2023/08/09 15:21:44 iteration 266261  walltime= 0.502h  Δwalltime=0.0061s  timestep= 0s  day=0.000619
+2023/08/09 15:21:46 iteration 266590  walltime= 0.502h  Δwalltime=0.0059s  timestep= 0s  day=0.00062
+2023/08/09 15:21:48 iteration 266917  walltime= 0.503h  Δwalltime=0.006s  timestep= 0s  day=0.00062
+2023/08/09 15:21:50 iteration 267194  walltime= 0.503h  Δwalltime=0.044s  timestep= 0s  day=0.000621
+2023/08/09 15:21:52 iteration 267444  walltime= 0.504h  Δwalltime=0.0062s  timestep= 0s  day=0.000622
+2023/08/09 15:21:54 iteration 267767  walltime= 0.505h  Δwalltime=0.0061s  timestep= 0s  day=0.000622
+2023/08/09 15:21:56 iteration 268093  walltime= 0.505h  Δwalltime=0.0061s  timestep= 0s  day=0.000623
+2023/08/09 15:21:58 iteration 268420  walltime= 0.506h  Δwalltime=0.0061s  timestep= 0s  day=0.000624
+2023/08/09 15:22:00 iteration 268736  walltime= 0.506h  Δwalltime=0.0061s  timestep= 0s  day=0.000625
+2023/08/09 15:22:02 iteration 269060  walltime= 0.507h  Δwalltime=0.0063s  timestep= 0s  day=0.000625
+2023/08/09 15:22:04 iteration 269382  walltime= 0.507h  Δwalltime=0.0059s  timestep= 0s  day=0.000626
+2023/08/09 15:22:06 iteration 269702  walltime= 0.508h  Δwalltime=0.006s  timestep= 0s  day=0.000627
+2023/08/09 15:22:08 iteration 270023  walltime= 0.508h  Δwalltime=0.0062s  timestep= 0s  day=0.000628
+2023/08/09 15:22:10 iteration 270350  walltime= 0.509h  Δwalltime=0.0062s  timestep= 0s  day=0.000628
+2023/08/09 15:22:12 iteration 270675  walltime=  0.51h  Δwalltime=0.006s  timestep= 0s  day=0.000629
+2023/08/09 15:22:14 iteration 270996  walltime=  0.51h  Δwalltime=0.0063s  timestep= 0s  day=0.00063
+2023/08/09 15:22:16 iteration 271324  walltime= 0.511h  Δwalltime=0.0059s  timestep= 0s  day=0.000631
+2023/08/09 15:22:18 iteration 271653  walltime= 0.511h  Δwalltime=0.0062s  timestep= 0s  day=0.000631
+2023/08/09 15:22:20 iteration 271975  walltime= 0.512h  Δwalltime=0.0062s  timestep= 0s  day=0.000632
+2023/08/09 15:22:22 iteration 272301  walltime= 0.512h  Δwalltime=0.0061s  timestep= 0s  day=0.000633
+2023/08/09 15:22:24 iteration 272619  walltime= 0.513h  Δwalltime=0.0061s  timestep= 0s  day=0.000634
+2023/08/09 15:22:26 iteration 272945  walltime= 0.513h  Δwalltime=0.0062s  timestep= 0s  day=0.000634
+2023/08/09 15:22:28 iteration 273273  walltime= 0.514h  Δwalltime=0.0059s  timestep= 0s  day=0.000635
+2023/08/09 15:22:30 iteration 273597  walltime= 0.515h  Δwalltime=0.0061s  timestep= 0s  day=0.000636
+2023/08/09 15:22:32 iteration 273847  walltime= 0.515h  Δwalltime=0.0061s  timestep= 0s  day=0.000636
+2023/08/09 15:22:34 iteration 274167  walltime= 0.516h  Δwalltime=0.0061s  timestep= 0s  day=0.000637
+2023/08/09 15:22:36 iteration 274494  walltime= 0.516h  Δwalltime=0.006s  timestep= 0s  day=0.000638
+2023/08/09 15:22:38 iteration 274820  walltime= 0.517h  Δwalltime=0.0059s  timestep= 0s  day=0.000639
+2023/08/09 15:22:40 iteration 275145  walltime= 0.517h  Δwalltime=0.006s  timestep= 0s  day=0.000639
+2023/08/09 15:22:42 iteration 275473  walltime= 0.518h  Δwalltime=0.0096s  timestep= 0s  day=0.00064
+2023/08/09 15:22:44 iteration 275788  walltime= 0.518h  Δwalltime=0.0061s  timestep= 0s  day=0.000641
+2023/08/09 15:22:46 iteration 276113  walltime= 0.519h  Δwalltime=0.0063s  timestep= 0s  day=0.000642
+2023/08/09 15:22:48 iteration 276442  walltime=  0.52h  Δwalltime=0.0059s  timestep= 0s  day=0.000642
+2023/08/09 15:22:50 iteration 276740  walltime=  0.52h  Δwalltime=0.0062s  timestep= 0s  day=0.000643
+2023/08/09 15:22:52 iteration 277065  walltime= 0.521h  Δwalltime=0.0064s  timestep= 0s  day=0.000644
+2023/08/09 15:22:54 iteration 277391  walltime= 0.521h  Δwalltime=0.0061s  timestep= 0s  day=0.000645
+2023/08/09 15:22:56 iteration 277712  walltime= 0.522h  Δwalltime=0.0062s  timestep= 0s  day=0.000645
+2023/08/09 15:22:58 iteration 278039  walltime= 0.522h  Δwalltime=0.006s  timestep= 0s  day=0.000646
+2023/08/09 15:23:00 iteration 278354  walltime= 0.523h  Δwalltime=0.0061s  timestep= 0s  day=0.000647
+2023/08/09 15:23:02 iteration 278681  walltime= 0.523h  Δwalltime=0.006s  timestep= 0s  day=0.000648
+2023/08/09 15:23:04 iteration 279002  walltime= 0.524h  Δwalltime=0.0059s  timestep= 0s  day=0.000648
+2023/08/09 15:23:06 iteration 279331  walltime= 0.525h  Δwalltime=0.0061s  timestep= 0s  day=0.000649
+2023/08/09 15:23:08 iteration 279659  walltime= 0.525h  Δwalltime=0.0061s  timestep= 0s  day=0.00065
+2023/08/09 15:23:10 iteration 279977  walltime= 0.526h  Δwalltime=0.0062s  timestep= 0s  day=0.000651
+2023/08/09 15:23:12 iteration 280306  walltime= 0.526h  Δwalltime=0.0062s  timestep= 0s  day=0.000651
+2023/08/09 15:23:14 iteration 280623  walltime= 0.527h  Δwalltime=0.0061s  timestep= 0s  day=0.000652
+2023/08/09 15:23:16 iteration 280952  walltime= 0.527h  Δwalltime=0.006s  timestep= 0s  day=0.000653
+2023/08/09 15:23:18 iteration 281281  walltime= 0.528h  Δwalltime=0.006s  timestep= 0s  day=0.000654
+2023/08/09 15:23:20 iteration 281606  walltime= 0.528h  Δwalltime=0.0059s  timestep= 0s  day=0.000654
+2023/08/09 15:23:22 iteration 281932  walltime= 0.529h  Δwalltime=0.006s  timestep= 0s  day=0.000655
+2023/08/09 15:23:24 iteration 282259  walltime=  0.53h  Δwalltime=0.0062s  timestep= 0s  day=0.000656
+2023/08/09 15:23:26 iteration 282588  walltime=  0.53h  Δwalltime=0.0061s  timestep= 0s  day=0.000657
+2023/08/09 15:23:28 iteration 282917  walltime= 0.531h  Δwalltime=0.0062s  timestep= 0s  day=0.000657
+2023/08/09 15:23:30 iteration 283239  walltime= 0.531h  Δwalltime=0.0062s  timestep= 0s  day=0.000658
+2023/08/09 15:23:32 iteration 283565  walltime= 0.532h  Δwalltime=0.006s  timestep= 0s  day=0.000659
+2023/08/09 15:23:34 iteration 283889  walltime= 0.532h  Δwalltime=0.0063s  timestep= 0s  day=0.00066
+2023/08/09 15:23:36 iteration 284214  walltime= 0.533h  Δwalltime=0.006s  timestep= 0s  day=0.000661
+2023/08/09 15:23:38 iteration 284543  walltime= 0.533h  Δwalltime=0.006s  timestep= 0s  day=0.000661
+2023/08/09 15:23:40 iteration 284856  walltime= 0.534h  Δwalltime=0.0062s  timestep= 0s  day=0.000662
+2023/08/09 15:23:42 iteration 285176  walltime= 0.535h  Δwalltime=0.0062s  timestep= 0s  day=0.000663
+slurmstepd: error: *** JOB 39694694 ON bc11508 CANCELLED AT 2023-08-09T19:23:43 ***

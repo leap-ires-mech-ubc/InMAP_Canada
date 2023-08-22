@@ -143,7 +143,7 @@ func (e *Emissions) Add(er *EmisRecord) {
 func (e *Emissions) EmisRecords() []*EmisRecord { return e.dataSlice }
 
 // emisConversionFactor returns the conversion factor to μg/s
-// for the given units.
+// for the given units. 
 func emisConversionFactor(units string) (float64, error) {
 	var emisConv float64
 	switch units {
@@ -159,7 +159,10 @@ func emisConversionFactor(units string) (float64, error) {
 		emisConv = massConv / timeConv // convert kg/year to μg/s
 	case "ug/s", "μg/s":
 		// Input units = μg/s; output units = μg/s
-		emisConv = 1
+		emisConv = 1.
+	case "g/s": //TR2023-07-25 added g/s
+		// Input units = g/s; output units = μg/s
+		emisConv = 1.e6
 	default:
 		return math.NaN(), fmt.Errorf("inmap: invalid emissions units '%s'", units)
 	}
@@ -168,7 +171,7 @@ func emisConversionFactor(units string) (float64, error) {
 
 // ReadEmissionShapefiles returns the emissions data in the specified shapefiles,
 // and converts them to the spatial reference gridSR. Input units are specified
-// by units; options are tons/year, kg/year, ug/s, and μg/s. Output units = μg/s.
+// by units; options are tons/year, kg/year, ug/s, g/s, and μg/s. Output units = μg/s.
 // c is a channel over which status updates will be sent. If c is nil,
 // no updates will be sent.
 // mask specifies the region that emissions should be clipped to, assumed to

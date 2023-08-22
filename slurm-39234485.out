@@ -1,0 +1,150 @@
+2023/07/19 12:37:20 Parsing output variable expressions...
+2023/07/19 12:37:20 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_Sumlcc.shp.
+2023/07/19 12:38:10 Loading CTM data...
+2023/07/19 12:38:10 Reading input data...
+2023/07/19 12:44:12 Loading population and mortality rate data...
+2023/07/19 12:44:54 Initializing model...
+2023/07/19 12:44:58 Emission totals:
+2023/07/19 12:44:58 gOrg, 7.843634811919471 μg/s
+2023/07/19 12:44:58 pOrg, 0 μg/s
+2023/07/19 12:44:58 PM2_5, 1.241903692345105 μg/s
+2023/07/19 12:44:58 gNH, 0.4636067342325451 μg/s
+2023/07/19 12:44:58 pNH, 0 μg/s
+2023/07/19 12:44:58 gS, 0.1514563051882704 μg/s
+2023/07/19 12:44:58 pS, 0 μg/s
+2023/07/19 12:44:58 gNO, 1.4971050523952403 μg/s
+2023/07/19 12:44:58 pNO, 0 μg/s
+2023/07/19 12:44:58 iteration 1     walltime=0.00107h  Δwalltime= 3.9s  timestep=27s  day=0.000308
+2023/07/19 12:44:58 Adding grid cells...
+2023/07/19 12:44:58 Added 858 grid cells; there are now 2202 cells total
+2023/07/19 12:45:02 iteration 407   walltime=0.00211h  Δwalltime= 3.6s  timestep=21s  day=0.125
+2023/07/19 12:45:02 Percent change since last convergence check:
+VOC:			+Inf%
+VOC pop-wtd:		+Inf%
+SOA:			+Inf%
+SOA pop-wtd:		+Inf%
+PrimaryPM25:		+Inf%
+PrimaryPM25 pop-wtd:	+Inf%
+NH3:			+Inf%
+NH3 pop-wtd:		+Inf%
+pNH4:			+Inf%
+pNH4 pop-wtd:		+Inf%
+SOx:			+Inf%
+SOx pop-wtd:		+Inf%
+pSO4:			+Inf%
+pSO4 pop-wtd:		+Inf%
+NOx:			+Inf%
+NOx pop-wtd:		+Inf%
+pNO3:			+Inf%
+pNO3 pop-wtd:		+Inf%
+2023/07/19 12:45:02 Adding grid cells...
+2023/07/19 12:45:02 Added 24 grid cells; there are now 2226 cells total
+2023/07/19 12:45:06 Percent change since last convergence check:
+VOC:			35%
+VOC pop-wtd:		17%
+SOA:			37%
+SOA pop-wtd:		9.2%
+PrimaryPM25:		38%
+PrimaryPM25 pop-wtd:	19%
+NH3:			52%
+NH3 pop-wtd:		14%
+pNH4:			40%
+pNH4 pop-wtd:		18%
+SOx:			16%
+SOx pop-wtd:		14%
+pSO4:			64%
+pSO4 pop-wtd:		44%
+NOx:			39%
+NOx pop-wtd:		21%
+pNO3:			47%
+pNO3 pop-wtd:		11%
+2023/07/19 12:45:06 iteration 932   walltime=0.00314h  Δwalltime= 3.5s  timestep=21s  day=0.25
+2023/07/19 12:45:06 iteration 1036  walltime=0.00316h  Δwalltime=0.00054s  timestep=21s  day=0.275
+2023/07/19 12:45:06 Adding grid cells...
+2023/07/19 12:45:06 Added 24 grid cells; there are now 2250 cells total
+2023/07/19 12:45:09 Percent change since last convergence check:
+VOC:			4.2%
+VOC pop-wtd:		0.96%
+SOA:			4.7%
+SOA pop-wtd:		0.95%
+PrimaryPM25:		4.6%
+PrimaryPM25 pop-wtd:	1.2%
+NH3:			7.4%
+NH3 pop-wtd:		1.5%
+pNH4:			5.2%
+pNH4 pop-wtd:		1.7%
+SOx:			0.24%
+SOx pop-wtd:		0.061%
+pSO4:			8.1%
+pSO4 pop-wtd:		3.7%
+NOx:			4.5%
+NOx pop-wtd:		1.4%
+pNO3:			7.2%
+pNO3 pop-wtd:		1.4%
+2023/07/19 12:45:09 iteration 1457  walltime=0.00413h  Δwalltime= 3.3s  timestep=21s  day=0.375
+2023/07/19 12:45:09 Adding grid cells...
+2023/07/19 12:45:09 Added 3 grid cells; there are now 2253 cells total
+2023/07/19 12:45:13 Percent change since last convergence check:
+VOC:			0.56%
+VOC pop-wtd:		0.11%
+SOA:			0.64%
+SOA pop-wtd:		0.1%
+PrimaryPM25:		0.65%
+PrimaryPM25 pop-wtd:	0.14%
+NH3:			1.2%
+NH3 pop-wtd:		0.18%
+pNH4:			0.73%
+pNH4 pop-wtd:		0.21%
+SOx:			0.0027%
+SOx pop-wtd:		0.00062%
+pSO4:			1.1%
+pSO4 pop-wtd:		0.43%
+NOx:			0.62%
+NOx pop-wtd:		0.17%
+pNO3:			1.1%
+pNO3 pop-wtd:		0.17%
+2023/07/19 12:45:13 iteration 1982  walltime=0.0051h  Δwalltime= 3.2s  timestep=21s  day=0.501
+2023/07/19 12:45:13 Adding grid cells...
+2023/07/19 12:45:13 Added 3 grid cells; there are now 2256 cells total
+2023/07/19 12:45:16 iteration 2507  walltime=0.00607h  Δwalltime= 3.2s  timestep=21s  day=0.626
+2023/07/19 12:45:16 Percent change since last convergence check:
+VOC:			0.075%
+VOC pop-wtd:		0.013%
+SOA:			0.088%
+SOA pop-wtd:		0.012%
+PrimaryPM25:		0.093%
+PrimaryPM25 pop-wtd:	0.019%
+NH3:			0.18%
+NH3 pop-wtd:		0.023%
+pNH4:			0.1%
+pNH4 pop-wtd:		0.027%
+SOx:			3e-05%
+SOx pop-wtd:		6.7e-06%
+pSO4:			0.16%
+pSO4 pop-wtd:		0.055%
+NOx:			0.087%
+NOx pop-wtd:		0.022%
+pNO3:			0.17%
+pNO3 pop-wtd:		0.022%
+2023/07/19 12:45:16 Adding grid cells...
+2023/07/19 12:45:16 Added 6 grid cells; there are now 2262 cells total
+2023/07/19 12:45:20 Percent change since last convergence check:
+VOC:			0.01%
+VOC pop-wtd:		0.0016%
+SOA:			0.012%
+SOA pop-wtd:		0.0015%
+PrimaryPM25:		0.013%
+PrimaryPM25 pop-wtd:	0.0025%
+NH3:			0.026%
+NH3 pop-wtd:		0.0031%
+pNH4:			0.015%
+pNH4 pop-wtd:		0.0036%
+SOx:			3.4e-07%
+SOx pop-wtd:		7.3e-08%
+pSO4:			0.022%
+pSO4 pop-wtd:		0.0073%
+NOx:			0.012%
+NOx pop-wtd:		0.0029%
+pNO3:			0.025%
+pNO3 pop-wtd:		0.0029%
+2023/07/19 12:45:22 Elapsed time: 0.133934 hours

@@ -1,0 +1,39 @@
+2023/07/19 13:23:15 Parsing output variable expressions...
+2023/07/19 13:23:15 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_Sumlcc.shp.
+2023/07/19 13:24:05 Loading CTM data...
+2023/07/19 13:24:05 Reading input data...
+2023/07/19 13:30:00 Loading population and mortality rate data...
+2023/07/19 13:30:43 Initializing model...
+2023/07/19 13:30:46 Emission totals:
+2023/07/19 13:30:46 gOrg, 0 μg/s
+2023/07/19 13:30:46 pOrg, 0 μg/s
+2023/07/19 13:30:46 PM2_5, 0 μg/s
+2023/07/19 13:30:46 gNH, 0 μg/s
+2023/07/19 13:30:46 pNH, 0 μg/s
+2023/07/19 13:30:46 gS, 0 μg/s
+2023/07/19 13:30:46 pS, 0 μg/s
+2023/07/19 13:30:46 gNO, 0 μg/s
+2023/07/19 13:30:46 pNO, 0 μg/s
+2023/07/19 13:30:46 iteration 1     walltime=0.000997h  Δwalltime= 3.6s  timestep=7054844s  day=81.7
+2023/07/19 13:30:46 Adding grid cells...
+2023/07/19 13:30:46 Added 0 grid cells; there are now 1344 cells total
+2023/07/19 13:30:49 Percent change since last convergence check:
+VOC:			NaN%
+VOC pop-wtd:		NaN%
+SOA:			NaN%
+SOA pop-wtd:		NaN%
+PrimaryPM25:		NaN%
+PrimaryPM25 pop-wtd:	NaN%
+NH3:			NaN%
+NH3 pop-wtd:		NaN%
+pNH4:			NaN%
+pNH4 pop-wtd:		NaN%
+SOx:			NaN%
+SOx pop-wtd:		NaN%
+pSO4:			NaN%
+pSO4 pop-wtd:		NaN%
+NOx:			NaN%
+NOx pop-wtd:		NaN%
+pNO3:			NaN%
+pNO3 pop-wtd:		NaN%
+2023/07/19 13:30:50 Elapsed time: 0.126290 hours
