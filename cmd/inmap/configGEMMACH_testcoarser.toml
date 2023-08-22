@@ -1,13 +1,19 @@
 #InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
-InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017.nc"
+InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_fillnearest_corrected.nc"
 VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_coarse.mpack.gz"
 
-OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/GEMMACH_BASEGM_2015_017_coarseInmapOuts.shp"
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/GEMMACH_BASEGM_2015_017_50x50_corrected.shp"
 
-EmissionUnits= "ug/s"
+EmissionUnits= "g/s"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_SumCat_wgs84.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area_lcc.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_major_lcc.shp"
 ]
+#EmissionUnits = "kg/year"
+#EmissionsShapefiles = [
+#    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/NPRI/NPRI_ground_211.shp",
+#    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/NPRI/NPRI_stack_211.shp"
+#]
 
 [OutputVariables]
 TotalPM25 = "PrimaryPM25 + pNH4 + pSO4 + pNO3 + SOA"
@@ -23,28 +29,44 @@ SOx = "SOx"
 NH3 = "NH3"
 NOx = "NOx"
 BasePM25 = "BaselineTotalPM25"
+BaseVOC = "BaselineVOC"
+BaseSOA = "BaselineSOA"
+BaseNH3 = "BaselineNH3"
+BasePNH4 = "BaselinePNH4"
+BaseSOx = "BaselineSOx"
+BasePSO4 = "BaselinePSO4"
+BaseNOx = "BaselineNOx"
+BasePNO3 = "BaselinePNO3"
 
 [VarGrid]
 GridProj= "+proj=lcc +lat_0=40 +lon_0=-96 +lat_1=50 +lat_2=70 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +to_meter=1"
 #GridProj= "+proj=longlat +units=degrees"
-#Xnests= [744,2,2,2,2,2,2,2]
-#Ynests= [669,2,2,2,2,2,2,2]
-Xnests= [372,2,2,2,2,2,2,2]
-Ynests= [334,2,2,2,2,2,2,2]
-VariableGridXo= -4184312.05377675
-VariableGridYo= -2029822.82977676
-#VariableGridDx= 10002.6608465054
-#VariableGridDy= 10002.6608465054
-VariableGridDx= 20005.321692
-VariableGridDy= 20035.26977
+#Xnests= [744,2,2,2,2,2,2,2] #VariableGridDx= 10002.6608465054
+#Ynests= [669,2,2,2,2,2,2,2] #VariableGridDy= 10002.6608465054
+#Xnests= [372,2,2,2,2,2,2,2] #VariableGridDx= 20005.321692
+#Ynests= [334,2,2,2,2,2,2,2] #VariableGridDy= 20035.26977
+#Xnests= [37,2,2,2,2,2,2,2] #VariableGridDx= 201134.5857
+#Ynests= [33,2,2,2,2,2,2,2] #VariableGridDy= 20035.26977
+#Xnests= [150,2,2,2,2,2,2,2] #VariableGridDx= 48279.0
+#Ynests= [100,2,2,2,2,2,2,2] #VariableGridDy= 64917.0
+Xnests= [50,2,2,2,2,2,2,2] VariableGridDx= 143686.24
+Ynests= [50,2,2,2,2,2,2,2] VariableGridDy= 116200.0
+#Xnests= [25,2] #VariableGridDx= 143686.24
+#Ynests= [25,2] #VariableGridDy= 116200.0
+VariableGridXo= -4034312.054 #-4184312.05377675
+VariableGridYo= -1529822.83 #-2029822.82977676
+#VariableGridXo= -4184312.05377675 #VariableGridXo= -4084285.4453117 #
+#VariableGridYo= -2029822.82977676 #VariableGridYo= -1929796.221 # 
+#VariableGridDx= 48279.0
+#VariableGridDy= 64917.0
 HiResLayers= 1
 PopDensityThreshold= 55000000.0
 PopThreshold= 100000.0
 PopConcThreshold= 0.000000001
-CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA.shp"
+#CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA_lcc.shp"
 CensusPopColumns= ["TotalPop"]
 PopGridColumn= "TotalPop"
-#CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/CanadaPopulation10km2016_lcc.shp"
+CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA.shp"
 #CensusPopColumns= ["TOT_POP2A"]
 #PopGridColumn= "TOT_POP2A"
 
@@ -66,8 +88,8 @@ AllCause = "TotalPop"
 CTMType= "GEMMACH"
 StartDate= "20190201"
 EndDate= "20190301"
-CtmGridXo= -4184312.05377675
-CtmGridYo= -2029822.82977676
+CtmGridXo= -4084285.4453117 #-4084285.4453117 #-4184312.05377675
+CtmGridYo= -1929796.221 #-1929796.221 #-2029822.82977676
 CtmGridDx= 10002.6608465054
 CtmGridDy= 10002.6608465054
 

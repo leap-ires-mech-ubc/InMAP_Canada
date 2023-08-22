@@ -1,0 +1,46 @@
+2023/07/25 16:18:09 Parsing output variable expressions...
+2023/07/25 16:18:09 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area_lcc2.shp.
+2023/07/25 16:19:00 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_major_lcc2.shp.
+2023/07/25 16:19:35 Loading CTM data...
+2023/07/25 16:19:35 Reading input data...
+2023/07/25 16:25:28 Loading population and mortality rate data...
+2023/07/25 16:26:12 Initializing model...
+2023/07/25 16:28:47 Emission totals:
+2023/07/25 16:28:47 gOrg, 2.368727774738086e+14 μg/s
+2023/07/25 16:28:47 pOrg, 0 μg/s
+2023/07/25 16:28:47 PM2_5, 7.92569536655119e+13 μg/s
+2023/07/25 16:28:47 gNH, 2.5992024982961066e+13 μg/s
+2023/07/25 16:28:47 pNH, 0 μg/s
+2023/07/25 16:28:47 gS, 4.65441092904379e+13 μg/s
+2023/07/25 16:28:47 pS, 0 μg/s
+2023/07/25 16:28:47 gNO, 6.308911538230293e+13 μg/s
+2023/07/25 16:28:47 pNO, 0 μg/s
+2023/07/25 16:28:47 iteration 1     walltime= 0.043h  Δwalltime=1.5e+02s  timestep= 6s  day=6.93e-05
+2023/07/25 16:28:47 iteration 60    walltime=0.0432h  Δwalltime=0.011s  timestep= 6s  day=0.00416
+2023/07/25 16:28:49 iteration 347   walltime=0.0437h  Δwalltime=0.0059s  timestep= 6s  day=0.024
+2023/07/25 16:28:51 iteration 676   walltime=0.0443h  Δwalltime=0.006s  timestep= 6s  day=0.0468
+2023/07/25 16:28:53 iteration 1002  walltime=0.0448h  Δwalltime=0.006s  timestep= 6s  day=0.0694
+2023/07/25 16:28:55 iteration 1333  walltime=0.0454h  Δwalltime=0.0061s  timestep= 6s  day=0.0924
+2023/07/25 16:28:57 iteration 1570  walltime= 0.046h  Δwalltime=0.011s  timestep= 6s  day=0.109
+2023/07/25 16:28:59 Adding grid cells...
+2023/07/25 16:28:59 Added 0 grid cells; there are now 52500 cells total
+2023/07/25 16:29:05 Percent change since last convergence check:
+VOC:			NaN%
+VOC pop-wtd:		NaN%
+SOA:			NaN%
+SOA pop-wtd:		NaN%
+PrimaryPM25:		NaN%
+PrimaryPM25 pop-wtd:	NaN%
+NH3:			NaN%
+NH3 pop-wtd:		NaN%
+pNH4:			NaN%
+pNH4 pop-wtd:		NaN%
+SOx:			NaN%
+SOx pop-wtd:		NaN%
+pSO4:			NaN%
+pSO4 pop-wtd:		NaN%
+NOx:			NaN%
+NOx pop-wtd:		NaN%
+pNO3:			NaN%
+pNO3 pop-wtd:		NaN%
+2023/07/25 16:29:05 Elapsed time: 0.182244 hours

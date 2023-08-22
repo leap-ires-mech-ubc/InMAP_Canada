@@ -49,9 +49,11 @@ const (
 	// Molar masses [grams per mole]
 	mwNOx  = 46.0055
 	mwN    = 14.0067 // g/mol, molar mass of nitrogen
+	mwNO    = 30.0055
 	mwNO3  = 62.00501
 	mwNH3  = 17.03056
 	mwNH4  = 18.03851
+	mwHN3   = 63.012 // g/mol, molar mass of nitric acid
 	mwS    = 32.0655 // g/mol, molar mass of sulfur
 	mwSO2  = 64.0644
 	mwSO4  = 96.0632

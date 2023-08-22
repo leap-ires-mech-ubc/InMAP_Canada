@@ -10,10 +10,13 @@
             "request": "launch",
             "mode": "test",
             "program": "${workspaceFolder}",
+            "debugAdapter": "dlv-dap",
+            
             "args": [
                 "-test.run",
                 "MyTestFunction"
             ]
+            
         },
         {
             "name": "Launch Package",
@@ -22,15 +25,15 @@
             "mode": "auto",
             "program": "${fileDirname}"
         }
-    // ],
+    ],
 
-    // "dlvFlags": [
-    //     "--check-go-version=false"
-    // ]
+    "dlvFlags": [
+        "--check-go-version=false"
+    ],
 
-//     "go.delveConfig": [
-//         {
-//         "debugAdapter": "legacy"
-//  }
+    "go.delveConfig": [
+        {
+        "debugAdapter": "legacy"
+ }
 ]
 }

@@ -113,9 +113,9 @@ func checkLogFile(logFile, outputFile string) string {
 // units and ensures that an acceptable value was specified.
 func checkEmissionUnits(u string) (string, error) {
 	u = os.ExpandEnv(u)
-	if u != "tons/year" && u != "kg/year" && u != "ug/s" && u != "μg/s" {
+	if u != "tons/year" && u != "kg/year" && u != "ug/s" && u != "μg/s" && u != "g/s" {
 		return u, fmt.Errorf("the EmissionUnits variable in the configuration file "+
-			"needs to be set to either tons/year, kg/year, ug/s, or μg/s, but is currently set to `%s`",
+			"needs to be set to either tons/year, kg/year, ug/s, g/s, or μg/s, but is currently set to `%s`",
 			u)
 	}
 	return u, nil

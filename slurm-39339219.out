@@ -1,0 +1,243 @@
+2023/07/25 15:54:51 Parsing output variable expressions...
+2023/07/25 15:54:51 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area_lcc2.shp.
+2023/07/25 15:55:41 Loading emissions shapefile: /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_major_lcc2.shp.
+2023/07/25 15:56:15 Loading CTM data...
+2023/07/25 15:56:15 Reading input data...
+2023/07/25 16:02:20 Loading population and mortality rate data...
+2023/07/25 16:03:03 Initializing model...
+2023/07/25 16:15:02 Emission totals:
+2023/07/25 16:15:02 gOrg, NaN μg/s
+2023/07/25 16:15:02 pOrg, 0 μg/s
+2023/07/25 16:15:02 PM2_5, NaN μg/s
+2023/07/25 16:15:02 gNH, NaN μg/s
+2023/07/25 16:15:02 pNH, 0 μg/s
+2023/07/25 16:15:02 gS, NaN μg/s
+2023/07/25 16:15:02 pS, 0 μg/s
+2023/07/25 16:15:02 gNO, NaN μg/s
+2023/07/25 16:15:02 pNO, 0 μg/s
+2023/07/25 16:15:02 iteration 1     walltime=   0.2h  Δwalltime=7.2e+02s  timestep= 4s  day=4.49e-05
+2023/07/25 16:15:03 iteration 7     walltime=   0.2h  Δwalltime=0.18s  timestep= 4s  day=0.000314
+2023/07/25 16:15:05 iteration 17    walltime=   0.2h  Δwalltime=0.21s  timestep= 4s  day=0.000764
+2023/07/25 16:15:07 iteration 28    walltime= 0.201h  Δwalltime=0.18s  timestep= 4s  day=0.00126
+2023/07/25 16:15:09 iteration 40    walltime= 0.202h  Δwalltime=0.16s  timestep= 4s  day=0.0018
+2023/07/25 16:15:11 iteration 53    walltime= 0.202h  Δwalltime=0.15s  timestep= 4s  day=0.00238
+2023/07/25 16:15:13 iteration 68    walltime= 0.203h  Δwalltime=0.14s  timestep= 4s  day=0.00306
+2023/07/25 16:15:15 iteration 82    walltime= 0.203h  Δwalltime=0.14s  timestep= 4s  day=0.00368
+2023/07/25 16:15:17 iteration 96    walltime= 0.204h  Δwalltime=0.14s  timestep= 4s  day=0.00431
+2023/07/25 16:15:19 iteration 109   walltime= 0.204h  Δwalltime=0.15s  timestep= 4s  day=0.0049
+2023/07/25 16:15:21 iteration 123   walltime= 0.205h  Δwalltime=0.14s  timestep= 4s  day=0.00553
+2023/07/25 16:15:23 iteration 137   walltime= 0.205h  Δwalltime=0.15s  timestep= 4s  day=0.00615
+2023/07/25 16:15:25 iteration 151   walltime= 0.206h  Δwalltime=0.14s  timestep= 4s  day=0.00678
+2023/07/25 16:15:27 iteration 165   walltime= 0.206h  Δwalltime=0.14s  timestep= 4s  day=0.00741
+2023/07/25 16:15:29 iteration 179   walltime= 0.207h  Δwalltime=0.18s  timestep= 4s  day=0.00804
+2023/07/25 16:15:31 iteration 193   walltime= 0.208h  Δwalltime=0.15s  timestep= 4s  day=0.00867
+2023/07/25 16:15:33 iteration 208   walltime= 0.208h  Δwalltime=0.14s  timestep= 4s  day=0.00934
+2023/07/25 16:15:35 iteration 221   walltime= 0.209h  Δwalltime=0.14s  timestep= 4s  day=0.00993
+2023/07/25 16:15:37 iteration 236   walltime= 0.209h  Δwalltime=0.14s  timestep= 4s  day=0.0106
+2023/07/25 16:15:39 iteration 250   walltime=  0.21h  Δwalltime=0.13s  timestep= 4s  day=0.0112
+2023/07/25 16:15:41 iteration 265   walltime=  0.21h  Δwalltime=0.14s  timestep= 4s  day=0.0119
+2023/07/25 16:15:43 iteration 279   walltime= 0.211h  Δwalltime=0.16s  timestep= 4s  day=0.0125
+2023/07/25 16:15:45 iteration 293   walltime= 0.211h  Δwalltime=0.19s  timestep= 4s  day=0.0132
+2023/07/25 16:15:47 iteration 307   walltime= 0.212h  Δwalltime=0.15s  timestep= 4s  day=0.0138
+2023/07/25 16:15:49 iteration 320   walltime= 0.213h  Δwalltime=0.14s  timestep= 4s  day=0.0144
+2023/07/25 16:15:51 iteration 334   walltime= 0.213h  Δwalltime=0.14s  timestep= 4s  day=0.015
+2023/07/25 16:15:53 iteration 348   walltime= 0.214h  Δwalltime=0.14s  timestep= 4s  day=0.0156
+2023/07/25 16:15:55 iteration 362   walltime= 0.214h  Δwalltime=0.14s  timestep= 4s  day=0.0163
+2023/07/25 16:15:57 iteration 376   walltime= 0.215h  Δwalltime=0.14s  timestep= 4s  day=0.0169
+2023/07/25 16:15:59 iteration 390   walltime= 0.215h  Δwalltime=0.14s  timestep= 4s  day=0.0175
+2023/07/25 16:16:01 iteration 404   walltime= 0.216h  Δwalltime=0.14s  timestep= 4s  day=0.0182
+2023/07/25 16:16:03 iteration 419   walltime= 0.217h  Δwalltime=0.19s  timestep= 4s  day=0.0188
+2023/07/25 16:16:05 iteration 432   walltime= 0.217h  Δwalltime=0.14s  timestep= 4s  day=0.0194
+2023/07/25 16:16:07 iteration 446   walltime= 0.218h  Δwalltime=0.14s  timestep= 4s  day=0.02
+2023/07/25 16:16:09 iteration 461   walltime= 0.218h  Δwalltime=0.14s  timestep= 4s  day=0.0207
+2023/07/25 16:16:11 iteration 475   walltime= 0.219h  Δwalltime=0.14s  timestep= 4s  day=0.0213
+2023/07/25 16:16:13 iteration 489   walltime= 0.219h  Δwalltime=0.14s  timestep= 4s  day=0.022
+2023/07/25 16:16:15 iteration 503   walltime=  0.22h  Δwalltime= 0.2s  timestep= 4s  day=0.0226
+2023/07/25 16:16:17 iteration 516   walltime=  0.22h  Δwalltime=0.15s  timestep= 4s  day=0.0232
+2023/07/25 16:16:19 iteration 530   walltime= 0.221h  Δwalltime=0.14s  timestep= 4s  day=0.0238
+2023/07/25 16:16:21 iteration 544   walltime= 0.221h  Δwalltime=0.15s  timestep= 4s  day=0.0244
+2023/07/25 16:16:23 iteration 558   walltime= 0.222h  Δwalltime=0.16s  timestep= 4s  day=0.0251
+2023/07/25 16:16:25 iteration 572   walltime= 0.223h  Δwalltime=0.14s  timestep= 4s  day=0.0257
+2023/07/25 16:16:27 iteration 587   walltime= 0.223h  Δwalltime=0.14s  timestep= 4s  day=0.0264
+2023/07/25 16:16:29 iteration 602   walltime= 0.224h  Δwalltime=0.14s  timestep= 4s  day=0.027
+2023/07/25 16:16:31 iteration 616   walltime= 0.224h  Δwalltime=0.14s  timestep= 4s  day=0.0277
+2023/07/25 16:16:33 iteration 630   walltime= 0.225h  Δwalltime= 0.2s  timestep= 4s  day=0.0283
+2023/07/25 16:16:35 iteration 642   walltime= 0.225h  Δwalltime=0.15s  timestep= 4s  day=0.0288
+2023/07/25 16:16:37 iteration 654   walltime= 0.226h  Δwalltime=0.14s  timestep= 4s  day=0.0294
+2023/07/25 16:16:39 iteration 668   walltime= 0.226h  Δwalltime=0.14s  timestep= 4s  day=0.03
+2023/07/25 16:16:41 iteration 683   walltime= 0.227h  Δwalltime=0.14s  timestep= 4s  day=0.0307
+2023/07/25 16:16:43 iteration 697   walltime= 0.228h  Δwalltime=0.14s  timestep= 4s  day=0.0313
+2023/07/25 16:16:45 iteration 711   walltime= 0.228h  Δwalltime=0.14s  timestep= 4s  day=0.0319
+2023/07/25 16:16:47 iteration 726   walltime= 0.229h  Δwalltime=0.14s  timestep= 4s  day=0.0326
+2023/07/25 16:16:49 iteration 740   walltime= 0.229h  Δwalltime=0.14s  timestep= 4s  day=0.0332
+2023/07/25 16:16:51 iteration 754   walltime=  0.23h  Δwalltime=0.14s  timestep= 4s  day=0.0339
+2023/07/25 16:16:53 iteration 769   walltime=  0.23h  Δwalltime=0.15s  timestep= 4s  day=0.0345
+2023/07/25 16:16:55 iteration 783   walltime= 0.231h  Δwalltime=0.14s  timestep= 4s  day=0.0352
+2023/07/25 16:16:57 iteration 797   walltime= 0.231h  Δwalltime=0.14s  timestep= 4s  day=0.0358
+2023/07/25 16:16:59 iteration 812   walltime= 0.232h  Δwalltime=0.14s  timestep= 4s  day=0.0365
+2023/07/25 16:17:01 iteration 826   walltime= 0.233h  Δwalltime=0.14s  timestep= 4s  day=0.0371
+2023/07/25 16:17:03 iteration 835   walltime= 0.233h  Δwalltime=0.17s  timestep= 4s  day=0.0375
+2023/07/25 16:17:05 iteration 846   walltime= 0.234h  Δwalltime=0.18s  timestep= 4s  day=0.038
+2023/07/25 16:17:07 iteration 857   walltime= 0.234h  Δwalltime=0.17s  timestep= 4s  day=0.0385
+2023/07/25 16:17:09 iteration 869   walltime= 0.235h  Δwalltime=0.13s  timestep= 4s  day=0.039
+2023/07/25 16:17:11 iteration 883   walltime= 0.235h  Δwalltime=0.15s  timestep= 4s  day=0.0397
+2023/07/25 16:17:13 iteration 898   walltime= 0.236h  Δwalltime=0.14s  timestep= 4s  day=0.0403
+2023/07/25 16:17:15 iteration 912   walltime= 0.236h  Δwalltime=0.14s  timestep= 4s  day=0.041
+2023/07/25 16:17:17 iteration 926   walltime= 0.237h  Δwalltime=0.14s  timestep= 4s  day=0.0416
+2023/07/25 16:17:19 iteration 940   walltime= 0.238h  Δwalltime=0.14s  timestep= 4s  day=0.0422
+2023/07/25 16:17:21 iteration 954   walltime= 0.238h  Δwalltime=0.18s  timestep= 4s  day=0.0429
+2023/07/25 16:17:23 iteration 969   walltime= 0.239h  Δwalltime=0.14s  timestep= 4s  day=0.0435
+2023/07/25 16:17:25 iteration 983   walltime= 0.239h  Δwalltime=0.14s  timestep= 4s  day=0.0442
+2023/07/25 16:17:27 iteration 997   walltime=  0.24h  Δwalltime=0.14s  timestep= 4s  day=0.0448
+2023/07/25 16:17:29 iteration 1011  walltime=  0.24h  Δwalltime=0.14s  timestep= 4s  day=0.0454
+2023/07/25 16:17:31 iteration 1025  walltime= 0.241h  Δwalltime= 0.2s  timestep= 4s  day=0.046
+2023/07/25 16:17:33 iteration 1039  walltime= 0.241h  Δwalltime=0.14s  timestep= 4s  day=0.0467
+2023/07/25 16:17:35 iteration 1053  walltime= 0.242h  Δwalltime=0.14s  timestep= 4s  day=0.0473
+2023/07/25 16:17:37 iteration 1067  walltime= 0.243h  Δwalltime=0.14s  timestep= 4s  day=0.0479
+2023/07/25 16:17:39 iteration 1082  walltime= 0.243h  Δwalltime=0.14s  timestep= 4s  day=0.0486
+2023/07/25 16:17:41 iteration 1096  walltime= 0.244h  Δwalltime=0.14s  timestep= 4s  day=0.0492
+2023/07/25 16:17:43 iteration 1111  walltime= 0.244h  Δwalltime=0.14s  timestep= 4s  day=0.0499
+2023/07/25 16:17:45 iteration 1125  walltime= 0.245h  Δwalltime=0.14s  timestep= 4s  day=0.0505
+2023/07/25 16:17:47 iteration 1140  walltime= 0.245h  Δwalltime=0.14s  timestep= 4s  day=0.0512
+2023/07/25 16:17:49 iteration 1154  walltime= 0.246h  Δwalltime=0.14s  timestep= 4s  day=0.0518
+2023/07/25 16:17:51 iteration 1168  walltime= 0.246h  Δwalltime=0.15s  timestep= 4s  day=0.0525
+2023/07/25 16:17:53 iteration 1182  walltime= 0.247h  Δwalltime=0.14s  timestep= 4s  day=0.0531
+2023/07/25 16:17:55 iteration 1197  walltime= 0.248h  Δwalltime=0.14s  timestep= 4s  day=0.0538
+2023/07/25 16:17:57 iteration 1211  walltime= 0.248h  Δwalltime=0.14s  timestep= 4s  day=0.0544
+2023/07/25 16:17:59 iteration 1226  walltime= 0.249h  Δwalltime=0.14s  timestep= 4s  day=0.0551
+2023/07/25 16:18:01 iteration 1240  walltime= 0.249h  Δwalltime=0.14s  timestep= 4s  day=0.0557
+2023/07/25 16:18:03 iteration 1255  walltime=  0.25h  Δwalltime=0.14s  timestep= 4s  day=0.0564
+2023/07/25 16:18:05 iteration 1267  walltime=  0.25h  Δwalltime=0.21s  timestep= 4s  day=0.0569
+2023/07/25 16:18:07 iteration 1279  walltime= 0.251h  Δwalltime=0.14s  timestep= 4s  day=0.0575
+2023/07/25 16:18:09 iteration 1293  walltime= 0.251h  Δwalltime=0.14s  timestep= 4s  day=0.0581
+2023/07/25 16:18:11 iteration 1308  walltime= 0.252h  Δwalltime=0.14s  timestep= 4s  day=0.0588
+2023/07/25 16:18:13 iteration 1323  walltime= 0.253h  Δwalltime=0.14s  timestep= 4s  day=0.0594
+2023/07/25 16:18:15 iteration 1336  walltime= 0.253h  Δwalltime=0.15s  timestep= 4s  day=0.06
+2023/07/25 16:18:17 iteration 1351  walltime= 0.254h  Δwalltime=0.14s  timestep= 4s  day=0.0607
+2023/07/25 16:18:19 iteration 1364  walltime= 0.254h  Δwalltime=0.14s  timestep= 4s  day=0.0613
+2023/07/25 16:18:21 iteration 1379  walltime= 0.255h  Δwalltime=0.14s  timestep= 4s  day=0.062
+2023/07/25 16:18:23 iteration 1393  walltime= 0.255h  Δwalltime=0.14s  timestep= 4s  day=0.0626
+2023/07/25 16:18:25 iteration 1407  walltime= 0.256h  Δwalltime=0.14s  timestep= 4s  day=0.0632
+2023/07/25 16:18:27 iteration 1422  walltime= 0.256h  Δwalltime=0.14s  timestep= 4s  day=0.0639
+2023/07/25 16:18:29 iteration 1436  walltime= 0.257h  Δwalltime=0.14s  timestep= 4s  day=0.0645
+2023/07/25 16:18:31 iteration 1451  walltime= 0.258h  Δwalltime=0.14s  timestep= 4s  day=0.0652
+2023/07/25 16:18:33 iteration 1465  walltime= 0.258h  Δwalltime=0.14s  timestep= 4s  day=0.0658
+2023/07/25 16:18:35 iteration 1478  walltime= 0.259h  Δwalltime=0.15s  timestep= 4s  day=0.0664
+2023/07/25 16:18:37 iteration 1493  walltime= 0.259h  Δwalltime=0.14s  timestep= 4s  day=0.0671
+2023/07/25 16:18:39 iteration 1507  walltime=  0.26h  Δwalltime=0.14s  timestep= 4s  day=0.0677
+2023/07/25 16:18:41 iteration 1521  walltime=  0.26h  Δwalltime=0.14s  timestep= 4s  day=0.0683
+2023/07/25 16:18:43 iteration 1535  walltime= 0.261h  Δwalltime=0.15s  timestep= 4s  day=0.069
+2023/07/25 16:18:45 iteration 1549  walltime= 0.261h  Δwalltime=0.14s  timestep= 4s  day=0.0696
+2023/07/25 16:18:47 iteration 1563  walltime= 0.262h  Δwalltime=0.16s  timestep= 4s  day=0.0702
+2023/07/25 16:18:49 iteration 1576  walltime= 0.263h  Δwalltime=0.16s  timestep= 4s  day=0.0708
+2023/07/25 16:18:51 iteration 1590  walltime= 0.263h  Δwalltime=0.14s  timestep= 4s  day=0.0714
+2023/07/25 16:18:53 iteration 1605  walltime= 0.264h  Δwalltime=0.16s  timestep= 4s  day=0.0721
+2023/07/25 16:18:55 iteration 1619  walltime= 0.264h  Δwalltime=0.14s  timestep= 4s  day=0.0727
+2023/07/25 16:18:57 iteration 1631  walltime= 0.265h  Δwalltime=0.14s  timestep= 4s  day=0.0733
+2023/07/25 16:18:59 iteration 1645  walltime= 0.265h  Δwalltime=0.14s  timestep= 4s  day=0.0739
+2023/07/25 16:19:01 iteration 1659  walltime= 0.266h  Δwalltime=0.14s  timestep= 4s  day=0.0745
+2023/07/25 16:19:03 iteration 1672  walltime= 0.266h  Δwalltime=0.27s  timestep= 4s  day=0.0751
+2023/07/25 16:19:05 iteration 1681  walltime= 0.267h  Δwalltime=0.18s  timestep= 4s  day=0.0755
+2023/07/25 16:19:07 iteration 1693  walltime= 0.268h  Δwalltime=0.14s  timestep= 4s  day=0.0761
+2023/07/25 16:19:09 iteration 1707  walltime= 0.268h  Δwalltime=0.15s  timestep= 4s  day=0.0767
+2023/07/25 16:19:11 iteration 1721  walltime= 0.269h  Δwalltime=0.14s  timestep= 4s  day=0.0773
+2023/07/25 16:19:13 iteration 1735  walltime= 0.269h  Δwalltime=0.15s  timestep= 4s  day=0.0779
+2023/07/25 16:19:15 iteration 1749  walltime=  0.27h  Δwalltime=0.15s  timestep= 4s  day=0.0786
+2023/07/25 16:19:17 iteration 1763  walltime=  0.27h  Δwalltime=0.14s  timestep= 4s  day=0.0792
+2023/07/25 16:19:19 iteration 1777  walltime= 0.271h  Δwalltime=0.14s  timestep= 4s  day=0.0798
+2023/07/25 16:19:21 iteration 1791  walltime= 0.271h  Δwalltime=0.14s  timestep= 4s  day=0.0805
+2023/07/25 16:19:23 iteration 1805  walltime= 0.272h  Δwalltime=0.14s  timestep= 4s  day=0.0811
+2023/07/25 16:19:25 iteration 1819  walltime= 0.273h  Δwalltime=0.14s  timestep= 4s  day=0.0817
+2023/07/25 16:19:27 iteration 1833  walltime= 0.273h  Δwalltime=0.14s  timestep= 4s  day=0.0824
+2023/07/25 16:19:29 iteration 1846  walltime= 0.274h  Δwalltime=0.15s  timestep= 4s  day=0.0829
+2023/07/25 16:19:31 iteration 1860  walltime= 0.274h  Δwalltime=0.14s  timestep= 4s  day=0.0836
+2023/07/25 16:19:33 iteration 1874  walltime= 0.275h  Δwalltime=0.14s  timestep= 4s  day=0.0842
+2023/07/25 16:19:35 iteration 1886  walltime= 0.275h  Δwalltime=0.17s  timestep= 4s  day=0.0847
+2023/07/25 16:19:37 iteration 1899  walltime= 0.276h  Δwalltime=0.18s  timestep= 4s  day=0.0853
+2023/07/25 16:19:39 iteration 1912  walltime= 0.276h  Δwalltime=0.14s  timestep= 4s  day=0.0859
+2023/07/25 16:19:41 iteration 1926  walltime= 0.277h  Δwalltime=0.14s  timestep= 4s  day=0.0865
+2023/07/25 16:19:43 iteration 1940  walltime= 0.278h  Δwalltime=0.14s  timestep= 4s  day=0.0872
+2023/07/25 16:19:45 iteration 1954  walltime= 0.278h  Δwalltime=0.14s  timestep= 4s  day=0.0878
+2023/07/25 16:19:47 iteration 1967  walltime= 0.279h  Δwalltime=0.14s  timestep= 4s  day=0.0884
+2023/07/25 16:19:49 iteration 1981  walltime= 0.279h  Δwalltime=0.14s  timestep= 4s  day=0.089
+2023/07/25 16:19:51 iteration 1995  walltime=  0.28h  Δwalltime=0.14s  timestep= 4s  day=0.0896
+2023/07/25 16:19:53 iteration 2009  walltime=  0.28h  Δwalltime=0.14s  timestep= 4s  day=0.0903
+2023/07/25 16:19:55 iteration 2023  walltime= 0.281h  Δwalltime=0.14s  timestep= 4s  day=0.0909
+2023/07/25 16:19:57 iteration 2037  walltime= 0.281h  Δwalltime=0.14s  timestep= 4s  day=0.0915
+2023/07/25 16:19:59 iteration 2051  walltime= 0.282h  Δwalltime=0.14s  timestep= 4s  day=0.0921
+2023/07/25 16:20:01 iteration 2065  walltime= 0.283h  Δwalltime=0.14s  timestep= 4s  day=0.0928
+2023/07/25 16:20:03 iteration 2078  walltime= 0.283h  Δwalltime=0.14s  timestep= 4s  day=0.0934
+2023/07/25 16:20:05 iteration 2092  walltime= 0.284h  Δwalltime=0.15s  timestep= 4s  day=0.094
+2023/07/25 16:20:07 iteration 2106  walltime= 0.284h  Δwalltime=0.14s  timestep= 4s  day=0.0946
+2023/07/25 16:20:09 iteration 2120  walltime= 0.285h  Δwalltime=0.14s  timestep= 4s  day=0.0952
+2023/07/25 16:20:11 iteration 2134  walltime= 0.285h  Δwalltime=0.14s  timestep= 4s  day=0.0959
+2023/07/25 16:20:13 iteration 2148  walltime= 0.286h  Δwalltime=0.14s  timestep= 4s  day=0.0965
+2023/07/25 16:20:15 iteration 2162  walltime= 0.286h  Δwalltime=0.14s  timestep= 4s  day=0.0971
+2023/07/25 16:20:17 iteration 2176  walltime= 0.287h  Δwalltime=0.14s  timestep= 4s  day=0.0978
+2023/07/25 16:20:19 iteration 2189  walltime= 0.288h  Δwalltime=0.15s  timestep= 4s  day=0.0983
+2023/07/25 16:20:21 iteration 2203  walltime= 0.288h  Δwalltime=0.15s  timestep= 4s  day=0.099
+2023/07/25 16:20:23 iteration 2216  walltime= 0.289h  Δwalltime=0.14s  timestep= 4s  day=0.0996
+2023/07/25 16:20:25 iteration 2230  walltime= 0.289h  Δwalltime=0.14s  timestep= 4s  day=0.1
+2023/07/25 16:20:27 iteration 2244  walltime=  0.29h  Δwalltime=0.14s  timestep= 4s  day=0.101
+2023/07/25 16:20:29 iteration 2258  walltime=  0.29h  Δwalltime=0.14s  timestep= 4s  day=0.101
+2023/07/25 16:20:31 iteration 2271  walltime= 0.291h  Δwalltime=0.21s  timestep= 4s  day=0.102
+2023/07/25 16:20:33 iteration 2285  walltime= 0.292h  Δwalltime=0.14s  timestep= 4s  day=0.103
+2023/07/25 16:20:35 iteration 2298  walltime= 0.292h  Δwalltime=0.14s  timestep= 4s  day=0.103
+2023/07/25 16:20:37 iteration 2312  walltime= 0.293h  Δwalltime=0.14s  timestep= 4s  day=0.104
+2023/07/25 16:20:39 iteration 2326  walltime= 0.293h  Δwalltime=0.14s  timestep= 4s  day=0.104
+2023/07/25 16:20:41 iteration 2339  walltime= 0.294h  Δwalltime=0.14s  timestep= 4s  day=0.105
+2023/07/25 16:20:43 iteration 2353  walltime= 0.294h  Δwalltime=0.14s  timestep= 4s  day=0.106
+2023/07/25 16:20:45 iteration 2367  walltime= 0.295h  Δwalltime=0.14s  timestep= 4s  day=0.106
+2023/07/25 16:20:47 iteration 2381  walltime= 0.295h  Δwalltime=0.14s  timestep= 4s  day=0.107
+2023/07/25 16:20:49 iteration 2394  walltime= 0.296h  Δwalltime=0.15s  timestep= 4s  day=0.108
+2023/07/25 16:20:51 iteration 2408  walltime= 0.296h  Δwalltime=0.15s  timestep= 4s  day=0.108
+2023/07/25 16:20:53 iteration 2421  walltime= 0.297h  Δwalltime=0.15s  timestep= 4s  day=0.109
+2023/07/25 16:20:55 iteration 2434  walltime= 0.298h  Δwalltime=0.15s  timestep= 4s  day=0.109
+2023/07/25 16:20:57 iteration 2448  walltime= 0.298h  Δwalltime=0.14s  timestep= 4s  day=0.11
+2023/07/25 16:20:59 iteration 2461  walltime= 0.299h  Δwalltime=0.15s  timestep= 4s  day=0.111
+2023/07/25 16:21:01 iteration 2475  walltime= 0.299h  Δwalltime=0.14s  timestep= 4s  day=0.111
+2023/07/25 16:21:03 iteration 2489  walltime=   0.3h  Δwalltime=0.15s  timestep= 4s  day=0.112
+2023/07/25 16:21:05 iteration 2499  walltime=   0.3h  Δwalltime=0.25s  timestep= 4s  day=0.112
+2023/07/25 16:21:07 iteration 2508  walltime= 0.301h  Δwalltime=0.18s  timestep= 4s  day=0.113
+2023/07/25 16:21:09 iteration 2520  walltime= 0.301h  Δwalltime=0.15s  timestep= 4s  day=0.113
+2023/07/25 16:21:11 iteration 2534  walltime= 0.302h  Δwalltime=0.15s  timestep= 4s  day=0.114
+2023/07/25 16:21:13 iteration 2548  walltime= 0.303h  Δwalltime=0.14s  timestep= 4s  day=0.114
+2023/07/25 16:21:15 iteration 2561  walltime= 0.303h  Δwalltime=0.15s  timestep= 4s  day=0.115
+2023/07/25 16:21:17 iteration 2575  walltime= 0.304h  Δwalltime=0.15s  timestep= 4s  day=0.116
+2023/07/25 16:21:19 iteration 2588  walltime= 0.304h  Δwalltime=0.14s  timestep= 4s  day=0.116
+2023/07/25 16:21:21 iteration 2601  walltime= 0.305h  Δwalltime=0.15s  timestep= 4s  day=0.117
+2023/07/25 16:21:23 iteration 2615  walltime= 0.305h  Δwalltime=0.15s  timestep= 4s  day=0.117
+2023/07/25 16:21:25 iteration 2628  walltime= 0.306h  Δwalltime=0.15s  timestep= 4s  day=0.118
+2023/07/25 16:21:27 iteration 2642  walltime= 0.306h  Δwalltime=0.15s  timestep= 4s  day=0.119
+2023/07/25 16:21:29 iteration 2656  walltime= 0.307h  Δwalltime=0.16s  timestep= 4s  day=0.119
+2023/07/25 16:21:31 iteration 2669  walltime= 0.308h  Δwalltime=0.19s  timestep= 4s  day=0.12
+2023/07/25 16:21:33 iteration 2682  walltime= 0.308h  Δwalltime=0.15s  timestep= 4s  day=0.12
+2023/07/25 16:21:35 iteration 2696  walltime= 0.309h  Δwalltime=0.15s  timestep= 4s  day=0.121
+2023/07/25 16:21:37 iteration 2710  walltime= 0.309h  Δwalltime=0.15s  timestep= 4s  day=0.122
+2023/07/25 16:21:39 iteration 2723  walltime=  0.31h  Δwalltime=0.15s  timestep= 4s  day=0.122
+2023/07/25 16:21:41 iteration 2737  walltime=  0.31h  Δwalltime=0.14s  timestep= 4s  day=0.123
+2023/07/25 16:21:43 iteration 2751  walltime= 0.311h  Δwalltime=0.14s  timestep= 4s  day=0.124
+2023/07/25 16:21:45 iteration 2764  walltime= 0.311h  Δwalltime=0.15s  timestep= 4s  day=0.124
+2023/07/25 16:21:47 iteration 2777  walltime= 0.312h  Δwalltime=0.15s  timestep= 4s  day=0.125
+2023/07/25 16:21:48 Adding grid cells...
+2023/07/25 16:21:50 Added 0 grid cells; there are now 1260000 cells total
+2023/07/25 16:21:58 Percent change since last convergence check:
+VOC:			NaN%
+VOC pop-wtd:		NaN%
+SOA:			NaN%
+SOA pop-wtd:		NaN%
+PrimaryPM25:		NaN%
+PrimaryPM25 pop-wtd:	NaN%
+NH3:			NaN%
+NH3 pop-wtd:		NaN%
+pNH4:			NaN%
+pNH4 pop-wtd:		NaN%
+SOx:			NaN%
+SOx pop-wtd:		NaN%
+pSO4:			NaN%
+pSO4 pop-wtd:		NaN%
+NOx:			NaN%
+NOx pop-wtd:		NaN%
+pNO3:			NaN%
+pNO3 pop-wtd:		NaN%
+2023/07/25 16:22:03 Elapsed time: 0.453901 hours

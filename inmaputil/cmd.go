@@ -749,7 +749,7 @@ variable specifies the information to be output.`,
 		},
 		{
 			name: "EmissionUnits",
-			usage: `EmissionUnits gives the units that the input emissions are in. Acceptable values are 'tons/year', 'kg/year', 'ug/s', and 'μg/s'.
+			usage: `EmissionUnits gives the units that the input emissions are in. Acceptable values are 'tons/year', 'kg/year', 'ug/s', g/s, and 'μg/s'.
 `,
 			defaultVal: "tons/year",
 			flagsets:   []*pflag.FlagSet{cfg.runCmd.PersistentFlags(), cfg.srPredictCmd.Flags(), cfg.cloudStartCmd.Flags()},

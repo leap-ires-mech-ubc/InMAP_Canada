@@ -90,7 +90,7 @@ var DefaultScienceFuncs = []inmap.CellManipulator{
 // output file.
 //
 // EmissionUnits gives the units that the input emissions are in.
-// Acceptable values are 'tons/year', 'kg/year', 'ug/s', and 'μg/s'.
+// Acceptable values are 'tons/year', 'kg/year', 'ug/s', g/s, and 'μg/s'.
 //
 // EmissionsShapefiles are the paths to any emissions shapefiles.
 // Can be elevated or ground level; elevated files need to have columns
