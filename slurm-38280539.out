@@ -1,5 +1,0 @@
-2023/06/27 15:46:45 Reading input data...
-2023/06/27 15:52:47 Loading population and mortality rate data
-2023/06/27 15:53:20 Creating grid
-slurmstepd: error: *** JOB 38280539 ON bc11544 CANCELLED AT 2023-06-30T19:46:12 DUE TO TIME LIMIT ***
-slurmstepd: error: *** JOB 38280539 STEPD TERMINATED ON bc11544 AT 2023-06-30T19:57:13 DUE TO JOB NOT ENDING WITH SIGNALS ***

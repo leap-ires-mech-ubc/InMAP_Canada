@@ -56,6 +56,8 @@ const (
 	gemChemFormat = "20060102.150000"
 )
 
+var Nx, Ny, Nz int
+
 // GEMMACH is an InMAP preprocessor for GEM-MACH output.
 //recordDelta, fileDelta time.Duration
 type GEMMACH struct {
@@ -143,13 +145,13 @@ func NewGEMMACH(gem_out, gem_geophy, gem_rdps, startDate, endDate string, gemnoC
 		// NOx is RACM NOx species. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
-		nox: map[string]float64{"TNO": mwN/mwNO,
-							    "TNO2": mwN/mwNOx},
+		nox: map[string]float64{"TNO": mwN / mwNO,
+			"TNO2": mwN / mwNOx},
 		// pNO is the Nitrogen fraction of MADE particulate
 		// NO species [μg/kg dry air].
-		pNO: map[string]float64{"TNI1": mwN/mwNO3,
-								"TNO3": mwN/mwNO3,
-								"THN3": mwN/mwHN3},
+		pNO: map[string]float64{"TNI1": mwN / mwNO3,
+			"TNO3": mwN / mwNO3,
+			"THN3": mwN / mwHN3},
 		// SOx is the RACM SOx species. We are only interested in the mass
 		// of Sulfur, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Sulfur.
@@ -157,14 +159,14 @@ func NewGEMMACH(gem_out, gem_geophy, gem_rdps, startDate, endDate string, gemnoC
 		sox: map[string]float64{"S2": ppmvToUgKg(mwS) / 1000.0},
 		// pS is the Sulfur fraction of the MADE particulate
 		// Sulfur species [μg/kg dry air].
-		pS: map[string]float64{"TSU1": mwS/mwSO4},
+		pS: map[string]float64{"TSU1": mwS / mwSO4},
 		// NH3 is ammonia. We are only interested in the mass
 		// of Nitrogen, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Nitrogen.
-		nh3: map[string]float64{"TNH3": mwN/mwNH3},
+		nh3: map[string]float64{"TNH3": mwN / mwNH3},
 		// pNH is the Nitrogen fraction of the MADE particulate
 		// ammonia species [μg/kg].
-		pNH: map[string]float64{"TAM1": mwN/mwNH4},
+		pNH: map[string]float64{"TAM1": mwN / mwNH4},
 		// totalPM25 is total mass of PM2.5  [μg/m3].
 		totalPM25: map[string]float64{"AF": 1.},
 		// Hydroxy radical is concentratoon of the hydroxy radical.
@@ -408,13 +410,14 @@ func (w *GEMMACH) flipread(varName string) NextData {
 }
 
 //This function will read a group of data using the "alt" method with the Z axis inverted
+//20230823 - Now reads in invalt() so that the pollutant and alt are on the same level, rather than opposites.
 func (w *GEMMACH) flipreadGroupAlt(varGroup map[string]float64) NextData {
 	if w.gemnoChemHour {
 		flipfunc := flip()
-		return flipfunc(nextDataGroupAltNCF(w.gem_out, gemFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
+		return flipfunc(nextDataGroupAltNCF(w.gem_out, gemFormat, varGroup, w.invALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCFNoHour, w.msgChan))
 	} else {
 		flipfunc := flip()
-		return flipfunc(nextDataGroupAltNCF(w.gem_out, gemFormat, varGroup, w.ALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
+		return flipfunc(nextDataGroupAltNCF(w.gem_out, gemFormat, varGroup, w.invALT(), w.start, w.end, w.recordDelta, w.fileDelta, readNCF, w.msgChan))
 	}
 }
 
@@ -454,12 +457,14 @@ func (w *GEMMACH) rdpsread(varName string) NextData {
 //outputs do not contain ALT, but do contain AF
 // Nx helps fulfill the Preprocessor interface by returning
 // the number of grid cells in the West-East direction.
+//TR20230823 - Trying to reduce calls, going to define global variables Nx,Ny,Nz.
 func (w *GEMMACH) Nx() (int, error) {
 	f, ff, err := ncfFromTemplate(w.gem_out, gemFormat, w.start)
 	if err != nil {
 		return -1, fmt.Errorf("nx: %v", err)
 	}
 	defer f.Close()
+	Nx = ff.Header.Lengths("AF")[3]
 	return ff.Header.Lengths("AF")[3], nil
 }
 
@@ -471,6 +476,7 @@ func (w *GEMMACH) Ny() (int, error) {
 		return -1, fmt.Errorf("ny: %v", err)
 	}
 	defer f.Close()
+	Ny = ff.Header.Lengths("AF")[2]
 	return ff.Header.Lengths("AF")[2], nil
 }
 
@@ -482,7 +488,32 @@ func (w *GEMMACH) Nz() (int, error) {
 		return -1, fmt.Errorf("nz: %v", err)
 	}
 	defer f.Close()
+	Nz = ff.Header.Lengths("AF")[1]
 	return ff.Header.Lengths("AF")[1], nil
+}
+
+// Shp tells us the shape of the output unstaggered array
+func (w *GEMMACH) Shp(staggered bool) ([]int, error) {
+	f, ff, err := ncfFromTemplate(w.gem_out, gemFormat, w.start)
+	if err != nil {
+		return []int{-1}, fmt.Errorf("nz: %v", err)
+	}
+	defer f.Close()
+	//Read in dimensions. Hoping this gives performance boost over
+	//reading in a variable with the correct shape, but still has I/O calls.
+	Nz := ff.Header.Lengths("AF")[1]
+	Ny := ff.Header.Lengths("AF")[2]
+	Nx := ff.Header.Lengths("AF")[3]
+	//Define shape based on Nz,Ny,Nx
+	//Add one to Nz if it is staggered
+	if staggered {
+		shp := []int{Nz + 1, Ny, Nx}
+		return shp, err
+	} else {
+		shp := []int{Nz, Ny, Nx}
+		return shp, err
+	}
+
 }
 
 // PBLH helps fulfill the Preprocessor interface by returning
@@ -495,18 +526,17 @@ func (w *GEMMACH) PBLH() NextData { return w.read("H") }
 // Needs to be on staggered grid (level 4) for further processing
 func (w *GEMMACH) Height() NextData {
 	hhFunc := w.flipread("GZ") // Geopotential height
-	uuFunc := w.flipread("UU") // Windspeed, imported for shape (level 4)
 	return func() (*sparse.DenseArray, error) {
 		HH, err := hhFunc()
 		if err != nil {
 			return nil, err
 		}
-		//Bring PNO in for the shape (on level1)
-		UU, err := uuFunc()
+		staggered := true
+		shp, err := w.Shp(staggered)
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(UU.Shape...)
+		out := sparse.ZerosDense(shp...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
@@ -525,56 +555,21 @@ func (w *GEMMACH) Height() NextData {
 	}
 }
 
-//func (w *GEMMACH) Height() NextData { return w.read("GZ") *10.0 }
-
-/*TRSB
-func (w *GEMMACH) Height() NextData {
-	// ph is perturbation geopotential height [m/s2].
-	phFunc := w.read("PH")
-	// phb is baseline geopotential height [m/s2].
-	phbFunc := w.read("PHB")
-	return func() (*sparse.DenseArray, error) {
-		ph, err := phFunc()
-		if err != nil {
-			return nil, err
-		}
-		phb, err := phbFunc()
-		if err != nil {
-			return nil, err
-		}
-		return geopotentialToHeight(ph, phb), nil
-	}
-}
-
-func geopotentialToHeight(ph, phb *sparse.DenseArray) *sparse.DenseArray {
-	layerHeights := sparse.ZerosDense(ph.Shape...)
-	for k := 0; k < ph.Shape[0]; k++ {
-		for j := 0; j < ph.Shape[1]; j++ {
-			for i := 0; i < ph.Shape[2]; i++ {
-				h := (ph.Get(k, j, i) + phb.Get(k, j, i) -
-					ph.Get(0, j, i) - phb.Get(0, j, i)) / g // m
-				layerHeights.Set(h, k, j, i)
-			}
-		}
-	}
-	return layerHeights
-}
-*/
 // ALT helps fulfill the Preprocessor interface by returning
 // inverse air density [m3/kg].
 func (w *GEMMACH) ALT() NextData {
 	rhoFunc := w.flipread("RHO") // Density kg/m³
-	pnhFunc := w.PNH()           //Importing for shape. Probably a better way to do this. Using pnh as it doesn't have ALT or a conversion
 	return func() (*sparse.DenseArray, error) {
 		RHO, err := rhoFunc()
 		if err != nil {
 			return nil, err
 		}
-		PNH, err := pnhFunc()
+		staggered := false
+		shp, err := w.Shp(staggered)
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNH.Shape...)
+		out := sparse.ZerosDense(shp...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
@@ -596,41 +591,59 @@ func (w *GEMMACH) ALT() NextData {
 	}
 }
 
-/*
-func (w *GEMMACH) ALT() NextData {
-	rhoFunc := w.flipread("RHO") // Density of air kg m-3
+//invALT() reads in alt without flipping it, for use in the readgroupalt function.
+//Previously, this function was multiplying alt from the bottom level with the pollutant
+//concentration at the top.
+func (w *GEMMACH) invALT() NextData {
+	rhoFunc := w.read("RHO") // Density kg/m³
 	return func() (*sparse.DenseArray, error) {
-		rho, err := rhoFunc()
+		RHO, err := rhoFunc()
 		if err != nil {
 			return nil, err
 		}
-		alt := sparse.ZerosDense(rho.Shape...)
-		for i, rhoV := range rho.Elements {
-			// molec HO / cm3 * m3 / kg air * kg air/molec. air* cm3/m3 * ppm
-			alt.Elements[i] = 1 / rhoV
+		staggered := false
+		shp, err := w.Shp(staggered)
+		if err != nil {
+			return nil, err
 		}
-		//mult := sparse.ZerosDense(rho.Shape...)
-		//alt := mult / rho
-		return alt, nil
+		out := sparse.ZerosDense(shp...)
+		for k := 0; k < out.Shape[0]; k++ {
+			for j := 0; j < out.Shape[1]; j++ {
+				for i := 0; i < out.Shape[2]; i++ {
+					//On "Level 2" - same as level 1 but with an extra surface layer
+					//So, we will take the average of the first two layers then the rest will be offset by 1
+					//(since layer 0 is the surface for "level 2" but not "level 1")
+					if k == 0 {
+						ALTprime := 1. / ((RHO.Get(k, j, i) + RHO.Get(k+1, j, i)) / 2.)
+						out.Set(ALTprime, k, j, i)
+						continue
+					}
+					ALTprime := 1. / (RHO.Get(k+1, j, i))
+					out.Set(ALTprime, k, j, i)
+					continue
+				}
+			}
+		}
+		return out, nil
 	}
 }
-*/
-// U helps fulfill the Preprocessor interface by returning
+
+// U helps fulfill the Preprocessor interface by returning U windspeed
 //Converting from knots to m/s
 // West-East wind speed [m/s].
 func (w *GEMMACH) U() NextData {
 	uuFunc := w.flipread("UU") // South-North wind speed [kts].
-	pnhFunc := w.PNH()         //Importing for shape. Probably a better way to do this.
 	return func() (*sparse.DenseArray, error) {
 		UU, err := uuFunc()
 		if err != nil {
 			return nil, err
 		}
-		PNH, err := pnhFunc()
+		staggered := false
+		shp, err := w.Shp(staggered)
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNH.Shape...)
+		out := sparse.ZerosDense(shp...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
@@ -649,17 +662,17 @@ func (w *GEMMACH) U() NextData {
 // South-North wind speed [m/s].
 func (w *GEMMACH) V() NextData {
 	vvFunc := w.flipread("VV") // South-North wind speed [m/s].
-	pnhFunc := w.PNH()         //Importing for shape. Probably a better way to do this.
 	return func() (*sparse.DenseArray, error) {
 		VV, err := vvFunc()
 		if err != nil {
 			return nil, err
 		}
-		PNH, err := pnhFunc()
+		staggered := false
+		shp, err := w.Shp(staggered)
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNH.Shape...)
+		out := sparse.ZerosDense(shp...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
@@ -674,31 +687,6 @@ func (w *GEMMACH) V() NextData {
 	}
 }
 
-// W helps fulfill the Preprocessor interface by returning
-// below-above wind speed [m/s].
-/*
-func (w *GEMMACH) W() NextData {
-	WW := w.read("WW")
-	Height := w.Height()
-	P := w.P()
-	return convert_vertspeed(WW, Height, P)
-}
-//Convert vertical windspeed from Pa/s to m/s
-func convert_vertspeed(WW, GZ, P *sparse.DenseArray) *sparse.DenseArray {
-	vertspeeds := sparse.ZerosDense(WW.Shape...)
-	for k := 0; k < WW.Shape[0]; k++ {
-		for j := 0; j < WW.Shape[1]; j++ {
-			for i := 0; i < WW.Shape[2]; i++ {
-				slope := (GZ.Get(k+1, j, i) - GZ.Get(k, j, i)) /
-					(P.Get(k+1, j, i) - P.Get(k, j, i))
-				WWprime := WW.Get(k, j, i) * slope
-				vertspeeds.Set(WWprime, k, j, i)
-			}
-		}
-	}
-	return vertspeeds
-}
-*/
 func (w *GEMMACH) W() NextData {
 	wwFunc := w.flipread("WW") // windspeed  in pa/s
 	gzFunc := w.Height()       //Geopotential height (m)
@@ -818,17 +806,17 @@ func (w *GEMMACH) UStar() NextData { return w.read("UE") }
 // TT converted from "level 2" to "level 1", will fail if TT doesn't have 1 extra height layer.
 func (w *GEMMACH) T() NextData {
 	TTFunc := w.flipread("TT") // Temperature °C
-	pnhFunc := w.PNH()         //Importing for shape. Probably a better way to do this.
 	return func() (*sparse.DenseArray, error) {
 		TT, err := TTFunc()
 		if err != nil {
 			return nil, err
 		}
-		PNH, err := pnhFunc()
+		staggered := false
+		shp, err := w.Shp(staggered)
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNH.Shape...)
+		out := sparse.ZerosDense(shp...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
@@ -850,62 +838,29 @@ func (w *GEMMACH) T() NextData {
 	}
 }
 
-/*
-thetaFunc := w.read("T") // perturbation potential temperature [K]
-	pFunc := w.P()           // Pressure [Pa]
-	return wrfTemperatureConvert(thetaFunc, pFunc)
-}
-
-func wrfTemperatureConvert(thetaFunc, pFunc NextData) NextData {
-	return func() (*sparse.DenseArray, error) {
-		thetaPerturb, err := thetaFunc() // perturbation potential temperature [K]
-		if err != nil {
-			return nil, err
-		}
-		p, err := pFunc() // Pressure [Pa]
-		if err != nil {
-			return nil, err
-		}
-
-		T := sparse.ZerosDense(thetaPerturb.Shape...)
-		for i, tp := range thetaPerturb.Elements {
-			T.Elements[i] = thetaPerturbToTemperature(tp, p.Elements[i])
-		}
-		return T, nil
-	}
-}
-
-// thetaPerturbToTemperature converts perburbation potential temperature
-// to ambient temperature for the given pressure (p [Pa]).
-func thetaPerturbToTemperature(thetaPerturb, p float64) float64 {
-	const (
-		po    = 101300. // Pa, reference pressure
-		kappa = 0.2854  // related to von karman's constant
-	)
-	pressureCorrection := math.Pow(p/po, kappa)
-	// potential temperature, K
-	θ := thetaPerturb + 300.
-	// Ambient temperature, K
-	return θ * pressureCorrection
-}
-*/
 // P helps fulfill the Preprocessor interface
 // by returning pressure [Pa] as pressure level converted
 // Here we convert our pressure index to a 3D variable
 func (w *GEMMACH) P() NextData {
 	ppfunc := w.read("pressure")
-	pnhFunc := w.PNH() // windspeed  in pa/s
+	// pnhFunc := w.PNH() // windspeed  in pa/s
 	return func() (*sparse.DenseArray, error) {
 		PP, err := ppfunc()
 		if err != nil {
 			return nil, err
 		}
 		//We will set the shape equal to the U component of windspeed
-		PNH, err := pnhFunc()
+		// PNH, err := pnhFunc()
+		// if err != nil {
+		// 	return nil, err
+		// }
+		// out := sparse.ZerosDense(PNH.Shape...)
+		staggered := false
+		shp, err := w.Shp(staggered)
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNH.Shape...)
+		out := sparse.ZerosDense(shp...)
 		//slope := (GZ.Get(k+1, j, i) - GZ.Get(k, j, i)) /
 		//(PP.Get(k+1, j, i) - PP.Get(k, j, i))
 		//This is probably slower than it needs to be - going element by element.
@@ -923,29 +878,6 @@ func (w *GEMMACH) P() NextData {
 	}
 }
 
-/*
-func (w *GEMMACH) P() NextData {
-	pbFunc := w.read("PB") // baseline pressure [Pa]
-	pFunc := w.read("P")   // perturbation pressure [Pa]
-	return wrfPressureConvert(pFunc, pbFunc)
-}
-
-func wrfPressureConvert(pFunc, pbFunc NextData) NextData {
-	return func() (*sparse.DenseArray, error) {
-		pb, err := pbFunc() // baseline pressure [Pa]
-		if err != nil {
-			return nil, err
-		}
-		p, err := pFunc() // perturbation pressure [Pa]
-		if err != nil {
-			return nil, err
-		}
-		P := pb.Copy()
-		P.AddDense(p)
-		return P, nil
-	}
-}
-*/
 // HO helps fulfill the Preprocessor interface
 // by returning hydroxyl radical concentration [ppmv].
 func (w *GEMMACH) HO() NextData { return w.flipreadGroup(w.ho) }
@@ -977,35 +909,6 @@ type gemGridCell struct {
 	category int
 }
 
-// // Return the first set of values of a variable from a chemistry file.
-// func (w *GEMMACH) chemFirstValues(v string) ([]float64, error) {
-// 	f, ff, err := ncfFromTemplate(w.gem_geophy, gemChemFormat, w.start)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-// 	defer f.Close()
-// 	data, err := readNCFNoHour(v, ff, 0)
-// 	if err != nil {
-// 		// If variable not in file, try all lowercase.
-// 		data, err = readNCFNoHour(strings.ToLower(v), ff, 0)
-// 		if err != nil {
-// 			return nil, err
-// 		}
-// 	}
-// 	return data.Elements, nil
-// }
-
-// // Return an attribute from a chemistry file.
-// func (w *GEMMACH) chemAttribute(a string) (float64, error) {
-// 	f, ff, err := ncfFromTemplate(w.gem_geophy, gemChemFormat, w.start)
-// 	if err != nil {
-// 		return math.NaN(), err
-// 	}
-// 	defer f.Close()
-// 	attr := ff.Header.GetAttribute("", a)
-// 	return float64(attr.([]float32)[0]), nil
-// }
-//func (w *GEMMACH) HO() NextData { return w.flipreadGroup(w.ho) }
 // DX returns the longitude grid spacing.
 func DX(file *cdf.File) (float64, error) {
 	//return float64(file.Header.GetAttribute("", "delta_rlon").([]float32)[0]), nil
@@ -1036,24 +939,7 @@ func xCenters(file *cdf.File) ([]float64, error) {
 			return nil, err
 		}
 	}
-	// for ix := 0; ix < nx; ix++ {
-	// 	print(data.Elements[ix])
-	// 	//xCenter[ix] = data.Elements[ix]
-	// }
 	return data.Elements[:nx], nil
-
-	// dims := file.Header.Lengths("rLON_var")
-	// //ny := dims[0]
-	// nx := dims[1]
-	// var xCenters []float64
-	// r := file.Reader("rLON_var", nil, nil)
-	// buf := r.Zero(-1).([]int32)
-	// if _, err := r.Read(buf); err != nil {
-	// 	return nil, fmt.Errorf("inmap: reading Olson land map: %v", err)
-	// }
-	// return xCenters, nil
-	//return file.Reader("rLON_var"), nil
-	//return w.chemFirstValues("rLON_var")
 }
 
 // yCenters returns the y-coordinates of the grid points.
@@ -1074,30 +960,7 @@ func yCenters(file *cdf.File) ([]float64, error) {
 		}
 	}
 	return data.Elements[:ny], nil
-	// if err != nil {
-	// 	// If variable not in file, try all lowercase.
-	// 	data, err = readNCFNoHour(strings.ToLower(v), file, 0)
-	// 	if err != nil {
-	// 		return nil, err
-	// 	}
-	// }
-	// for iy := 0; iy < ny; iy++ {
-	// 	for ix := 0; ix < nx; ix++ {
-	// 		yCenter[iy] = data.Elements[iy*nx]
-	// 	}
-	// }
-	// return yCenter[:ny], nil
-	// for iy := 0; iy < ny; iy++ {
-	// 	yCenter[iy] = float64(data.Elements[iy])
-	// }
-	//return data.Elements[:ny], nil
-	//return file.Reader("rLAT_var"), nil
-	//return w.chemFirstValues("rLAT_var")
 }
-
-//func (w *GEMMACH) largestLandUse(Gem_geophy *cdf.File) (*sparse.DenseArray, error) {
-//	return Gem_geophy.chemAttribute("VF"), nil
-//}
 
 // SB 20221127:
 // readGem_geophy reads data from an Gem_geophy file:
@@ -1117,15 +980,6 @@ func (w *GEMMACH) readgem_geophy(file *cdf.File, i string) (*gem_geophy, error) 
 	dx := float64(file.Header.GetAttribute("", "delta_x").([]float64)[0])
 	//dxStr := file.Header.GetAttribute("", "delta_rlon").(string)
 	dy := float64(file.Header.GetAttribute("", "delta_y").([]float64)[0])
-	//dyStr := file.Header.GetAttribute("", "delta_rlat").(string)
-	//dx, err := strconv.ParseFloat(dxStr, 64)
-	// if err != nil {
-	// 	return nil, fmt.Errorf("inmap: parsing gem_geophy dx: %v", err)
-	// }
-	// dy, err := strconv.ParseFloat(dyStr, 64)
-	// if err != nil {
-	// 	return nil, fmt.Errorf("inmap: parsing gem_geophy dy: %v", err)
-	// }
 
 	//originally olson land map was running here
 	//it was taking in an integer representation of largest land use in very refined grid cell
@@ -1565,17 +1419,23 @@ func (w *GEMMACH) QRain() NextData {
 // with clouds [volume/volume].
 func (w *GEMMACH) CloudFrac() NextData {
 	fnFunc := w.flipread("FN") // Cloud Fraction (V/V)
-	pnhFunc := w.PNH()         //Importing for shape. Probably a better way to do this.
+	// pnhFunc := w.PNH()         //Importing for shape. Probably a better way to do this.
 	return func() (*sparse.DenseArray, error) {
 		FN, err := fnFunc()
 		if err != nil {
 			return nil, err
 		}
-		PNH, err := pnhFunc()
+		// PNH, err := pnhFunc()
+		// if err != nil {
+		// 	return nil, err
+		// }
+		// out := sparse.ZerosDense(PNH.Shape...)
+		staggered := false
+		shp, err := w.Shp(staggered)
 		if err != nil {
 			return nil, err
 		}
-		out := sparse.ZerosDense(PNH.Shape...)
+		out := sparse.ZerosDense(shp...)
 		for k := 0; k < out.Shape[0]; k++ {
 			for j := 0; j < out.Shape[1]; j++ {
 				for i := 0; i < out.Shape[2]; i++ {
