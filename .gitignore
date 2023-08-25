@@ -1,3 +1,4 @@
 vendor/*
 cmd/inmap/testdata/preproc/gemmach/processed/
+*.out
 .DS_STORE
