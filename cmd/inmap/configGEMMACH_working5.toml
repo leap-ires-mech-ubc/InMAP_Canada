@@ -1,5 +1,5 @@
 #InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
-InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_May16-31.nc"
+InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_Dec01-15.nc"
 VariableGridData = "${INMAP_ROOT_DIR}/cmd/inmap/testdata/vargrid_GEMMACH_fullday.gob"
 
 OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmaptest_gemmach.shp"
@@ -42,8 +42,8 @@ AllCause="TOT_POP2A"
 
 [Preproc]
 CTMType= "GEMMACH"
-StartDate= "20190516"
-EndDate= "20190601"
+StartDate= "20191201"
+EndDate= "20191216"
 CtmGridXo= -4184312.05377675
 CtmGridYo= -2029822.82977676
 CtmGridDx= 10002.6608465054

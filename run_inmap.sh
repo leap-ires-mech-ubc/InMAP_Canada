@@ -4,6 +4,6 @@
 #SBATCH --ntasks-per-node=40
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=4500M
-#SBATCH --job-name='50x50_corrected'
+#SBATCH --job-name='May1'
 ./inmap run steady --config=cmd/inmap/configGEMMACH_testcoarser.toml
 #./inmap preproc --config=cmd/inmap/config_test_geos.toml
