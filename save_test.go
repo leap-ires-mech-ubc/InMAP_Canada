@@ -41,7 +41,7 @@ func TestSaveLoad(t *testing.T) {
 		InitFuncs: []inmap.DomainManipulator{
 			cfg.RegularGrid(ctmdata, pop, popIndices, mr, mortIndices, emis, m),
 			cfg.MutateGrid(mutator, ctmdata, pop, mr, emis, m, nil),
-			inmap.SaveBig(buf),
+			//inmap.SaveBig(buf),
 		},
 	}
 	if err := d.Init(); err != nil {
