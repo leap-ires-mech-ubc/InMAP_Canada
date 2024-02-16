@@ -513,7 +513,8 @@ func (d *InMAP) totalMassPopulation(popGridColumn string) (totalMass, totalPopul
 // true are divided to the next nest level (up to the maximum nest level), and
 // cells where divideRule is false are combined (down to the baseline nest level).
 // Log messages are written to logChan if it is not nil.
-func (config *VarGridConfig) MutateGrid(divideRule GridMutator, data *CTMData, pop *Population, mortRates *MortalityRates, emis *Emissions, m Mechanism, logChan chan string) DomainManipulator {
+func (config *VarGridConfig) MutateGrid(divideRule GridMutator, data *CTMData, pop *Population, mortRates *MortalityRates, 
+	emis *Emissions, m Mechanism, logChan chan string) DomainManipulator {
 	return func(d *InMAP) error {
 		if logChan != nil {
 			logChan <- fmt.Sprint("Adding grid cells...")
@@ -584,7 +585,50 @@ func (config *VarGridConfig) MutateGrid(divideRule GridMutator, data *CTMData, p
 			logChan <- fmt.Sprintf("Added %d grid cells; there are now %d cells total",
 				endCells-beginCells, endCells)
 		}
-
+		savegrid := true
+		VariableGridData:="/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid/testgrid.gob"
+		if savegrid {
+			w, err := os.Create(VariableGridData)
+			if err != nil {
+				return fmt.Errorf("problem creating file to store variable grid data in: %v", err)
+			}
+			d := new(InMAP)
+			saver_function := Save(w)
+			err = saver_function(d)
+			if err != nil {
+				return fmt.Errorf("problem saving file to store variable grid data in: %v", err)
+			}
+			//d.Close()
+			logChan <- fmt.Sprintf("Saved variable grid to file",
+				endCells-beginCells, endCells)
+		}
+			// return func(d *InMAP) error {
+			// 	if d.cells.len() == 0 {savegrid:="/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid/testgrid.gob"
+			// 		return fmt.Errorf("inmap.InMAP.Save: no grid cells to save")
+			// 	}
+		
+			// 	// Set the data version so it can be checked when the data is loaded.
+			// 	data := versionCells{
+			// 		DataVersion: VarGridDataVersion,
+			// 		Cells:       d.cells.array(),
+			// 	}
+		
+			// 	e := gob.NewEncoder(savegrid)
+		
+			// 	if err := e.Encode(data); err != nil {
+			// 		return fmt.Errorf("inmap.InMAP.Save: %v", err)
+			// 	}
+			// 	return nil
+			// }
+			// save := &inmap.InMAP{
+			// 	InitFuncs: []inmap.DomainManipulator{
+			// 		d,
+			// 		inmap.Save(savegrid),
+			// 		//inmap.Save(w),
+			// 	},
+		// 	logChan <- fmt.Sprintf("Saved variable grid to file",
+		// 		endCells-beginCells, endCells)
+		// }
 		return nil
 	}
 }

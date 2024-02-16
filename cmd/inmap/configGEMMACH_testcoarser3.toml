@@ -1,13 +1,13 @@
 #InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
-InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_fillnearest.nc"
+InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_complete.nc"
 VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_coarse.mpack.gz"
 
-OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/InmapOuts_BASEGM_2015_017_FullRes.shp"
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/InmapOuts_BASEGM_2015_017_20km.shp"
 
 EmissionUnits= "g/s"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area_lcc2.shp",
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_major_lcc2.shp"
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area_lcc.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_major_lcc.shp"
 ]
 #EmissionUnits = "kg/year"
 #EmissionsShapefiles = [
@@ -41,21 +41,25 @@ BasePNO3 = "BaselinePNO3"
 [VarGrid]
 GridProj= "+proj=lcc +lat_0=40 +lon_0=-96 +lat_1=50 +lat_2=70 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +to_meter=1"
 #GridProj= "+proj=longlat +units=degrees"
-Xnests= [682,2,2,2,2,2,2,2] VariableGridDx= 10002.6608465054
-Ynests= [574,2,2,2,2,2,2,2] VariableGridDy= 10002.6608465054
-#Xnests= [372,2,2,2,2,2,2,2] #VariableGridDx= 20005.321692
-#Ynests= [334,2,2,2,2,2,2,2] #VariableGridDy= 20035.26977
+#Xnests= [744,2,2,2,2,2,2,2] #VariableGridDx= 10002.6608465054
+#Ynests= [669,2,2,2,2,2,2,2] #VariableGridDy= 10002.6608465054
+Xnests= [360,2,2,2,2,2,2,2] VariableGridDx= 20000.0
+Ynests= [290,2,2,2,2,2,2,2] VariableGridDy= 20000.0
 #Xnests= [37,2,2,2,2,2,2,2] #VariableGridDx= 201134.5857
 #Ynests= [33,2,2,2,2,2,2,2] #VariableGridDy= 20035.26977
-#Xnests= [150,2,2,2,2,2,2,2] #VariableGridDx= 47562.08036
-#Ynests= [100,2,2,2,2,2,2,2] #VariableGridDy= 57400.0
-#Xnests= [25,2] #VariableGridDx= 274800.0
-#Ynests= [25,2] #VariableGridDy= 232400.00
+#Xnests= [150,2,2,2,2,2,2,2] #VariableGridDx= 48279.0
+#Ynests= [100,2,2,2,2,2,2,2] #VariableGridDy= 64917.0
+#Xnests= [50,2] #VariableGridDx= 143686.24
+#Ynests= [50,2] #VariableGridDy= 116200.0
+#VariableGridXo= -492156.0269 
+#VariableGridYo= 1270177.17
 VariableGridXo= -4034312.054 #-4184312.05377675
 VariableGridYo= -1529822.83 #-2029822.82977676
 #VariableGridXo= -4184312.05377675 #VariableGridXo= -4084285.4453117 #
 #VariableGridYo= -2029822.82977676 #VariableGridYo= -1929796.221 # 
-HiResLayers= 1
+#VariableGridDx= 48279.0
+#VariableGridDy= 64917.0
+HiResLayers= 8
 PopDensityThreshold= 55000000.0
 PopThreshold= 100000.0
 PopConcThreshold= 0.000000001
