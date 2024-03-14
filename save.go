@@ -74,6 +74,28 @@ func Save(w io.Writer) DomainManipulator {
 	}
 }
 
+func SaveVarGrid(w io.Writer, d *InMAP) DomainManipulator {
+	return func(d *InMAP) error {
+
+		if d.cells.len() == 0 {
+			return fmt.Errorf("inmap.InMAP.Save: no grid cells to save")
+		}
+
+		// Set the data version so it can be checked when the data is loaded.
+		data := versionCells{
+			DataVersion: VarGridDataVersion,
+			Cells:       d.cells.array(),
+		}
+
+		e := gob.NewEncoder(w)
+
+		if err := e.Encode(data); err != nil {
+			return fmt.Errorf("inmap.InMAP.Save: %v", err)
+		}
+		return nil
+	}
+}
+
 // Load returns a function that loads the data from a previously Saved file
 // into an InMAP object.
 // func Load(r io.Reader, config *VarGridConfig, emis *Emissions, m Mechanism) DomainManipulator {
@@ -126,7 +148,7 @@ func Load(r io.Reader, config *VarGridConfig, emis *Emissions, m Mechanism) Doma
 }
 
 //SaveBig returns a function that saves the data in d to a JSON file
-//ith optional gzip compression. Made with chat GPT assistance
+//with optional gzip compression. Made with chat GPT assistance
 func SaveBig(w io.Writer, compress bool) DomainManipulator {
 	return func(d *InMAP) error {
 		if d.cells.len() == 0 {

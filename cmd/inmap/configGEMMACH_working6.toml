@@ -1,0 +1,56 @@
+#InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
+InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_Nov16-30.nc"
+VariableGridData = "${INMAP_ROOT_DIR}/cmd/inmap/testdata/vargrid_GEMMACH_fullday.gob"
+
+OutputFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/preproc/inmaptest_gemmach.shp"
+
+EmissionUnits= "tons/year"
+
+[OutputVariables]
+WindSpeed= "WindSpeed"
+
+
+[VarGrid]
+GridProj= "+proj=lcc +lat_0=40 +lon_0=-96 +lat_1=50 +lat_2=70 +x_0=0 +y_0=0 +datum=NAD83 +units=m +to_meter=1"
+#GridProj= "+proj=longlat +units=degrees"
+Xnests= [744,2, 2, 2]
+Ynests= [669,2, 2, 2]
+VariableGridXo= -4184312.05377675
+VariableGridYo= -2029822.82977676
+VariableGridDx= 10002.6608465054
+VariableGridDy= 10002.6608465054
+HiResLayers= 1
+PopDensityThreshold= 55000000.0
+PopThreshold= 100000.0
+PopConcThreshold= 0.000000001
+CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/CanadaPopulation10km2016_lcc.shp"
+CensusPopColumns= ["TOT_POP2A"]
+PopGridColumn= "TOT_POP2A"
+
+# MortalityRateFile is the path to the shapefile containing baseline
+# mortality rate data.
+MortalityRateFile= "${INMAP_ROOT_DIR}/cmd/inmap/testdata/testMortalityRate.shp"
+
+# MortalityRateColumns maps the names of each input population group to the name
+# of the field in MortalityRateFile that contains its respective baseline
+# mortality rate, in units of deaths per year per 100,000 people. Only mortality
+# rates used in output variable expressions need to be included here.
+[VarGrid.MortalityRateColumns]
+#allcause= "TOT_POP2A"
+AllCause="TOT_POP2A"
+
+
+[Preproc]
+CTMType= "GEMMACH"
+StartDate= "20191116"
+EndDate= "20191201"
+CtmGridXo= -4184312.05377675
+CtmGridYo= -2029822.82977676
+CtmGridDx= 10002.6608465054
+CtmGridDy= 10002.6608465054
+
+[Preproc.GEMMACH]
+gem_out= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/[DATE]_gemmach.nc"
+gem_geophy= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/GEOPHY_VF/gem_geophy.nc"
+gem_rdps= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/RDPS_QC/[DATE]_rdpsqc.nc"
+gemnoChemHour= true
