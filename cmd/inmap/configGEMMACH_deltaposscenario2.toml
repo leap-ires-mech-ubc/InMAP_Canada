@@ -4,7 +4,7 @@ VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargr
 static=true
 creategrid=true
 
-OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240126_InmapOuts_BAU_2020_E108_diffpos.shp"
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240305_InmapOuts_BAU_2020_E108_diffpos.shp"
 
 EmissionUnits= "g/s"
 EmissionsShapefiles = [

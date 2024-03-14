@@ -1,15 +1,14 @@
 #InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
 InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_complete.nc"
 VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_coarse.mpack.gz"
-static=true
 creategrid=true
 
-OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240123_InmapOuts_BAU_2020_E108.shp"
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240228_InmapOuts_BASEGM_2015_017_dynamic.shp"
 
 EmissionUnits= "g/s"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BAU_2020_E108_area.shp",
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BAU_2020_E108_major.shp"
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/Diff/split/BASEGM_2015_E010_majorpts_20240225.shp"
 ]
 #EmissionUnits = "kg/year"
 #EmissionsShapefiles = [
@@ -69,7 +68,7 @@ PopDensityThreshold= 27500000.0
 PopThreshold= 50000.0
 #PopDensityThreshold= 55000000.0
 #PopThreshold= 100000.0
-#PopConcThreshold= 0.000000001
+PopConcThreshold= 0.000000001
 #CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA_lcc.shp"
 CensusPopColumns= ["TotalPop"]
 PopGridColumn= "TotalPop"

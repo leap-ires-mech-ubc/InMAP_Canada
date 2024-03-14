@@ -4,12 +4,12 @@ VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargr
 static=true
 creategrid=true
 
-OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240123_InmapOuts_BASEGM_2015_017.shp"
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240228_InmapOuts_BASEGM_2015_017_static.shp"
 
 EmissionUnits= "g/s"
 EmissionsShapefiles = [
     "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area.shp",
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_major.shp"
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/Diff/split/BASEGM_2015_E010_majorpts_20240225.shp"
 ]
 #EmissionUnits = "kg/year"
 #EmissionsShapefiles = [

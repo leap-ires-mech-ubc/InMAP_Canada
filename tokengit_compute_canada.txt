@@ -1,0 +1,2 @@
+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
+git remote set-url origin https://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@github.com/leap-ires-mech-ubc/InMAP_Canada.git

@@ -585,23 +585,23 @@ func (config *VarGridConfig) MutateGrid(divideRule GridMutator, data *CTMData, p
 			logChan <- fmt.Sprintf("Added %d grid cells; there are now %d cells total",
 				endCells-beginCells, endCells)
 		}
-		savegrid := true
-		VariableGridData:="/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid/testgrid.gob"
-		if savegrid {
-			w, err := os.Create(VariableGridData)
-			if err != nil {
-				return fmt.Errorf("problem creating file to store variable grid data in: %v", err)
-			}
-			d := new(InMAP)
-			saver_function := Save(w)
-			err = saver_function(d)
-			if err != nil {
-				return fmt.Errorf("problem saving file to store variable grid data in: %v", err)
-			}
-			//d.Close()
-			logChan <- fmt.Sprintf("Saved variable grid to file",
-				endCells-beginCells, endCells)
-		}
+		// savegrid := true
+		// VariableGridData:="/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid/testgrid.gob"
+		// if savegrid {
+		// 	w, err := os.Create(VariableGridData)
+		// 	if err != nil {
+		// 		return fmt.Errorf("problem creating file to store variable grid data in: %v", err)
+		// 	}
+		// 	d := new(InMAP)
+		// 	saver_function := Save(w)
+		// 	err = saver_function(d)
+		// 	if err != nil {
+		// 		return fmt.Errorf("problem saving file to store variable grid data in: %v", err)
+		// 	}
+		// 	//d.Close()
+		// 	logChan <- fmt.Sprintf("Saved variable grid to file",
+		// 		endCells-beginCells, endCells)
+		// }
 			// return func(d *InMAP) error {
 			// 	if d.cells.len() == 0 {savegrid:="/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid/testgrid.gob"
 			// 		return fmt.Errorf("inmap.InMAP.Save: no grid cells to save")

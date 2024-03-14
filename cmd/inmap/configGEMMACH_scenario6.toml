@@ -1,11 +1,12 @@
-#InMAPData= "/workspaces/InMAP_Canada/cmd/inmap/testdata/preproc/gemmach/inmapData_GEMMACH.nc"
+#Name of the preprocessor output file that will be used to run the model
 InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_complete.nc"
-VariableGridData = "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/vargrid_GEMMACH_BASEGM_2015_017_coarse.mpack.gz"
+#Switch the system to a static grid. This is better for ensuring consistency between runs, the model 
+#will be more finely resolved with a dynamic grid.
 static=true
 creategrid=true
-
+#Save path and name
 OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240123_InmapOuts_BPT_2015_E002.shp"
-
+#Units for the emissions and full paths to the emissions files.
 EmissionUnits= "g/s"
 EmissionsShapefiles = [
     "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BPT_2015_E002_area.shp",
@@ -79,7 +80,7 @@ CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inma
 
 # MortalityRateFile is the path to the shapefile containing baseline
 # mortality rate data.
-MortalityRateFile= "/home/tfmrodge/projects/def-agiang01/tfmrodge/InMAP_Canada/cmd/inmap/testdata/testMortalityRate.shp"
+MortalityRateFile= "/home/tfmrodge/projects/def-agiang01/tfmrodge/InMAP_Canada/cmd/inmap/testdata/nmap_can_pop_DA_lcc.shp"
 
 # MortalityRateColumns maps the names of each input population group to the name
 # of the field in MortalityRateFile that contains its respective baseline

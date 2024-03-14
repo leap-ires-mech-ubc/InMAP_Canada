@@ -75,17 +75,20 @@ def summstats(df,pairs,stats,geoareas,popwt=None,geoname='PRENAME',popcol='Total
             indname = pair[0][4:]
             statdf.loc[indname,'Location'] = geoarea
             for stat in stats:
-                if stat != 'Regression':
-                    
-                    statdf.loc[pair[0][4:],stat] = calcstat(stat,pltdata.loc[:,pair[0]],pltdata.loc[:,pair[1]],popwt)
-                else:
-                    try:
-                        m,r2 = calcstat(stat,pltdata.loc[:,pair[0]],pltdata.loc[:,pair[1]],popwt)
-                        statdf.loc[pair[0][4:],'Slope']=m
-                        statdf.loc[pair[0][4:],'r²']=r2
-                    except np.linalg.LinAlgError:
-                        statdf.loc[pair[0][4:],'Slope']=np.nan
-                        statdf.loc[pair[0][4:],'r²']=np.nan
+                try:
+                    if stat != 'Regression':
+                        statdf.loc[pair[0][4:],stat] = calcstat(stat,pltdata.loc[:,pair[0]],pltdata.loc[:,pair[1]],popwt)
+                    else:
+                        try:
+                            m,r2 = calcstat(stat,pltdata.loc[:,pair[0]],pltdata.loc[:,pair[1]],popwt)
+                            statdf.loc[pair[0][4:],'Slope']=m
+                            statdf.loc[pair[0][4:],'r²']=r2
+                        except np.linalg.LinAlgError:
+                            statdf.loc[pair[0][4:],'Slope']=np.nan
+                            statdf.loc[pair[0][4:],'r²']=np.nan
+                except ValueError:
+                    print('Could not compute '+stat)
+                    statdf.loc[pair[0][4:],stat] = np.nan
         #pdb.set_trace()
         statdfs[geoarea] = statdf.copy(deep=True)  
     #Put it all into one big dataframe
@@ -269,7 +272,7 @@ def MeanVal(ref,test,popwt=None):
     return MVs
 
 def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap='YlOrRd',listvals=None,
-                    figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None):
+                    figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None,dopts=False):
     #pdb.set_trace()
     if type(listvals)==type(None):
             listvals=['NH3','NOx','PM25','SOx','VOC']
@@ -289,6 +292,8 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
             provinces.geometry.boundary.plot(ax=ax, color=None, edgecolor='black',linewidth=0.1)
         #Add provinces to esum as it always exists - everything is the same grid so can just do one
         esum = sjoin(esum, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
+        if dopts:
+            major = sjoin(major, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
         #Use the ranges to set the vlims and the cmap if it needs to be shifted
         # if diff:
         #     vlim = [min(esum.loc[:,val]),max(esum.loc[:,val])]
@@ -299,18 +304,35 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
         if len(emissions)==3:
             #Use provinces to set where canada is, use that for vlim and cmaps
             vlim1 = [min(area.loc[~esum.PRENAME.isna(),val]),max(area.loc[~esum.PRENAME.isna(),val])]
-            vlim2 = [min(major.loc[~esum.PRENAME.isna(),val]),max(major.loc[~esum.PRENAME.isna(),val])]
+            if dopts:
+                vlim2 = [min(major.loc[~major.PRENAME.isna(),val]),max(major.loc[~major.PRENAME.isna(),val])]
+            else:
+                vlim2 = [min(major.loc[~esum.PRENAME.isna(),val]),max(major.loc[~esum.PRENAME.isna(),val])]
             vlim3 = [min(esum.loc[~esum.PRENAME.isna(),val]),max(esum.loc[~esum.PRENAME.isna(),val])]
             cmap1 = shiftedColorMap(cmap, start=0, midpoint=1-vlim1[1]/(vlim1[1]+np.abs(vlim1[0])), stop=1.0, name='shiftedcmap')
             cmap2 = shiftedColorMap(cmap, start=0, midpoint=1-vlim2[1]/(vlim2[1]+np.abs(vlim2[0])), stop=1.0, name='shiftedcmap')
             cmap3 = shiftedColorMap(cmap, start=0, midpoint=1-vlim3[1]/(vlim3[1]+np.abs(vlim3[0])), stop=1.0, name='shiftedcmap')
-            area.plot(val,legend=legend,ax=axs[0],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap1,vmin=vlim1[0],vmax=vlim1[1])
-            major.plot(val,legend=legend,ax=axs[1],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
-            esum.plot(val,legend=legend,ax=axs[2],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap3,vmin=vlim3[0],vmax=vlim3[1])
+            try:
+                area.plot(val,legend=legend,ax=axs[0],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap1,vmin=vlim1[0],vmax=vlim1[1])
+            except ValueError:
+                print('No emissions to plot')
+            try:
+                major.plot(val,legend=legend,ax=axs[1],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
+            except ValueError:
+                print('No emissions to plot')
+            try:
+                esum.plot(val,legend=legend,ax=axs[2],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap3,vmin=vlim3[0],vmax=vlim3[1])
+                if dopts:
+                    major.plot(val,legend=legend,ax=axs[1],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
+            except ValueError:
+                print('No emissions to plot')
         else:
             vlim = [0,max(max(esum.loc[:,val]),max(esum.loc[:,val]))]
             cmap = shiftedColorMap(cmap, start=0, midpoint=1-vlim[1]/(vlim[1]+np.abs(vlim[0])), stop=1.0, name='shiftedcmap')
-            esum.plot(val,legend=legend,ax=axs[ind],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap,vmin=vlim[0],vmax=vlim[1])
+            try:
+                esum.plot(val,legend=legend,ax=axs[ind],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap,vmin=vlim[0],vmax=vlim[1])
+            except ValueError:
+                print('No emissions to plot')
         axs[0].set_title(val[0])
         axs[0].set_xticks([]);
         axs[0].set_yticks([]);
@@ -322,5 +344,60 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
             axs[0].set_xlim(xylims[0])
             axs[0].set_ylim(xylims[1])
         fig.savefig(figpath+scenario+'_EmissPlot_'+val+'.tif',format='tif')
+        #figs[ind]=fig
+    return fig
+
+def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap='YlOrRd',listvals=None,
+                    figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None):
+    #pdb.set_trace()
+    if type(listvals)==type(None):
+            listvals=[['BasePM25','TotalPM25'],['BasePNO3','PNO3'],['BasePNH4',
+                      'PNH4'],['BasePSO4','PSO4'],['BaseSOA','SOA'],['BasePrimPM25','PrimPM25']]
+    #figs ={}
+    for ind,vals in enumerate(listvals):
+        fig,axs = plt.subplots(1,3,figsize = (12,12),dpi=300,sharex=True,sharey=True)
+        for ax in axs:
+            provinces.geometry.boundary.plot(ax=ax, color=None, edgecolor='black',linewidth=0.1)
+        delname = 'delta_'+vals[0][4:]
+        #Set the row - 6 sets of three
+        try:
+            axs.shape[1]
+            ax = axs[ind]
+        except IndexError:
+            ax = axs
+        #Use the ranges to set the vlims
+        if diff:
+            vlim1 = [min(min(inmap_outs.loc[:,vals[0]]),min(inmap_outs.loc[:,vals[1]]))
+                     ,max(max(inmap_outs.loc[:,vals[0]]),max(inmap_outs.loc[:,vals[1]]))]
+            plt_cmap = shiftedColorMap(cmap, start=0, midpoint=1-vlim1[1]/(vlim1[1]+np.abs(vlim1[0])), stop=1.0, name='shiftedcmap')
+        else:
+            vlim1 = [0,max(max(inmap_outs.loc[:,vals[0]]),max(inmap_outs.loc[:,vals[1]]))]
+            plt_cmap =cmap
+        vlim2 = [min(min(inmap_outs.loc[:,delname]),min(inmap_outs.loc[:,delname])),
+                 max(max(inmap_outs.loc[:,delname]),max(inmap_outs.loc[:,delname]))]
+        vlim = [(vlim1),(vlim2)]
+        #Define shifted colormap
+        cmap2 = shiftedColorMap(matplotlib.cm.RdBu_r, start=0, midpoint=1-vlim[1][1]/(vlim[1][1]+np.abs(vlim[1][0])), stop=1.0, name='shiftedcmap')
+        #Plot as reference value, predicted value, and difference
+        try:
+            inmap_outs.plot(vals[0],legend=legend,ax=ax[0],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=plt_cmap,vmin=vlim[0][0],vmax=vlim[0][1])
+            inmap_outs.plot(vals[1],legend=legend,ax=ax[1],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=plt_cmap,vmin=vlim[0][0],vmax=vlim[0][1])
+            inmap_outs.plot(delname,legend=legend,ax=ax[2],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim[1][0],vmax=vlim[1][1])
+        except ValueError:
+                print('No emissions to plot')
+        ax[0].set_title(vals[0][4:])
+        axs[0].set_xticks([])
+        axs[0].set_yticks([])
+        #Set limits
+        if xylims is None:
+            axs[0].set_xlim(-2579201.070414297, 3165870.)
+            axs[0].set_ylim(76856.48815160134, 4270028.)
+        else:
+            axs[0].set_xlim(xylims[0])
+            axs[0].set_ylim(xylims[1])
+        #inmap_outs
+        #state_outline = gpd.read_file('/Users/rivkahgf/Downloads/evaldata_v1.6.1/states.shp')
+        #fig.savefig(figpath+'BaseCase_EvalPlot.pdf',format='pdf')
+        fig.savefig(figpath+scenario+'_EvalPlot_'+vals[0][4:]+'.tif',format='tif')
         #figs[ind]=fig
     return fig
