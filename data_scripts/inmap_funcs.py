@@ -17,17 +17,18 @@ from geopandas.tools import sjoin
 
 def load_inmap(outfile,basefile=None,crs='ESRI:102002',clipped=False):
     ''' Load inmap data or read in as a change from the baseline (units are still concentration) 
-    outfile should be the filepath to the output shapefile you want to load
-    basefile is the baseline data you want to subtract to get the change in emissions for a scenario. Loading this way means all values are deltas
-    Can also have basefile already loaded in as a gdf to reduce time
-    crs is the crs you want to convert to. If None, will not change CRS
-    clipped will clip to the given gdf geometry, note this is SLOW
+    outfile (str): Filepath to the output shapefile you want to load
+    basefile (str or gdf): Baseline data you want to subtract to get the change in emissions for a scenario. Loading this way means all values are deltas
+        Can also have basefile already loaded in as a gdf to reduce time
+    crs (None or str): Crs you want to convert to. If None, will not change CRS
+    clipped (FALSE or gdf): Clip to the given gdf geometry (e.g. a shapefile of Canada, ), note this is SLOW
     '''
+    #First, convert to the given CRS
     if crs != None:
         outgdf = gpd.read_file(outfile).to_crs(crs)
     else:
         outgdf = gpd.read_file(outfile)
-    #pdb.set_trace()
+    #Next, load the basefile if it is present. If basefile is loaded, all values are differences
     if type(basefile) != type(None):
         if type(basefile) == 'str': #For a string, load the file and convert to same CRS
             if crs != None:
@@ -39,6 +40,7 @@ def load_inmap(outfile,basefile=None,crs='ESRI:102002',clipped=False):
         for i in ['TotalPM25','PNO3','PNH4','PSO4','PrimPM25','SOA']:
             #Difference between scenarios = scenario - baseline, +'ve means increased concentration in scenario
             outgdf.loc[:,i] =  outgdf.loc[:,i] - basegdf.loc[:,i] 
+    #Clip to clipped geometry, if requested
     if type(clipped) != bool:
         outgdf = gpd.clip(outgdf,clipped.geometry)
     return outgdf
@@ -46,15 +48,15 @@ def load_inmap(outfile,basefile=None,crs='ESRI:102002',clipped=False):
 def summstats(df,pairs,stats,geoareas,popwt=None,geoname='PRENAME',popcol='TotalPop'):
     '''
     Calculate summary stats for InMAP outputs vs a reference. This was built for
-    InMAP-Canada, and has specific inputs for that - not the most generalized
-    df - data frame with at least 2 columns containing the reference vs test "pairs" to be evaluated, 
+    InMAP-Canada, and has specific inputs for that.
+    df (pandas dataframe): Data frame with at least 2 columns containing the reference vs test "pairs" to be evaluated, 
     and a column that matches geoname to do regional analysis. 
-    pairs - List of 2-item lists containing the names of the reference and the test values, in that order
-    stats - List of the stats you want to calculate. Input to the calcstat() function, so must comply
-    geoareas - List of the regions you want to calculate, must be entries in the geoname column. Using "all"
+    pairs (list): List of 2-item lists containing the names of the reference and the test values, in that order
+    stats (list): List of the stats you want to calculate. Input to the calcstat() function, so must comply
+    geoareas (list): List of the regions you want to calculate, must be entries in the geoname column. Using "all"
     or "Canada" in this will take the stats across all values, with no filtering
-    popwt - switch to do population weighting or not, with the column name from popcol
-    geoname - string, column for the geoareas filtering
+    popwt (bool): switch to do population weighting or not, with the column name from popcol
+    geoname (string): column for the geoareas filtering
     '''
     statdf = pd.DataFrame(columns=['Location']+stats[:-1])
     statdfs = {}
@@ -67,19 +69,15 @@ def summstats(df,pairs,stats,geoareas,popwt=None,geoname='PRENAME',popcol='Total
         if popwt is not None: #Weight if you want to by popcol
             popwt = pltdata.loc[:,popcol]
         for pair in pairs: #Run through the pairs
-            #Check for duplicate index names
-            # if indname in statdf.index:
-            #     indname = pair[0][4:]+'_'+pair[1]
-            # else:
-            #     indname = pair[0][4:]
+            #
             indname = pair[0][4:]
             statdf.loc[indname,'Location'] = geoarea
             for stat in stats:
-                try:
+                try: #Regression is set up slightly differently
                     if stat != 'Regression':
                         statdf.loc[pair[0][4:],stat] = calcstat(stat,pltdata.loc[:,pair[0]],pltdata.loc[:,pair[1]],popwt)
                     else:
-                        try:
+                        try:#regression can be a problem if it doesn't work - in that case, return nan
                             m,r2 = calcstat(stat,pltdata.loc[:,pair[0]],pltdata.loc[:,pair[1]],popwt)
                             statdf.loc[pair[0][4:],'Slope']=m
                             statdf.loc[pair[0][4:],'r²']=r2
@@ -146,12 +144,16 @@ def shiftedColorMap(cmap, start=0, midpoint=0.5, stop=1.0, name='shiftedcmap'):
 
     return newcmap
 
-#plt.scatter(inmap_outs.loc[:,'BasePM25'],inmap_outs.loc[:,'TotalPM25']/1000)
 def calcstat(stat,ref,test,popwt=None):
     '''Wrapper function for stats. Currently allows:
         RMSE, MeanBias (MB), MeanError (ME), MeanFractionalBias (MFB), 
-        MeanFractionalError (MFE), ModelRatio (MR), regression (reg)
+        MeanFractionalError (MFE), ModelRatio (MR), regression (reg), 
+        number of observations (numobs)
         Note that regression gives an output with the slope and r²
+        stat (str): Stats that will be calculated. Must match
+        the strings in the if statements below
+        ref (pd series): reference value (x)
+        ref (pd series): test value (y)
         '''
     if stat == 'RMSE':
         stat =  RMSE(ref,test,popwt=popwt)
@@ -271,9 +273,22 @@ def MeanVal(ref,test,popwt=None):
     MVs=[MV_ref,MV_test]
     return MVs
 
-def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap='YlOrRd',listvals=None,
-                    figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None,dopts=False):
-    #pdb.set_trace()
+def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.YlOrRd,listvals=None,
+                    figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',xylims=None,dopts=False):
+    '''
+    Function to plot emissions on a map. Can take either area or point emissions.
+    emissions (gdf or list of 3 gdfs): Emissions to be plotted. If a list of 3 emissions is given, this will assume that
+    emissions are in the order of area, major, combined (sum of area and major, or both on same plot if points)
+    provinces (gdf): Outline to plot behind the emissions. 
+    legend (bool): Plot with or without a legend
+    lgdshk,lnwdth,alpha: Values that set the legendsize, linewidth, and alpha for plotting in matplotlib
+    cmap (matplotlib cmap object): Base color map for matplotlib
+    listvals (None or list of strings): Values you want to plot. None will plot NH3, NOx, PM25, SOX, VOC
+    figpath (str): Path to save output figures
+    scenario (str): Tag for naming files
+    xylims (list): Map limits in same coordinates as emissions, provinces
+    dopts (bool): Flag if the major emissions are pts (True) or area (False)
+    '''
     if type(listvals)==type(None):
             listvals=['NH3','NOx','PM25','SOx','VOC']
     #figs ={}
@@ -294,12 +309,6 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
         esum = sjoin(esum, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
         if dopts:
             major = sjoin(major, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
-        #Use the ranges to set the vlims and the cmap if it needs to be shifted
-        # if diff:
-        #     vlim = [min(esum.loc[:,val]),max(esum.loc[:,val])]
-        #     cmap = shiftedColorMap(cmap, start=0, midpoint=1-vlim[1]/(vlim[1]+np.abs(vlim[0])), stop=1.0, name='shiftedcmap')
-        # else:
-        #     vlim = [0,max(max(esum.loc[:,val]),max(esum.loc[:,val]))]
         #Plot as area, major, combined for each pollutant
         if len(emissions)==3:
             #Use provinces to set where canada is, use that for vlim and cmaps
@@ -309,9 +318,9 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
             else:
                 vlim2 = [min(major.loc[~esum.PRENAME.isna(),val]),max(major.loc[~esum.PRENAME.isna(),val])]
             vlim3 = [min(esum.loc[~esum.PRENAME.isna(),val]),max(esum.loc[~esum.PRENAME.isna(),val])]
-            cmap1 = shiftedColorMap(cmap, start=0, midpoint=1-vlim1[1]/(vlim1[1]+np.abs(vlim1[0])), stop=1.0, name='shiftedcmap')
-            cmap2 = shiftedColorMap(cmap, start=0, midpoint=1-vlim2[1]/(vlim2[1]+np.abs(vlim2[0])), stop=1.0, name='shiftedcmap')
-            cmap3 = shiftedColorMap(cmap, start=0, midpoint=1-vlim3[1]/(vlim3[1]+np.abs(vlim3[0])), stop=1.0, name='shiftedcmap')
+            cmap1 = shiftedColorMap(cmap, start=0, midpoint=1-vlim1[1]/(vlim1[1]+np.abs(vlim1[0])), stop=1.0, name='shiftedcmap1')
+            cmap2 = shiftedColorMap(cmap, start=0, midpoint=1-vlim2[1]/(vlim2[1]+np.abs(vlim2[0])), stop=1.0, name='shiftedcmap2')
+            cmap3 = shiftedColorMap(cmap, start=0, midpoint=1-vlim3[1]/(vlim3[1]+np.abs(vlim3[0])), stop=1.0, name='shiftedcmap3')
             try:
                 area.plot(val,legend=legend,ax=axs[0],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap1,vmin=vlim1[0],vmax=vlim1[1])
             except ValueError:
@@ -323,7 +332,7 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
             try:
                 esum.plot(val,legend=legend,ax=axs[2],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap3,vmin=vlim3[0],vmax=vlim3[1])
                 if dopts:
-                    major.plot(val,legend=legend,ax=axs[1],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
+                    major.plot(val,legend=legend,ax=axs[2],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
             except ValueError:
                 print('No emissions to plot')
         else:
@@ -347,9 +356,21 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
         #figs[ind]=fig
     return fig
 
-def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap='YlOrRd',listvals=None,
+def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.YlOrRd,listvals=None,
                     figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None):
-    #pdb.set_trace()
+    '''
+    Function to plot InMAP results on a map. 
+    inmap_outs (gdf): File to be plotted. Should contain the values in listvals
+    provinces (gdf): Outline to plot behind the concentrations. 
+    legend (bool): Plot with or without a legend
+    lgdshk,lnwdth,alpha: Values that set the legendsize, linewidth, and alpha for plotting in matplotlib
+    cmap (matplotlib cmap object): Base color map for matplotlib. Note that currently the difference one is hardcoded as RdBu_r
+    listvals (None or list of strings): Concentrations you want to plot. None will plot all
+    figpath (str): Path to save output figures
+    scenario (str): Tag for naming files
+    diff (bool): Flag to say if you want to plot emissions as absolute values or as a difference
+    xylims (list): Map limits in same coordinates as emissions, provinces
+    '''
     if type(listvals)==type(None):
             listvals=[['BasePM25','TotalPM25'],['BasePNO3','PNO3'],['BasePNH4',
                       'PNH4'],['BasePSO4','PSO4'],['BaseSOA','SOA'],['BasePrimPM25','PrimPM25']]
