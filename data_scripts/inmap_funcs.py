@@ -273,7 +273,7 @@ def MeanVal(ref,test,popwt=None):
     MVs=[MV_ref,MV_test]
     return MVs
 
-def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.YlOrRd,listvals=None,
+def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.cm.YlOrRd,listvals=None,
                     figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',xylims=None,dopts=False):
     '''
     Function to plot emissions on a map. Can take either area or point emissions.
@@ -356,7 +356,7 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
         #figs[ind]=fig
     return fig
 
-def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.YlOrRd,listvals=None,
+def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.cm.YlOrRd,listvals=None,
                     figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None):
     '''
     Function to plot InMAP results on a map. 
