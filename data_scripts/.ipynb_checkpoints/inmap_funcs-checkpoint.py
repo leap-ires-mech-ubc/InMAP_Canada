@@ -273,8 +273,8 @@ def MeanVal(ref,test,popwt=None):
     MVs=[MV_ref,MV_test]
     return MVs
 
-def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.cm.YlOrRd,listvals=None,
-                    figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',xylims=None,dopts=False):
+def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.cm.YlOrRd,listvals=None,sjoinem=True,
+                    figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None,dopts=False):
     '''
     Function to plot emissions on a map. Can take either area or point emissions.
     emissions (gdf or list of 3 gdfs): Emissions to be plotted. If a list of 3 emissions is given, this will assume that
@@ -292,59 +292,94 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
     if type(listvals)==type(None):
             listvals=['NH3','NOx','PM25','SOx','VOC']
     #figs ={}
+    
+    if len(emissions) ==3:#If emissions is a list of dataframes plot as area, major, combined
+        triplot=True
+        area=emissions[0]
+        major=emissions[1]
+        esum=emissions[2]
+    else:
+        triplot=False
+        fig,axs = plt.subplots(math.ceil(len(listvals)/3),3,figsize = (12,6),dpi=300,sharex=True,sharey=True)
+        axs=np.reshape(axs,3*math.ceil(len(listvals)/3))
+        esum=emissions
+    #Add provinces to esum as it always exists - everything is the same grid so can just do one
+    if sjoinem:
+        esum = sjoin(esum, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
+        if (dopts & triplot):
+            major = sjoin(major, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
+        
     for ind,val in enumerate(listvals):
-        if len(emissions) ==3:#If emissions is a list of dataframes plot as area, major, combined
+        if triplot:
             fig,axs = plt.subplots(1,3,figsize = (12,12),dpi=300,sharex=True,sharey=True)
             axs=np.reshape(axs,3)
-            area=emissions[0]
-            major=emissions[1]
-            esum=emissions[2]
+            for ax in axs:
+                provinces.geometry.boundary.plot(ax=ax, color=None, edgecolor='black',linewidth=0.1)
         else:
-            fig,axs = plt.subplots(2,3,figsize = (12,12),dpi=300,sharex=True,sharey=True)
-            axs=np.reshape(axs,6)
-            esum=emissions
-        for ax in axs:
-            provinces.geometry.boundary.plot(ax=ax, color=None, edgecolor='black',linewidth=0.1)
-        #Add provinces to esum as it always exists - everything is the same grid so can just do one
-        esum = sjoin(esum, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
-        if dopts:
-            major = sjoin(major, provinces.loc[:,['PRENAME','geometry']], how='left',predicate='intersects')
+            provinces.geometry.boundary.plot(ax=axs[ind], color=None, edgecolor='black',linewidth=0.1)
+        
         #Plot as area, major, combined for each pollutant
-        if len(emissions)==3:
+        if triplot:
             #Use provinces to set where canada is, use that for vlim and cmaps
+            #Use the ranges to set the vlims and the cmap if it needs to be shifted
             vlim1 = [min(area.loc[~esum.PRENAME.isna(),val]),max(area.loc[~esum.PRENAME.isna(),val])]
             if dopts:
                 vlim2 = [min(major.loc[~major.PRENAME.isna(),val]),max(major.loc[~major.PRENAME.isna(),val])]
             else:
                 vlim2 = [min(major.loc[~esum.PRENAME.isna(),val]),max(major.loc[~esum.PRENAME.isna(),val])]
             vlim3 = [min(esum.loc[~esum.PRENAME.isna(),val]),max(esum.loc[~esum.PRENAME.isna(),val])]
-            cmap1 = shiftedColorMap(cmap, start=0, midpoint=1-vlim1[1]/(vlim1[1]+np.abs(vlim1[0])), stop=1.0, name='shiftedcmap1')
-            cmap2 = shiftedColorMap(cmap, start=0, midpoint=1-vlim2[1]/(vlim2[1]+np.abs(vlim2[0])), stop=1.0, name='shiftedcmap2')
-            cmap3 = shiftedColorMap(cmap, start=0, midpoint=1-vlim3[1]/(vlim3[1]+np.abs(vlim3[0])), stop=1.0, name='shiftedcmap3')
+            cmap1 = shiftedColorMap(cmap, start=0, midpoint=1-vlim1[1]/(vlim1[1]+np.abs(vlim1[0])), stop=1.0, name='shiftedcmap')
+            cmap2 = shiftedColorMap(cmap, start=0, midpoint=1-vlim2[1]/(vlim2[1]+np.abs(vlim2[0])), stop=1.0, name='shiftedcmap')
+            cmap3 = shiftedColorMap(cmap, start=0, midpoint=1-vlim3[1]/(vlim3[1]+np.abs(vlim3[0])), stop=1.0, name='shiftedcmap')
             try:
-                area.plot(val,legend=legend,ax=axs[0],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap1,vmin=vlim1[0],vmax=vlim1[1])
+                area.plot(val,legend=legend,ax=axs[0],legend_kwds={'shrink':lgdshk,'label':"g/s"},linewidth=lnwdth,alpha=alpha,
+                          cmap=cmap1,vmin=vlim1[0],vmax=vlim1[1])
+                axs[0].set_title('Area')
             except ValueError:
                 print('No emissions to plot')
             try:
-                major.plot(val,legend=legend,ax=axs[1],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
+                major.plot(val,legend=legend,ax=axs[1],legend_kwds={'shrink':lgdshk,'label':"g/s"},linewidth=lnwdth,alpha=alpha,
+                           cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
+                axs[1].set_title('Major')
             except ValueError:
                 print('No emissions to plot')
             try:
-                esum.plot(val,legend=legend,ax=axs[2],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap3,vmin=vlim3[0],vmax=vlim3[1])
+                esum.plot(val,legend=legend,ax=axs[2],legend_kwds={'shrink':lgdshk,'label':"g/s"},linewidth=lnwdth,alpha=alpha,
+                          cmap=cmap3,vmin=vlim3[0],vmax=vlim3[1])
+                axs[2].set_title('Sum')
                 if dopts:
-                    major.plot(val,legend=legend,ax=axs[2],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
+                    major.plot(val,legend=legend,ax=axs[1],legend_kwds={'shrink':lgdshk,'label':"g/s"},linewidth=lnwdth,alpha=alpha,
+                               cmap=cmap2,vmin=vlim2[0],vmax=vlim2[1])
             except ValueError:
                 print('No emissions to plot')
         else:
-            vlim = [0,max(max(esum.loc[:,val]),max(esum.loc[:,val]))]
-            cmap = shiftedColorMap(cmap, start=0, midpoint=1-vlim[1]/(vlim[1]+np.abs(vlim[0])), stop=1.0, name='shiftedcmap')
+            #vlim = [0,max(max(esum.loc[~esum.PRENAME.isna(),val]),max(esum.loc[~esum.PRENAME.isna(),val]))]
+            #vlim = [min(-1e-9,esum.loc[~esum.PRENAME.isna(),val]),max(-1e-9,esum.loc[~esum.PRENAME.isna(),val])]
+            #To make sure 0 is centred properly, set min and max limits as 10% of max absolute value
+            if sjoinem:
+                minlim=max(1e-8,max(abs(esum.loc[~esum.PRENAME.isna(),val])))*0.1
+                vlim = [min(-1*minlim,min(esum.loc[~esum.PRENAME.isna(),val])),max(minlim,max(esum.loc[~esum.PRENAME.isna(),val]))]
+            else:
+                minlim=max(1e-8,max(abs(esum.loc[:,val])))*0.1
+                vlim = [min(-1*minlim,min(esum.loc[:,val])),max(minlim,max(esum.loc[:,val]))]
+            cmap2 = shiftedColorMap(cmap, start=0, midpoint=1-vlim[1]/(vlim[1]+np.abs(vlim[0])), stop=1.0, name='shiftedcmap')
             try:
-                esum.plot(val,legend=legend,ax=axs[ind],legend_kwds={'shrink':lgdshk},linewidth=lnwdth,alpha=alpha,cmap=cmap,vmin=vlim[0],vmax=vlim[1])
+                if dopts:
+                    esum.plot(val,legend=legend,ax=axs[ind],legend_kwds={'shrink':lgdshk,'label':"g/s"},linewidth=lnwdth,alpha=alpha,
+                            cmap=cmap2,vmin=vlim[0],vmax=vlim[1],markersize=5.0)
+                else:
+                    esum.plot(val,legend=legend,ax=axs[ind],legend_kwds={'shrink':lgdshk,'label':"g/s"},linewidth=lnwdth,alpha=alpha,
+                            cmap=cmap2,vmin=vlim[0],vmax=vlim[1])
+                axs[ind].set_title(val)
             except ValueError:
                 print('No emissions to plot')
-        axs[0].set_title(val[0])
+        # if legend:
+        #     for ax in axs:
+        #         ax.get_legend().set_title("μg/m³")
         axs[0].set_xticks([]);
         axs[0].set_yticks([]);
+        #Turn off the last subplot
+        
         #Set limits
         if xylims is None:
             axs[0].set_xlim(-2579201.070414297, 3165870.);
@@ -352,8 +387,14 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
         else:
             axs[0].set_xlim(xylims[0])
             axs[0].set_ylim(xylims[1])
-        fig.savefig(figpath+scenario+'_EmissPlot_'+val+'.tif',format='tif')
+        if triplot:
+            fig.savefig(figpath+scenario+'_EmissPlot_'+val+'.tif',format='tif')
         #figs[ind]=fig
+    if ~triplot:
+        print(ind)
+        if ind < len(axs):
+            axs[len(axs)-1].set_axis_off()
+        fig.savefig(figpath+scenario+'_EmissPlot_.tif',format='tif')
     return fig
 
 def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.cm.YlOrRd,listvals=None,
