@@ -1,0 +1,89 @@
+#Name of the preprocessor output file that will be used to run the model
+InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_complete.nc"
+#Switch the system to a static grid. This is better for ensuring consistency between runs, the model 
+#will be more finely resolved with a dynamic grid.
+static=true
+creategrid=true
+#Save path and name
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240123_InmapOuts_BPT_2015_E002.shp"
+#Units for the emissions and full paths to the emissions files.
+EmissionUnits= "g/s"
+EmissionsShapefiles = [
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BPT_2015_E002_area.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BPT_2015_E002_major.shp"
+]
+
+#Define the variables that will be output. See InMAP Documentation for full details
+[OutputVariables]
+TotalPM25 = "PrimaryPM25 + pNH4 + pSO4 + pNO3 + SOA"
+TotalPopD = "(exp(log(1.078)/10 * TotalPM25) - 1) * TotalPop * AllCause / 100000"
+TotalPop = "TotalPop"
+AllCause = "AllCause"
+PrimPM25 = "PrimaryPM25"
+PSO4 = "pSO4"
+PNO3 = "pNO3"
+PNH4 = "pNH4"
+SOA = "SOA"
+SOx = "SOx"
+NH3 = "NH3"
+NOx = "NOx"
+VOC = "VOC"
+BasePM25 = "BaselineTotalPM25"
+BaseVOC = "BaselineVOC"
+BaseSOA = "BaselineSOA"
+BaseNH3 = "BaselineNH3"
+BasePNH4 = "BaselinePNH4"
+BaseSOx = "BaselineSOx"
+BasePSO4 = "BaselinePSO4"
+BaseNOx = "BaselineNOx"
+BasePNO3 = "BaselinePNO3"
+
+#Define the variables that define the grid. See InMAP documentation for full details
+#Don't change the projection unless you have reprojected the InMAP data!
+[VarGrid]
+GridProj= "+proj=lcc +lat_0=40 +lon_0=-96 +lat_1=50 +lat_2=70 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +to_meter=1"
+#This grid resolution takes ~24 hours on 40 2.1GHz processors on the Compute Canada architecture
+Xnests= [180,2,2,2,2,2,2,2] VariableGridDx= 40000.0
+Ynests= [145,2,2,2,2,2,2,2] VariableGridDy= 40000.0
+VariableGridXo= -4034312.054 #-4184312.05377675
+VariableGridYo= -1529822.83 #-2029822.82977676
+HiResLayers= 8
+PopDensityThreshold= 27500000.0
+PopThreshold= 50000.0
+CensusPopColumns= ["TotalPop"]
+PopGridColumn= "TotalPop"
+CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA.shp"
+
+# MortalityRateFile is the path to the shapefile containing baseline
+# mortality rate data.
+# This is currently just pointing to the population data, but can be used to determine mortality from PM2.5
+MortalityRateFile= "/home/tfmrodge/projects/def-agiang01/tfmrodge/InMAP_Canada/cmd/inmap/testdata/inmap_can_pop_DA.shp"
+
+# MortalityRateColumns maps the names of each input population group to the name
+# of the field in MortalityRateFile that contains its respective baseline
+# mortality rate, in units of deaths per year per 100,000 people. Only mortality
+# rates used in output variable expressions need to be included here.
+[VarGrid.MortalityRateColumns]
+AllCause = "TotalPop"
+
+#Define the preprocessor run parameters. See the InMAP documentation for full details.
+#The CTMtype="GEMMACH" works with GEMMACH outputs. 
+[Preproc]
+CTMType= "GEMMACH"
+StartDate= "20190201"
+EndDate= "20190301"
+CtmGridXo= -4084285.4453117 
+CtmGridYo= -1929796.221 
+CtmGridDx= 10002.6608465054
+CtmGridDy= 10002.6608465054
+
+#The GEMMACH preprocessor expects three files:
+#gem_out contains most data
+#gem_geophy contains land use data for each grid cell
+#gem_rdps contains the cloud fraction in each grid cell
+[Preproc.GEMMACH]
+gem_out= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/[DATE]_gemmach.nc"
+gem_geophy= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/GEOPHY_VF/gem_geophy.nc"
+gem_rdps= "/home/tfmrodge/scratch/GEMMACH_data/data/nc3/RDPS_QC/[DATE]_rdpsqc.nc"
+#This flag tells the preprocessor that each input file contains a single hourly data
+gemnoChemHour= true
