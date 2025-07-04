@@ -7,7 +7,7 @@ import numpy as np
 xr.set_options(keep_attrs=True,display_max_rows=25)
 
 #Path where the preprocessed files are located
-inpath = '/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/20230830_processed/'
+inpath = '/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/monthly/'
 #Path where you will save the output, combined preprocessor file
 outpath = '/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/'
 #Name that you want for the final output file
@@ -53,6 +53,7 @@ for filename in os.listdir(inpath): #  fnames: #
     print('Done '+timechunk)
 #Save an intermediate file in case something goes wrong
 xrout.to_netcdf(outpath+'inmapData_GEMMACH_BASEGM_2015_017.nc',format= "NETCDF3_64BIT")
+#xrout = xr.open_dataset(inpath+filename, decode_coords="all")
 print('Saved intermediate xrout to file')
 #Set nans - output file has very large and small values, we are going to set to nan then fill.
 print('Then we fill \'em up!')

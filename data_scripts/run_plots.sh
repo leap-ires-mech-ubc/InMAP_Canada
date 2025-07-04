@@ -6,6 +6,7 @@
 #SBATCH --mem-per-cpu=4G
 #SBATCH --nodes=1
 #SBATCH --array=2-9
-python plot_emissions.py $SLURM_ARRAY_TASK_ID
+#python plot_emissions.py $SLURM_ARRAY_TASK_ID
+python data_scripts/pts_to_shp.py 'BPT_2015_E002'
 #python plot_results.py $SLURM_ARRAY_TASK_ID
 #python emiss_to_shp.py
