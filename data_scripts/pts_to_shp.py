@@ -45,4 +45,4 @@ for scenario in scenarios:
     sumdf=sumdf.set_crs('EPSG:4326') #Still need to set crs
     sumdf = sumdf.reset_index() #Reset to numerical index
     print('saving')
-    sumdf.to_file(fpath+scenario+'_majorpts_20240225.shp')
+    sumdf.to_file(fpath+scenario+'_majorpts_20250627.shp')

@@ -25,9 +25,9 @@ scenario = scenarios[sID][0]
 #Area emissions
 areascenario = gpd.read_file(fpath+scenario+'_area.shp')
 areadiff = areascenario.copy(deep=True)
-#Some scenarios have mostly higher emissions - run as scenario - base
-areadiff.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']] = areascenario.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']] - areabase.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']]
 #All emissions are calculated as scenario - base then split by mask
+areadiff.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']] = areascenario.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']] - areabase.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']]
+#
 # if sID in [2,3,4,5]:
 #     areadiff.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']] = areascenario.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']] - areabase.loc[:,['NH3', 'NOx', 'PM25', 'SOx', 'VOC']]
 # else:#Others are mostly reductions - base - scenario

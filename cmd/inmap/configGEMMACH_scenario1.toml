@@ -8,13 +8,13 @@ OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/2024
 
 EmissionUnits= "g/s"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BASEGM_2015_E010_area.shp",
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/Diff/split/BASEGM_2015_E010_majorpts_20240225.shp"
+    "/home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/20250626_BASEGM_2015_E010_area_epsg4326.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/BPT_2015_E002_majorpts.shp"
 ]
-#EmissionUnits = "kg/year"
+
 #EmissionsShapefiles = [
-#    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/NPRI/NPRI_ground_211.shp",
-#    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/NPRI/NPRI_stack_211.shp"
+#    "/home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/20250626_BASEGM_2015_E010_area_epsg4326.shp",
+#    "/home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/BPT_2015_E002_majorpts.shp"
 #]
 
 [OutputVariables]
@@ -73,7 +73,7 @@ PopThreshold= 50000.0
 #CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA_lcc.shp"
 CensusPopColumns= ["TotalPop"]
 PopGridColumn= "TotalPop"
-CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA.shp"
+CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inmap_can_pop_DA_epsg4326.shp"
 #CensusPopColumns= ["TOT_POP2A"]
 #PopGridColumn= "TOT_POP2A"
 
