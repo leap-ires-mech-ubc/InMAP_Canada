@@ -2,7 +2,8 @@
 """
 Created on Thu Oct 19 14:54:03 2023
 
-@author: trodge01
+@author: trodge01.
+#2025-10-15 Modified code with help of CoPilot. Fixed bug where the regression was backwards and MV was calculated incorrectly.
 Functions to help analyze inmap data
 """
 
@@ -14,6 +15,7 @@ import statsmodels.api as sm
 import geopandas as gpd
 import pandas as pd
 from geopandas.tools import sjoin
+import math
 
 def load_inmap(outfile,basefile=None,crs='ESRI:102002',clipped=False):
     ''' Load inmap data or read in as a change from the baseline (units are still concentration) 
@@ -30,7 +32,7 @@ def load_inmap(outfile,basefile=None,crs='ESRI:102002',clipped=False):
         outgdf = gpd.read_file(outfile)
     #Next, load the basefile if it is present. If basefile is loaded, all values are differences
     if type(basefile) != type(None):
-        if type(basefile) == 'str': #For a string, load the file and convert to same CRS
+        if isinstance(basefile, str): #For a string, load the file and convert to same CRS
             if crs != None:
                 basegdf = gpd.read_file(basefile).to_crs(crs)
             else:
@@ -58,11 +60,11 @@ def summstats(df,pairs,stats,geoareas,popwt=None,geoname='PRENAME',popcol='Total
     popwt (bool): switch to do population weighting or not, with the column name from popcol
     geoname (string): column for the geoareas filtering
     '''
-    statdf = pd.DataFrame(columns=['Location']+stats[:-1])
     statdfs = {}
     indname = ''
     for geoarea in geoareas:
-        if (geoarea == 'Canada') | (geoarea == 'All'):
+        statdf = pd.DataFrame(columns=['Location']+stats[:-1])
+        if geoarea in ['Canada', 'All']:
             pltdata = df
         else:
             pltdata = df.loc[df.PRENAME==geoarea]
@@ -147,13 +149,13 @@ def shiftedColorMap(cmap, start=0, midpoint=0.5, stop=1.0, name='shiftedcmap'):
 def calcstat(stat,ref,test,popwt=None):
     '''Wrapper function for stats. Currently allows:
         RMSE, MeanBias (MB), MeanError (ME), MeanFractionalBias (MFB), 
-        MeanFractionalError (MFE), ModelRatio (MR), regression (reg), 
+        MeanFractionalError (MFE), ModelRatio (MR), Ratio of Means (RoM), regression (reg), 
         number of observations (numobs)
         Note that regression gives an output with the slope and r²
         stat (str): Stats that will be calculated. Must match
         the strings in the if statements below
         ref (pd series): reference value (x)
-        ref (pd series): test value (y)
+        test (pd series): test value (y)
         '''
     if stat == 'RMSE':
         stat =  RMSE(ref,test,popwt=popwt)
@@ -167,8 +169,8 @@ def calcstat(stat,ref,test,popwt=None):
         stat =  MeanFractionalError(ref,test,popwt=popwt)
     elif (stat == 'ModelRatio') | (stat == 'MR'):
         stat =  ModelRatio(ref,test,popwt=popwt)
-    elif (stat == 'ModelRatio') | (stat == 'MR'):
-        stat =  ModelRatio(ref,test,popwt=popwt)
+    elif (stat == 'RatioofMeans') | (stat == 'RoM'):
+        stat =  RatioOfMeans(ref,test,popwt=popwt)
     elif (stat == 'Regression') | (stat == 'reg'):
         stat =  Regression(ref,test,popwt=popwt)
     elif (stat == 'numobs') | (stat == 'n'):
@@ -176,102 +178,300 @@ def calcstat(stat,ref,test,popwt=None):
     return stat
     
 #Define functions to calculate model-model statistics
+# ---- Internal helpers (no interface changes) ----
+def _mask_valid(ref, test, popwt=None, require_positive_weights=True):
+    """
+    Mask to finite ref/test (and weights if provided). Returns masked arrays.
+    Prints and returns (None, None, None) if nothing valid remains.
+    """
+    try:
+        ref = np.asarray(ref, dtype=float)
+        test = np.asarray(test, dtype=float)
+    except Exception as e:
+        print(f"[mask] Could not convert inputs to float arrays: {e}")
+        return None, None, None
+
+    if ref.shape != test.shape:
+        print(f"[mask] Shape mismatch: ref{ref.shape} vs test{test.shape}")
+        return None, None, None
+    valid = np.isfinite(ref) & np.isfinite(test)
+
+    w = None
+    if popwt is not None:
+        try:
+            w = np.asarray(popwt, dtype=float)
+        except Exception as e:
+            print(f"[mask] Could not convert weights to float array: {e}")
+            return None, None, None
+        if w.shape != ref.shape:
+            print(f"[mask] Weight shape mismatch: weights{w.shape} vs data{ref.shape}")
+            return None, None, None
+        w_valid = np.isfinite(w)
+        if require_positive_weights:
+            w_valid &= (w > 0)
+        valid &= w_valid
+
+    if not np.any(valid):
+        print("[mask] No valid data points after masking (check NaNs/infs/weights).")
+        return None, None, None
+
+    ref_m = ref[valid]
+    test_m = test[valid]
+    w_m = w[valid] if w is not None else None
+    return ref_m, test_m, w_m
+
+def _weighted_mean(x, w=None):
+    if w is None:
+        return np.nanmean(x)  # nan-safe mean
+    sw = np.sum(w)
+    if not np.isfinite(sw) or sw <= 0:
+        return np.nan
+    return np.sum(w * x) / sw
+
+#Define functions to calculate model-model statistics
 def RMSE(ref,test,popwt=None):
     #Calculate the RMSE for two series. These must be the same length. 
     #ref - reference value
     #test - test value, non-reference
     #popwt = None if area-weighted, series with population of each cell if pop weighted
-    delta = test - ref
-    if popwt is None:
-        RMSE = np.sqrt((delta**2/len(delta)).sum())
-    else:
-        RMSE = np.sqrt(((popwt*delta**2)/(popwt.sum())).sum())
-        # (inmap_outs.loc[:,'TotalPop']*inmap_outs.loc[:,'delta_TotPM25']**2)/(inmap_outs.loc[:,'TotalPop'].sum())).sum())
-    return RMSE
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[RMSE] Invalid inputs; returning np.nan.")
+        return np.nan
+    delta2 = (test - ref)**2
+    try:
+        return np.sqrt(_weighted_mean(delta2, w))
+    except Exception as e:
+        print(f"[RMSE] Error computing RMSE: {e}")
+        return np.nan
 
 def MeanBias(ref,test,popwt=None):
     #Calculate the mean bias (MB) for two series. These must be the same length. 
     #ref - reference value
     #test - test value, non-reference
     #popwt = None if area-weighted, series with population of each cell if pop weighted
-    delta = test - ref
-    if popwt is None:
-        MB = (delta/len(delta)).sum()
-    else:
-        MB = ((popwt*delta)/(popwt.sum())).sum()
-    return MB
-
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[MeanBias] Invalid inputs; returning np.nan.")
+        return np.nan
+    delta = (test - ref)
+    try:
+        return _weighted_mean(delta, w)
+    except Exception as e:
+        print(f"[MeanBias] Error computing MB: {e}")
+        return np.nan
 def MeanError(ref,test,popwt=None):
     #Calculate the mean error (ME) for two series. These must be the same length. 
     #ref - reference value
     #test - test value, non-reference
     #popwt = None if area-weighted, series with population of each cell if pop weighted
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[MeanError] Invalid inputs; returning np.nan.")
+        return np.nan
     delta = np.abs(test - ref)
-    if popwt is None:
-        ME = (delta/len(delta)).sum()
-    else:
-        ME = ((popwt*delta)/(popwt.sum())).sum()
-    return ME
+    try:
+        return _weighted_mean(delta, w)
+    except Exception as e:
+        print(f"[MeanError] Error computing ME: {e}")
+        return np.nan
 
-def MeanFractionalBias(ref,test,popwt=None):
+def MeanFractionalBias(ref,test,popwt=None,threshold=1e-9):
     #Calculate the mean Fractional Bias (MFB) for two series. These must be the same length. 
     #ref - reference value
     #test - test value, non-reference
     #popwt = None if area-weighted, series with population of each cell if pop weighted
-    if popwt is None:
-        MFB = ((2*(test - ref)/(test+ref))/len(test)).sum()
-    else:#Not sure this makes sense
-        MFB = ((popwt*(2*(test - ref)/(test+ref)))/(popwt.sum())).sum()
-    return MFB
+    #threshold for exclusion - very small values inflate this stat
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[MeanFractionalBias] Invalid inputs; returning np.nan.")
+        return np.nan
+    denom = test + ref
+    threshold = threshold * np.nanmedian(np.abs(denom))
+    mask = np.isfinite(denom) &  (np.abs(denom) > threshold)
+    excl = np.size(denom) - np.count_nonzero(mask)
+    if excl > 0:
+        print(f"[MeanFractionalBias] Excluded {excl} pairs with |test+ref| <= {threshold}.")
+    if not np.any(mask):
+        print("[MeanFractionalBias] All denominators are zero/invalid; returning np.nan.")
+        return np.nan
+    try:
+        mfb_terms = 2.0 * (test[mask] - ref[mask]) / denom[mask]
+        w_mask = w[mask] if w is not None else None
+        return _weighted_mean(mfb_terms, w_mask)
+    except Exception as e:
+        print(f"[MeanFractionalBias] Error computing MFB: {e}")
+        return np.nan
 
-def MeanFractionalError(ref,test,popwt=None):
+def MeanFractionalError(ref,test,popwt=None,threshold=1e-9):
     #Calculate the mean Fractional Error (MFE) for two series. These must be the same length. 
     #ref - reference value
     #test - test value, non-reference
     #popwt = None if area-weighted, series with population of each cell if pop weighted
-    if popwt is None:
-        MFE = ((2*np.abs(test - ref)/(test+ref))/len(test)).sum()
-    else:#Not sure this makes sense
-        MFE = ((popwt*(2*np.abs(test - ref)/(test+ref)))/(popwt.sum())).sum()
-    return MFE
+    #threshold for exclusion - very small values inflate this stat
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[MeanFractionalError] Invalid inputs; returning np.nan.")
+        return np.nan
+    denom = test + ref
+    threshold = threshold * np.nanmedian(np.abs(denom))
+    mask = np.isfinite(denom) &  (np.abs(denom) > threshold)
+    excl = np.size(denom) - np.count_nonzero(mask)
+    if excl > 0:
+        print(f"[MeanFractionalError] Excluded {excl} pairs with |test+ref| <= {threshold}.")
+    if not np.any(mask):
+        print("[MeanFractionalError] All denominators are zero/invalid; returning np.nan.")
+        return np.nan
+    try:
+        mfe_terms = 2.0 * np.abs(test[mask] - ref[mask]) / denom[mask]
+        w_mask = w[mask] if w is not None else None
+        return _weighted_mean(mfe_terms, w_mask)
+    except Exception as e:
+        print(f"[MeanFractionalError] Error computing MFE: {e}")
+        return np.nan
 
-def ModelRatio(ref,test,popwt=None):
-    #Calculate the model ratio (MR) for two series. These must be the same length. 
-    #ref - reference value
-    #test - test value, non-reference
-    #popwt = None if area-weighted, series with population of each cell if pop weighted
-    if popwt is None:
-        MR = ((test/ref)/len(test)).sum()
-    else:#Not sure this makes sense
-        MR = (((popwt*(test/ref)))/(popwt.sum())).sum()
-    return MR
+def ModelRatio(ref, test, popwt=None):
+    """
+    Calculate the model ratio (MR):
+        MR = mean(test/ref)
 
-def Regression(ref,test,popwt=None):
-    #Calculate the model ratio (MR) for two series. These must be the same length. 
-    #ref - reference value
-    #test - test value, non-reference
-    #popwt = None if area-weighted, series with population of each cell if pop weighted
-    if popwt is None:
-        res = sm.OLS(ref,test,hasconst=False).fit()
-        m,r2 = res.params[0],res.rsquared
-    else:#For this, a weighted least squares
-        res = sm.WLS(ref,test,weights=popwt).fit()
-        m,r2 = res.params[0],res.rsquared
-    Reg = [m,r2]
-    return Reg
+    If popwt is provided, computes weighted mean of ratios.
+
+    ref  : reference values (x)
+    test : test values (y)
+    popwt: population or other weights (None for unweighted)
+    """
+    # Mask invalid values first
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[ModelRatio] Invalid inputs; returning np.nan.")
+        return np.nan
+
+    # Avoid divide-by-zero problems
+    valid = (ref != 0) & np.isfinite(ref) & np.isfinite(test)
+    if not np.any(valid):
+        print("[ModelRatio] No valid ref>0 values; returning np.nan.")
+        return np.nan
+
+    ref_v = ref[valid]
+    test_v = test[valid]
+    ratios = test_v / ref_v
+
+    # Unweighted mean of ratios
+    if w is None:
+        return np.nanmean(ratios)
+
+    # Weighted mean of ratios
+    w_v = w[valid]
+    w_sum = np.sum(w_v)
+    if not np.isfinite(w_sum) or w_sum <= 0:
+        print("[ModelRatio] Sum of weights is invalid; returning np.nan.")
+        return np.nan
+    return np.sum(w_v * ratios) / w_sum
+
+def Regression(ref, test, popwt=None, origin=True):
+    """
+    Regression between test (y) and ref (x).
+
+    Parameters
+    ----------
+    ref : array-like
+        Reference values (x-axis)
+    test : array-like
+        Test values (y-axis)
+    popwt : array-like or None
+        Optional population weights
+    origin : bool
+        If True: regression is forced through origin (y = m*x)
+        If False: standard regression with intercept (y = a + b*x)
+
+    Returns
+    -------
+    slope, r2 : float, float
+        Regression slope and coefficient of determination.
+        If origin=True, R² is computed from the constrained model.
+    """
+    # Mask invalid data (NaN, inf, nonpositive weights)
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[Regression] Invalid inputs; returning NaN.")
+        return [np.nan, np.nan]
+    # Reshape exogenous variable for statsmodels
+    X = ref.reshape(-1, 1)
+    y = test
+    try:
+        if origin:
+            # Forced-through-origin regression: y = m*x
+            if w is None:
+                model = sm.OLS(y, X)
+            else:
+                model = sm.WLS(y, X, weights=w)
+
+            res = model.fit()
+            slope = float(res.params[0])
+            # R² for origin regression is computed differently:
+            # 1 - SSE / SST, but SST is centered on zero, not mean(y)
+            y_pred = slope * ref
+            ss_res = np.sum((y - y_pred) ** 2)
+            ss_tot = np.sum(y ** 2)  # centered at zero
+            r2 = 1 - ss_res / ss_tot if ss_tot > 0 else np.nan
+            return [slope, r2]
+        else:
+            # Standard regression: y = a + b*x
+            X2 = sm.add_constant(X, has_constant="add")
+            if w is None:
+                model = sm.OLS(y, X2)
+            else:
+                model = sm.WLS(y, X2, weights=w)
+            res = model.fit()
+            intercept = float(res.params[0])
+            slope = float(res.params[1])
+            r2 = float(res.rsquared)
+            return [slope, r2]
+    except Exception as e:
+        print(f"[Regression] Error during regression: {e}")
+        return [np.nan, np.nan]
 
 def MeanVal(ref,test,popwt=None):
     #Calculate the mean values (MB) for two series. These must be the same length. 
     #ref - reference value
     #test - test value, non-reference
     #popwt = None if area-weighted, series with population of each cell if pop weighted
-    if popwt is None:
-        MV_ref = (ref).sum()/len(ref)
-        MV_test = (ref).sum()/len(ref)
-    else:
-        MV_ref = ((popwt*ref)/(popwt.sum())).sum()
-    MVs=[MV_ref,MV_test]
-    return MVs
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[MeanVal] Invalid inputs; returning [np.nan, np.nan].")
+        return [np.nan, np.nan]
+    try:
+        if w is None:
+            MV_ref = np.nanmean(ref)
+            MV_test = np.nanmean(test)
+        else:
+            MV_ref = _weighted_mean(ref, w)
+            MV_test = _weighted_mean(test, w)
+        return [MV_ref, MV_test]
+    except Exception as e:
+        print(f"[MeanVal] Error computing means: {e}")
+        return [np.nan, np.nan]
+
+def RatioOfMeans(ref, test, popwt=None):
+    #Calculate the ratio of means (RoM) for two series. These must be the same length.
+    #ref - reference value
+    #test - test value, non-reference
+    #popwt = None if area-weighted, series with population of each cell if pop weighted
+    ref, test, w = _mask_valid(ref, test, popwt)
+    if ref is None:
+        print("[RatioOfMeans] Invalid inputs; returning np.nan.")
+        return np.nan
+    try:
+        mean_ref = _weighted_mean(ref, w)
+        mean_test = _weighted_mean(test, w)
+        if mean_ref == 0 or not np.isfinite(mean_ref):
+            print("[RatioOfMeans] Mean of reference is zero or invalid; returning np.nan.")
+            return np.nan
+        return mean_test / mean_ref
+    except Exception as e:
+        print(f"[RatioOfMeans] Error computing ratio of means: {e}")
+        return np.nan
 
 def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,alpha = 1.0,cmap=matplotlib.cm.YlOrRd,listvals=None,sjoinem=True,
                     figpath='/home/tfmrodge/scratch/GEMMACH_data/Figs/',scenario='test',diff=False,xylims=None,dopts=False):
@@ -390,7 +590,7 @@ def plot_emissions(emissions,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,al
         if triplot:
             fig.savefig(figpath+scenario+'_EmissPlot_'+val+'.tif',format='tif')
         #figs[ind]=fig
-    if ~triplot:
+    if not triplot:
         print(ind)
         if ind < len(axs):
             axs[len(axs)-1].set_axis_off()
@@ -429,8 +629,10 @@ def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,
             ax = axs
         #Use the ranges to set the vlims
         if diff:
-            vlim1 = [min(min(inmap_outs.loc[:,vals[0]]),min(inmap_outs.loc[:,vals[1]]))
-                     ,max(max(inmap_outs.loc[:,vals[0]]),max(inmap_outs.loc[:,vals[1]]))]
+            # vlim1 = [min(min(inmap_outs.loc[:,vals[0]]),min(inmap_outs.loc[:,vals[1]]))
+            #          ,max(max(inmap_outs.loc[:,vals[0]]),max(inmap_outs.loc[:,vals[1]]))]
+            vlim1 = [ min(inmap_outs.loc[:, vals[0]].min(), inmap_outs.loc[:, vals[1]].min()),
+                    max(inmap_outs.loc[:, vals[0]].max(), inmap_outs.loc[:, vals[1]].max())]
             plt_cmap = shiftedColorMap(cmap, start=0, midpoint=1-vlim1[1]/(vlim1[1]+np.abs(vlim1[0])), stop=1.0, name='shiftedcmap')
         else:
             vlim1 = [0,max(max(inmap_outs.loc[:,vals[0]]),max(inmap_outs.loc[:,vals[1]]))]
@@ -448,8 +650,9 @@ def plot_pollutants(inmap_outs,provinces,legend=True,lgdshk = 0.3,lnwdth = 0.05,
         except ValueError:
                 print('No emissions to plot')
         ax[0].set_title(vals[0][4:])
-        axs[0].set_xticks([])
-        axs[0].set_yticks([])
+        for ax in np.atleast_1d(axs):
+            ax.set_xticks([])
+            ax.set_yticks([])
         #Set limits
         if xylims is None:
             axs[0].set_xlim(-2579201.070414297, 3165870.)

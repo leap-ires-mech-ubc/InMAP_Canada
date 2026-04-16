@@ -3,3 +3,7 @@ cmd/inmap/testdata/preproc/gemmach/processed/
 *.out
 .DS_STORE
 slurm*
+*.err
+*.log
+*.summary.txt
+*.tsv

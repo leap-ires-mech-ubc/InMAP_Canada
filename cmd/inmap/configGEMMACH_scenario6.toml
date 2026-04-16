@@ -1,16 +1,16 @@
 #Name of the preprocessor output file that will be used to run the model
-InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_complete.nc"
+InMAPData= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/20260210/20260217_inmapData_GEMMACH_BASEGM_2015_017_fill0.nc"
 #Switch the system to a static grid. This is better for ensuring consistency between runs, the model 
 #will be more finely resolved with a dynamic grid.
 static=true
 creategrid=true
 #Save path and name
-OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20240123_InmapOuts_BPT_2015_E002.shp"
+OutputFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20260310_InmapOuts_BPT_2015_E002_static.shp"
 #Units for the emissions and full paths to the emissions files.
 EmissionUnits= "g/s"
 EmissionsShapefiles = [
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BPT_2015_E002_area.shp",
-    "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Emissions/Emissions_shp/BPT_2015_E002_major.shp"
+    "/home/tfmrodge/scratch/GEMMACH_data/data/emissions_nc/20260223/20260223_BPT_2015_E002_area_EPSG4326.shp",
+    "/home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/BPT_2015_E002_majorpts.shp"
 ]
 #EmissionUnits = "kg/year"
 #EmissionsShapefiles = [
@@ -45,26 +45,10 @@ BasePNO3 = "BaselinePNO3"
 [VarGrid]
 GridProj= "+proj=lcc +lat_0=40 +lon_0=-96 +lat_1=50 +lat_2=70 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +to_meter=1"
 #GridProj= "+proj=longlat +units=degrees"
-#Xnests= [744,2,2,2,2,2,2,2] #VariableGridDx= 10002.6608465054
-#Ynests= [669,2,2,2,2,2,2,2] #VariableGridDy= 10002.6608465054
-#Xnests= [360,2,2,2,2,2,2,2] VariableGridDx= 20000.0
-#Ynests= [290,2,2,2,2,2,2,2] VariableGridDy= 20000.0
-Xnests= [180,2,2,2,2,2,2,2] VariableGridDx= 40000.0
-Ynests= [145,2,2,2,2,2,2,2] VariableGridDy= 40000.0
-#Xnests= [37,2,2,2,2,2,2,2] #VariableGridDx= 201134.5857
-#Ynests= [33,2,2,2,2,2,2,2] #VariableGridDy= 20035.26977
-#Xnests= [150,2,2,2,2,2,2,2] #VariableGridDx= 48279.0
-#Ynests= [100,2,2,2,2,2,2,2] #VariableGridDy= 64917.0
-#Xnests= [50,2] #VariableGridDx= 143686.24
-#Ynests= [50,2] #VariableGridDy= 116200.0
-#VariableGridXo= -492156.0269 
-#VariableGridYo= 1270177.17
-VariableGridXo= -4034312.054 #-4184312.05377675
+Xnests= [171,2,2,2,2,2,2,2] VariableGridDx= 40000.0
+Ynests= [147,2,2,2,2,2,2,2] VariableGridDy= 40000.0
+VariableGridXo= -4014266.50 #-4184312.05377675
 VariableGridYo= -1529822.83 #-2029822.82977676
-#VariableGridXo= -4184312.05377675 #VariableGridXo= -4084285.4453117 #
-#VariableGridYo= -2029822.82977676 #VariableGridYo= -1929796.221 # 
-#VariableGridDx= 48279.0
-#VariableGridDy= 64917.0
 HiResLayers= 8
 PopDensityThreshold= 27500000.0
 PopThreshold= 50000.0
@@ -80,7 +64,7 @@ CensusFile= "/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/PopData/inma
 
 # MortalityRateFile is the path to the shapefile containing baseline
 # mortality rate data.
-MortalityRateFile= "/home/tfmrodge/projects/def-agiang01/tfmrodge/InMAP_Canada/cmd/inmap/testdata/nmap_can_pop_DA_lcc.shp"
+MortalityRateFile= "/home/tfmrodge/projects/def-rscholes/tfmrodge/InMAP_Canada/cmd/inmap/testdata/testMortalityRate.shp"
 
 # MortalityRateColumns maps the names of each input population group to the name
 # of the field in MortalityRateFile that contains its respective baseline

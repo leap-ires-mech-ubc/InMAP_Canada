@@ -17,10 +17,17 @@ if ! date -d "${year}-${month}-${day}" >/dev/null 2>&1; then
 fi
 
 file1="data/nc3/BASEGM_2015_017/${year}-${month}-${day}_${hour}${suf}"
+ingem="/home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/${year}-${month}-${day}_${hour}${suf}-tmp2"
+outgem="/home/tfmrodge/scratch/GEMMACH_data/data/nc3/BASEGM_2015_017/${year}-${month}-${day}_${hour}${suf}"
 
 if [[ ! -f "$file1" ]]; then
-    #Process the GEMMACH output data
-    ncks --no_tmp_fl -6 -O data/nc3/BASEGM_2015_017/${year}-${month}-${day}_${hour}${suf}-tmp2 data/nc3/BASEGM_2015_017/${year}-${month}-${day}_${hour}${suf}
+    #Process the GEMMACH output data 
+    ncks --no_tmp_fl -6 -O $ingem $outgem
+    #Add compression, halves the size but not great
+    #ncatted -O -a _FillValue,,o,f,-32767 "$ingem"
+    #ncpdq -P pack --ppc default=6 -6 -O "$ingem" "$outgem"
+else
+    echo "$file1 exists"
 fi
 
 # Process the date

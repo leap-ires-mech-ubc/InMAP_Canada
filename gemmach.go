@@ -149,9 +149,7 @@ func NewGEMMACH(gem_out, gem_geophy, gem_rdps, startDate, endDate string, gemnoC
 			"TNO2": mwN / mwNOx},
 		// pNO is the Nitrogen fraction of MADE particulate
 		// NO species [μg/kg dry air].
-		pNO: map[string]float64{"TNI1": mwN / mwNO3,
-			"TNO3": mwN / mwNO3,
-			"THN3": mwN / mwHN3},
+		pNO: map[string]float64{"TNI1": mwN / mwNO3},
 		// SOx is the RACM SOx species. We are only interested in the mass
 		// of Sulfur, rather than the mass of the whole molecule, so
 		// we use the molecular weight of Sulfur.

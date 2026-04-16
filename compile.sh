@@ -5,5 +5,6 @@
 #SBATCH --mem-per-cpu=1024
 #SBATCH --job-name='compile_inmap'
 #./inmap preproc --config=cmd/inmap/configExampleGEMMACH.toml
-module load go/1.18.3
+module load StdEnv/2020 go/1.18.3
 GO111MODULE=on go build ./cmd/inmap
+module load StdEnv/2023
