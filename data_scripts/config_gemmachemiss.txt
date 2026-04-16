@@ -1,0 +1,10 @@
+ArrayTaskID   Prefix
+1             BASEGM_2015_E010
+2             BAU_2020_E108
+3             BAU_2025_E107
+4             BAU_2030_E107
+5             BAU_2035_E107
+6             BPT_2015_E002
+7             BPT_2015_E006
+8             BPT_2015_E015
+9             COVID_2020_E003
