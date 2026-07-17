@@ -1459,10 +1459,6 @@ func (w *GEMMACH) CloudFrac() NextData {
 // the mass fraction of cloud water in each grid cell [mass/mass].
 func (w *GEMMACH) QCloud() NextData { return w.rdpsread("QC") }
 
-// RadiationDown helps fulfill the Preprocessor interface by returning
-// total downwelling radiation at ground level [W/m2].
-func (w *GEMMACH) RadiationDown() NextData { return w.read("FB") }
-
 /*	swDownFunc := w.read("SWDOWN") // downwelling short wave radiation at ground level [W/m2]
 	glwFunc := w.read("GLW")       // downwelling long wave radiation at ground level [W/m2]
 	return wrfRadiationDown(swDownFunc, glwFunc)
@@ -1484,18 +1480,25 @@ func wrfRadiationDown(swDownFunc, glwFunc NextData) NextData {
 	}
 }
 */
+// GLW helps fulfill the Preprocessor interface by returning
+// downwelling long wave radiation at ground level (W/m²)
+// GEMMACH variable mapping:
+// FI = surface_incoming_infrared_flux (W/m²)
+//2026-07-17 CoPilot noted that the WRF-CHEM version is RD - SW. Updated here 
+func (w *GEMMACH) GLW() NextData { return w.read("FI") }
 // SWDown helps fulfill the Preprocessor interface by returning
 // downwelling short wave radiation at ground level [W/m2].
-func (w *GEMMACH) SWDown() NextData { return w.read("FI") }
+// GEMMACH variable mapping:
+// FB = downward_solar_flux (W/m²)
+func (w *GEMMACH) SWDown() NextData { return w.read("FB") }
 
-// GLW helps fulfill the Preprocessor interface by returning
-// downwelling long wave radiation at                                                                                                                 ground level [W/m2].
-//func (w *GEMMACH) GLW() NextData { return w.RadiationDown() - w.SWDown() }
-func (w *GEMMACH) GLW() NextData {
-	rdFunc := w.RadiationDown() // Density of air kg m-2
+// RadiationDown helps fulfill the Preprocessor interface by returning
+// total downwelling radiation at ground level [W/m2].
+func (w *GEMMACH) RadiationDown() NextData {
+	glwFunc := w.GLW() 
 	swFunc := w.SWDown()
 	return func() (*sparse.DenseArray, error) {
-		RD, err := rdFunc()
+		GLW, err := glwFunc()
 		if err != nil {
 			return nil, err
 		}
@@ -1503,13 +1506,10 @@ func (w *GEMMACH) GLW() NextData {
 		if err != nil {
 			return nil, err
 		}
-		glw := sparse.ZerosDense(SW.Shape...)
-		for i := range glw.Elements {
-			// molec HO / cm3 * m3 / kg air * kg air/molec. air* cm3/m3 * ppm
-			glw.Elements[i] = RD.Elements[i] + SW.Elements[i]
+		rd := sparse.ZerosDense(SW.Shape...)
+		for i := range rd.Elements {
+			rd.Elements[i] = GLW.Elements[i] + SW.Elements[i]
 		}
-		//mult := sparse.ZerosDense(rho.Shape...)
-		//alt := mult / rho
-		return glw, nil
+		return rd, nil
 	}
 }
