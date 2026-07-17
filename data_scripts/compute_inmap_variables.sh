@@ -307,15 +307,15 @@ present="$(
     echo "EXPR FAIL: $bn" >&2
     return 0
   fi
-  if ! cdo -L -O selname,"$VARS_KEEP" "$expr_nc" "$out_file"; then
-    record_failure "cdo_selname_fail" "$bn" "$VARS_KEEP"
-    echo "SELNAME FAIL: $bn" >&2
-    return 0
-  fi
   # Clip tiny negative BASEPRIM25 values
   if ! ncap2 -O -s 'where(BASEPRIM25<0) BASEPRIM25=0' "$expr_nc" "$expr_nc"; then
     record_failure "clip_prim25_fail" "$bn" "ncap2 clip"
     echo "CLIP FAIL: $bn" >&2
+    return 0
+  fi
+  if ! cdo -L -O selname,"$VARS_KEEP" "$expr_nc" "$out_file"; then
+    record_failure "cdo_selname_fail" "$bn" "$VARS_KEEP"
+    echo "SELNAME FAIL: $bn" >&2
     return 0
   fi
 

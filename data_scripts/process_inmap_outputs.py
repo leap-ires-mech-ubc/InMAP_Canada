@@ -14,6 +14,7 @@ import sys
 # --------------------------------------------------------
 # File paths and configuration
 # --------------------------------------------------------
+#fpath is input InMAP data with GEMMACH projected on using gemmach_on_inmap_base_zonalstats.py
 fpath = '/home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Outputs/20260310/withGEMMACH/'
 figpath = '/home/tfmrodge/scratch/GEMMACH_data/output_summaries/20260319/'
 
@@ -88,7 +89,7 @@ provinces = gpd.read_file(
 )
 
 # --------------------------------------------------------
-# Loop over scenarios
+# Loop over scenarios. Legacy, if running as an array we just have 
 # --------------------------------------------------------
 for sID in sIDs:
     scenario = scenarios[sID][0]

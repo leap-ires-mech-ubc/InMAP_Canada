@@ -15,14 +15,7 @@ export PROJ_DATA="$PROJ_LIB"
 python /home/tfmrodge/projects/def-rscholes/tfmrodge/InMAP_Canada/data_scripts/process_inmap_outputs.py $SLURM_ARRAY_TASK_ID
 #salloc --time=3:0:0 --mem-per-cpu=10G --ntasks=10 --nodes=1 --account=def-rscholes
 #python /home/tfmrodge/projects/def-rscholes/tfmrodge/InMAP_Canada/data_scripts/combine_preprocs.py
-#module load gdal
-# for f in /home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/20250930*.shp; do
-#     ogr2ogr -t_srs EPSG:4326 "${f%_lcc.shp}EPSG4326.shp" "$f"
-# done
-#ogrinfo -so /home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/BAU_2020_E108_majorpts.shp file
-# for f in /home/tfmrodge/scratch/GEMMACH_data/Emissions_shp/20250926*__*; do
-#     mv "$f" "${f/__/}"
-# done
+
 
 # cdo setmisstoc,0 /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017.nc /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_complete.nc
 # cdo -O fillmiss /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017.nc /home/tfmrodge/scratch/GEMMACH_data/data/Inmap_outputs/Preproc/inmapData_GEMMACH_BASEGM_2015_017_fillnn.nc
